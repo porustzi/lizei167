@@ -4,19 +4,19 @@ import { ChevronRight, FileText } from 'lucide-react';
 const openData = [
   {
     title: '1. Статут закладу освіти',
-    link: 'https://www.lyzeum167.com/_files/ugd/09b7e1_9c641be4511042039cc3eb68e9b4d6bf.pdf',
+    link: 'https://d3910a78-5cfb-4f0b-b07e-2ec7b508a1d1.filesusr.com/ugd/09b7e1_9c641be4511042039cc3eb68e9b4d6bf.pdf',
   },
   {
     title: '2. Ліцензії на провадження освітньої діяльності',
-    link: 'https://www.lyzeum167.com/_files/ugd/09b7e1_4681c065983e4e3aa825521d93606f48.pdf',
+    link: 'https://d3910a78-5cfb-4f0b-b07e-2ec7b508a1d1.filesusr.com/ugd/09b7e1_4681c065983e4e3aa825521d93606f48.pdf',
   },
   {
     title: '3. Структура та органи управління закладу освіти',
-    link: '#',
+    link: 'https://docs.google.com/document/d/e/2PACX-1vSlaSlgGAN5VzIv9pPWkKhQr_UyogZiJIIUtWVS77Z6BrHCO3ybqjsvrDPV52LdCC8OiDump2vHPYxf/pub',
   },
   {
     title: '4. Кадровий склад згідно з ліцензійними умовами',
-    link: 'https://www.lyzeum167.com/_files/ugd/09b7e1_b660df42a31248588626a3ed9d512983.pdf',
+    link: 'https://d3910a78-5cfb-4f0b-b07e-2ec7b508a1d1.filesusr.com/ugd/09b7e1_b660df42a31248588626a3ed9d512983.pdf',
   },
   {
     title: '5. Освітні програми та перелік освітніх компонентів',
@@ -45,12 +45,48 @@ const openData = [
     content: (
       <div className="bg-gray-50 px-6 py-4 flex flex-col gap-2">
 
-        <a href="https://drive.google.com/file/d/1hLb8FI0gy4wnQ6WLgPBAOPdP4T1dRTqz/view?usp=sharing" target="_blank" className="flex justify-between text-sm hover:text-red-600">
+        <a href="https://drive.google.com/file/d/1hLb8FI0gy4wnQ6WLgPBAOPdP4T1dRTqz/view">
           Кошторис на 2025 рік <ChevronRight className="w-4 h-4" />
         </a>
 
-        <a href="https://drive.google.com/file/d/1ksv3UcZDBIsOR0tjDlAsRm32fB6y_FcJ/view?usp=sharing" target="_blank" className="flex justify-between text-sm hover:text-red-600">
+        <a href="https://drive.google.com/file/d/1ksv3UcZDBIsOR0tjDlAsRm32fB6y_FcJ/view" target="_blank" className="flex justify-between text-sm hover:text-red-600">
           Звіт за 2025 рік <ChevronRight className="w-4 h-4" />
+        </a>
+
+           <a href="https://drive.google.com/file/d/1kd7QvFgeYLvxxfQuQHVZqK9kkjluuegE/view" target="_blank" className="flex justify-between text-sm hover:text-red-600">
+          Кошторис на 2024 рік <ChevronRight className="w-4 h-4" />
+        </a>
+
+        <a href="https://drive.google.com/file/d/1mwtBZVrJrVy_z9MGwRxFXlWilYwy3ndS/view" target="_blank" className="flex justify-between text-sm hover:text-red-600">
+          Звіт за 2024 рік <ChevronRight className="w-4 h-4" />
+        </a>
+
+           <a href="https://drive.google.com/file/d/1hLb8FI0gy4wnQ6WLgPBAOPdP4T1dRTqz/view?usp=sharing" target="_blank" className="flex justify-between text-sm hover:text-red-600">
+          Матеріальні цінності передані громадськими та благодійними організаціями за 2024 рік <ChevronRight className="w-4 h-4" />
+        </a>
+
+        <a href="https://drive.google.com/file/d/1PQSRD1uU3etWrGnKAYxXPYJMpLqcSif6/view" target="_blank" className="flex justify-between text-sm hover:text-red-600">
+          Звіт за 2023 рік <ChevronRight className="w-4 h-4" />
+        </a>
+
+           <a href="https://drive.google.com/file/d/1oTyC1A5uZ3Bv5PakaoaY52ZXCB49XFm6/view">
+          Кошторис на 2023 рік <ChevronRight className="w-4 h-4" />
+        </a>
+
+        <a href="https://drive.google.com/file/d/1LO0sCD4mbRhuywiVHNFvLguafBRY45sw/view?usp=drive_link" target="_blank" className="flex justify-between text-sm hover:text-red-600">
+         Матеріальні цінності передані громадськими та благодійними організаціями за 2023 рік <ChevronRight className="w-4 h-4" />
+        </a>
+
+         <a href="https://drive.google.com/file/d/1fV8oaJssoeOeOHjlUeU5RT1WdegLpIwL/view" target="_blank" className="flex justify-between text-sm hover:text-red-600">
+          Звіт за 2022 рік <ChevronRight className="w-4 h-4" />
+        </a>
+
+           <a href="https://drive.google.com/file/d/1hIL9FCw0PWQ36O0BdGtkSEFa2hDzCKHi/view" target="_blank" className="flex justify-between text-sm hover:text-red-600">
+          Кошторис на 2022 рік <ChevronRight className="w-4 h-4" />
+        </a>
+
+        <a href="https://drive.google.com/file/d/1geiPfXFsLgT3sWyAtE5-ea8da09aHaL2/view?usp=drive_link" target="_blank" className="flex justify-between text-sm hover:text-red-600">
+         Матеріальні цінності передані громадськими та благодійними організаціями за 2022 рік <ChevronRight className="w-4 h-4" />
         </a>
 
       </div>
@@ -68,8 +104,12 @@ const openData = [
     content: (
       <div className="bg-gray-50 px-6 py-4 flex flex-col gap-2">
 
-        <a href="https://drive.google.com/file/d/1pa4ascygff7y6J5Lko0APTALNAsggQqd/view?usp=sharing" target="_blank" className="flex justify-between text-sm hover:text-red-600">
+        <a href="https://drive.google.com/file/d/1pa4ascygff7y6J5Lko0APTALNAsggQqd/view">
           Річний звіт за 2024–2025 н. р. <ChevronRight className="w-4 h-4" />
+        </a>
+
+         <a href="https://drive.google.com/file/d/1Kq8hGaw2Yej5GJSQy3tCSA0IPKYUpVsD/view">
+          Річний звіт за 2023–2024 н. р. <ChevronRight className="w-4 h-4" />
         </a>
 
       </div>
