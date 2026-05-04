@@ -71,14 +71,14 @@ export default function Footer({ navigate }: FooterProps) {
               </li>
               <li className="flex items-center gap-3">
                 <Phone className="w-4 h-4 text-amber-400 shrink-0" />
-                <a href="tel:+380442923133" className="text-sm text-gray-400 hover:text-amber-400 transition-colors">
-                  +380 44 292 3133
+                <a href="tel:+063 319 77 90" className="text-sm text-gray-400 hover:text-amber-400 transition-colors">
+                  +063 319 77 90
                 </a>
               </li>
               <li className="flex items-center gap-3">
                 <Mail className="w-4 h-4 text-amber-400 shrink-0" />
-                <a href="mailto:lyceum167@ukr.net" className="text-sm text-gray-400 hover:text-amber-400 transition-colors">
-                  lyceum167@ukr.net
+                <a href="mailto:lyzeum167@ukr.net" className="text-sm text-gray-400 hover:text-amber-400 transition-colors">
+                  lyzeum167@ukr.net
                 </a>
               </li>
               <li className="flex items-center gap-3">
