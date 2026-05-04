@@ -13,8 +13,7 @@ import {
 const sections = [
   {
     icon: GraduationCap,
-    title: '
-Положення про сімейну форму навчання Ліцею № 167 м. Києва',
+    title: 'Положення про сімейну форму навчання Ліцею № 167 м. Києва',
     desc: 'Документ, що визначає організацію сімейного навчання, права й обов’язки учнів, батьків та ліцею.',
     border: 'border-red-100',
     bg: 'bg-red-50',
@@ -202,8 +201,6 @@ export default function Family() {
 
   return (
     <div className="pt-20">
-
-      {/* HERO — 1:1 как Education */}
       <section className="relative py-20 bg-gray-900 overflow-hidden">
         <div className="absolute inset-0">
           <img
@@ -229,16 +226,13 @@ export default function Family() {
         </div>
       </section>
 
-      {/* ACCORDION */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-6 space-y-4">
-
           {sections.map((s, i) => {
             const Icon = s.icon;
 
             return (
               <div key={s.title} className={`border ${s.border} rounded-2xl overflow-hidden`}>
-
                 <button
                   className="w-full flex justify-between p-6"
                   onClick={() => setOpen(open === i ? null : i)}
@@ -258,7 +252,6 @@ export default function Family() {
 
                 {open === i && (
                   <div className={`border-t ${s.border} grid md:grid-cols-2`}>
-
                     {s.semesters.map((sem) => (
                       <div key={sem.label} className="p-6">
                         <p className={`text-sm font-bold mb-3 ${s.color}`}>
@@ -280,17 +273,13 @@ export default function Family() {
                         </div>
                       </div>
                     ))}
-
                   </div>
                 )}
-
               </div>
             );
           })}
-
         </div>
       </section>
-
     </div>
   );
 }
