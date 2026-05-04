@@ -13,8 +13,9 @@ import {
 const sections = [
   {
     icon: GraduationCap,
-    title: 'Навчальний план',
-    desc: 'Офіційні плани для сімейного навчання',
+    title: '
+Положення про сімейну форму навчання Ліцею № 167 м. Києва',
+    desc: 'Документ, що визначає організацію сімейного навчання, права й обов’язки учнів, батьків та ліцею.',
     border: 'border-red-100',
     bg: 'bg-red-50',
     color: 'text-red-600',
@@ -59,8 +60,8 @@ const sections = [
 
   {
     icon: Target,
-    title: 'Атестація',
-    desc: 'Завдання для оцінювання',
+    title: 'Навчальні плани',
+    desc: 'Документи, що визначають зміст, обсяг і послідовність навчання.',
     border: 'border-amber-100',
     bg: 'bg-amber-50',
     color: 'text-amber-600',
@@ -71,7 +72,7 @@ const sections = [
       {
         label: '1 Семестр',
         classes: [
-          { cls: '1 клас', href: '/docs/att-1-1.pdf' },
+          { cls: '1 клас', href: 'https://docs.google.com/spreadsheets/d/1psUbY_JiaIKukoz3aEn3l8STmNLq7oD4hM7UyUIOnkI/edit?usp=sharing' },
           { cls: '2 клас', href: '/docs/att-1-2.pdf' },
           { cls: '3 клас', href: '/docs/att-1-3.pdf' },
           { cls: '4 клас', href: '/docs/att-1-4.pdf' },
@@ -105,7 +106,7 @@ const sections = [
 
   {
     icon: Calendar,
-    title: 'Консультації',
+    title: 'Графік консультацій',
     desc: 'Розклад зустрічей',
     border: 'border-blue-100',
     bg: 'bg-blue-50',
@@ -151,8 +152,8 @@ const sections = [
 
   {
     icon: Users,
-    title: 'Додаткові матеріали',
-    desc: 'Ресурси для учнів',
+    title: 'Графік контрольних робіт',
+    desc: 'Розклад перевірочних робіт.',
     border: 'border-green-100',
     bg: 'bg-green-50',
     color: 'text-green-600',
