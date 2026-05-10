@@ -1,16 +1,252 @@
 backend:
   name: git-gateway
   branch: main
+
 site_url: https://lyzeum167kyiv.netlify.app
 media_folder: "public/images"
 public_folder: "/images"
+
+locale: "uk"
+
 collections:
+
+  # ─────────────────────────────────────
+  # ГОЛОВНА
+  # ─────────────────────────────────────
+  - name: "home"
+    label: "🏠 Головна сторінка"
+    files:
+      - name: "home"
+        label: "Головна"
+        file: "content/pages/home.json"
+        fields:
+          - { label: "Заголовок (рядок 1)", name: "hero_title_1", widget: "string" }
+          - { label: "Заголовок (рядок 2, червоний)", name: "hero_title_2", widget: "string" }
+          - { label: "Заголовок (рядок 3)", name: "hero_title_3", widget: "string" }
+          - { label: "Підзаголовок", name: "hero_subtitle", widget: "string" }
+          - { label: "Фонове фото", name: "hero_image", widget: "image", required: false }
+          - label: "Статистика (лічильники)"
+            name: "stats"
+            widget: "list"
+            fields:
+              - { label: "Число", name: "value", widget: "string" }
+              - { label: "Підпис", name: "label", widget: "string" }
+          - label: "Блоки переваг (4 картки)"
+            name: "features"
+            widget: "list"
+            fields:
+              - { label: "Іконка (емодзі)", name: "icon", widget: "string" }
+              - { label: "Заголовок", name: "title", widget: "string" }
+              - { label: "Текст", name: "text", widget: "text" }
+              - { label: "Мітка", name: "badge", widget: "string", required: false }
+
+  # ─────────────────────────────────────
+  # ПРО НАС
+  # ─────────────────────────────────────
+  - name: "about"
+    label: "🏫 Про нас"
+    files:
+      - name: "about"
+        label: "Про нас"
+        file: "content/pages/about.json"
+        fields:
+          - { label: "Заголовок секції", name: "title", widget: "string" }
+          - { label: "Підзаголовок", name: "subtitle", widget: "text" }
+          - { label: "Основний текст", name: "body", widget: "markdown" }
+          - label: "Фотографії (колаж)"
+            name: "photos"
+            widget: "list"
+            fields:
+              - { label: "Фото", name: "image", widget: "image" }
+          - label: "Переваги (список з галочками)"
+            name: "advantages"
+            widget: "list"
+            fields:
+              - { label: "Текст", name: "text", widget: "string" }
+          - label: "Таймлайн (історія)"
+            name: "timeline"
+            widget: "list"
+            fields:
+              - { label: "Рік", name: "year", widget: "string" }
+              - { label: "Подія", name: "event", widget: "text" }
+          - label: "Цінності (картки 'Що нами керує')"
+            name: "values"
+            widget: "list"
+            fields:
+              - { label: "Іконка (емодзі)", name: "icon", widget: "string" }
+              - { label: "Заголовок", name: "title", widget: "string" }
+              - { label: "Текст", name: "text", widget: "text" }
+
+  # ─────────────────────────────────────
+  # НАВЧАННЯ
+  # ─────────────────────────────────────
+  - name: "education"
+    label: "📚 Навчання"
+    files:
+      - name: "education"
+        label: "Програми навчання"
+        file: "content/pages/education.json"
+        fields:
+          - { label: "Заголовок", name: "title", widget: "string" }
+          - { label: "Підзаголовок", name: "subtitle", widget: "string" }
+          - label: "Програми (акордеон)"
+            name: "programs"
+            widget: "list"
+            fields:
+              - { label: "Назва", name: "title", widget: "string" }
+              - { label: "Мітка", name: "badge", widget: "string", required: false }
+              - { label: "Опис", name: "description", widget: "text" }
+              - label: "Пункти (список)"
+                name: "items"
+                widget: "list"
+                fields:
+                  - { label: "Текст", name: "text", widget: "string" }
+          - label: "Рівні німецької (картки)"
+            name: "levels"
+            widget: "list"
+            fields:
+              - { label: "Назва рівня", name: "title", widget: "string" }
+              - { label: "Опис", name: "description", widget: "text" }
+          - label: "Інші дисципліни"
+            name: "subjects"
+            widget: "list"
+            fields:
+              - { label: "Іконка (емодзі)", name: "icon", widget: "string" }
+              - { label: "Назва", name: "title", widget: "string" }
+
+  # ─────────────────────────────────────
+  # СІМЕЙНЕ НАВЧАННЯ
+  # ─────────────────────────────────────
+  - name: "family"
+    label: "👨‍👩‍👧 Сімейне навчання"
+    files:
+      - name: "family"
+        label: "Сімейне навчання"
+        file: "content/pages/family.json"
+        fields:
+          - { label: "Заголовок", name: "title", widget: "string" }
+          - { label: "Підзаголовок", name: "subtitle", widget: "string" }
+          - label: "Положення (головний документ)"
+            name: "main_document"
+            widget: "object"
+            fields:
+              - { label: "Назва", name: "title", widget: "string" }
+              - { label: "Опис", name: "description", widget: "string" }
+              - { label: "Файл PDF", name: "file", widget: "file", required: false }
+              - { label: "Посилання", name: "url", widget: "string", required: false }
+          - label: "Матеріали 1 семестр (по класах)"
+            name: "semester1"
+            widget: "list"
+            fields:
+              - { label: "Клас (напр. 1 клас)", name: "grade", widget: "string" }
+              - { label: "Файл PDF", name: "file", widget: "file", required: false }
+              - { label: "Посилання", name: "url", widget: "string", required: false }
+          - label: "Матеріали 2 семестр (по класах)"
+            name: "semester2"
+            widget: "list"
+            fields:
+              - { label: "Клас (напр. 1 клас)", name: "grade", widget: "string" }
+              - { label: "Файл PDF", name: "file", widget: "file", required: false }
+              - { label: "Посилання", name: "url", widget: "string", required: false }
+          - label: "Додаткові документи"
+            name: "extra_documents"
+            widget: "list"
+            fields:
+              - { label: "Назва", name: "title", widget: "string" }
+              - { label: "Опис", name: "description", widget: "string", required: false }
+              - { label: "Файл PDF", name: "file", widget: "file", required: false }
+              - { label: "Посилання", name: "url", widget: "string", required: false }
+
+  # ─────────────────────────────────────
+  # НОВИНИ
+  # ─────────────────────────────────────
   - name: "news"
-    label: "Новости"
+    label: "📰 Новини"
     folder: "content/news"
     create: true
     slug: "{{slug}}"
     fields:
       - { label: "Заголовок", name: "title", widget: "string" }
       - { label: "Дата", name: "date", widget: "datetime" }
+      - { label: "Обкладинка", name: "image", widget: "image", required: false }
+      - { label: "Короткий опис", name: "excerpt", widget: "text", required: false }
       - { label: "Текст", name: "body", widget: "markdown" }
+
+  # ─────────────────────────────────────
+  # ВІДГУКИ
+  # ─────────────────────────────────────
+  - name: "reviews"
+    label: "⭐ Відгуки"
+    folder: "content/reviews"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Ім'я", name: "name", widget: "string" }
+      - { label: "Роль (напр. Мама учня 5 класу)", name: "role", widget: "string" }
+      - { label: "Оцінка (1-5)", name: "rating", widget: "number", value_type: "int", min: 1, max: 5, default: 5 }
+      - { label: "Дата", name: "date", widget: "datetime" }
+      - { label: "Текст відгуку", name: "body", widget: "text" }
+      - { label: "Джерело", name: "source", widget: "select", options: ["Google", "Facebook", "Instagram", "Особисто"], default: "Google" }
+
+  # ─────────────────────────────────────
+  # ВІДКРИТІСТЬ (17 пунктів)
+  # ─────────────────────────────────────
+  - name: "transparency"
+    label: "📋 Відкритість"
+    files:
+      - name: "transparency"
+        label: "Відкритість"
+        file: "content/pages/transparency.json"
+        fields:
+          - label: "Угода про DSD школу"
+            name: "dsd_document"
+            widget: "object"
+            fields:
+              - { label: "Назва", name: "title", widget: "string" }
+              - { label: "Файл PDF", name: "file", widget: "file", required: false }
+              - { label: "Посилання", name: "url", widget: "string", required: false }
+          - label: "Документи (17 пунктів)"
+            name: "documents"
+            widget: "list"
+            fields:
+              - { label: "Назва", name: "title", widget: "string" }
+              - { label: "Файл PDF", name: "file", widget: "file", required: false }
+              - { label: "Посилання", name: "url", widget: "string", required: false }
+
+  # ─────────────────────────────────────
+  # КОНТАКТИ
+  # ─────────────────────────────────────
+  - name: "contacts"
+    label: "📞 Контакти"
+    files:
+      - name: "contacts"
+        label: "Контакти"
+        file: "content/pages/contacts.json"
+        fields:
+          - { label: "Адреса", name: "address", widget: "string" }
+          - label: "Телефони"
+            name: "phones"
+            widget: "list"
+            fields:
+              - { label: "Номер", name: "number", widget: "string" }
+              - { label: "Підпис (напр. Секретар)", name: "label", widget: "string" }
+          - { label: "Email", name: "email", widget: "string" }
+          - { label: "Графік роботи", name: "working_hours", widget: "string" }
+          - { label: "Посилання Instagram", name: "instagram", widget: "string", required: false }
+          - { label: "Посилання Facebook", name: "facebook", widget: "string", required: false }
+          - { label: "Посилання Google Maps", name: "maps_url", widget: "string", required: false }
+
+  # ─────────────────────────────────────
+  # НАЛАШТУВАННЯ САЙТУ
+  # ─────────────────────────────────────
+  - name: "settings"
+    label: "⚙️ Налаштування"
+    files:
+      - name: "general"
+        label: "Загальні налаштування"
+        file: "content/settings/general.json"
+        fields:
+          - { label: "Назва ліцею", name: "school_name", widget: "string" }
+          - { label: "Короткий опис (футер)", name: "footer_description", widget: "text" }
+          - { label: "Логотип", name: "logo", widget: "image", required: false }
+          - { label: "Кнопка 'Зателефонувати' — номер", name: "call_button_phone", widget: "string" }
