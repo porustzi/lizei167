@@ -25,12 +25,14 @@ collections:
           - { label: "Заголовок (рядок 3)", name: "hero_title_3", widget: "string" }
           - { label: "Підзаголовок", name: "hero_subtitle", widget: "string" }
           - { label: "Фонове фото", name: "hero_image", widget: "image", required: false }
+
           - label: "Статистика (лічильники)"
             name: "stats"
             widget: "list"
             fields:
               - { label: "Число", name: "value", widget: "string" }
               - { label: "Підпис", name: "label", widget: "string" }
+
           - label: "Блоки переваг (4 картки)"
             name: "features"
             widget: "list"
@@ -53,22 +55,26 @@ collections:
           - { label: "Заголовок секції", name: "title", widget: "string" }
           - { label: "Підзаголовок", name: "subtitle", widget: "text" }
           - { label: "Основний текст", name: "body", widget: "markdown" }
+
           - label: "Фотографії (колаж)"
             name: "photos"
             widget: "list"
             fields:
               - { label: "Фото", name: "image", widget: "image" }
+
           - label: "Переваги (список з галочками)"
             name: "advantages"
             widget: "list"
             fields:
               - { label: "Текст", name: "text", widget: "string" }
+
           - label: "Таймлайн (історія)"
             name: "timeline"
             widget: "list"
             fields:
               - { label: "Рік", name: "year", widget: "string" }
               - { label: "Подія", name: "event", widget: "text" }
+
           - label: "Цінності (картки 'Що нами керує')"
             name: "values"
             widget: "list"
@@ -89,6 +95,7 @@ collections:
         fields:
           - { label: "Заголовок", name: "title", widget: "string" }
           - { label: "Підзаголовок", name: "subtitle", widget: "string" }
+
           - label: "Програми (акордеон)"
             name: "programs"
             widget: "list"
@@ -96,23 +103,59 @@ collections:
               - { label: "Назва", name: "title", widget: "string" }
               - { label: "Мітка", name: "badge", widget: "string", required: false }
               - { label: "Опис", name: "description", widget: "text" }
+
               - label: "Пункти (список)"
                 name: "items"
                 widget: "list"
                 fields:
                   - { label: "Текст", name: "text", widget: "string" }
+
           - label: "Рівні німецької (картки)"
             name: "levels"
             widget: "list"
             fields:
               - { label: "Назва рівня", name: "title", widget: "string" }
               - { label: "Опис", name: "description", widget: "text" }
+
           - label: "Інші дисципліни"
             name: "subjects"
             widget: "list"
             fields:
               - { label: "Іконка (емодзі)", name: "icon", widget: "string" }
               - { label: "Назва", name: "title", widget: "string" }
+
+  # ─────────────────────────────────────
+  # СІМЕЙНЕ НАВЧАННЯ
+  # ─────────────────────────────────────
+  - name: "family"
+    label: "👨‍👩‍👧 Сімейне навчання"
+    files:
+      - name: "family"
+        label: "Сімейне навчання"
+        file: "content/pages/family.json"
+        fields:
+          - { label: "Заголовок", name: "title", widget: "string" }
+          - { label: "Підзаголовок", name: "subtitle", widget: "string" }
+
+          - label: "Секції"
+            name: "sections"
+            widget: "list"
+            fields:
+              - { label: "Назва секції", name: "title", widget: "string" }
+              - { label: "Опис", name: "desc", widget: "text" }
+
+              - label: "Семестри"
+                name: "semesters"
+                widget: "list"
+                fields:
+                  - { label: "Назва семестру", name: "label", widget: "string" }
+
+                  - label: "Класи"
+                    name: "classes"
+                    widget: "list"
+                    fields:
+                      - { label: "Назва класу", name: "cls", widget: "string" }
+                      - { label: "Посилання", name: "href", widget: "string" }
 
   # ─────────────────────────────────────
   # НОВИНИ
@@ -146,6 +189,7 @@ collections:
               - { label: "Назва", name: "title", widget: "string" }
               - { label: "Файл PDF", name: "file", widget: "file", required: false }
               - { label: "Посилання", name: "url", widget: "string", required: false }
+
           - label: "Документи (17 пунктів)"
             name: "documents"
             widget: "list"
@@ -153,6 +197,7 @@ collections:
               - { label: "Назва", name: "title", widget: "string" }
               - { label: "Файл PDF", name: "file", widget: "file", required: false }
               - { label: "Посилання", name: "url", widget: "string", required: false }
+
               - label: "Піддокументи"
                 name: "children"
                 widget: "list"
@@ -172,12 +217,14 @@ collections:
         file: "content/pages/contacts.json"
         fields:
           - { label: "Адреса", name: "address", widget: "string" }
+
           - label: "Телефони"
             name: "phones"
             widget: "list"
             fields:
               - { label: "Номер", name: "number", widget: "string" }
               - { label: "Підпис (напр. Секретар)", name: "label", widget: "string" }
+
           - { label: "Email", name: "email", widget: "string" }
           - { label: "Графік роботи", name: "working_hours", widget: "string" }
           - { label: "Посилання Instagram", name: "instagram", widget: "string", required: false }
