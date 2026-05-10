@@ -46,42 +46,33 @@ collections:
   # ПРО НАС
   # ─────────────────────────────────────
   - name: "about"
-    label: "🏫 Про нас"
-    files:
-      - name: "about"
-        label: "Про нас"
-        file: "content/pages/about.json"
-        fields:
-          - { label: "Заголовок секції", name: "title", widget: "string" }
-          - { label: "Підзаголовок", name: "subtitle", widget: "text" }
-          - { label: "Основний текст", name: "body", widget: "markdown" }
+  label: "Про нас"
+  file: "content/pages/about.json"
+  fields:
 
-          - label: "Фотографії (колаж)"
-            name: "photos"
-            widget: "list"
-            fields:
-              - { label: "Фото", name: "image", widget: "image" }
+    - { label: "Заголовок", name: "title", widget: "string" }
 
-          - label: "Переваги (список з галочками)"
-            name: "advantages"
-            widget: "list"
-            fields:
-              - { label: "Текст", name: "text", widget: "string" }
+    - { label: "Підзаголовок", name: "subtitle", widget: "text" }
 
-          - label: "Таймлайн (історія)"
-            name: "timeline"
-            widget: "list"
-            fields:
-              - { label: "Рік", name: "year", widget: "string" }
-              - { label: "Подія", name: "event", widget: "text" }
+    - label: "Головні зображення"
+      name: "images"
+      widget: "list"
+      fields:
+        - { label: "Фото", name: "image", widget: "image" }
 
-          - label: "Цінності (картки 'Що нами керує')"
-            name: "values"
-            widget: "list"
-            fields:
-              - { label: "Іконка (емодзі)", name: "icon", widget: "string" }
-              - { label: "Заголовок", name: "title", widget: "string" }
-              - { label: "Текст", name: "text", widget: "text" }
+    - label: "Хронологія"
+      name: "milestones"
+      widget: "list"
+      fields:
+        - { label: "Рік", name: "year", widget: "string" }
+        - { label: "Подія", name: "event", widget: "string" }
+
+    - label: "Цінності"
+      name: "values"
+      widget: "list"
+      fields:
+        - { label: "Назва", name: "title", widget: "string" }
+        - { label: "Опис", name: "desc", widget: "text" }
 
   # ─────────────────────────────────────
   # НАВЧАННЯ
