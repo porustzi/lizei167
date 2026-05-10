@@ -1,3 +1,4 @@
-[build]
-  command = "npm run build"
-  publish = "dist"
+[[redirects]]
+  from = "/content/*"
+  to = "/content/:splat"
+  status = 200
