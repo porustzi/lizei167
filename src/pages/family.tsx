@@ -9,7 +9,7 @@ import {
   Target
 } from 'lucide-react';
 
-import familyData from '../content/pages/family.json';
+import familyData from '../../content/pages/family.json';
 
 const iconMap: any = {
   'Плани': GraduationCap,
