@@ -262,4 +262,3 @@ collections:
           - { label: "Короткий опис (футер)", name: "footer_description", widget: "text" }
           - { label: "Логотип", name: "logo", widget: "image", required: false }
           - { label: "Кнопка 'Зателефонувати' — номер", name: "call_button_phone", widget: "string" }
-```
