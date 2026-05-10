@@ -1,3 +1,4 @@
+```yml
 backend:
   name: git-gateway
   branch: main
@@ -188,44 +189,42 @@ collections:
       - { label: "Текст відгуку", name: "body", widget: "text" }
       - { label: "Джерело", name: "source", widget: "select", options: ["Google", "Facebook", "Instagram", "Особисто"], default: "Google" }
 
- # ─────────────────────────────────────
-# ВІДКРИТІСТЬ (17 пунктів)
-# ─────────────────────────────────────
-- name: "transparency"
-  label: "📋 Відкритість"
-  files:
-    - name: "transparency"
-      label: "Відкритість"
-      file: "content/pages/transparency.json"
-      fields:
-        - label: "Угода про DSD школу"
-          name: "dsd_document"
-          widget: "object"
-          fields:
-            - { label: "Назва", name: "title", widget: "string" }
-            - { label: "Файл PDF", name: "file", widget: "file", required: false }
-            - { label: "Посилання", name: "url", widget: "string", required: false }
+  # ─────────────────────────────────────
+  # ВІДКРИТІСТЬ (17 пунктів)
+  # ─────────────────────────────────────
+  - name: "transparency"
+    label: "📋 Відкритість"
+    files:
+      - name: "transparency"
+        label: "Відкритість"
+        file: "content/pages/transparency.json"
+        fields:
+          - label: "Угода про DSD школу"
+            name: "dsd_document"
+            widget: "object"
+            fields:
+              - { label: "Назва", name: "title", widget: "string" }
+              - { label: "Файл PDF", name: "file", widget: "file", required: false }
+              - { label: "Посилання", name: "url", widget: "string", required: false }
 
-        - label: "Документи (17 пунктів)"
-          name: "documents"
-          widget: "list"
+          - label: "Документи (17 пунктів)"
+            name: "documents"
+            widget: "list"
 
-          fields:
-            - { label: "Назва", name: "title", widget: "string" }
+            fields:
+              - { label: "Назва", name: "title", widget: "string" }
+              - { label: "Файл PDF", name: "file", widget: "file", required: false }
+              - { label: "Посилання", name: "url", widget: "string", required: false }
 
-            - { label: "Файл PDF", name: "file", widget: "file", required: false }
+              - label: "Піддокументи"
+                name: "children"
+                widget: "list"
+                required: false
 
-            - { label: "Посилання", name: "url", widget: "string", required: false }
+                fields:
+                  - { label: "Назва", name: "title", widget: "string" }
+                  - { label: "Посилання", name: "url", widget: "string" }
 
-            - label: "Піддокументи"
-              name: "children"
-              widget: "list"
-              required: false
-
-              fields:
-                - { label: "Назва", name: "title", widget: "string" }
-
-                - { label: "Посилання", name: "url", widget: "string" }
   # ─────────────────────────────────────
   # КОНТАКТИ
   # ─────────────────────────────────────
@@ -263,3 +262,4 @@ collections:
           - { label: "Короткий опис (футер)", name: "footer_description", widget: "text" }
           - { label: "Логотип", name: "logo", widget: "image", required: false }
           - { label: "Кнопка 'Зателефонувати' — номер", name: "call_button_phone", widget: "string" }
+```
