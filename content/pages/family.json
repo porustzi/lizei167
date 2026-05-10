@@ -1,21 +1,14 @@
 {
   "title": "Сімейне навчання",
   "subtitle": "Документи та матеріали для навчання",
-
   "sections": [
     {
       "title": "Графік консультацій",
       "desc": "Розклад зустрічей",
-
       "semesters": [
         {
           "label": "1 Семестр",
-
           "classes": [
-            {
-              "cls": "1 клас",
-              "href": "https://google.com"
-            },
             {
               "cls": "2 клас",
               "href": "https://google.com"
