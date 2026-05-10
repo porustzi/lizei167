@@ -130,22 +130,6 @@ collections:
       - { label: "Текст", name: "body", widget: "markdown" }
 
   # ─────────────────────────────────────
-  # ВІДГУКИ
-  # ─────────────────────────────────────
-  - name: "reviews"
-    label: "⭐ Відгуки"
-    folder: "content/reviews"
-    create: true
-    slug: "{{slug}}"
-    fields:
-      - { label: "Ім'я", name: "name", widget: "string" }
-      - { label: "Роль (напр. Мама учня 5 класу)", name: "role", widget: "string" }
-      - { label: "Оцінка (1-5)", name: "rating", widget: "number", value_type: "int", min: 1, max: 5, default: 5 }
-      - { label: "Дата", name: "date", widget: "datetime" }
-      - { label: "Текст відгуку", name: "body", widget: "text" }
-      - { label: "Джерело", name: "source", widget: "select", options: ["Google", "Facebook", "Instagram", "Особисто"], default: "Google" }
-
-  # ─────────────────────────────────────
   # ВІДКРИТІСТЬ
   # ─────────────────────────────────────
   - name: "transparency"
