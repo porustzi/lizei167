@@ -8,7 +8,8 @@ import {
   CheckCircle,
   ChevronRight,
 } from 'lucide-react';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
+import educationData from '../../content/pages/education.json';
 
 const iconMap: Record<string, any> = {
   BookOpen,
@@ -40,32 +41,9 @@ interface Subject {
   title: string;
 }
 
-interface EducationData {
-  title: string;
-  subtitle: string;
-  programs: Program[];
-  levels: Level[];
-  subjects: Subject[];
-}
-
 export default function Education() {
   const [openProgram, setOpenProgram] = useState<number | null>(0);
-  const [data, setData] = useState<EducationData | null>(null);
-
-  useEffect(() => {
-    fetch('/content/pages/education.json')
-      .then((res) => res.json())
-      .then(setData)
-      .catch(console.error);
-  }, []);
-
-  if (!data) {
-    return (
-      <div className="pt-32 text-center text-gray-500">
-        Завантаження...
-      </div>
-    );
-  }
+  const data = educationData;
 
   return (
     <div className="pt-20">
@@ -110,23 +88,20 @@ export default function Education() {
             <span className="text-xs font-semibold uppercase tracking-widest text-red-600 bg-red-50 px-3 py-1 rounded-full">
               Основні програми
             </span>
-
             <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900 mt-4">
               Що ми пропонуємо
             </h2>
           </div>
 
           <div className="space-y-4">
-            {data.programs?.map((program, i) => (
+            {data.programs.map((program: Program, i: number) => (
               <div
                 key={program.title}
                 className="border border-gray-100 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all"
               >
                 <button
                   className="w-full text-left p-6 flex items-start gap-4"
-                  onClick={() =>
-                    setOpenProgram(openProgram === i ? null : i)
-                  }
+                  onClick={() => setOpenProgram(openProgram === i ? null : i)}
                 >
                   <div className="w-12 h-12 bg-red-50 text-red-600 rounded-xl flex items-center justify-center shrink-0">
                     <BookOpen className="w-6 h-6" />
@@ -137,14 +112,12 @@ export default function Education() {
                       <h3 className="font-bold text-gray-900 text-lg">
                         {program.title}
                       </h3>
-
                       {program.badge && (
                         <span className="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-red-100 text-red-700">
                           {program.badge}
                         </span>
                       )}
                     </div>
-
                     <p className="text-gray-500 text-sm leading-relaxed">
                       {program.description}
                     </p>
@@ -160,16 +133,10 @@ export default function Education() {
                 {openProgram === i && (
                   <div className="px-6 pb-6 border-t border-gray-100 pt-5">
                     <ul className="grid sm:grid-cols-2 gap-3">
-                      {program.items?.map((item) => (
-                        <li
-                          key={item.text}
-                          className="flex items-start gap-2.5"
-                        >
+                      {program.items.map((item: ProgramItem) => (
+                        <li key={item.text} className="flex items-start gap-2.5">
                           <CheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
-
-                          <span className="text-sm text-gray-700">
-                            {item.text}
-                          </span>
+                          <span className="text-sm text-gray-700">{item.text}</span>
                         </li>
                       ))}
                     </ul>
@@ -190,14 +157,13 @@ export default function Education() {
             <span className="text-xs font-semibold uppercase tracking-widest text-amber-600 bg-amber-50 px-3 py-1 rounded-full">
               Рівні мови
             </span>
-
             <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900 mt-4">
               Шлях до досконалості
             </h2>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 gap-6">
-            {data.levels?.map((level, i) => (
+            {data.levels.map((level: Level, i: number) => (
               <div
                 key={level.title}
                 className="bg-white rounded-2xl p-5 shadow-sm border border-gray-100"
@@ -205,11 +171,9 @@ export default function Education() {
                 <div className="w-10 h-10 rounded-full bg-gradient-to-br from-amber-400 to-red-500 text-white font-bold text-sm flex items-center justify-center mb-3">
                   {i + 1}
                 </div>
-
                 <h3 className="font-bold text-gray-900 text-sm mb-2">
                   {level.title}
                 </h3>
-
                 <p className="text-xs text-gray-500 leading-relaxed">
                   {level.description}
                 </p>
@@ -228,17 +192,14 @@ export default function Education() {
             <span className="text-xs font-semibold uppercase tracking-widest text-blue-600 bg-blue-50 px-3 py-1 rounded-full">
               Загальна освіта
             </span>
-
             <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900 mt-4">
               Інші дисципліни
             </h2>
           </div>
 
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
-            {data.subjects?.map((subject) => {
-              const Icon =
-                iconMap[subject.icon] || BookOpen;
-
+            {data.subjects.map((subject: Subject) => {
+              const Icon = iconMap[subject.icon] || BookOpen;
               return (
                 <div
                   key={subject.title}
@@ -247,7 +208,6 @@ export default function Education() {
                   <div className="w-10 h-10 bg-red-50 text-red-600 rounded-xl flex items-center justify-center mx-auto mb-2">
                     <Icon className="w-5 h-5" />
                   </div>
-
                   <p className="text-xs font-medium text-gray-700 leading-tight">
                     {subject.title}
                   </p>
