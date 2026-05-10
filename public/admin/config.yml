@@ -128,34 +128,44 @@ collections:
   # СІМЕЙНЕ НАВЧАННЯ
   # ─────────────────────────────────────
   - name: "family"
-    label: "👨‍👩‍👧 Сімейне навчання"
-    files:
-      - name: "family"
-        label: "Сімейне навчання"
-        file: "content/pages/family.json"
-        fields:
-          - { label: "Заголовок", name: "title", widget: "string" }
-          - { label: "Підзаголовок", name: "subtitle", widget: "string" }
+  label: "👨‍👩‍👧 Сімейне навчання"
 
-          - label: "Секції"
-            name: "sections"
-            widget: "list"
-            fields:
-              - { label: "Назва секції", name: "title", widget: "string" }
-              - { label: "Опис", name: "desc", widget: "text" }
+  files:
+    - name: "family"
+      label: "Сімейне навчання"
+      file: "content/pages/family.json"
 
-              - label: "Семестри"
-                name: "semesters"
-                widget: "list"
-                fields:
-                  - { label: "Назва семестру", name: "label", widget: "string" }
+      fields:
+        - { label: "Заголовок", name: "title", widget: "string" }
 
-                  - label: "Класи"
-                    name: "classes"
-                    widget: "list"
-                    fields:
-                      - { label: "Назва класу", name: "cls", widget: "string" }
-                      - { label: "Посилання", name: "href", widget: "string" }
+        - { label: "Підзаголовок", name: "subtitle", widget: "string" }
+
+        - label: "Секції"
+          name: "sections"
+          widget: "list"
+
+          fields:
+            - { label: "Назва секції", name: "title", widget: "string" }
+
+            - { label: "Опис", name: "description", widget: "text" }
+
+            - { label: "Бейдж", name: "badge", widget: "string", required: false }
+
+            - label: "Семестри"
+              name: "semesters"
+              widget: "list"
+
+              fields:
+                - { label: "Назва семестру", name: "label", widget: "string" }
+
+                - label: "Класи"
+                  name: "classes"
+                  widget: "list"
+
+                  fields:
+                    - { label: "Назва класу", name: "name", widget: "string" }
+
+                    - { label: "Посилання", name: "url", widget: "string" }
 
   # ─────────────────────────────────────
   # НОВИНИ
