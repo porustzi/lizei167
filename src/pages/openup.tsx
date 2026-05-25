@@ -1,6 +1,9 @@
 import { useState, useEffect } from 'react';
 import { ChevronRight, FileText } from 'lucide-react';
 
+const HEADER_BG =
+  "https://images.pexels.com/photos/1809644/pexels-photo-1809644.jpeg";
+
 interface DocItem {
   title: string;
   url?: string;
@@ -15,7 +18,8 @@ interface TransparencyData {
 
 const FALLBACK_DSD = {
   title: 'Угода про DSD школи',
-  url: 'https://docs.google.com/document/d/e/2PACX-1vRVbg5IEpGHXPmoFkDDjEcIY9sJ5YTs8JZr4BCIG8TSZ70R4DoYBiOZ9w7vc3_8MxmVeW14R8-EynkN/pub',
+  url:
+    'https://docs.google.com/document/d/e/2PACX-1vRVbg5IEpGHXPmoFkDDjEcIY9sJ5YTs8JZr4BCIG8TSZ70R4DoYBiOZ9w7vc3_8MxmVeW14R8-EynkN/pub',
 };
 
 export default function Openup() {
@@ -24,8 +28,10 @@ export default function Openup() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   useEffect(() => {
-    fetch('https://raw.githubusercontent.com/platstarinum-prog/lizei167/main/content/pages/transparency.json')
-      .then(r => r.json())
+    fetch(
+      'https://raw.githubusercontent.com/platstarinum-prog/lizei167/main/content/pages/transparency.json'
+    )
+      .then((r) => r.json())
       .then((data: TransparencyData) => {
         if (data.dsd_document) setDsd(data.dsd_document);
         if (data.documents) setDocs(data.documents);
@@ -46,20 +52,45 @@ export default function Openup() {
 
   return (
     <div className="pt-20">
+      {/* Новый ХЕДЕР */}
+      <section className="relative py-20 bg-gray-900 overflow-hidden">
+        <div className="absolute inset-0">
+          <img
+            src={HEADER_BG}
+            className="w-full h-full object-cover opacity-15"
+            alt="background"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-gray-900 to-gray-900/70" />
+        </div>
+
+        <div className="absolute left-0 top-0 bottom-0 w-1.5 flex flex-col">
+          <div className="flex-1 bg-red-600" />
+          <div className="flex-1 bg-amber-400" />
+        </div>
+
+        <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h1 className="text-5xl font-extrabold text-white">
+            Відкритість та документи
+          </h1>
+          <p className="text-gray-300 mt-3 max-w-xl">
+            Всі основні положення, відкриті драфти та ключові документи школи
+          </p>
+        </div>
+      </section>
+      {/* КОНЕЦ ХЕДЕРА */}
+
       <section className="py-20 bg-white">
         <div className="max-w-5xl mx-auto px-4">
-
           <div className="mb-10 flex justify-center">
             <a
               href={dsd.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="group relative flex items-center gap-4 rounded-2xl bg-gradient-to-r from-red-600 to-red-500 px-8 py-5 shadow-xl transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl active:scale-[0.98]"
+              className="group relative flex items-center gap-4 rounded-2xl bg-gradient-to-r from-red-600 to-red-500 px-8 py-5 shadow-xl transition-all duration-300 hover:scale-[1.02] hover:shadow-xl"
             >
               <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-white/20 backdrop-blur-sm">
                 <FileText className="w-6 h-6 text-white" />
               </div>
-
               <div className="flex flex-col">
                 <span className="text-white text-xl font-extrabold tracking-wide">
                   {dsd.title}
@@ -68,7 +99,6 @@ export default function Openup() {
                   Відкрити документ
                 </span>
               </div>
-
               <ChevronRight className="w-6 h-6 text-white transition-transform duration-300 group-hover:translate-x-1" />
             </a>
           </div>
@@ -76,7 +106,6 @@ export default function Openup() {
           <div className="flex flex-col gap-3">
             {docs.map((item, i) => {
               const hasChildren = item.children && item.children.length > 0;
-
               return (
                 <div key={i}>
                   <button
@@ -86,16 +115,13 @@ export default function Openup() {
                     <span className="text-gray-900 font-medium">
                       {item.title}
                     </span>
-
                     <ChevronRight
-                      className={`w-5 h-5 transition ${
-                        openIndex === i
-                          ? 'rotate-90 text-red-600'
-                          : 'text-gray-400 group-hover:text-red-600 group-hover:translate-x-1'
-                      }`}
+                      className={`w-5 h-5 transition ${openIndex === i
+                        ? 'rotate-90 text-red-600'
+                        : 'text-gray-400 group-hover:text-red-600 group-hover:translate-x-1'
+                        }`}
                     />
                   </button>
-
                   {hasChildren && openIndex === i && (
                     <div className="bg-gray-50 px-6 py-4 flex flex-col gap-0 rounded-b-xl border border-t-0 border-gray-200">
                       {item.children!.map((child, ci) => (
@@ -116,7 +142,6 @@ export default function Openup() {
               );
             })}
           </div>
-
         </div>
       </section>
     </div>
