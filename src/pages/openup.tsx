@@ -51,7 +51,7 @@ export default function Openup() {
 
   return (
     <div className="pt-20">
-      {/* Новый хедер — плашка в стиле из примера (темный navy, полосы, тэг и крупный заголовок) */}
+      {/* Новый хедер по теме документов */}
       <section className="relative overflow-hidden bg-[#181E29] py-20">
         {/* Цветные полосы слева */}
         <div className="absolute left-0 top-0 bottom-0 w-1.5 flex flex-col z-10">
@@ -63,17 +63,17 @@ export default function Openup() {
           <img src={HEADER_BG} alt="background" className="w-full h-full object-cover opacity-10" />
         </div>
         <div className="relative z-20 max-w-5xl mx-auto px-6">
-          {/* Тэг */}
+          {/* Тег */}
           <div className="mb-6">
-            <span className="inline-block px-4 py-1 rounded-full border border-amber-400 text-xs font-semibold uppercase text-amber-400 bg-white/5 tracking-wider">відгуки</span>
+            <span className="inline-block px-4 py-1 rounded-full border border-amber-400 text-xs font-semibold uppercase text-amber-400 bg-white/5 tracking-wider">документи</span>
           </div>
           {/* Заголовок */}
           <h1 className="text-5xl font-extrabold text-white leading-tight mb-2">
-            Що кажуть <span className="text-amber-400">батьки</span> та учні
+            Відкритість та <span className="text-amber-400">документи</span>
           </h1>
           {/* Подзаголовок */}
           <p className="text-gray-300 text-base">
-            Реальні відгуки з Google Reviews від нашої спільноти.
+            Всі основні положення, відкриті драфти та ключові документи школи
           </p>
         </div>
       </section>
