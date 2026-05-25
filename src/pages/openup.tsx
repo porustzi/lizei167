@@ -1,8 +1,7 @@
 import { useState, useEffect } from 'react';
 import { ChevronRight, FileText } from 'lucide-react';
 
-const HEADER_BG =
-  "https://images.pexels.com/photos/1809644/pexels-photo-1809644.jpeg";
+const HEADER_BG = "https://images.pexels.com/photos/1809644/pexels-photo-1809644.jpeg";
 
 interface DocItem {
   title: string;
@@ -52,32 +51,32 @@ export default function Openup() {
 
   return (
     <div className="pt-20">
-      {/* Новый ХЕДЕР */}
-      <section className="relative py-20 bg-gray-900 overflow-hidden">
-        <div className="absolute inset-0">
-          <img
-            src={HEADER_BG}
-            className="w-full h-full object-cover opacity-15"
-            alt="background"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-gray-900 to-gray-900/70" />
-        </div>
-
-        <div className="absolute left-0 top-0 bottom-0 w-1.5 flex flex-col">
-          <div className="flex-1 bg-red-600" />
+      {/* Новый хедер — плашка в стиле из примера (темный navy, полосы, тэг и крупный заголовок) */}
+      <section className="relative overflow-hidden bg-[#181E29] py-20">
+        {/* Цветные полосы слева */}
+        <div className="absolute left-0 top-0 bottom-0 w-1.5 flex flex-col z-10">
+          <div className="flex-1 bg-red-700" />
           <div className="flex-1 bg-amber-400" />
         </div>
-
-        <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h1 className="text-5xl font-extrabold text-white">
-            Відкритість та документи
+        {/* Сильноглушенный фон */}
+        <div className="absolute inset-0 z-0">
+          <img src={HEADER_BG} alt="background" className="w-full h-full object-cover opacity-10" />
+        </div>
+        <div className="relative z-20 max-w-5xl mx-auto px-6">
+          {/* Тэг */}
+          <div className="mb-6">
+            <span className="inline-block px-4 py-1 rounded-full border border-amber-400 text-xs font-semibold uppercase text-amber-400 bg-white/5 tracking-wider">відгуки</span>
+          </div>
+          {/* Заголовок */}
+          <h1 className="text-5xl font-extrabold text-white leading-tight mb-2">
+            Що кажуть <span className="text-amber-400">батьки</span> та учні
           </h1>
-          <p className="text-gray-300 mt-3 max-w-xl">
-            Всі основні положення, відкриті драфти та ключові документи школи
+          {/* Подзаголовок */}
+          <p className="text-gray-300 text-base">
+            Реальні відгуки з Google Reviews від нашої спільноти.
           </p>
         </div>
       </section>
-      {/* КОНЕЦ ХЕДЕРА */}
 
       <section className="py-20 bg-white">
         <div className="max-w-5xl mx-auto px-4">
