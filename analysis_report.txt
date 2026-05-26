@@ -1,0 +1,79 @@
+========================================
+  АНАЛИЗ РЕПОЗИТОРИЯ: lizei167
+========================================
+  GitHub: https://github.com/platstarinum-prog/lizei167
+  Локально: C:\Users\Tim\lizei167
+========================================
+
+1. ОПИСАНИЕ ПРОЕКТА
+   Веб-сайт "Ліцей №167" — державний заклад освіти в Києві з поглибленим вивченням німецької мови.
+   Односторінковий додаток (SPA) на React.
+
+2. ТЕХНОЛОГІЧНИЙ СТЕК
+   - Frontend: Vite + React 18 + TypeScript
+   - Стилі: Tailwind CSS + PostCSS
+   - Іконки: Lucide React
+   - Бекенд: Firebase (Auth, Firestore, Storage)
+   - Адмінка: Supabase (CRUD новин/відгуків)
+   - Контент: JSON-файли + Markdown (зберігаються прямо в репо)
+   - Хостинг: Netlify (SPA redirects + Netlify Forms)
+
+3. СТРУКТУРА ПРОЕКТУ
+
+   src/
+   ├── App.tsx                    # Головний компонент, роутинг (SPA без react-router)
+   ├── main.tsx                   # Точка входу
+   ├── firebase.js                # Firebase config
+   ├── index.css                  # Tailwind base styles
+   ├── components/
+   │   ├── Header.tsx             # Навігація (десктоп + мобільне меню)
+   │   ├── Footer.tsx             # Футер
+   │   └── AdminLogin.tsx         # Логін/реєстрація адміна (Firebase Auth + Supabase)
+   └── pages/
+       ├── Home.tsx               # Головна: Hero, статистика, фічі, CTA
+       ├── About.tsx              # Про нас: історія, місія, таймлайн, цінності
+       ├── Education.tsx          # Навчання: програми, рівні мови, предмети
+       ├── family.tsx             # Сімейне навчання: документи по класах
+       ├── News.tsx               # Новини (завантажуються з GitHub raw)
+       ├── NewsPost.tsx           # Окрема новина (Markdown -> ReactMarkdown)
+       ├── Reviews.tsx            # Відгуки + рейтинг Google
+       ├── Contacts.tsx           # Контакти + форма Netlify
+       ├── openup.tsx             # Відкритість: документи, DSD угода
+       └── Admin.tsx              # Адмінпанель: CRUD новин/відгуків через Supabase
+
+   content/
+   ├── pages/
+   │   ├── home.json              # Дані головної (тексти, статистика, фічі)
+   │   ├── about.json             # Дані про ліцей (хронология, місія, цінності)
+   │   ├── education.json         # Програми, рівні, предмети
+   │   ├── family.json            # Сімейне навчання (sections з semesters/classes)
+   │   ├── contacts.json          # Контактна інформація
+   │   ├── transparency.json      # Документи для відкритості
+   │   └── general.json           # Загальні налаштування
+   └── news/
+       └── тест1.md               # Тестова новина (Markdown + frontmatter)
+
+4. ФУНКЦІОНАЛЬНІСТЬ
+   - SPA-навігація без react-router (ручне перемикання сторінок через state в App.tsx)
+   - Новини зберігаються як Markdown-файли в /content/news, підтягуються через GitHub API
+   - Контент сторінок у JSON-файлах (локально або з GitHub raw)
+   - Firebase: підключено Auth, Firestore, Storage (але поки не використовується активно)
+   - Supabase: CRUD для новин (news_articles) та відгуків (reviews)
+   - Netlify Forms: контактна форма
+   - Адмінка: логін через Firebase, управління новинами/відгуками через Supabase
+   - Відгуки статичні (захардкожені в Reviews.tsx)
+
+5. ОСОБЛИВОСТІ
+   - Firebase API ключ видимий у firebase.js (публічний, це нормально для Firebase)
+   - Сторінка "Відкритість" (openup) містить багато посилань на Google Docs/Drive
+   - Сімейне навчання (family) — розділ з акордеоном, але URL більшості класів пусті
+   - Контент сторінок підтягується з GitHub raw (кешування браузера)
+   - Є Netlify CMS конфіг (public/admin/config.yml та public/admin/index.html)
+
+6. ЗАУВАЖЕННЯ
+   - Сторінка "pages" в адмінці позначена як "скоро буде доступна"
+   - У Reviews.tsx відгуки захардкожені, але в адмінці є CRUD для reviews (Supabase)
+   - Дублювання логіки парсингу Markdown між News.tsx та NewsPost.tsx
+   - В family.json багато пустих URL, потребує наповнення
+
+========================================
