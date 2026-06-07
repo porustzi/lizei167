@@ -89,6 +89,25 @@ export default function Footer({ navigate }: FooterProps) {
           </div>
         </div>
 
+
+        <div className="flex justify-center mt-10 mb-4 px-4">
+          <div className="relative overflow-hidden rounded-full md:rounded-full rounded-xl w-full md:w-auto max-w-xs md:max-w-none mx-auto px-5 py-3 md:py-2.5 bg-white shadow-lg">
+            <div className="absolute inset-0 pointer-events-none">
+              <div className="absolute -top-4 -right-3 w-16 h-16 bg-rose-300/50 rounded-full blur-xl" />
+              <div className="absolute -bottom-4 -left-3 w-12 h-12 bg-rose-400/40 rounded-full blur-lg" />
+              <div className="absolute top-1/4 left-1/3 w-8 h-8 bg-rose-200/30 rounded-full blur-md" />
+            </div>
+            <a
+              href="https://krvtsv.netlify.app"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="relative block text-center text-rose-600 font-bold text-[11px] md:text-[10px] uppercase tracking-widest whitespace-nowrap hover:text-rose-500 transition-colors"
+            >
+              Сайт зроблений KRVTSV CORP
+            </a>
+          </div>
+        </div>
+
         <div className="border-t border-gray-800 mt-10 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3">
           <p className="text-xs text-gray-500">© 2026 Ліцей №167. Всі права захищені.</p>
           <p className="text-xs text-gray-500">Заклад загальної середньої освіти м. Києва</p>
