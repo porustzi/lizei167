@@ -28,11 +28,38 @@ function App() {
   const [openNewsId, setOpenNewsId] = useState<string | null>(null);
 
   useEffect(() => {
-    const hash = window.location.hash;
-    if (hash.includes('invite_token') || hash.includes('recovery_token')) {
-      window.location.href = '/admin/#' + hash.split('#')[1];
-    }
-  }, []);
+    const parseHash = () => {
+      const hash = window.location.hash.slice(1); // Remove leading '#'
+      if (hash.includes('invite_token') || hash.includes('recovery_token')) {
+        window.location.href = '/admin/#' + hash.split('#')[1];
+        return;
+      }
+
+      const segments = hash.split('/').filter(Boolean); // Filter out empty strings
+
+      if (segments.length === 0 || segments[0] === 'home') {
+        setCurrentPage('home');
+        setOpenNewsId(null);
+      } else if (segments[0] === 'news' && segments[1]) {
+        setCurrentPage('news');
+        setOpenNewsId(segments[1]);
+      } else if (['about', 'education', 'family', 'reviews', 'contacts', 'openup'].includes(segments[0])) {
+        setCurrentPage(segments[0] as Page);
+        setOpenNewsId(null);
+      } else {
+        // Default to home if hash is unrecognized
+        setCurrentPage('home');
+        setOpenNewsId(null);
+      }
+    };
+
+    // Parse hash on initial load
+    parseHash();
+
+    // Listen for hash changes
+    window.addEventListener('hashchange', parseHash);
+    return () => window.removeEventListener('hashchange', parseHash);
+  }, []); // Empty dependency array means this runs once on mount
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 40);
@@ -45,12 +72,16 @@ function App() {
   }, [currentPage, openNewsId]);
 
   const navigate = (page: Page) => {
-    setOpenNewsId(null);
-    setCurrentPage(page);
+    window.location.hash = `/${page}`;
   };
 
-  const openNews = (id: string) => setOpenNewsId(id);
-  const closeNews = () => setOpenNewsId(null);
+  const openNews = (id: string) => {
+    window.location.hash = `/news/${id}`;
+  };
+
+  const closeNews = () => {
+    window.location.hash = `/news`;
+  };
 
   const renderPage = () => {
     if (openNewsId) {
