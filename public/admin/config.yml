@@ -4,7 +4,6 @@ backend:
 
 site_url: https://lyzeum-167.netlify.app
 locale: uk
-publish_mode: editorial_workflow
 
 i18n:
   structure: single_file
