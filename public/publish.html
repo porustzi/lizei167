@@ -40,11 +40,7 @@
       font-weight: 800;
       margin-bottom: 1rem;
     }
-    p {
-      color: #94a3b8;
-      line-height: 1.6;
-      margin-bottom: 2rem;
-    }
+    p { color: #94a3b8; line-height: 1.6; margin-bottom: 2rem; }
     .btn-publish {
       display: inline-flex;
       align-items: center;
@@ -63,17 +59,20 @@
       box-shadow: 0 10px 20px -5px rgba(220,38,38,0.4);
       width: 100%;
     }
-    .btn-publish:hover {
-      transform: scale(1.05);
-      box-shadow: 0 20px 30px -5px rgba(220,38,38,0.6);
+    .btn-publish:hover { transform: scale(1.05); }
+    .btn-publish:active { transform: scale(0.98); }
+    .btn-publish:disabled { opacity: 0.6; cursor: wait; transform: none; }
+    .status {
+      margin: 1.5rem 0;
+      padding: 1rem;
+      border-radius: 1rem;
+      font-size: 0.9rem;
+      display: none;
     }
-    .btn-publish:active {
-      transform: scale(0.98);
-    }
-    .btn-publish svg {
-      width: 2rem;
-      height: 2rem;
-    }
+    .status.show { display: block; }
+    .status.loading { background: #1e293b; color: #fbbf24; border: 1px solid #fbbf24; }
+    .status.success { background: #052e16; color: #4ade80; border: 1px solid #4ade80; }
+    .status.error { background: #450a0a; color: #fca5a5; border: 1px solid #dc2626; }
     .info {
       margin-top: 2rem;
       padding: 1.5rem;
@@ -81,78 +80,141 @@
       border-radius: 1rem;
       font-size: 0.875rem;
       color: #64748b;
+      text-align: left;
+      line-height: 1.8;
     }
-    .info span { color: #fbbf24; font-weight: 600; }
-    .status {
-      margin-top: 1.5rem;
-      padding: 1rem;
-      border-radius: 1rem;
-      font-size: 0.9rem;
+    .info strong { color: #94a3b8; }
+    .spinner {
+      display: inline-block;
+      width: 20px; height: 20px;
+      border: 3px solid rgba(255,255,255,0.3);
+      border-top-color: #fff;
+      border-radius: 50%;
+      animation: spin 0.6s linear infinite;
+      vertical-align: middle;
+      margin-right: 8px;
     }
-    .status.pending {
-      background: #1e293b;
-      color: #fbbf24;
-      border: 1px solid #fbbf24/20;
-    }
-    .status.ok {
-      background: #052e16;
-      color: #4ade80;
-      border: 1px solid #4ade80/20;
-    }
-    .hidden { display: none; }
-    footer {
-      margin-top: 2rem;
-      color: #475569;
-      font-size: 0.75rem;
-    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    footer { margin-top: 2rem; color: #475569; font-size: 0.75rem; }
   </style>
 </head>
 <body>
   <div class="card">
     <h1>Ліцей №167</h1>
     <h2>🚀 Публікація змін</h2>
-    <p>Всі неопубліковані зміни будуть задеплоєні на сайт.</p>
+    <p>Всі чернетки будуть змержені в main та задеплоєні.</p>
 
-    <div id="status" class="status pending">
-      ⏳ Перевіряю наявність чернеток...
-    </div>
+    <div id="status" class="status"></div>
 
-    <a id="publishBtn" href="https://github.com/platstarinum-prog/lizei167/actions/workflows/publish-all.yml" target="_blank" class="btn-publish">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+    <button id="publishBtn" class="btn-publish">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
       ОПУБЛІКУВАТИ ВСЕ
-    </a>
+    </button>
 
     <div class="info">
       <strong>Як це працює:</strong><br>
       1️⃣ Редагуєш сайт у <a href="/admin/" style="color:#60a5fa">Decap CMS</a><br>
       2️⃣ Зміни зберігаються як чернетки (без деплою)<br>
-      3️⃣ Натискаєш кнопку вище → GitHub → <span>Run workflow</span><br>
-      4️⃣ Все публікується одним деплоєм
+      3️⃣ Натискаєш кнопку → усі чернетки мержаться в main<br>
+      4️⃣ Netlify автоматично деплоїть оновлений сайт
     </div>
   </div>
 
   <footer>Ліцей №167 м. Києва</footer>
 
   <script>
-    (async () => {
+    const btn = document.getElementById('publishBtn');
+    const statusEl = document.getElementById('status');
+
+    function showStatus(type, msg) {
+      statusEl.className = 'status show ' + type;
+      statusEl.innerHTML = msg;
+    }
+
+    btn.addEventListener('click', async () => {
+      const user = window.netlifyIdentity && window.netlifyIdentity.currentUser && window.netlifyIdentity.currentUser();
+      if (!user) {
+        showStatus('error', '❌ Ви не авторизовані. Увійдіть через Netlify Identity.');
+        return;
+      }
+
+      btn.disabled = true;
+      btn.innerHTML = '<span class="spinner"></span> Публікація...';
+      showStatus('loading', '🔄 Отримую список чернеток...');
+
       try {
-        const res = await fetch('https://api.github.com/repos/platstarinum-prog/lizei167/branches');
-        const branches = await res.json();
-        if (!Array.isArray(branches)) throw new Error('no branches');
+        const token = await user.jwt();
+        const repoId = 'platstarinum-prog%2Flizei167';
+        const gateway = `/.netlify/git/gateway/repos/${repoId}`;
+        const headers = {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        };
 
-        const cms = branches.filter(b => b.name.startsWith('cms/'));
-        const el = document.getElementById('status');
+        const branchesRes = await fetch(`${gateway}/branches`, { headers });
+        if (!branchesRes.ok) throw new Error('Git Gateway недоступний');
+        const branches = await branchesRes.json();
+        const cmsBranches = (Array.isArray(branches) ? branches : []).filter(b =>
+          b.name && b.name.startsWith('cms/')
+        );
 
-        if (cms.length > 0) {
-          el.className = 'status pending';
-          el.innerHTML = `📝 <strong>${cms.length}</strong> чернеток очікують публікації`;
+        if (cmsBranches.length === 0) {
+          showStatus('success', '✅ Немає чернеток. Сайт актуальний.');
+          btn.disabled = false;
+          btn.innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg> ОПУБЛІКУВАТИ ВСЕ';
+          return;
+        }
+
+        let merged = 0;
+        for (const branch of cmsBranches) {
+          showStatus('loading', `🔄 Мержу ${branch.name}...`);
+          const mergeRes = await fetch(`${gateway}/merges`, {
+            method: 'POST',
+            headers,
+            body: JSON.stringify({
+              base: 'main',
+              head: branch.name,
+              commit_message: 'Publish from Decap CMS',
+            }),
+          });
+          if (mergeRes.ok || mergeRes.status === 204) merged++;
+          else console.warn('Skip', branch.name, mergeRes.status);
+        }
+
+        btn.disabled = false;
+        btn.innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg> ОПУБЛІКУВАТИ ВСЕ';
+
+        if (merged > 0) {
+          showStatus('success', `✅ ${merged} чернеток опубліковано! Сайт оновлюється...`);
         } else {
-          el.className = 'status ok';
-          el.innerHTML = '✅ Немає чернеток. Сайт актуальний.';
+          showStatus('error', '❌ Нічого не опубліковано. Спробуйте ще раз.');
         }
       } catch (e) {
-        document.getElementById('status').className = 'status pending';
-        document.getElementById('status').textContent = '🔗 Натисни кнопку, щоб опублікувати';
+        console.error(e);
+        btn.disabled = false;
+        btn.innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg> ОПУБЛІКУВАТИ ВСЕ';
+        showStatus('error', `❌ Помилка: ${e.message}`);
+      }
+    });
+
+    (async () => {
+      try {
+        const user = window.netlifyIdentity && window.netlifyIdentity.currentUser && window.netlifyIdentity.currentUser();
+        if (user) {
+          const token = await user.jwt();
+          const res = await fetch(`/.netlify/git/gateway/repos/platstarinum-prog%2Flizei167/branches`, {
+            headers: { Authorization: `Bearer ${token}` }
+          });
+          const branches = await res.json();
+          const cms = (Array.isArray(branches) ? branches : []).filter(b => b.name && b.name.startsWith('cms/'));
+          if (cms.length > 0) {
+            showStatus('loading', `📝 ${cms.length} чернеток очікують публікації`);
+          } else {
+            showStatus('success', '✅ Немає чернеток. Сайт актуальний.');
+          }
+        }
+      } catch (e) {
+        // not logged in, noop
       }
     })();
   </script>
