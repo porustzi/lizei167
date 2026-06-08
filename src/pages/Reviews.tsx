@@ -17,7 +17,7 @@ function StarRating({ count }: { count: number }) {
 
 export default function Reviews() {
   const { t, loc } = useLang();
-  const reviews = reviewsData;
+  const reviews = reviewsData.reviews;
   const avgRating = 4.86;
   const totalReviews = 134;
 

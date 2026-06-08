@@ -3,296 +3,298 @@ backend:
   branch: main
 
 site_url: https://lyzeum167kyiv.netlify.app
+locale: uk
 
-media_folder: "public/images"
-public_folder: "/images"
+i18n:
+  structure: single_file
+  locales: [uk, de]
+  default_locale: uk
 
-locale: "uk"
+media_folder: public/images
+public_folder: /images
 
 collections:
-
-  # ─────────────────────────────────────
-  # ГОЛОВНА
-  # ─────────────────────────────────────
-  - name: "home"
-    label: "🏠 Головна"
+  - name: general
+    label: ⚙️ Загальне
     files:
-      - name: "home"
-        label: "Головна сторінка"
-        file: "content/pages/home.json"
-
+      - name: general
+        label: Налаштування сайту
+        file: content/pages/general.json
         fields:
-          - { label: "Заголовок 1", name: "hero_title_1", widget: "string" }
-          - { label: "Заголовок 2", name: "hero_title_2", widget: "string" }
-          - { label: "Заголовок 3", name: "hero_title_3", widget: "string" }
+          - { label: Назва школи (uk), name: school_name, widget: string }
+          - { label: Назва школи (de), name: school_name_de, widget: string }
+          - { label: Опис у футері (uk), name: footer_description, widget: text }
+          - { label: Опис у футері (de), name: footer_description_de, widget: text }
+          - { label: Телефон кнопки дзвінка, name: call_button_phone, widget: string }
 
-          - { label: "Підзаголовок", name: "hero_subtitle", widget: "text" }
-
-          - { label: "Фонове фото", name: "hero_image", widget: "image", required: false }
-
-          - label: "Статистика"
-            name: "stats"
-            widget: "list"
-            fields:
-              - { label: "Число", name: "value", widget: "string" }
-              - { label: "Текст", name: "label", widget: "string" }
-
-          - label: "Переваги"
-            name: "features"
-            widget: "list"
-            fields:
-              - { label: "Іконка", name: "icon", widget: "string" }
-              - { label: "Назва", name: "title", widget: "string" }
-              - { label: "Опис", name: "text", widget: "text" }
-              - { label: "Бейдж", name: "badge", widget: "string", required: false }
-
-  # ─────────────────────────────────────
-  # ПРО НАС
-  # ─────────────────────────────────────
-  - name: "about"
-    label: "🏫 Про нас"
+  - name: home
+    label: 🏠 Головна
     files:
-      - name: "about"
-        label: "Про нас"
-        file: "content/pages/about.json"
-
+      - name: home
+        label: Головна сторінка
+        file: content/pages/home.json
         fields:
-
-          # HERO
-          - label: "Hero"
-            name: "hero"
-            widget: "object"
+          - { label: Заголовок 1, name: hero_title_1, widget: string }
+          - { label: Заголовок 2, name: hero_title_2, widget: string }
+          - { label: Заголовок 3, name: hero_title_3, widget: string }
+          - { label: Підзаголовок, name: hero_subtitle, widget: text }
+          - label: Статистика
+            name: stats
+            widget: list
             fields:
-              - { label: "Бейдж", name: "badge", widget: "string" }
-              - { label: "Заголовок", name: "title", widget: "string" }
-              - { label: "Виділене слово", name: "highlight", widget: "string" }
-              - { label: "Опис", name: "description", widget: "text" }
-              - { label: "Фонове фото", name: "background_image", widget: "image" }
-              - { label: "Текст кнопки DSD", name: "dsd_button_text", widget: "string" }
-              - { label: "Посилання DSD", name: "dsd_button_url", widget: "string" }
-
-          # МІСІЯ
-          - label: "Місія"
-            name: "mission"
-            widget: "object"
+              - { label: Число, name: value, widget: string }
+              - { label: Текст (uk), name: label, widget: string }
+              - { label: Текст (de), name: label_de, widget: string }
+          - label: Переваги
+            name: features
+            widget: list
             fields:
-              - { label: "Бейдж", name: "badge", widget: "string" }
-              - { label: "Заголовок", name: "title", widget: "string" }
-              - { label: "Опис", name: "description", widget: "text" }
+              - { label: Іконка, name: icon, widget: string }
+              - { label: Назва (uk), name: title, widget: string }
+              - { label: Назва (de), name: title_de, widget: string }
+              - { label: Опис (uk), name: text, widget: text }
+              - { label: Опис (de), name: text_de, widget: text }
+              - { label: Бейдж, name: badge, widget: string, required: false }
 
-              - label: "Пункти"
-                name: "bullets"
-                widget: "list"
-                field:
-                  label: "Пункт"
-                  name: "bullet"
-                  widget: "string"
-
-              - label: "Картинки"
-                name: "images"
-                widget: "list"
-                field:
-                  label: "Фото"
-                  name: "image"
-                  widget: "image"
-
-          # ХРОНОЛОГІЯ
-          - label: "Хронологія"
-            name: "timeline"
-            widget: "object"
-            fields:
-              - { label: "Бейдж", name: "badge", widget: "string" }
-              - { label: "Заголовок", name: "title", widget: "string" }
-
-              - label: "Події"
-                name: "items"
-                widget: "list"
-                fields:
-                  - { label: "Рік", name: "year", widget: "string" }
-                  - { label: "Подія", name: "event", widget: "text" }
-
-          # ЦІННОСТІ
-          - label: "Цінності"
-            name: "values"
-            widget: "object"
-            fields:
-              - { label: "Бейдж", name: "badge", widget: "string" }
-              - { label: "Заголовок", name: "title", widget: "string" }
-
-              - label: "Картки"
-                name: "items"
-                widget: "list"
-                fields:
-                  - { label: "Назва", name: "title", widget: "string" }
-                  - { label: "Опис", name: "description", widget: "text" }
-
-  # ─────────────────────────────────────
-  # НАВЧАННЯ
-  # ─────────────────────────────────────
-  - name: "education"
-    label: "📚 Навчання"
+  - name: about
+    label: 🏫 Про нас
     files:
-      - name: "education"
-        label: "Навчання"
-        file: "content/pages/education.json"
-
+      - name: about
+        label: Про нас
+        file: content/pages/about.json
         fields:
-          - { label: "Заголовок", name: "title", widget: "string" }
-          - { label: "Підзаголовок", name: "subtitle", widget: "text" }
-
-          - label: "Програми"
-            name: "programs"
-            widget: "list"
+          - label: Hero
+            name: hero
+            widget: object
             fields:
-              - { label: "Назва", name: "title", widget: "string" }
-              - { label: "Бейдж", name: "badge", widget: "string", required: false }
-              - { label: "Опис", name: "description", widget: "text" }
-
-              - label: "Пункти"
-                name: "items"
-                widget: "list"
+              - { label: Бейдж (uk), name: badge, widget: string }
+              - { label: Бейдж (de), name: badge_de, widget: string }
+              - { label: Заголовок (uk), name: title, widget: string }
+              - { label: Заголовок (de), name: title_de, widget: string }
+              - { label: Виділене слово (uk), name: highlight, widget: string }
+              - { label: Виділене слово (de), name: highlight_de, widget: string }
+              - { label: Опис (uk), name: description, widget: text }
+              - { label: Опис (de), name: description_de, widget: text }
+              - { label: Фонове фото, name: background_image, widget: image }
+              - { label: Текст кнопки DSD (uk), name: dsd_button_text, widget: string }
+              - { label: Текст кнопки DSD (de), name: dsd_button_text_de, widget: string }
+              - { label: Посилання DSD, name: dsd_button_url, widget: string }
+          - label: Місія
+            name: mission
+            widget: object
+            fields:
+              - { label: Бейдж (uk), name: badge, widget: string }
+              - { label: Бейдж (de), name: badge_de, widget: string }
+              - { label: Заголовок (uk), name: title, widget: string }
+              - { label: Заголовок (de), name: title_de, widget: string }
+              - { label: Опис (uk), name: description, widget: text }
+              - { label: Опис (de), name: description_de, widget: text }
+              - label: Пункти (uk)
+                name: bullets
+                widget: list
+                field: { label: Пункт, name: bullet, widget: string }
+              - label: Пункти (de)
+                name: bullets_de
+                widget: list
+                field: { label: Punkt, name: bullet_de, widget: string }
+              - label: Фото
+                name: images
+                widget: list
+                field: { label: Фото, name: image, widget: image }
+          - label: Хронологія
+            name: timeline
+            widget: object
+            fields:
+              - { label: Бейдж (uk), name: badge, widget: string }
+              - { label: Бейдж (de), name: badge_de, widget: string }
+              - { label: Заголовок (uk), name: title, widget: string }
+              - { label: Заголовок (de), name: title_de, widget: string }
+              - label: Події
+                name: items
+                widget: list
                 fields:
-                  - { label: "Текст", name: "text", widget: "string" }
-
-          - label: "Рівні"
-            name: "levels"
-            widget: "list"
+                  - { label: Рік, name: year, widget: string }
+                  - { label: Подія (uk), name: event, widget: text }
+                  - { label: Подія (de), name: event_de, widget: text }
+          - label: Цінності
+            name: values
+            widget: object
             fields:
-              - { label: "Назва", name: "title", widget: "string" }
-              - { label: "Опис", name: "description", widget: "text" }
+              - { label: Бейдж (uk), name: badge, widget: string }
+              - { label: Бейдж (de), name: badge_de, widget: string }
+              - { label: Заголовок (uk), name: title, widget: string }
+              - { label: Заголовок (de), name: title_de, widget: string }
+              - label: Картки
+                name: items
+                widget: list
+                fields:
+                  - { label: Назва (uk), name: title, widget: string }
+                  - { label: Назва (de), name: title_de, widget: string }
+                  - { label: Опис (uk), name: description, widget: text }
+                  - { label: Опис (de), name: description_de, widget: text }
 
-          - label: "Предмети"
-            name: "subjects"
-            widget: "list"
-            fields:
-              - { label: "Іконка", name: "icon", widget: "string" }
-              - { label: "Назва", name: "title", widget: "string" }
-
-  # ─────────────────────────────────────
-  # СІМЕЙНЕ
-  # ─────────────────────────────────────
-  - name: "family"
-    label: "👨‍👩‍👧 Сімейне навчання"
+  - name: education
+    label: 📚 Навчання
     files:
-      - name: "family"
-        label: "Сімейне навчання"
-        file: "content/pages/family.json"
-
+      - name: education
+        label: Навчання
+        file: content/pages/education.json
         fields:
-          - { label: "Заголовок", name: "title", widget: "string" }
-
-          - { label: "Підзаголовок", name: "subtitle", widget: "text" }
-
-          - label: "Секції"
-            name: "sections"
-            widget: "list"
+          - { label: Заголовок (uk), name: title, widget: string }
+          - { label: Заголовок (de), name: title_de, widget: string }
+          - { label: Підзаголовок (uk), name: subtitle, widget: text }
+          - { label: Підзаголовок (de), name: subtitle_de, widget: text }
+          - label: Програми
+            name: programs
+            widget: list
             fields:
-              - { label: "Назва", name: "title", widget: "string" }
-
-              - { label: "Опис", name: "description", widget: "text" }
-
-              - { label: "Бейдж", name: "badge", widget: "string", required: false }
-
-              - label: "Семестри"
-                name: "semesters"
-                widget: "list"
+              - { label: Назва (uk), name: title, widget: string }
+              - { label: Назва (de), name: title_de, widget: string }
+              - { label: Бейдж (uk), name: badge, widget: string, required: false }
+              - { label: Бейдж (de), name: badge_de, widget: string, required: false }
+              - { label: Опис (uk), name: description, widget: text }
+              - { label: Опис (de), name: description_de, widget: text }
+              - label: Пункти
+                name: items
+                widget: list
                 fields:
-                  - { label: "Назва", name: "label", widget: "string" }
+                  - { label: Текст (uk), name: text, widget: string }
+                  - { label: Текст (de), name: text_de, widget: string }
+          - label: Рівні
+            name: levels
+            widget: list
+            fields:
+              - { label: Назва, name: title, widget: string }
+              - { label: Опис (uk), name: description, widget: text }
+              - { label: Опис (de), name: description_de, widget: text }
+          - label: Предмети
+            name: subjects
+            widget: list
+            fields:
+              - { label: Іконка, name: icon, widget: string }
+              - { label: Назва (uk), name: title, widget: string }
+              - { label: Назва (de), name: title_de, widget: string }
 
-                  - label: "Класи"
-                    name: "classes"
-                    widget: "list"
+  - name: family
+    label: 👨‍👩‍👧 Сімейне
+    files:
+      - name: family
+        label: Сімейне навчання
+        file: content/pages/family.json
+        fields:
+          - { label: Заголовок (uk), name: title, widget: string }
+          - { label: Заголовок (de), name: title_de, widget: string }
+          - { label: Підзаголовок (uk), name: subtitle, widget: text }
+          - { label: Підзаголовок (de), name: subtitle_de, widget: text }
+          - label: Секції
+            name: sections
+            widget: list
+            fields:
+              - { label: Назва (uk), name: title, widget: string }
+              - { label: Назва (de), name: title_de, widget: string }
+              - { label: Опис (uk), name: description, widget: text }
+              - { label: Опис (de), name: description_de, widget: text }
+              - { label: Бейдж (uk), name: badge, widget: string, required: false }
+              - { label: Бейдж (de), name: badge_de, widget: string, required: false }
+              - label: Семестри
+                name: semesters
+                widget: list
+                fields:
+                  - { label: Назва (uk), name: label, widget: string }
+                  - { label: Назва (de), name: label_de, widget: string }
+                  - label: Класи
+                    name: classes
+                    widget: list
                     fields:
-                      - { label: "Назва класу", name: "name", widget: "string" }
-                      - { label: "Посилання", name: "url", widget: "string" }
+                      - { label: Назва (uk), name: name, widget: string }
+                      - { label: Назва (de), name: name_de, widget: string }
+                      - { label: Посилання, name: url, widget: string }
 
-  # ─────────────────────────────────────
-  # НОВИНИ
-  # ─────────────────────────────────────
-  - name: "news"
-    label: "📰 Новини"
-    folder: "content/news"
+  - name: reviews
+    label: ⭐ Відгуки
+    files:
+      - name: reviews
+        label: Відгуки
+        file: content/pages/reviews.json
+        format: json
+        fields:
+          - label: Відгуки
+            name: reviews
+            widget: list
+            fields:
+              - { label: Ім'я, name: name, widget: string }
+              - { label: Роль (uk), name: role, widget: string }
+              - { label: Роль (de), name: role_de, widget: string }
+              - { label: Рейтинг, name: rating, widget: number, value_type: int, min: 1, max: 5 }
+              - { label: Текст (uk), name: text, widget: text }
+              - { label: Текст (de), name: text_de, widget: text }
+              - { label: Дата, name: date, widget: string }
+              - { label: Аватар, name: avatar, widget: string }
+              - { label: Колір, name: color, widget: string }
+
+  - name: news
+    label: 📰 Новини
+    folder: content/news
     create: true
     slug: "{{slug}}"
-
     fields:
-      - { label: "Заголовок", name: "title", widget: "string" }
+      - { label: Заголовок, name: title, widget: string }
+      - { label: Дата, name: date, widget: datetime }
+      - { label: Фото, name: image, widget: image, required: false }
+      - { label: Короткий опис, name: excerpt, widget: text, required: false }
+      - label: Текст
+        name: body
+        widget: markdown
 
-      - { label: "Дата", name: "date", widget: "datetime" }
-
-      - { label: "Фото", name: "image", widget: "image", required: false }
-
-      - { label: "Короткий опис", name: "excerpt", widget: "text", required: false }
-
-      - { label: "Текст", name: "body", widget: "markdown" }
-
-  # ─────────────────────────────────────
-  # ВІДКРИТІСТЬ
-  # ─────────────────────────────────────
-  - name: "transparency"
-    label: "📋 Відкритість"
+  - name: transparency
+    label: 📋 Відкритість
     files:
-      - name: "transparency"
-        label: "Відкритість"
-        file: "content/pages/transparency.json"
-
+      - name: transparency
+        label: Відкритість
+        file: content/pages/transparency.json
         fields:
-          - label: "DSD документ"
-            name: "dsd_document"
-            widget: "object"
-
+          - label: DSD документ
+            name: dsd_document
+            widget: object
             fields:
-              - { label: "Назва", name: "title", widget: "string" }
-              - { label: "PDF", name: "file", widget: "file", required: false }
-              - { label: "Посилання", name: "url", widget: "string", required: false }
-
-          - label: "Документи"
-            name: "documents"
-            widget: "list"
-
+              - { label: Назва (uk), name: title, widget: string }
+              - { label: Назва (de), name: title_de, widget: string }
+              - { label: Посилання, name: url, widget: string, required: false }
+          - label: Документи
+            name: documents
+            widget: list
             fields:
-              - { label: "Назва", name: "title", widget: "string" }
-
-              - { label: "PDF", name: "file", widget: "file", required: false }
-
-              - { label: "Посилання", name: "url", widget: "string", required: false }
-
-              - label: "Піддокументи"
-                name: "children"
-                widget: "list"
+              - { label: Назва (uk), name: title, widget: string }
+              - { label: Назва (de), name: title_de, widget: string }
+              - { label: Посилання, name: url, widget: string, required: false }
+              - label: Піддокументи
+                name: children
+                widget: list
                 required: false
-
                 fields:
-                  - { label: "Назва", name: "title", widget: "string" }
-                  - { label: "Посилання", name: "url", widget: "string" }
+                  - { label: Назва (uk), name: title, widget: string }
+                  - { label: Назва (de), name: title_de, widget: string }
+                  - { label: Посилання, name: url, widget: string }
 
-  # ─────────────────────────────────────
-  # КОНТАКТИ
-  # ─────────────────────────────────────
-  - name: "contacts"
-    label: "📞 Контакти"
+  - name: contacts
+    label: 📞 Контакти
     files:
-      - name: "contacts"
-        label: "Контакти"
-        file: "content/pages/contacts.json"
-
+      - name: contacts
+        label: Контакти
+        file: content/pages/contacts.json
         fields:
-          - { label: "Адреса", name: "address", widget: "string" }
-
-          - label: "Телефони"
-            name: "phones"
-            widget: "list"
-
+          - { label: Адреса (uk), name: address, widget: string }
+          - { label: Адреса (de), name: address_de, widget: string }
+          - label: Телефони
+            name: phones
+            widget: list
             fields:
-              - { label: "Номер", name: "number", widget: "string" }
-              - { label: "Підпис", name: "label", widget: "string" }
-
-          - { label: "Email", name: "email", widget: "string" }
-
-          - { label: "Графік роботи", name: "working_hours", widget: "string" }
-
-          - { label: "Instagram", name: "instagram", widget: "string", required: false }
-
-          - { label: "Facebook", name: "facebook", widget: "string", required: false }
-
-          - { label: "Google Maps", name: "maps_url", widget: "string", required: false }
+              - { label: Номер, name: number, widget: string }
+              - { label: Підпис (uk), name: label, widget: string }
+              - { label: Підпис (de), name: label_de, widget: string }
+          - { label: Email, name: email, widget: string }
+          - { label: Графік роботи (uk), name: working_hours, widget: string }
+          - { label: Графік роботи (de), name: working_hours_de, widget: string }
+          - { label: Instagram, name: instagram, widget: string, required: false }
+          - { label: Facebook, name: facebook, widget: string, required: false }
+          - { label: Google Maps, name: maps_url, widget: string, required: false }
