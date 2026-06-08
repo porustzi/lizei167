@@ -1,11 +1,11 @@
 {
-  "name": "Ірина Мороз",
-  "role": "Мама двох учнів ліцею",
+  "color": "bg-green-100 text-green-700",
   "role_de": "Mutter von zwei Lyzeumsschülern",
-  "rating": 5,
+  "name": "Ірина Морозенко",
   "text": "Обидві дитини навчаються тут. Атмосфера відмінна, педагоги — справжні профі. Школа живе цікавим життям: поїздки, конкурси, обміни. Ми задоволені на всі 100%.",
-  "text_de": "Beide Kinder lernen hier. Die Atmosphäre ist ausgezeichnet, die Lehrkräfte sind echte Profis. Die Schule hat ein interessantes Leben: Ausflüge, Wettbewerbe, Austauschprogramme. Wir sind zu 100% zufrieden.",
   "date": "березень 2024",
+  "text_de": "Beide Kinder lernen hier. Die Atmosphäre ist ausgezeichnet, die Lehrkräfte sind echte Profis. Die Schule hat ein interessantes Leben: Ausflüge, Wettbewerbe, Austauschprogramme. Wir sind zu 100% zufrieden.",
+  "role": "Мама двох учнів ліцею",
   "avatar": "ІМ",
-  "color": "bg-green-100 text-green-700"
+  "rating": 5
 }
