@@ -9,18 +9,18 @@
   <body>
     <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
     <script>
-      (function() {
+      (function(){
         var s = document.createElement('style');
         s.textContent = [
           '.pp-btn{position:fixed;bottom:28px;right:28px;z-index:999999;background:linear-gradient(135deg,#dc2626,#b91c1c);color:#fff;border:none;border-radius:999px;padding:16px 32px;font-size:18px;font-weight:800;cursor:pointer;box-shadow:0 10px 30px -5px rgba(220,38,38,0.5);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;display:flex;align-items:center;gap:10px;transition:transform .15s;animation:pp-pulse 2s infinite}',
           '.pp-btn:hover{transform:scale(1.08)}',
           '.pp-btn:disabled{opacity:.6;cursor:wait;animation:none}',
           '@keyframes pp-pulse{0%,100%{box-shadow:0 0 20px rgba(220,38,38,0.4)}50%{box-shadow:0 0 40px rgba(220,38,38,0.7)}}',
-          '.pp-toast{position:fixed;bottom:100px;right:28px;z-index:999999;background:#1e293b;color:#fff;border-radius:16px;padding:14px 20px;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;font-size:13px;max-width:340px;box-shadow:0 10px 30px rgba(0,0,0,.3);display:none;line-height:1.4}',
+          '.pp-toast{position:fixed;bottom:100px;right:28px;z-index:999999;background:#1e293b;color:#fff;border-radius:16px;padding:14px 20px;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;font-size:13px;max-width:360px;box-shadow:0 10px 30px rgba(0,0,0,.3);display:none;line-height:1.4;border-left:4px solid #334155}',
           '.pp-toast.show{display:block}',
-          '.pp-toast.ok{border-left:4px solid #4ade80}',
-          '.pp-toast.err{border-left:4px solid #dc2626}',
-          '.pp-toast.busy{border-left:4px solid #fbbf24}',
+          '.pp-toast.ok{border-left-color:#4ade80}',
+          '.pp-toast.err{border-left-color:#dc2626}',
+          '.pp-toast.busy{border-left-color:#fbbf24}',
           '.pp-spin{display:inline-block;width:14px;height:14px;border:2px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:pp-spin .6s linear infinite;vertical-align:middle;margin-right:6px}',
           '@keyframes pp-spin{to{transform:rotate(360deg)}}'
         ].join('');
@@ -28,57 +28,85 @@
 
         function toast(type, title, desc) {
           var el = document.getElementById('ppToast');
-          el.className = 'pp-toast show ' + type;
-          el.innerHTML = '<div style="font-weight:700;margin-bottom:2px">' + title + '</div><div style="color:#94a3b8;font-size:12px">' + desc + '</div>';
+          el.className = 'pp-toast show ' + (type||'');
+          el.innerHTML = '<div style="font-weight:700;margin-bottom:2px">' + title + '</div><div style="color:#94a3b8;font-size:12px">' + (desc||'') + '</div>';
           if (type !== 'busy') setTimeout(function(){ el.classList.remove('show'); }, 5000);
         }
 
         async function doPublish() {
           var btn = document.getElementById('ppBtn');
           try {
-            var user = window.netlifyIdentity && typeof window.netlifyIdentity.currentUser === 'function' && window.netlifyIdentity.currentUser();
+            var identity = window.netlifyIdentity;
+            if (!identity || typeof identity.currentUser !== 'function') {
+              toast('err', '❌ Netlify Identity не завантажено'); return;
+            }
+            var user = identity.currentUser();
             if (!user) { toast('err', '❌ Не авторизовано', 'Увійдіть через Netlify Identity'); return; }
+
             btn.disabled = true;
             btn.innerHTML = '<span class="pp-spin"></span> Публікація...';
-            toast('busy', '🔄 Публікую...', 'Мержу чернетки в main');
+            toast('busy', '🔄 Отримую токен...', '');
 
-            var token = await user.jwt();
-            var gateway = '/.netlify/git/gateway/repos/platstarinum-prog%2Flizei167';
-            var headers = { Authorization: 'Bearer ' + token, 'Content-Type': 'application/json' };
+            var jwt = await user.jwt();
+            var payload = JSON.parse(atob(jwt.split('.')[1]));
+            var ghToken = payload.github_token;
 
-            var brRes = await fetch(gateway + '/branches', { headers: headers });
-            if (!brRes.ok) throw new Error('Git Gateway: ' + brRes.status);
+            if (!ghToken) {
+              var keys = Object.keys(payload).join(', ');
+              throw new Error('Немає github_token в JWT. Ключі: ' + keys);
+            }
+
+            var gh = 'https://api.github.com';
+            var h = { Authorization: 'Bearer ' + ghToken, Accept: 'application/vnd.github.v3+json' };
+
+            toast('busy', '🔄 Отримую список чернеток...', '');
+            var brRes = await fetch(gh + '/repos/platstarinum-prog/lizei167/branches', { headers: h });
+            if (!brRes.ok) throw new Error('GitHub API: ' + brRes.status);
             var branches = await brRes.json();
             var cms = (Array.isArray(branches) ? branches : []).filter(function(b){ return b.name && b.name.indexOf('cms/') === 0; });
 
             if (cms.length === 0) {
               toast('ok', '✅ Немає чернеток', 'Сайт актуальний');
-              btn.disabled = false; btn.innerHTML = '🚀 Опублікувати все'; return;
+              btn.disabled = false;
+              btn.innerHTML = '🚀 Опублікувати все';
+              return;
             }
 
             var merged = 0;
             for (var i = 0; i < cms.length; i++) {
-              var branch = cms[i];
-              btn.innerHTML = '⏳ ' + branch.name + '...';
-              var mRes = await fetch(gateway + '/merges', {
+              var b = cms[i];
+              btn.innerHTML = '⏳ ' + b.name + '...';
+              toast('busy', '🔄 Мержу ' + b.name + '...', '');
+              var mRes = await fetch(gh + '/repos/platstarinum-prog/lizei167/merges', {
                 method: 'POST',
-                headers: headers,
-                body: JSON.stringify({ base: 'main', head: branch.name, commit_message: 'Publish from Decap CMS' })
+                headers: h,
+                body: JSON.stringify({ base: 'main', head: b.name, commit_message: 'Publish from Decap CMS' })
               });
               if (mRes.ok || mRes.status === 204) merged++;
+              else {
+                var errData = await mRes.text();
+                console.warn('Merge failed for', b.name, mRes.status, errData);
+              }
             }
 
-            btn.disabled = false; btn.innerHTML = '🚀 Опублікувати все';
-            if (merged > 0) toast('ok', '✅ Опубліковано ' + merged, 'Зміни скоро з\'являться на сайті');
-            else toast('err', '❌ Нічого не опубліковано', 'Можливо, все вже актуально');
+            btn.disabled = false;
+            btn.innerHTML = '🚀 Опублікувати все';
+
+            if (merged > 0) {
+              toast('ok', '✅ Опубліковано ' + merged + '/' + cms.length, 'Зміни скоро з\'являться на сайті');
+              setTimeout(function(){ window.location.reload(); }, 2000);
+            } else {
+              toast('err', '❌ Нічого не опубліковано', 'Можливо, все вже актуально');
+            }
           } catch(e) {
             console.error(e);
-            btn.disabled = false; btn.innerHTML = '🚀 Опублікувати все';
+            btn.disabled = false;
+            btn.innerHTML = '🚀 Опублікувати все';
             toast('err', '❌ Помилка', e.message);
           }
         }
 
-        function addButton() {
+        function addUI() {
           if (document.getElementById('ppBtn')) return;
           var b = document.createElement('button');
           b.id = 'ppBtn'; b.className = 'pp-btn';
@@ -91,16 +119,13 @@
         }
 
         function tryAdd() {
-          if (document.querySelector('#app, [class*="App"], [class*="Sidebar"], [class*="Collection"], header, nav, main')) {
-            addButton();
-          } else {
-            setTimeout(tryAdd, 500);
-          }
+          if (document.querySelector('#app, [class*="App"], [class*="Sidebar"], header, nav, main')) { addUI(); }
+          else { setTimeout(tryAdd, 500); }
         }
 
         if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', tryAdd);
         else tryAdd();
-        setTimeout(addButton, 4000);
+        setTimeout(addUI, 3000);
       })();
     </script>
   </body>
