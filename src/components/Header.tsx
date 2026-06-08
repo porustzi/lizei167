@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { Menu, X, Phone, GraduationCap } from 'lucide-react';
+import { useLang } from '../i18n/LanguageContext';
+import LangSwitch from './LangSwitch';
 import type { Page } from '../App';
 
 interface HeaderProps {
@@ -8,19 +10,20 @@ interface HeaderProps {
   isScrolled: boolean;
 }
 
-const navLinks: { label: string; page: Page }[] = [
-  { label: 'Головна', page: 'home' },
-  { label: 'Про нас', page: 'about' },
-  { label: 'Навчання', page: 'education' },
-  { label: 'Сімейне навчання', page: 'family' },
-  { label: 'Новини', page: 'news' },
-  { label: 'Відгуки', page: 'reviews' },
-  { label: 'Відкритість', page: 'openup' },
-  { label: 'Контакти', page: 'contacts' },
-];
-
 export default function Header({ currentPage, navigate, isScrolled }: HeaderProps) {
+  const { t } = useLang();
   const [menuOpen, setMenuOpen] = useState(false);
+
+  const navLinks: { label: string; page: Page }[] = [
+    { label: t('nav.home'), page: 'home' },
+    { label: t('nav.about'), page: 'about' },
+    { label: t('nav.education'), page: 'education' },
+    { label: t('nav.family'), page: 'family' },
+    { label: t('nav.news'), page: 'news' },
+    { label: t('nav.reviews'), page: 'reviews' },
+    { label: t('nav.openup'), page: 'openup' },
+    { label: t('nav.contacts'), page: 'contacts' },
+  ];
 
   const handleNav = (page: Page) => {
     navigate(page);
@@ -52,10 +55,10 @@ export default function Header({ currentPage, navigate, isScrolled }: HeaderProp
             <div className="w-9 h-9 bg-red-600 rounded-lg flex items-center justify-center shadow-sm group-hover:bg-red-700 transition-colors">
               <GraduationCap className="w-5 h-5 text-white" />
             </div>
-            <div className="text-left leading-tight">
-              <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider">Ліцей</p>
-              <p className="text-base font-bold text-gray-900 leading-none">№167</p>
-            </div>
+              <div className="text-left leading-tight">
+                <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider">{t('header.school_type')}</p>
+                <p className="text-base font-bold text-gray-900 leading-none">{t('header.school_name')}</p>
+              </div>
           </button>
 
           {/* НАВИГАЦИЯ */}
@@ -75,14 +78,16 @@ export default function Header({ currentPage, navigate, isScrolled }: HeaderProp
             ))}
           </nav>
 
-          {/* КНОПКА */}
+          {/* КНОПКИ */}
           <div className="flex items-center gap-3">
+            <LangSwitch />
+            
             <button
               onClick={() => handleNav('contacts')}
               className="hidden sm:flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white text-sm font-medium px-4 py-2 rounded-lg transition-colors shadow-sm"
             >
               <Phone className="w-4 h-4" />
-              <span>Зателефонувати</span>
+              <span>{t('nav.call')}</span>
             </button>
 
             {/* БУРГЕР */}
@@ -122,7 +127,7 @@ export default function Header({ currentPage, navigate, isScrolled }: HeaderProp
               className="flex items-center gap-2 w-full text-left px-4 py-3 rounded-lg text-sm font-medium text-white bg-red-600 hover:bg-red-700 transition-colors mt-2"
             >
               <Phone className="w-4 h-4" />
-              Перейти до контактів
+              {t('nav.contacts')}
             </button>
 
           </div>

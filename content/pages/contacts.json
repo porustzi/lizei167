@@ -1,21 +1,26 @@
 {
   "address": "просп. Соборності, 12В, Київ.",
+  "address_de": "Prospekt Sobornosti, 12B, Kiew.",
   "phones": [
     {
       "number": "+063 319 77 90",
-      "label": "Секретар"
+      "label": "Секретар",
+      "label_de": "Sekretariat"
     },
     {
       "number": "+063 319 77 53",
-      "label": "Вахта"
+      "label": "Вахта",
+      "label_de": "Pforte"
     },
     {
       "number": "+063 319 77 96",
-      "label": "Початкова школа"
+      "label": "Початкова школа",
+      "label_de": "Grundschule"
     }
   ],
   "email": "lyzeum167@ukr.net",
   "working_hours": "Пн–Пт: 08:00 - 18:00",
+  "working_hours_de": "Mo–Fr: 08:00 - 18:00",
   "instagram": "https://www.instagram.com/lyceum_167/",
   "facebook": "https://www.facebook.com/nvk167",
   "maps_url": "https://maps.google.com/?q=м.+Київ,+пр.+Соборності+12-В"

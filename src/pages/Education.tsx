@@ -9,6 +9,7 @@ import {
   ChevronRight,
 } from 'lucide-react';
 import { useState } from 'react';
+import { useLang } from '../i18n/LanguageContext';
 import educationData from '../../content/pages/education.json';
 
 const iconMap: Record<string, any> = {
@@ -42,6 +43,7 @@ interface Subject {
 }
 
 export default function Education() {
+  const { loc, t } = useLang();
   const [openProgram, setOpenProgram] = useState<number | null>(0);
   const data = educationData;
 
@@ -67,15 +69,15 @@ export default function Education() {
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <span className="inline-block text-xs font-semibold uppercase tracking-widest text-amber-400 bg-amber-400/10 border border-amber-400/20 px-3 py-1.5 rounded-full mb-4">
-            Навчання
+            {t('education.hero_badge')}
           </span>
 
           <h1 className="text-4xl sm:text-5xl font-extrabold text-white mb-4">
-            {data.title}
+            {loc(data, 'title')}
           </h1>
 
           <p className="text-gray-300 max-w-xl text-lg leading-relaxed">
-            {data.subtitle}
+            {loc(data, 'subtitle')}
           </p>
         </div>
       </section>
@@ -86,10 +88,10 @@ export default function Education() {
 
           <div className="text-center mb-12">
             <span className="text-xs font-semibold uppercase tracking-widest text-red-600 bg-red-50 px-3 py-1 rounded-full">
-              Основні програми
+              {t('education.programs_badge')}
             </span>
             <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900 mt-4">
-              Що ми пропонуємо
+              {t('education.programs_heading')}
             </h2>
           </div>
 
@@ -110,16 +112,16 @@ export default function Education() {
                   <div className="flex-1">
                     <div className="flex flex-wrap items-center gap-3 mb-1">
                       <h3 className="font-bold text-gray-900 text-lg">
-                        {program.title}
+                        {loc(program, 'title')}
                       </h3>
                       {program.badge && (
                         <span className="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-red-100 text-red-700">
-                          {program.badge}
+                          {loc(program, 'badge')}
                         </span>
                       )}
                     </div>
                     <p className="text-gray-500 text-sm leading-relaxed">
-                      {program.description}
+                      {loc(program, 'description')}
                     </p>
                   </div>
 
@@ -133,10 +135,10 @@ export default function Education() {
                 {openProgram === i && (
                   <div className="px-6 pb-6 border-t border-gray-100 pt-5">
                     <ul className="grid sm:grid-cols-2 gap-3">
-                      {program.items.map((item: ProgramItem) => (
+                      {program.items.map((item: any) => (
                         <li key={item.text} className="flex items-start gap-2.5">
                           <CheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
-                          <span className="text-sm text-gray-700">{item.text}</span>
+                          <span className="text-sm text-gray-700">{loc(item, 'text')}</span>
                         </li>
                       ))}
                     </ul>
@@ -155,10 +157,10 @@ export default function Education() {
 
           <div className="text-center mb-12">
             <span className="text-xs font-semibold uppercase tracking-widest text-amber-600 bg-amber-50 px-3 py-1 rounded-full">
-              Рівні мови
+              {t('education.levels_badge')}
             </span>
             <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900 mt-4">
-              Шлях до досконалості
+              {t('education.levels_heading')}
             </h2>
           </div>
 
@@ -172,10 +174,10 @@ export default function Education() {
                   {i + 1}
                 </div>
                 <h3 className="font-bold text-gray-900 text-sm mb-2">
-                  {level.title}
+                  {loc(level, 'title')}
                 </h3>
                 <p className="text-xs text-gray-500 leading-relaxed">
-                  {level.description}
+                  {loc(level, 'description')}
                 </p>
               </div>
             ))}
@@ -190,10 +192,10 @@ export default function Education() {
 
           <div className="text-center mb-12">
             <span className="text-xs font-semibold uppercase tracking-widest text-blue-600 bg-blue-50 px-3 py-1 rounded-full">
-              Загальна освіта
+              {t('education.subjects_badge')}
             </span>
             <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900 mt-4">
-              Інші дисципліни
+              {t('education.subjects_heading')}
             </h2>
           </div>
 
@@ -209,7 +211,7 @@ export default function Education() {
                     <Icon className="w-5 h-5" />
                   </div>
                   <p className="text-xs font-medium text-gray-700 leading-tight">
-                    {subject.title}
+                    {loc(subject, 'title')}
                   </p>
                 </div>
               );

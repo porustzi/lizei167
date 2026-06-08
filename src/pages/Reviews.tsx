@@ -1,4 +1,5 @@
 import { Star, Quote } from 'lucide-react';
+import { useLang } from '../i18n/LanguageContext';
 
 const reviews = [
   {
@@ -71,8 +72,17 @@ function StarRating({ count }: { count: number }) {
 }
 
 export default function Reviews() {
+  const { t } = useLang();
   const avgRating = 4.86;
   const totalReviews = 134;
+
+  const starLabels = [
+    { key: 'reviews.stars_5', pct: 91 },
+    { key: 'reviews.stars_4', pct: 6 },
+    { key: 'reviews.stars_3', pct: 2 },
+    { key: 'reviews.stars_2', pct: 1 },
+    { key: 'reviews.stars_1', pct: 0 },
+  ];
 
   return (
     <div className="pt-20">
@@ -93,13 +103,13 @@ export default function Reviews() {
         </div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <span className="inline-block text-xs font-semibold uppercase tracking-widest text-amber-400 bg-amber-400/10 border border-amber-400/20 px-3 py-1.5 rounded-full mb-4">
-            Відгуки
+            {t('reviews.hero_badge')}
           </span>
           <h1 className="text-4xl sm:text-5xl font-extrabold text-white mb-4">
-            Що кажуть <span className="text-amber-400">батьки</span> та учні
+            {t('reviews.hero_title_prefix')} <span className="text-amber-400">{t('reviews.hero_title_highlight')}</span> {t('reviews.hero_title_suffix')}
           </h1>
           <p className="text-gray-300 max-w-xl text-lg leading-relaxed">
-            Реальні відгуки з Google Reviews від нашої спільноти.
+            {t('reviews.hero_subtitle')}
           </p>
         </div>
       </section>
@@ -117,20 +127,14 @@ export default function Reviews() {
                     <Star key={s} className="w-6 h-6 text-amber-400 fill-amber-400" />
                   ))}
                 </div>
-                <p className="text-sm text-gray-500">{totalReviews} відгуків у Google</p>
+                <p className="text-sm text-gray-500">{t('reviews.google_reviews', { count: totalReviews })}</p>
               </div>
 
               {/* Bars */}
               <div className="flex-1 w-full space-y-2">
-                {[
-                  { label: '5 зірок', pct: 91 },
-                  { label: '4 зірки', pct: 6 },
-                  { label: '3 зірки', pct: 2 },
-                  { label: '2 зірки', pct: 1 },
-                  { label: '1 зірка', pct: 0 },
-                ].map(({ label, pct }) => (
-                  <div key={label} className="flex items-center gap-3">
-                    <span className="text-xs text-gray-500 w-16 shrink-0">{label}</span>
+                {starLabels.map(({ key, pct }) => (
+                  <div key={key} className="flex items-center gap-3">
+                    <span className="text-xs text-gray-500 w-16 shrink-0">{t(key as any)}</span>
                     <div className="flex-1 bg-gray-200 rounded-full h-2 overflow-hidden">
                       <div
                         className="h-full bg-amber-400 rounded-full transition-all duration-700"
@@ -165,10 +169,10 @@ export default function Reviews() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <span className="text-xs font-semibold uppercase tracking-widest text-red-600 bg-red-50 px-3 py-1 rounded-full">
-              Відгуки спільноти
+              {t('reviews.community_badge')}
             </span>
             <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900 mt-4 mb-3">
-              Реальні історії
+              {t('reviews.community_heading')}
             </h2>
           </div>
 
@@ -214,15 +218,15 @@ export default function Reviews() {
       <section className="py-16 bg-white border-t border-gray-100">
         <div className="max-w-3xl mx-auto px-4 text-center">
           <h2 className="text-2xl font-extrabold text-gray-900 mb-3">
-            Приєднуйтесь до нашої спільноти!
+            {t('reviews.cta_title')}
           </h2>
-          <p className="text-gray-600 mb-6">Ставайте частиною ліцею №167 і розпочніть власну успішну мовну подорож.</p>
+          <p className="text-gray-600 mb-6">{t('reviews.cta_text')}</p>
           <div className="flex flex-wrap justify-center gap-4">
             <a
               href="tel:+380442923133"
               className="flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white font-semibold px-7 py-3.5 rounded-xl transition-colors shadow-sm"
             >
-              Зателефонувати
+              {t('reviews.cta_button')}
             </a>
           </div>
         </div>

@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { ChevronRight, FileText } from 'lucide-react';
+import { useLang } from '../i18n/LanguageContext';
 
 const HEADER_BG = "https://images.pexels.com/photos/1809644/pexels-photo-1809644.jpeg";
 
@@ -22,6 +23,7 @@ const FALLBACK_DSD = {
 };
 
 export default function Openup() {
+  const { t } = useLang();
   const [dsd, setDsd] = useState(FALLBACK_DSD);
   const [docs, setDocs] = useState<DocItem[]>([]);
   const [openIndex, setOpenIndex] = useState<number | null>(null);
@@ -65,15 +67,13 @@ export default function Openup() {
         <div className="relative z-20 max-w-5xl mx-auto px-6">
           {/* Тег */}
           <div className="mb-6">
-            <span className="inline-block px-4 py-1 rounded-full border border-amber-400 text-xs font-semibold uppercase text-amber-400 bg-white/5 tracking-wider">документи</span>
+            <span className="inline-block px-4 py-1 rounded-full border border-amber-400 text-xs font-semibold uppercase text-amber-400 bg-white/5 tracking-wider">{t('openup.badge')}</span>
           </div>
-          {/* Заголовок */}
           <h1 className="text-5xl font-extrabold text-white leading-tight mb-2">
-            Відкритість та <span className="text-amber-400">документи</span>
+            {t('openup.title_prefix')} <span className="text-amber-400">{t('openup.title_highlight')}</span>
           </h1>
-          {/* Подзаголовок */}
           <p className="text-gray-300 text-base">
-            Всі основні положення, відкриті драфти та ключові документи школи
+            {t('openup.subtitle')}
           </p>
         </div>
       </section>
@@ -95,7 +95,7 @@ export default function Openup() {
                   {dsd.title}
                 </span>
                 <span className="text-red-100 text-sm font-medium">
-                  Відкрити документ
+                  {t('openup.open_document')}
                 </span>
               </div>
               <ChevronRight className="w-6 h-6 text-white transition-transform duration-300 group-hover:translate-x-1" />

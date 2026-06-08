@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { ArrowLeft, Calendar } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
+import { useLang } from '../i18n/LanguageContext';
 
 interface Props {
   id: string;
@@ -15,6 +16,7 @@ interface NewsItem {
 }
 
 export default function NewsPost({ id, onBack }: Props) {
+  const { t } = useLang();
   const [post, setPost] = useState<NewsItem | null>(null);
   const [loading, setLoading] = useState(true);
 
@@ -49,7 +51,7 @@ export default function NewsPost({ id, onBack }: Props) {
         const dateStr = meta.date;
 
         setPost({
-          title: meta.title || 'Без назви',
+          title: meta.title || t('news.untitled'),
 
           date: dateStr
             ? new Date(dateStr).toLocaleDateString('uk-UA', {
@@ -83,12 +85,12 @@ export default function NewsPost({ id, onBack }: Props) {
           className="flex items-center gap-2 text-red-600 font-semibold mb-8 hover:gap-3 transition-all"
         >
           <ArrowLeft className="w-4 h-4" />
-          Назад до новин
+          {t('news.back')}
         </button>
 
         {loading && (
           <p className="text-gray-400">
-            Завантаження...
+            {t('news.loading')}
           </p>
         )}
 

@@ -1,22 +1,25 @@
 import { GraduationCap, MapPin, Phone, Clock, Mail } from 'lucide-react';
+import { useLang } from '../i18n/LanguageContext';
+import LangSwitch from './LangSwitch';
 import type { Page } from '../App';
 
 interface FooterProps {
   navigate: (page: Page) => void;
 }
 
-const links: { label: string; page: Page }[] = [
-  { label: 'Головна', page: 'home' },
-  { label: 'Про нас', page: 'about' },
-  { label: 'Навчання', page: 'education' },
-  { label: 'Сімейне навчання', page: 'family' },
-  { label: 'Новини', page: 'news' },
-  { label: 'Відгуки', page: 'reviews' },
-  { label: 'Контакти', page: 'contacts' },
-  { label: 'Відкритість', page: 'openup' },
-];
-
 export default function Footer({ navigate }: FooterProps) {
+  const { t } = useLang();
+
+  const links: { label: string; page: Page }[] = [
+    { label: t('nav.home'), page: 'home' },
+    { label: t('nav.about'), page: 'about' },
+    { label: t('nav.education'), page: 'education' },
+    { label: t('nav.family'), page: 'family' },
+    { label: t('nav.news'), page: 'news' },
+    { label: t('nav.reviews'), page: 'reviews' },
+    { label: t('nav.contacts'), page: 'contacts' },
+    { label: t('nav.openup'), page: 'openup' },
+  ];
   return (
     <footer className="bg-gray-900 text-gray-300">
       <div className="h-1 w-full flex">
@@ -34,19 +37,19 @@ export default function Footer({ navigate }: FooterProps) {
                 <GraduationCap className="w-6 h-6 text-white" />
               </div>
               <div>
-                <p className="text-xs text-gray-400 uppercase tracking-wider">Державний</p>
-                <p className="text-lg font-bold text-white leading-tight">Ліцей №167</p>
+                <p className="text-xs text-gray-400 uppercase tracking-wider">{t('header.school_type')}</p>
+                <p className="text-lg font-bold text-white leading-tight">{t('header.school_name')}</p>
               </div>
             </div>
-            <p className="text-sm text-gray-400 leading-relaxed">
-              Заклад загальної середньої освіти з поглибленим вивченням<br />
-              <span className="text-amber-400 font-medium">німецької мови</span> у Києві.
+            <p className="text-sm text-gray-400 leading-relaxed mb-6">
+              {t('footer.desc')}
             </p>
+            <LangSwitch />
           </div>
 
           {/* Navigation */}
           <div>
-            <h3 className="text-white font-semibold text-sm uppercase tracking-wider mb-4">Навігація</h3>
+            <h3 className="text-white font-semibold text-sm uppercase tracking-wider mb-4">{t('footer.nav')}</h3>
             <ul className="space-y-2">
               {links.map(({ label, page }) => (
                 <li key={page}>
@@ -63,11 +66,11 @@ export default function Footer({ navigate }: FooterProps) {
 
           {/* Contacts */}
           <div>
-            <h3 className="text-white font-semibold text-sm uppercase tracking-wider mb-4">Контакти</h3>
+            <h3 className="text-white font-semibold text-sm uppercase tracking-wider mb-4">{t('footer.contactsTitle')}</h3>
             <ul className="space-y-3">
               <li className="flex items-start gap-3">
                 <MapPin className="w-4 h-4 text-amber-400 mt-0.5 shrink-0" />
-                <span className="text-sm text-gray-400">просп. Соборності, 12В,<br />Київ, Україна</span>
+                <span className="text-sm text-gray-400">{t('footer.address')}</span>
               </li>
               <li className="flex items-center gap-3">
                 <Phone className="w-4 h-4 text-amber-400 shrink-0" />
@@ -83,7 +86,7 @@ export default function Footer({ navigate }: FooterProps) {
               </li>
               <li className="flex items-center gap-3">
                 <Clock className="w-4 h-4 text-amber-400 shrink-0" />
-                <span className="text-sm text-gray-400">Пн–Пт з 08:00</span>
+                <span className="text-sm text-gray-400">{t('footer.hours')}</span>
               </li>
             </ul>
           </div>
@@ -103,14 +106,14 @@ export default function Footer({ navigate }: FooterProps) {
               rel="noopener noreferrer"
               className="relative block text-center text-rose-600 font-bold text-[11px] md:text-[10px] uppercase tracking-widest whitespace-nowrap hover:text-rose-500 transition-colors"
             >
-              Сайт зроблений KRVTSV CORP
+              {t('footer.credits')}
             </a>
           </div>
         </div>
 
         <div className="border-t border-gray-800 mt-10 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3">
-          <p className="text-xs text-gray-500">© 2026 Ліцей №167. Всі права захищені.</p>
-          <p className="text-xs text-gray-500">Заклад загальної середньої освіти м. Києва</p>
+          <p className="text-xs text-gray-500">{t('footer.copyright')}</p>
+          <p className="text-xs text-gray-500">{t('footer.desc')}</p>
         </div>
       </div>
     </footer>

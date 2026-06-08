@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { MapPin, Phone, Clock, Mail, CheckCircle, Send } from 'lucide-react';
+import { useLang } from '../i18n/LanguageContext';
 
 interface ContactsData {
   address: string;
@@ -26,6 +27,7 @@ const FALLBACK: ContactsData = {
 };
 
 export default function Contacts() {
+  const { loc, t } = useLang();
   const [data, setData] = useState<ContactsData>(FALLBACK);
   const [form, setForm] = useState({ name: '', phone: '', email: '', subject: '', message: '' });
   const [submitted, setSubmitted] = useState(false);
@@ -47,7 +49,7 @@ export default function Contacts() {
     try {
       await fetch('/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: fd.toString() });
       setSubmitted(true);
-    } catch { alert('Помилка відправки'); }
+    } catch { alert(t('contacts.form_error')); }
     finally { setLoading(false); }
   };
 
@@ -59,7 +61,7 @@ export default function Contacts() {
           <div className="absolute inset-0 bg-gradient-to-r from-gray-900 to-gray-900/70" />
         </div>
         <div className="relative max-w-7xl mx-auto px-4">
-          <h1 className="text-4xl sm:text-5xl font-extrabold text-white">Контакти</h1>
+          <h1 className="text-4xl sm:text-5xl font-extrabold text-white">{t('contacts.hero_title')}</h1>
         </div>
       </section>
 
@@ -67,25 +69,25 @@ export default function Contacts() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-5 gap-12">
             <div className="lg:col-span-2">
-              <h2 className="text-2xl font-extrabold text-gray-900 mb-6">Наші контакти</h2>
+              <h2 className="text-2xl font-extrabold text-gray-900 mb-6">{t('contacts.section_title')}</h2>
               <div className="space-y-5">
 
                 <div className="flex items-start gap-4 p-5 rounded-xl bg-gray-50 border border-gray-100">
                   <div className="w-10 h-10 bg-red-100 text-red-600 rounded-xl flex items-center justify-center"><MapPin className="w-5 h-5" /></div>
                   <div>
-                    <p className="font-semibold text-sm">Адреса</p>
-                    <p className="text-sm text-gray-600">{data.address}</p>
+                    <p className="font-semibold text-sm">{t('contacts.address_label')}</p>
+                    <p className="text-sm text-gray-600">{loc(data, 'address')}</p>
                   </div>
                 </div>
 
                 <div className="flex items-start gap-4 p-5 rounded-xl bg-gray-50 border border-gray-100">
                   <div className="w-10 h-10 bg-amber-100 text-amber-600 rounded-xl flex items-center justify-center"><Phone className="w-5 h-5" /></div>
                   <div>
-                    <p className="font-semibold text-sm mb-2">Телефон</p>
+                    <p className="font-semibold text-sm mb-2">{t('contacts.phone_label')}</p>
                     <div className="text-red-600 font-semibold space-y-1">
                       {data.phones.map(p => (
                         <a key={p.number} href={`tel:${p.number.replace(/\s/g,'')}`} className="block hover:underline">
-                          {p.number} — {p.label}
+                          {p.number} — {loc(p, 'label')}
                         </a>
                       ))}
                     </div>
@@ -95,7 +97,7 @@ export default function Contacts() {
                 <div className="flex items-start gap-4 p-5 rounded-xl bg-gray-50 border border-gray-100">
                   <div className="w-10 h-10 bg-blue-100 text-blue-600 rounded-xl flex items-center justify-center"><Mail className="w-5 h-5" /></div>
                   <div>
-                    <p className="font-semibold text-sm">Email</p>
+                    <p className="font-semibold text-sm">{t('contacts.email_label')}</p>
                     <a href={`mailto:${data.email}`} className="text-red-600 font-semibold hover:underline text-sm">{data.email}</a>
                   </div>
                 </div>
@@ -103,9 +105,9 @@ export default function Contacts() {
                 <div className="flex items-start gap-4 p-5 rounded-xl bg-gray-50 border border-gray-100">
                   <div className="w-10 h-10 bg-green-100 text-green-600 rounded-xl flex items-center justify-center"><Clock className="w-5 h-5" /></div>
                   <div>
-                    <p className="font-semibold text-sm">Графік роботи</p>
-                    <p className="text-sm text-gray-600">{data.working_hours}</p>
-                    <p className="text-sm text-gray-600">Сб–Нд: вихідні</p>
+                    <p className="font-semibold text-sm">{t('contacts.hours_label')}</p>
+                    <p className="text-sm text-gray-600">{loc(data, 'working_hours')}</p>
+                    <p className="text-sm text-gray-600">{t('contacts.weekends')}</p>
                   </div>
                 </div>
 
@@ -117,18 +119,18 @@ export default function Contacts() {
                 {submitted ? (
                   <div className="text-center py-12">
                     <CheckCircle className="w-10 h-10 text-green-500 mx-auto mb-4" />
-                    <p>Повідомлення надіслано!</p>
+                    <p>{t('contacts.form_success')}</p>
                   </div>
                 ) : (
                   <form onSubmit={handleSubmit} name="contact" method="POST" data-netlify="true" className="space-y-4">
                     <input type="hidden" name="form-name" value="contact" />
-                    <input name="name" required placeholder="Ім'я" value={form.name} onChange={e => setForm({...form, name: e.target.value})} className="w-full border px-4 py-2 rounded" />
-                    <input name="phone" placeholder="Телефон" value={form.phone} onChange={e => setForm({...form, phone: e.target.value})} className="w-full border px-4 py-2 rounded" />
+                    <input name="name" required placeholder={t('contacts.form_name')} value={form.name} onChange={e => setForm({...form, name: e.target.value})} className="w-full border px-4 py-2 rounded" />
+                    <input name="phone" placeholder={t('contacts.form_phone')} value={form.phone} onChange={e => setForm({...form, phone: e.target.value})} className="w-full border px-4 py-2 rounded" />
                     <input name="email" type="email" required placeholder="Email" value={form.email} onChange={e => setForm({...form, email: e.target.value})} className="w-full border px-4 py-2 rounded" />
-                    <textarea name="message" required placeholder="Повідомлення" value={form.message} onChange={e => setForm({...form, message: e.target.value})} className="w-full border px-4 py-2 rounded" />
+                    <textarea name="message" required placeholder={t('contacts.form_message')} value={form.message} onChange={e => setForm({...form, message: e.target.value})} className="w-full border px-4 py-2 rounded" />
                     <button type="submit" disabled={loading} className="w-full flex justify-center gap-2 bg-red-600 text-white py-3 rounded">
                       <Send className="w-4 h-4" />
-                      {loading ? 'Відправка...' : 'Надіслати повідомлення'}
+                      {loading ? t('contacts.form_sending') : t('contacts.form_send')}
                     </button>
                   </form>
                 )}
@@ -151,7 +153,7 @@ export default function Contacts() {
 
       <section className="py-10 text-center">
         <a href={data.maps_url} target="_blank" rel="noopener noreferrer" className="text-red-600 font-semibold">
-          Відкрити в Google Maps
+          {t('contacts.google_maps')}
         </a>
       </section>
     </div>

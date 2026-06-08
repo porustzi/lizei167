@@ -1,22 +1,36 @@
 {
   "hero": {
     "badge": "Про нас",
+    "badge_de": "Über uns",
     "title": "Наша історія",
+    "title_de": "Unsere Geschichte",
     "highlight": "історія",
+    "highlight_de": "Geschichte",
     "description": "Понад 60 років ми формуємо майбутнє через освіту, мову та культуру.",
+    "description_de": "Für über 60 Jahre prägen wir die Zukunft durch Bildung, Sprache und Kultur.",
     "background_image": "https://images.pexels.com/photos/256490/pexels-photo-256490.jpeg?auto=compress&cs=tinysrgb&w=1600",
     "dsd_button_text": "Інформація про програму ДСД",
+    "dsd_button_text_de": "Informationen zum DSD-Programm",
     "dsd_button_url": "https://docs.google.com/document/d/e/2PACX-1vR-h9TzRhZWrWu2OkcpD11KRckb8at1GKm3sgzMkvpjcXE2DiihNQuaWdTcx3sX21l_-mrBzpM_cwmN/pub"
   },
   "mission": {
     "badge": "Наша місія",
+    "badge_de": "Unsere Mission",
     "title": "Виховуємо особистостей, відкритих до Європи",
+    "title_de": "Wir erziehen Persönlichkeiten, die offen für Europa sind",
     "description": "Місія Ліцею №167 — забезпечити якісну загальну середню освіту з поглибленим вивченням німецької мови та культури, виховати всебічно розвинених, відповідальних та конкурентоспроможних особистостей, готових до навчання та роботи в Україні та за кордоном.",
+    "description_de": "Die Mission des Lyzeums Nr. 167 besteht darin, hochwertige Allgemeinbildung mit vertieftem Deutschunterricht und Kulturstudien anzubieten und umfassend entwickelte, verantwortungsvolle und wettbewerbsfähige Persönlichkeiten auszubilden, die zum Studium und zur Arbeit in der Ukraine und im Ausland bereit sind.",
     "bullets": [
       "Академічна досконалість у всіх предметах",
       "Вільне володіння німецькою мовою",
       "Громадянська відповідальність та патріотизм",
       "Готовність до міжкультурного діалогу"
+    ],
+    "bullets_de": [
+      "Akademische Exzellenz in allen Fächern",
+      "Fließende Deutschkenntnisse",
+      "Bürgerverantwortung und Patriotismus",
+      "Bereitschaft zu interkulturellem Dialog"
     ],
     "images": [
       "https://images.pexels.com/photos/5212695/pexels-photo-5212695.jpeg?auto=compress&cs=tinysrgb&w=600",
@@ -27,61 +41,81 @@
   },
   "timeline": {
     "badge": "Хронологія",
+    "badge_de": "Zeitleiste",
     "title": "Ключові моменти нашої історії",
+    "title_de": "Schlüsselmomente unserer Geschichte",
     "items": [
       {
         "year": "1960",
-        "event": "Відкрито середню школу № 167"
+        "event": "Відкрито середню школу № 167",
+        "event_de": "Mittelschule Nr. 167 eröffnet"
       },
       {
         "year": "1991",
-        "event": "Середня школа № 167 отримала статус гімназії № 167 міста Києва"
+        "event": "Середня школа № 167 отримала статус гімназії № 167 міста Києва",
+        "event_de": "Mittelschule Nr. 167 erhielt den Status eines Gymnasiums Nr. 167 der Stadt Kiew"
       },
       {
         "year": "2008",
-        "event": "Укладено угоду про партнерство з Бургау-гімназією, м. Дюрен, Німеччина"
+        "event": "Укладено угоду про партнерство з Бургау-гімназією, м. Дюрен, Німеччина",
+        "event_de": "Partnerschaftsvertrag mit dem Burgau-Gymnasium in Düren, Deutschland abgeschlossen"
       },
       {
         "year": "2008",
-        "event": "Заклад освіти увійшов до переліку шкіл, які беруть участь у міжнародній програмі Schulen: Partner der Zukunft"
+        "event": "Заклад освіти увійшов до переліку шкіл, які беруть участь у міжнародній програмі Schulen: Partner der Zukunft",
+        "event_de": "Die Schule wurde in die Liste der Schulen aufgenommen, die am internationalen Programm Schulen: Partner der Zukunft teilnehmen"
       },
       {
         "year": "2013",
-        "event": "Гімназію № 167 міста Києва перейменовано у гімназію № 167 міста Києва з поглибленим вивченням німецької мови"
+        "event": "Гімназію № 167 міста Києва перейменовано у гімназію № 167 міста Києва з поглибленим вивченням німецької мови",
+        "event_de": "Gymnasium Nr. 167 der Stadt Kiew wurde in Gymnasium Nr. 167 mit vertieftem Deutschunterricht umbenannt"
       },
       {
         "year": "2014",
-        "event": "Змінено тип закладу освіти на навчально-виховний комплекс № 167 з поглибленим вивченням німецької мови"
+        "event": "Змінено тип закладу освіти на навчально-виховний комплекс № 167 з поглибленим вивченням німецької мови",
+        "event_de": "Der Schultyp wurde in Lehr- und Erziehungskomplex Nr. 167 mit vertieftem Deutschunterricht geändert"
       },
       {
         "year": "2024",
-        "event": "Зміна типу закладу освіти на Ліцей № 167 Дніпровського району"
+        "event": "Зміна типу закладу освіти на Ліцей № 167 Дніпровського району",
+        "event_de": "Der Schultyp wurde in Lyzeum Nr. 167 des Dniprower Distrikts geändert"
       },
       {
         "year": "2026",
-        "event": "Рейтинг 4.86 у Google Reviews. 66 років якісної освіти"
+        "event": "Рейтинг 4.86 у Google Reviews. 66 років якісної освіти",
+        "event_de": "Google Reviews-Rating 4,86. 66 Jahre qualitativ hochwertige Bildung"
       }
     ]
   },
   "values": {
     "badge": "Цінності",
+    "badge_de": "Werte",
     "title": "Що нами керує",
+    "title_de": "Was uns leitet",
     "items": [
       {
         "title": "Якість освіти",
-        "description": "Ми прагнемо до найвищих стандартів навчання, поєднуючи класичні методи з сучасними підходами."
+        "title_de": "Bildungsqualität",
+        "description": "Ми прагнемо до найвищих стандартів навчання, поєднуючи класичні методи з сучасними підходами.",
+        "description_de": "Wir streben nach den höchsten Bildungsstandards und kombinieren klassische Methoden mit modernen Ansätzen."
       },
       {
         "title": "Повага й підтримка",
-        "description": "Кожен учень — особистість. Ми створюємо безпечне середовище для розвитку та самовираження."
+        "title_de": "Respekt und Unterstützung",
+        "description": "Кожен учень — особистість. Ми створюємо безпечне середовище для розвитку та самовираження.",
+        "description_de": "Jeder Schüler ist eine Persönlichkeit. Wir schaffen eine sichere Umgebung für Entwicklung und Selbstausdruck."
       },
       {
         "title": "Інновації",
-        "description": "Впроваджуємо сучасні технології та методики, щоб освіта була цікавою та ефективною."
+        "title_de": "Innovation",
+        "description": "Впроваджуємо сучасні технології та методики, щоб освіта була цікавою та ефективною.",
+        "description_de": "Wir setzen moderne Technologien und Methoden um, um Bildung interessant und effektiv zu gestalten."
       },
       {
         "title": "Відкритість світу",
-        "description": "Мовна освіта відкриває кордони. Ми виховуємо громадян Європи та світу."
+        "title_de": "Weltoffenheit",
+        "description": "Мовна освіта відкриває кордони. Ми виховуємо громадян Європи та світу.",
+        "description_de": "Sprachunterricht öffnet Grenzen. Wir erziehen Bürger Europas und der Welt."
       }
     ]
   }

@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Calendar, ArrowRight } from 'lucide-react';
+import { useLang } from '../i18n/LanguageContext';
 
 interface NewsItem {
   id: string;
@@ -14,6 +15,7 @@ interface Props {
 }
 
 export default function News({ onOpen }: Props) {
+  const { t } = useLang();
   const [news, setNews] = useState<NewsItem[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -53,7 +55,7 @@ export default function News({ onOpen }: Props) {
 
             return {
               id: f.name,
-              title: meta.title || 'Без назви',
+              title: meta.title || t('news.untitled'),
 
               date: meta.date
                 ? new Date(meta.date).toLocaleDateString('uk-UA', {
@@ -108,15 +110,15 @@ export default function News({ onOpen }: Props) {
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
           <span className="inline-block text-xs font-semibold uppercase tracking-widest text-amber-400 bg-amber-400/10 border border-amber-400/20 px-3 py-1.5 rounded-full mb-4">
-            Новини та події
+            {t('news.hero_badge')}
           </span>
 
           <h1 className="text-4xl sm:text-5xl font-extrabold text-white mb-4">
-            Шкільне <span className="text-amber-400">життя</span>
+            {t('news.hero_title_prefix')} <span className="text-amber-400">{t('news.hero_title_highlight')}</span>
           </h1>
 
           <p className="text-gray-300 max-w-xl text-lg leading-relaxed">
-            Конкурси, поїздки, досягнення та яскраві події нашого ліцею.
+            {t('news.hero_subtitle')}
           </p>
 
         </div>
@@ -128,13 +130,13 @@ export default function News({ onOpen }: Props) {
 
           {loading && (
             <p className="text-center text-gray-400">
-              Завантаження...
+              {t('news.loading')}
             </p>
           )}
 
           {!loading && news.length === 0 && (
             <p className="text-center text-gray-400">
-              Новин поки немає
+              {t('news.empty')}
             </p>
           )}
 
@@ -172,7 +174,7 @@ export default function News({ onOpen }: Props) {
                   </p>
 
                   <button className="flex items-center gap-1.5 text-red-600 font-semibold text-sm mt-5 hover:gap-2.5 transition-all">
-                    Читати далі
+                    {t('news.read_more')}
                     <ArrowRight className="w-4 h-4" />
                   </button>
 

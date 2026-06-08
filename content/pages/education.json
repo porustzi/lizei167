@@ -1,61 +1,84 @@
 {
   "title": "Програми навчання",
+  "title_de": "Lernprogramme",
   "subtitle": "Комплексна освіта з акцентом на German language excellence",
+  "subtitle_de": "Umfassende Bildung mit Schwerpunkt auf Deutschsprachigkeit",
   "programs": [
     {
       "title": "Поглиблене вивчення німецької мови",
+      "title_de": "Vertieftes Deutschstudium",
       "badge": "Основна програма",
+      "badge_de": "Hauptprogramm",
       "description": "Інтенсивна програма з 1-го класу. 6–8 годин на тиждень плюс розмовні клуби, факультативи та проєктна робота.",
+      "description_de": "Intensives Programm ab Klasse 1. 6–8 Stunden pro Woche plus Sprechclubs, Wahlkurse und Projektarbeit.",
       "items": [
         {
-          "text": "Граматика, фонетика, лексика на рівні носія"
+          "text": "Граматика, фонетика, лексика на рівні носія",
+          "text_de": "Grammatik, Phonetik, Vokabeln auf Muttersprachlerniveau"
         },
         {
-          "text": "Розмовні практики та дискусійні клуби"
+          "text": "Розмовні практики та дискусійні клуби",
+          "text_de": "Sprechpraktiken und Diskussionsclubs"
         },
         {
-          "text": "Читання класичної та сучасної літератури"
+          "text": "Читання класичної та сучасної літератури",
+          "text_de": "Lektüre klassischer und zeitgenössischer Literatur"
         },
         {
-          "text": "Бізнес-німецька для старшокласників"
+          "text": "Бізнес-німецька для старшокласників",
+          "text_de": "Geschäftsdeutsch für ältere Schüler"
         }
       ]
     },
     {
       "title": "Підготовка до Goethe-Zertifikat",
+      "title_de": "Vorbereitung auf Goethe-Zertifikat",
       "badge": "Міжнародний сертифікат",
+      "badge_de": "Internationales Zertifikat",
       "description": "Офіційна підготовка до міжнародних іспитів Goethe-Institut. Від A1 до C1.",
+      "description_de": "Offizielle Vorbereitung auf internationale Goethe-Institut-Prüfungen. Von A1 bis C1.",
       "items": [
         {
-          "text": "Fit in Deutsch 1 & 2 (A1/A2) — для молодших учнів"
+          "text": "Fit in Deutsch 1 & 2 (A1/A2) — для молодших учнів",
+          "text_de": "Fit in Deutsch 1 & 2 (A1/A2) — für jüngere Schüler"
         },
         {
-          "text": "Goethe-Zertifikat B1 & B2 — для середньої школи"
+          "text": "Goethe-Zertifikat B1 & B2 — для середньої школи",
+          "text_de": "Goethe-Zertifikat B1 & B2 — für die Mittelstufe"
         },
         {
-          "text": "Goethe-Zertifikat C1 — для старшокласників"
+          "text": "Goethe-Zertifikat C1 — для старшокласників",
+          "text_de": "Goethe-Zertifikat C1 — für ältere Schüler"
         },
         {
-          "text": "Пробні іспити та індивідуальна підготовка"
+          "text": "Пробні іспити та індивідуальна підготовка",
+          "text_de": "Probeprüfungen und individuelle Vorbereitung"
         }
       ]
     },
     {
       "title": "Культурознавство та країнознавство",
+      "title_de": "Kulturkunde und Landeskunde",
       "badge": "Культурна програма",
+      "badge_de": "Kulturprogramm",
       "description": "Вивчення культури, традицій та географії Німеччини, Австрії та Швейцарії.",
+      "description_de": "Studium der Kultur, Traditionen und Geographie Deutschlands, Österreichs und der Schweiz.",
       "items": [
         {
-          "text": "Культурні проєкти та виставки"
+          "text": "Культурні проєкти та виставки",
+          "text_de": "Kulturelle Projekte und Ausstellungen"
         },
         {
-          "text": "Відеолекції з носіями мови"
+          "text": "Відеолекції з носіями мови",
+          "text_de": "Videovorträge von Muttersprachlern"
         },
         {
-          "text": "Перегляд та аналіз німецького кіно"
+          "text": "Перегляд та аналіз німецького кіно",
+          "text_de": "Anschau und Analyse deutscher Filme"
         },
         {
-          "text": "Тематичні декади: Weihnachten, Oktoberfest тощо"
+          "text": "Тематичні декади: Weihnachten, Oktoberfest тощо",
+          "text_de": "Thematische Wochen: Weihnachten, Oktoberfest usw."
         }
       ]
     }
@@ -63,49 +86,65 @@
   "levels": [
     {
       "title": "Fit in Deutsch 1",
-      "description": "Базові комунікативні навички. Знайомство, сім'я, кольори, числа."
+      "title_de": "Fit in Deutsch 1",
+      "description": "Базові комунікативні навички. Знайомство, сім'я, кольори, числа.",
+      "description_de": "Grundlegende Kommunikationsfähigkeiten. Begrüßung, Familie, Farben, Zahlen."
     },
     {
       "title": "Fit in Deutsch 2",
-      "description": "Побутова лексика. Школа, хобі, подорожі."
+      "title_de": "Fit in Deutsch 2",
+      "description": "Побутова лексика. Школа, хобі, подорожі.",
+      "description_de": "Alltägliches Vokabular. Schule, Hobbys, Reisen."
     },
     {
       "title": "Goethe-Zertifikat B1",
-      "description": "Впевнене спілкування. Новини, суспільство, робота."
+      "title_de": "Goethe-Zertifikat B1",
+      "description": "Впевнене спілкування. Новини, суспільство, робота.",
+      "description_de": "Sichere Kommunikation. Nachrichten, Gesellschaft, Arbeit."
     },
     {
       "title": "Goethe-Zertifikat B2",
-      "description": "Складні теми. Аргументація, аналіз текстів, дискусії."
+      "title_de": "Goethe-Zertifikat B2",
+      "description": "Складні теми. Аргументація, аналіз текстів, дискусії.",
+      "description_de": "Komplexe Themen. Argumentation, Textanalyse, Diskussionen."
     },
     {
       "title": "Goethe-Zertifikat C1",
-      "description": "Академічний рівень. Підготовка до університету в Германії."
+      "title_de": "Goethe-Zertifikat C1",
+      "description": "Академічний рівень. Підготовка до університету в Германії.",
+      "description_de": "Akademisches Niveau. Vorbereitung auf ein Studium in Deutschland."
     }
   ],
   "subjects": [
     {
       "icon": "Calculator",
-      "title": "Математика (поглиблено)"
+      "title": "Математика (поглиблено)",
+      "title_de": "Mathematik (vertieft)"
     },
     {
       "icon": "Microscope",
-      "title": "Природничі науки"
+      "title": "Природничі науки",
+      "title_de": "Naturwissenschaften"
     },
     {
       "icon": "Globe",
-      "title": "Англійська мова"
+      "title": "Англійська мова",
+      "title_de": "Englische Sprache"
     },
     {
       "icon": "Music",
-      "title": "Музика та мистецтво"
+      "title": "Музика та мистецтво",
+      "title_de": "Musik und Kunst"
     },
     {
       "icon": "BookOpen",
-      "title": "Українська мова та літ."
+      "title": "Українська мова та літ.",
+      "title_de": "Ukrainische Sprache und Literatur"
     },
     {
       "icon": "Award",
-      "title": "Фізична культура"
+      "title": "Фізична культура",
+      "title_de": "Körperkultur"
     }
   ]
 }

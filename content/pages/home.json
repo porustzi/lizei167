@@ -1,18 +1,22 @@
 {
   "hero_title_1": "Ліцей №167",
+  "hero_title_1_de": "Lyzeum Nr. 167",
   "hero_title_2": "з поглибленим",
+  "hero_title_2_de": "mit vertieftem",
   "hero_title_3": "вивченням німецької",
+  "hero_title_3_de": "Deutschunterricht",
   "hero_subtitle": "Провідний мовний заклад Києва.",
+  "hero_subtitle_de": "Führende Sprachinstitution in Kiew.",
   "stats": [
-    { "value": "60+", "label": "Років досвіду" },
-    { "value": "700+", "label": "Учнів" },
-    { "value": "4.86", "label": "Рейтинг Google" },
-    { "value": "100%", "label": "Вступають до вишів" }
+    { "value": "60+", "label": "Років досвіду", "label_de": "Jahre Erfahrung" },
+    { "value": "700+", "label": "Учнів", "label_de": "Schüler" },
+    { "value": "4.86", "label": "Рейтинг Google", "label_de": "Google-Rating" },
+    { "value": "100%", "label": "Вступають до вишів", "label_de": "Universität" }
   ],
   "features": [
-    { "icon": "BookOpen", "title": "Поглиблена німецька", "text": "Інтенсивна програма вивчення мови з першого класу." },
-    { "icon": "Award", "title": "Goethe-Zertifikat", "text": "Підготовка до міжнародних іспитів." },
-    { "icon": "Users", "title": "Досвідчені педагоги", "text": "50+ кваліфікованих викладачів." },
-    { "icon": "Globe", "title": "Культурний обмін", "text": "Поїздки до Європи." }
+    { "icon": "BookOpen", "title": "Поглиблена німецька", "title_de": "Vertieftes Deutsch", "text": "Інтенсивна програма вивчення мови з першого класу.", "text_de": "Intensives Sprachprogramm ab Klasse eins." },
+    { "icon": "Award", "title": "Goethe-Zertifikat", "title_de": "Goethe-Zertifikat", "text": "Підготовка до міжнародних іспитів.", "text_de": "Vorbereitung auf internationale Prüfungen." },
+    { "icon": "Users", "title": "Досвідчені педагоги", "title_de": "Erfahrene Lehrer", "text": "50+ кваліфікованих викладачів.", "text_de": "50+ qualifizierte Lehrkräfte." },
+    { "icon": "Globe", "title": "Культурний обмін", "title_de": "Kultureller Austausch", "text": "Поїздки до Європи.", "text_de": "Reisen nach Europa." }
   ]
 }

@@ -7,6 +7,8 @@ import {
   Globe,
   FileText
 } from 'lucide-react';
+import { useLang } from '../i18n/LanguageContext';
+import about from '../../content/pages/about.json';
 
 interface AboutData {
   hero: {
@@ -92,16 +94,8 @@ const FALLBACK: AboutData = {
 };
 
 export default function About() {
-  const [data, setData] = useState<AboutData>(FALLBACK);
-
-  useEffect(() => {
-    fetch(
-      'https://raw.githubusercontent.com/platstarinum-prog/lizei167/main/content/pages/about.json'
-    )
-      .then((r) => r.json())
-      .then(setData)
-      .catch(() => {});
-  }, []);
+  const { loc, lang, t } = useLang();
+  const data = about;
 
   const icons = [
     <Target className="w-6 h-6" />,
@@ -151,15 +145,15 @@ export default function About() {
 
         <div className="relative max-w-7xl mx-auto px-4">
           <span className="inline-block text-xs font-semibold uppercase tracking-widest text-amber-400 bg-amber-400/10 border border-amber-400/20 px-3 py-1.5 rounded-full mb-4">
-            {data.hero.badge}
+            {loc(data.hero, 'badge')}
           </span>
 
           <h1 className="text-4xl sm:text-5xl font-extrabold text-white mb-4">
-            Наша <span className="text-red-500">{data.hero.highlight}</span>
+            {t('about.hero_title_prefix')} <span className="text-red-500">{loc(data.hero, 'highlight')}</span>
           </h1>
 
           <p className="text-gray-300 max-w-xl text-lg leading-relaxed mb-8">
-            {data.hero.description}
+            {loc(data.hero, 'description')}
           </p>
 
           <div className="flex justify-center mt-10">
@@ -170,7 +164,7 @@ export default function About() {
               className="inline-flex items-center gap-3 bg-red-600 hover:bg-red-700 text-white font-semibold px-6 py-3 rounded-2xl shadow-lg"
             >
               <FileText className="w-5 h-5" />
-              {data.hero.dsd_button_text}
+              {loc(data.hero, 'dsd_button_text')}
             </a>
           </div>
         </div>
@@ -183,25 +177,25 @@ export default function About() {
 
             <div>
               <span className="text-xs font-semibold uppercase tracking-widest text-red-600 bg-red-50 px-3 py-1 rounded-full">
-                {data.mission.badge}
-              </span>
+              {loc(data.mission, 'badge')}
+            </span>
 
-              <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900 mt-4 mb-5">
-                {data.mission.title}
-              </h2>
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900 mt-4 mb-5">
+              {loc(data.mission, 'title')}
+            </h2>
 
-              <p className="text-gray-600 leading-relaxed mb-6">
-                {data.mission.description}
-              </p>
+            <p className="text-gray-600 leading-relaxed mb-6">
+              {loc(data.mission, 'description')}
+            </p>
 
-              <ul className="space-y-3">
-                {data.mission.bullets.map((item) => (
-                  <li key={item} className="flex items-start gap-3">
-                    <CheckCircle className="w-5 h-5 text-green-500 mt-0.5 shrink-0" />
-                    <span className="text-gray-700">{item}</span>
-                  </li>
-                ))}
-              </ul>
+            <ul className="space-y-3">
+              {(lang === 'de' && data.mission.bullets_de ? data.mission.bullets_de : data.mission.bullets).map((item: string) => (
+                <li key={item} className="flex items-start gap-3">
+                  <CheckCircle className="w-5 h-5 text-green-500 mt-0.5 shrink-0" />
+                  <span className="text-gray-700">{item}</span>
+                </li>
+              ))}
+            </ul>
             </div>
 
             <div className="grid grid-cols-2 gap-4">
@@ -227,11 +221,11 @@ export default function About() {
 
           <div className="text-center mb-12">
             <span className="text-xs font-semibold uppercase tracking-widest text-amber-600 bg-amber-50 px-3 py-1 rounded-full">
-              {data.timeline.badge}
+              {loc(data.timeline, 'badge')}
             </span>
 
             <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900 mt-4 mb-3">
-              {data.timeline.title}
+              {loc(data.timeline, 'title')}
             </h2>
           </div>
 
@@ -259,7 +253,7 @@ export default function About() {
                       </span>
 
                       <p className="text-gray-700 text-sm mt-1 leading-relaxed">
-                        {event}
+                        {loc(item, 'event')}
                       </p>
                     </div>
                   </div>
@@ -283,11 +277,11 @@ export default function About() {
 
           <div className="text-center mb-12">
             <span className="text-xs font-semibold uppercase tracking-widest text-red-600 bg-red-50 px-3 py-1 rounded-full">
-              {data.values.badge}
+              {loc(data.values, 'badge')}
             </span>
 
             <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900 mt-4">
-              {data.values.title}
+              {loc(data.values, 'title')}
             </h2>
           </div>
 
@@ -304,11 +298,11 @@ export default function About() {
                 </div>
 
                 <h3 className="font-bold text-gray-900 mb-2">
-                  {item.title}
+                  {loc(item, 'title')}
                 </h3>
 
                 <p className="text-sm text-gray-500 leading-relaxed">
-                  {item.description}
+                  {loc(item, 'description')}
                 </p>
               </div>
             ))}

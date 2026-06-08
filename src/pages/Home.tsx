@@ -9,6 +9,7 @@ import {
 } from 'lucide-react';
 
 import type { Page } from '../App';
+import { useLang } from '../i18n/LanguageContext';
 
 import home from '../../content/pages/home.json';
 
@@ -43,6 +44,8 @@ const colorStyles = [
 ];
 
 export default function Home({ navigate }: HomeProps) {
+  const { loc, t } = useLang();
+
   return (
     <>
       {/* Hero */}
@@ -72,26 +75,26 @@ export default function Home({ navigate }: HomeProps) {
           <div className="max-w-3xl">
 
             <span className="inline-block bg-amber-400/20 text-amber-400 text-xs px-3 py-1.5 rounded-full mb-6">
-              Державний заклад освіти · Київ
+              {t('hero.badge')}
             </span>
 
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white mb-4 leading-tight">
-              {home.hero_title_1}
+              {loc(home, 'hero_title_1')}
               <br />
 
               <span className="text-red-500">
-                {home.hero_title_2}
+                {loc(home, 'hero_title_2')}
               </span>
 
               <br />
 
               <span className="text-amber-400">
-                {home.hero_title_3}
+                {loc(home, 'hero_title_3')}
               </span>
             </h1>
 
             <p className="text-lg text-gray-300 mb-8 max-w-xl">
-              {home.hero_subtitle}
+              {loc(home, 'hero_subtitle')}
             </p>
 
             <div className="flex flex-wrap gap-4">
@@ -100,7 +103,7 @@ export default function Home({ navigate }: HomeProps) {
                 onClick={() => navigate('contacts')}
                 className="flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white font-semibold px-7 py-3.5 rounded-xl"
               >
-                Вступити до ліцею
+                {t('hero.cta1')}
 
                 <ChevronRight className="w-4 h-4" />
               </button>
@@ -109,7 +112,7 @@ export default function Home({ navigate }: HomeProps) {
                 onClick={() => navigate('contacts')}
                 className="flex items-center gap-2 bg-white/10 text-white px-7 py-3.5 rounded-xl border border-white/20"
               >
-                Контакти
+                {t('hero.cta2')}
 
                 <ArrowRight className="w-4 h-4" />
               </button>
@@ -144,7 +147,7 @@ export default function Home({ navigate }: HomeProps) {
                 </p>
 
                 <p className="text-gray-500 text-sm">
-                  {s.label}
+                  {loc(s, 'label')}
                 </p>
               </div>
             ))}
@@ -178,11 +181,11 @@ export default function Home({ navigate }: HomeProps) {
                   </div>
 
                   <h3 className="font-bold mb-2">
-                    {feature.title}
+                    {loc(feature, 'title')}
                   </h3>
 
                   <p className="text-sm text-gray-500">
-                    {feature.text}
+                    {loc(feature, 'text')}
                   </p>
 
                   {feature.badge && (
@@ -203,14 +206,14 @@ export default function Home({ navigate }: HomeProps) {
       <section className="bg-red-600 py-16 text-center">
 
         <h2 className="text-3xl font-bold text-white mb-4">
-          Готові вступити?
+          {t('home.cta_title')}
         </h2>
 
         <button
           onClick={() => navigate('contacts')}
           className="bg-white text-red-600 px-8 py-3 rounded-xl font-bold"
         >
-          Подати заявку
+          {t('home.cta_button')}
         </button>
       </section>
     </>

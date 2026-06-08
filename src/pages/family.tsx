@@ -8,7 +8,7 @@ import {
   Users,
   Target
 } from 'lucide-react';
-
+import { useLang } from '../i18n/LanguageContext';
 import familyData from '../../content/pages/family.json';
 
 const iconMap: any = {
@@ -45,6 +45,7 @@ const colorMap: any = {
 };
 
 export default function Family() {
+  const { loc, t } = useLang();
   const [open, setOpen] = useState<number | null>(0);
 
   const sections = familyData.sections;
@@ -69,11 +70,11 @@ export default function Family() {
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h1 className="text-5xl font-extrabold text-white">
-            {familyData.title}
+            {loc(familyData, 'title')}
           </h1>
 
           <p className="text-gray-300 mt-3 max-w-xl">
-            {familyData.subtitle}
+            {loc(familyData, 'subtitle')}
           </p>
         </div>
       </section>
@@ -106,10 +107,10 @@ export default function Family() {
                     </div>
 
                     <div className="text-left">
-                      <h3 className="font-bold">{s.title}</h3>
+                      <h3 className="font-bold">{loc(s, 'title')}</h3>
 
                       <p className="text-sm text-gray-500">
-                        {s.description}
+                        {loc(s, 'description')}
                       </p>
                     </div>
                   </div>
@@ -130,7 +131,7 @@ export default function Family() {
                         <p
                           className={`text-sm font-bold mb-3 ${styles.color}`}
                         >
-                          {sem.label}
+                          {loc(sem, 'label')}
                         </p>
 
                         <div className="space-y-2">
@@ -147,7 +148,7 @@ export default function Family() {
                               />
 
                               <span className="text-sm">
-                                {c.name}
+                                {loc(c, 'name')}
                               </span>
 
                               <BookOpen className="w-4 h-4 text-gray-300 ml-auto" />
