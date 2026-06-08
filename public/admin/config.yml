@@ -2,7 +2,7 @@ backend:
   name: git-gateway
   branch: main
 
-site_url: https://lyzeum167kyiv.netlify.app
+site_url: https://lizeum167.netlify.app
 locale: uk
 publish_mode: editorial_workflow
 
