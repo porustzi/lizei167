@@ -33,18 +33,30 @@
           if (type !== 'busy') setTimeout(function(){ el.classList.remove('show'); }, 5000);
         }
 
-        function inspect(obj, depth) {
-          if (!obj || depth > 2) return '';
-          var out = '';
-          for (var k in obj) {
-            if (typeof obj[k] === 'function') continue;
-            if (typeof obj[k] === 'object' && obj[k] !== null) {
-              out += k + ': {...}; ';
-            } else {
-              out += k + '=' + String(obj[k]).slice(0,60) + '; ';
-            }
-          }
-          return out.slice(0,200);
+        function waitForApi(maxMs) {
+          return new Promise(function(resolve, reject) {
+            var started = Date.now();
+            var check = setInterval(function() {
+              var cms = window.CMS;
+              if (!cms) return;
+              // try common API paths
+              var api = (cms.backend && cms.backend.implementation && cms.backend.implementation.api)
+                      || (cms.backend && cms.backend.api)
+                      || (cms.backend && cms.backend.implementation);
+              if (api && typeof api.request === 'function') {
+                clearInterval(check); resolve(api);
+              }
+              if (Date.now() - started > maxMs) {
+                clearInterval(check);
+                var diag = 'CMS=' + (cms ? 'Y' : 'N');
+                if (cms) {
+                  diag += ', keys=' + Object.keys(cms).join(',');
+                  if (cms.backend) diag += ', bk=' + Object.keys(cms.backend).join(',');
+                }
+                reject(new Error('API не знайдено. ' + diag));
+              }
+            }, 500);
+          });
         }
 
         async function doPublish() {
@@ -54,52 +66,12 @@
             btn.innerHTML = '<span class="pp-spin"></span> Публікація...';
             toast('busy', '🔄 Публікую всі чернетки...', '');
 
-            const GIT_GW = '/.netlify/git/gateway';
+            var api = await waitForApi(20000);
+            var repo = api.repo || '';
+            if (!repo) throw new Error('repo not found on api: ' + Object.keys(api).join(','));
 
-            // get JWT from Netlify Identity
-            function getIdentityUser() {
-              return new Promise(function(resolve, reject) {
-                var check = setInterval(function() {
-                  var ni = window.netlifyIdentity;
-                  if (ni && ni.currentUser()) {
-                    clearInterval(check); resolve(ni.currentUser());
-                  }
-                }, 300);
-                setTimeout(function() { clearInterval(check); reject(new Error('Netlify Identity not ready')); }, 15000);
-              });
-            }
-
-            var user = await getIdentityUser();
-            var jwt = await user.jwt();
-            var auth = { Authorization: 'Bearer ' + jwt };
-
-            // discover repo from CMS config or page
-            var repo = '';
-            var cfg = window.CMS_CONFIG;
-            if (!cfg) {
-              try { cfg = JSON.parse(document.getElementById('cms-config')?.textContent || '{}'); } catch(e) {}
-            }
-            if (cfg && cfg.backend && cfg.backend.repo) {
-              repo = cfg.backend.repo;
-            }
-            if (!repo) {
-              repo = 'platstarinum-prog/lizei167';
-            }
-            var encoded = repo.replace(/\//g, '%2F');
-
-            toast('busy', '🔄 Отримую список гілок...', '');
-            var res = await fetch(GIT_GW + '/' + encoded + '/branches', { headers: auth });
-            if (res.status === 401) {
-              var diag = 'CMS keys: ' + inspect(window.CMS);
-              if (window.CMS) {
-                diag += ' | backend keys: ' + inspect(window.CMS.backend);
-                if (window.CMS.backend) {
-                  diag += ' | impl keys: ' + inspect(window.CMS.backend.implementation);
-                }
-              }
-              throw new Error('401 — JWT недійсний. ' + diag);
-            }
-            var branches = await res.json();
+            toast('busy', '🔄 Отримую список чернеток...', '');
+            var branches = await api.request('/' + repo.replace(/\//g, '%2F') + '/branches');
             var cms = (Array.isArray(branches) ? branches : []).filter(function(b){ return b.name && b.name.indexOf('cms/') === 0; });
 
             if (cms.length === 0) {
@@ -115,16 +87,17 @@
               btn.innerHTML = '⏳ ' + branch.name + '...';
               toast('busy', '🔄 Мержу ' + branch.name + '...', '');
               try {
-                var mr = await fetch(GIT_GW + '/' + encoded + '/merges', {
+                await api.request('/' + repo.replace(/\//g, '%2F') + '/merges', {
                   method: 'POST',
-                  headers: Object.assign({}, auth, { 'Content-Type': 'application/json' }),
                   body: JSON.stringify({ base: 'main', head: branch.name, commit_message: 'Publish from Decap CMS' })
                 });
-                if (mr.ok) { merged++; }
-                else if (mr.status === 409) { merged++; } // merge conflict — branch already in main
-                else { var err = await mr.text(); console.warn('Skip', branch.name, mr.status, err); }
+                merged++;
               } catch(e) {
-                console.warn('Skip', branch.name, e.message);
+                if (e.message && e.message.indexOf('already exists') !== -1) {
+                  merged++;
+                } else {
+                  console.warn('Skip', branch.name, e.message);
+                }
               }
             }
 
