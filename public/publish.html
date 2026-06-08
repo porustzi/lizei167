@@ -83,56 +83,23 @@
 
     btn.onclick = async function() {
       try {
-        var identity = window.netlifyIdentity;
-        if (!identity || typeof identity.currentUser !== 'function') { show('err', '❌ Netlify Identity не завантажено'); return; }
-        var user = identity.currentUser();
-        if (!user) { show('err', '❌ Увійдіть через Netlify Identity'); return; }
-
         btn.disabled = true;
         btn.innerHTML = '<span class="spinner"></span> Публікація...';
-        show('busy', '🔄 Отримую токен...');
+        show('busy', '🔄 Публікую всі чернетки...');
 
-        var jwt = await user.jwt();
-        var payload = JSON.parse(atob(jwt.split('.')[1]));
-        var ghToken = payload.github_token;
-        if (!ghToken) { throw new Error('Немає github_token в JWT'); }
+        var res = await fetch('/.netlify/functions/publish');
+        var data = await res.json();
 
-        var gh = 'https://api.github.com';
-        var h = { Authorization: 'Bearer ' + ghToken, Accept: 'application/vnd.github.v3+json' };
-
-        show('busy', '🔄 Отримую список чернеток...');
-        var brRes = await fetch(gh + '/repos/platstarinum-prog/lizei167/branches', { headers: h });
-        if (!brRes.ok) throw new Error('GitHub API: ' + brRes.status);
-        var branches = await brRes.json();
-        var cms = (Array.isArray(branches) ? branches : []).filter(function(b){ return b.name && b.name.indexOf('cms/') === 0; });
-
-        if (cms.length === 0) {
+        if (data.merged > 0) {
+          show('ok', '✅ ' + data.merged + '/' + data.total + ' чернеток опубліковано! Сайт оновлюється...');
+        } else if (data.total === 0) {
           show('ok', '✅ Немає чернеток. Сайт актуальний.');
-          btn.disabled = false;
-          btn.innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg> ОПУБЛІКУВАТИ ВСЕ';
-          return;
-        }
-
-        var merged = 0;
-        for (var i = 0; i < cms.length; i++) {
-          var b = cms[i];
-          show('busy', '🔄 Мержу ' + b.name + '...');
-          var mRes = await fetch(gh + '/repos/platstarinum-prog/lizei167/merges', {
-            method: 'POST',
-            headers: h,
-            body: JSON.stringify({ base: 'main', head: b.name, commit_message: 'Publish from Decap CMS' })
-          });
-          if (mRes.ok || mRes.status === 204) merged++;
+        } else {
+          show('err', '❌ Помилка: ' + (data.results?.filter(function(r){ return r.status !== 'merged'; }).map(function(r){ return r.error || r.status; }).join('; ') || data.error));
         }
 
         btn.disabled = false;
         btn.innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg> ОПУБЛІКУВАТИ ВСЕ';
-
-        if (merged > 0) {
-          show('ok', '✅ ' + merged + '/' + cms.length + ' чернеток опубліковано!');
-        } else {
-          show('err', '❌ Нічого не опубліковано');
-        }
       } catch(e) {
         console.error(e);
         btn.disabled = false;
@@ -143,21 +110,10 @@
 
     (async function() {
       try {
-        var user = window.netlifyIdentity && window.netlifyIdentity.currentUser && window.netlifyIdentity.currentUser();
-        if (user) {
-          var jwt = await user.jwt();
-          var payload = JSON.parse(atob(jwt.split('.')[1]));
-          var ghToken = payload.github_token;
-          if (ghToken) {
-            var r = await fetch('https://api.github.com/repos/platstarinum-prog/lizei167/branches', {
-              headers: { Authorization: 'Bearer ' + ghToken }
-            });
-            var branches = await r.json();
-            var cms = (Array.isArray(branches) ? branches : []).filter(function(b){ return b.name && b.name.indexOf('cms/') === 0; });
-            if (cms.length > 0) show('busy', '📝 ' + cms.length + ' чернеток очікують публікації');
-            else show('ok', '✅ Немає чернеток. Сайт актуальний.');
-          }
-        }
+        var r = await fetch('/.netlify/functions/publish');
+        var data = await r.json();
+        if (data.total > 0) show('busy', '📝 ' + data.total + ' чернеток очікують публікації');
+        else show('ok', '✅ Немає чернеток. Сайт актуальний.');
       } catch(e) {}
     })();
   </script>

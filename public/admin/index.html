@@ -36,68 +36,24 @@
         async function doPublish() {
           var btn = document.getElementById('ppBtn');
           try {
-            var identity = window.netlifyIdentity;
-            if (!identity || typeof identity.currentUser !== 'function') {
-              toast('err', '❌ Netlify Identity не завантажено'); return;
-            }
-            var user = identity.currentUser();
-            if (!user) { toast('err', '❌ Не авторизовано', 'Увійдіть через Netlify Identity'); return; }
-
             btn.disabled = true;
             btn.innerHTML = '<span class="pp-spin"></span> Публікація...';
-            toast('busy', '🔄 Отримую токен...', '');
+            toast('busy', '🔄 Публікую всі чернетки...', '');
 
-            var jwt = await user.jwt();
-            var payload = JSON.parse(atob(jwt.split('.')[1]));
-            var ghToken = payload.github_token;
+            var res = await fetch('/.netlify/functions/publish');
+            var data = await res.json();
 
-            if (!ghToken) {
-              var keys = Object.keys(payload).join(', ');
-              throw new Error('Немає github_token в JWT. Ключі: ' + keys);
-            }
-
-            var gh = 'https://api.github.com';
-            var h = { Authorization: 'Bearer ' + ghToken, Accept: 'application/vnd.github.v3+json' };
-
-            toast('busy', '🔄 Отримую список чернеток...', '');
-            var brRes = await fetch(gh + '/repos/platstarinum-prog/lizei167/branches', { headers: h });
-            if (!brRes.ok) throw new Error('GitHub API: ' + brRes.status);
-            var branches = await brRes.json();
-            var cms = (Array.isArray(branches) ? branches : []).filter(function(b){ return b.name && b.name.indexOf('cms/') === 0; });
-
-            if (cms.length === 0) {
+            if (data.merged > 0) {
+              toast('ok', '✅ Опубліковано ' + data.merged + '/' + data.total, 'Зміни скоро з\'являться на сайті');
+              setTimeout(function(){ window.location.reload(); }, 2000);
+            } else if (data.total === 0) {
               toast('ok', '✅ Немає чернеток', 'Сайт актуальний');
-              btn.disabled = false;
-              btn.innerHTML = '🚀 Опублікувати все';
-              return;
-            }
-
-            var merged = 0;
-            for (var i = 0; i < cms.length; i++) {
-              var b = cms[i];
-              btn.innerHTML = '⏳ ' + b.name + '...';
-              toast('busy', '🔄 Мержу ' + b.name + '...', '');
-              var mRes = await fetch(gh + '/repos/platstarinum-prog/lizei167/merges', {
-                method: 'POST',
-                headers: h,
-                body: JSON.stringify({ base: 'main', head: b.name, commit_message: 'Publish from Decap CMS' })
-              });
-              if (mRes.ok || mRes.status === 204) merged++;
-              else {
-                var errData = await mRes.text();
-                console.warn('Merge failed for', b.name, mRes.status, errData);
-              }
+            } else {
+              toast('err', '❌ Помилка при публікації', data.results?.filter(function(r){ return r.status !== 'merged'; }).map(function(r){ return r.branch + ': ' + (r.error || r.status); }).join('; ') || data.error);
             }
 
             btn.disabled = false;
             btn.innerHTML = '🚀 Опублікувати все';
-
-            if (merged > 0) {
-              toast('ok', '✅ Опубліковано ' + merged + '/' + cms.length, 'Зміни скоро з\'являться на сайті');
-              setTimeout(function(){ window.location.reload(); }, 2000);
-            } else {
-              toast('err', '❌ Нічого не опубліковано', 'Можливо, все вже актуально');
-            }
           } catch(e) {
             console.error(e);
             btn.disabled = false;
