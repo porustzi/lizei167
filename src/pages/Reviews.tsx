@@ -1,6 +1,8 @@
 import { Star, Quote } from 'lucide-react';
 import { useLang } from '../i18n/LanguageContext';
-import reviewsData from '../../content/pages/reviews.json';
+
+const reviewModules = import.meta.glob('../../content/reviews/*.json', { eager: true });
+const reviewsData: any[] = Object.values(reviewModules);
 
 function StarRating({ count }: { count: number }) {
   return (
@@ -17,7 +19,7 @@ function StarRating({ count }: { count: number }) {
 
 export default function Reviews() {
   const { t, loc } = useLang();
-  const reviews = reviewsData.reviews;
+  const reviews = reviewsData;
   const avgRating = 4.86;
   const totalReviews = 134;
 

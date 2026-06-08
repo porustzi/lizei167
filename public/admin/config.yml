@@ -212,25 +212,22 @@ collections:
 
   - name: reviews
     label: ⭐ Відгуки
-    files:
-      - name: reviews
-        label: Відгуки
-        file: content/pages/reviews.json
-        format: json
-        fields:
-          - label: Відгуки
-            name: reviews
-            widget: list
-            fields:
-              - { label: Ім'я, name: name, widget: string }
-              - { label: Роль (uk), name: role, widget: string }
-              - { label: Роль (de), name: role_de, widget: string }
-              - { label: Рейтинг, name: rating, widget: number, value_type: int, min: 1, max: 5 }
-              - { label: Текст (uk), name: text, widget: text }
-              - { label: Текст (de), name: text_de, widget: text }
-              - { label: Дата, name: date, widget: string }
-              - { label: Аватар, name: avatar, widget: string }
-              - { label: Колір, name: color, widget: string }
+    folder: content/reviews
+    create: true
+    delete: true
+    slug: "{{slug}}"
+    extension: json
+    format: json
+    fields:
+      - { label: Ім'я, name: name, widget: string }
+      - { label: Роль (uk), name: role, widget: string }
+      - { label: Роль (de), name: role_de, widget: string }
+      - { label: Рейтинг, name: rating, widget: number, value_type: int, min: 1, max: 5 }
+      - { label: Текст (uk), name: text, widget: text }
+      - { label: Текст (de), name: text_de, widget: text }
+      - { label: Дата, name: date, widget: string }
+      - { label: Аватар, name: avatar, widget: string }
+      - { label: Колір, name: color, widget: string }
 
   - name: news
     label: 📰 Новини
