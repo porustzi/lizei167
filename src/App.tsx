@@ -118,7 +118,7 @@ function App() {
         isScrolled={isScrolled}
       />
 
-      <main>{renderPage()}</main>
+      <main key={currentPage + (openNewsId || '')} className="animate-fade-in">{renderPage()}</main>
 
       <Footer navigate={navigate} />
     </div>

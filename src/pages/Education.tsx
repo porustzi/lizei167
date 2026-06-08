@@ -62,9 +62,9 @@ export default function Education() {
         </div>
 
         <div className="absolute left-0 top-0 bottom-0 w-1.5 flex flex-col">
-          <div className="flex-1 bg-gray-700" />
-          <div className="flex-1 bg-red-600" />
-          <div className="flex-1 bg-amber-400" />
+          <div className="flex-1 bg-gray-700 animate-float-slow" />
+          <div className="flex-1 bg-red-600 animate-float" style={{ animationDelay: '0.3s' }} />
+          <div className="flex-1 bg-amber-400 animate-float-slow" style={{ animationDelay: '0.6s' }} />
         </div>
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -99,7 +99,7 @@ export default function Education() {
             {data.programs.map((program: Program, i: number) => (
               <div
                 key={program.title}
-                className="border border-gray-100 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all"
+                className="border border-gray-100 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300"
               >
                 <button
                   className="w-full text-left p-6 flex items-start gap-4"
@@ -168,7 +168,7 @@ export default function Education() {
             {data.levels.map((level: Level, i: number) => (
               <div
                 key={level.title}
-                className="bg-white rounded-2xl p-5 shadow-sm border border-gray-100"
+                className="bg-white rounded-2xl p-5 shadow-sm border border-gray-100 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300"
               >
                 <div className="w-10 h-10 rounded-full bg-gradient-to-br from-amber-400 to-red-500 text-white font-bold text-sm flex items-center justify-center mb-3">
                   {i + 1}
@@ -205,8 +205,8 @@ export default function Education() {
               return (
                 <div
                   key={subject.title}
-                  className="text-center p-4 rounded-xl border border-gray-100 hover:shadow-sm transition-shadow"
-                >
+                className="text-center p-4 rounded-xl border border-gray-100 hover:shadow-lg hover:-translate-y-1 hover:border-red-100 transition-all duration-300"
+              >
                   <div className="w-10 h-10 bg-red-50 text-red-600 rounded-xl flex items-center justify-center mx-auto mb-2">
                     <Icon className="w-5 h-5" />
                   </div>

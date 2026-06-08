@@ -97,9 +97,9 @@ export default function Reviews() {
           <div className="absolute inset-0 bg-gradient-to-r from-gray-900 to-gray-900/70" />
         </div>
         <div className="absolute left-0 top-0 bottom-0 w-1.5 flex flex-col">
-          <div className="flex-1 bg-gray-700" />
-          <div className="flex-1 bg-red-600" />
-          <div className="flex-1 bg-amber-400" />
+          <div className="flex-1 bg-gray-700 animate-float-slow" />
+          <div className="flex-1 bg-red-600 animate-float" style={{ animationDelay: '0.3s' }} />
+          <div className="flex-1 bg-amber-400 animate-float-slow" style={{ animationDelay: '0.6s' }} />
         </div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <span className="inline-block text-xs font-semibold uppercase tracking-widest text-amber-400 bg-amber-400/10 border border-amber-400/20 px-3 py-1.5 rounded-full mb-4">
@@ -180,7 +180,7 @@ export default function Reviews() {
             {reviews.map(({ name, role, rating, text, date, avatar, color }) => (
               <div
                 key={name}
-                className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 hover:shadow-md transition-shadow flex flex-col"
+                className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col"
               >
                 <div className="flex items-start justify-between mb-4">
                   <div className="flex items-center gap-3">

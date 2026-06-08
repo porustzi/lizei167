@@ -65,9 +65,9 @@ export default function Home({ navigate }: HomeProps) {
         </div>
 
         <div className="absolute left-0 top-0 bottom-0 w-1.5 flex flex-col">
-          <div className="flex-1 bg-gray-700" />
-          <div className="flex-1 bg-red-600" />
-          <div className="flex-1 bg-amber-400" />
+          <div className="flex-1 bg-gray-700 animate-float-slow" />
+          <div className="flex-1 bg-red-600 animate-float" style={{ animationDelay: '0.3s' }} />
+          <div className="flex-1 bg-amber-400 animate-float-slow" style={{ animationDelay: '0.6s' }} />
         </div>
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
@@ -101,7 +101,7 @@ export default function Home({ navigate }: HomeProps) {
 
               <button
                 onClick={() => navigate('contacts')}
-                className="flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white font-semibold px-7 py-3.5 rounded-xl"
+                className="flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white font-semibold px-7 py-3.5 rounded-xl hover:scale-105 active:scale-95 transition-all duration-200"
               >
                 {t('hero.cta1')}
 
@@ -110,7 +110,7 @@ export default function Home({ navigate }: HomeProps) {
 
               <button
                 onClick={() => navigate('contacts')}
-                className="flex items-center gap-2 bg-white/10 text-white px-7 py-3.5 rounded-xl border border-white/20"
+                className="flex items-center gap-2 bg-white/10 text-white px-7 py-3.5 rounded-xl border border-white/20 hover:bg-white/20 hover:scale-105 active:scale-95 transition-all duration-200"
               >
                 {t('hero.cta2')}
 
@@ -170,10 +170,10 @@ export default function Home({ navigate }: HomeProps) {
                 colorStyles[i % colorStyles.length];
 
               return (
-                <div
-                  key={i}
-                  className="bg-white p-6 rounded-2xl shadow-sm"
-                >
+                  <div
+                    key={i}
+                    className="bg-white p-6 rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+                  >
                   <div
                     className={`w-12 h-12 ${styles.bg} ${styles.color} rounded-xl flex items-center justify-center mb-4`}
                   >
@@ -205,13 +205,13 @@ export default function Home({ navigate }: HomeProps) {
       {/* CTA */}
       <section className="bg-red-600 py-16 text-center">
 
-        <h2 className="text-3xl font-bold text-white mb-4">
+        <h2 className="text-3xl font-bold text-white mb-4 animate-pulse-soft">
           {t('home.cta_title')}
         </h2>
 
         <button
           onClick={() => navigate('contacts')}
-          className="bg-white text-red-600 px-8 py-3 rounded-xl font-bold"
+          className="bg-white text-red-600 px-8 py-3 rounded-xl font-bold hover:bg-red-50 hover:scale-105 active:scale-95 transition-all duration-200"
         >
           {t('home.cta_button')}
         </button>

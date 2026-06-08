@@ -72,7 +72,7 @@ export default function Contacts() {
               <h2 className="text-2xl font-extrabold text-gray-900 mb-6">{t('contacts.section_title')}</h2>
               <div className="space-y-5">
 
-                <div className="flex items-start gap-4 p-5 rounded-xl bg-gray-50 border border-gray-100">
+                <div className="flex items-start gap-4 p-5 rounded-xl bg-gray-50 border border-gray-100 hover:shadow-md hover:-translate-y-0.5 transition-all duration-300">
                   <div className="w-10 h-10 bg-red-100 text-red-600 rounded-xl flex items-center justify-center"><MapPin className="w-5 h-5" /></div>
                   <div>
                     <p className="font-semibold text-sm">{t('contacts.address_label')}</p>
@@ -80,7 +80,7 @@ export default function Contacts() {
                   </div>
                 </div>
 
-                <div className="flex items-start gap-4 p-5 rounded-xl bg-gray-50 border border-gray-100">
+                <div className="flex items-start gap-4 p-5 rounded-xl bg-gray-50 border border-gray-100 hover:shadow-md hover:-translate-y-0.5 transition-all duration-300">
                   <div className="w-10 h-10 bg-amber-100 text-amber-600 rounded-xl flex items-center justify-center"><Phone className="w-5 h-5" /></div>
                   <div>
                     <p className="font-semibold text-sm mb-2">{t('contacts.phone_label')}</p>
@@ -94,7 +94,7 @@ export default function Contacts() {
                   </div>
                 </div>
 
-                <div className="flex items-start gap-4 p-5 rounded-xl bg-gray-50 border border-gray-100">
+                <div className="flex items-start gap-4 p-5 rounded-xl bg-gray-50 border border-gray-100 hover:shadow-md hover:-translate-y-0.5 transition-all duration-300">
                   <div className="w-10 h-10 bg-blue-100 text-blue-600 rounded-xl flex items-center justify-center"><Mail className="w-5 h-5" /></div>
                   <div>
                     <p className="font-semibold text-sm">{t('contacts.email_label')}</p>
@@ -102,7 +102,7 @@ export default function Contacts() {
                   </div>
                 </div>
 
-                <div className="flex items-start gap-4 p-5 rounded-xl bg-gray-50 border border-gray-100">
+                <div className="flex items-start gap-4 p-5 rounded-xl bg-gray-50 border border-gray-100 hover:shadow-md hover:-translate-y-0.5 transition-all duration-300">
                   <div className="w-10 h-10 bg-green-100 text-green-600 rounded-xl flex items-center justify-center"><Clock className="w-5 h-5" /></div>
                   <div>
                     <p className="font-semibold text-sm">{t('contacts.hours_label')}</p>

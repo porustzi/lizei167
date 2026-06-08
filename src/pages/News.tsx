@@ -102,9 +102,9 @@ export default function News({ onOpen }: Props) {
         </div>
 
         <div className="absolute left-0 top-0 bottom-0 w-1.5 flex flex-col">
-          <div className="flex-1 bg-gray-700" />
-          <div className="flex-1 bg-red-600" />
-          <div className="flex-1 bg-amber-400" />
+          <div className="flex-1 bg-gray-700 animate-float-slow" />
+          <div className="flex-1 bg-red-600 animate-float" style={{ animationDelay: '0.3s' }} />
+          <div className="flex-1 bg-amber-400 animate-float-slow" style={{ animationDelay: '0.6s' }} />
         </div>
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -146,7 +146,7 @@ export default function News({ onOpen }: Props) {
               <div
                 key={item.id}
                 onClick={() => onOpen(item.id)}
-                className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col cursor-pointer"
+                className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col cursor-pointer"
               >
 
                 {item.image && (

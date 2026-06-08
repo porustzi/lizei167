@@ -57,8 +57,8 @@ export default function Openup() {
       <section className="relative overflow-hidden bg-[#181E29] py-20">
         {/* Цветные полосы слева */}
         <div className="absolute left-0 top-0 bottom-0 w-1.5 flex flex-col z-10">
-          <div className="flex-1 bg-red-700" />
-          <div className="flex-1 bg-amber-400" />
+          <div className="flex-1 bg-red-700 animate-float" style={{ animationDelay: '0.2s' }} />
+          <div className="flex-1 bg-amber-400 animate-float-slow" style={{ animationDelay: '0.5s' }} />
         </div>
         {/* Сильноглушенный фон */}
         <div className="absolute inset-0 z-0">
