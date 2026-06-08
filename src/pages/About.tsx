@@ -233,9 +233,9 @@ export default function About() {
             <div className="absolute left-1/2 -translate-x-px top-0 bottom-0 w-0.5 bg-gray-200 hidden sm:block" />
 
             <div className="space-y-8">
-              {data.timeline.items.map(({ year, event }, i) => (
+              {data.timeline.items.map((item: any, i: number) => (
                 <div
-                  key={year + event}
+                  key={item.year + item.event}
                   className={`flex items-start gap-6 sm:gap-0 ${
                     i % 2 === 0 ? 'sm:flex-row' : 'sm:flex-row-reverse'
                   }`}
@@ -249,7 +249,7 @@ export default function About() {
                   >
                     <div className="bg-white rounded-xl p-5 shadow-sm border border-gray-100">
                       <span className="text-lg font-extrabold text-red-600">
-                        {year}
+                        {item.year}
                       </span>
 
                       <p className="text-gray-700 text-sm mt-1 leading-relaxed">

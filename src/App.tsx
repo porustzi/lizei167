@@ -40,9 +40,9 @@ function App() {
       if (segments.length === 0 || segments[0] === 'home') {
         setCurrentPage('home');
         setOpenNewsId(null);
-      } else if (segments[0] === 'news' && segments[1]) {
+      } else if (segments[0] === 'news') {
         setCurrentPage('news');
-        setOpenNewsId(segments[1]);
+        setOpenNewsId(segments[1] || null);
       } else if (['about', 'education', 'family', 'reviews', 'contacts', 'openup'].includes(segments[0])) {
         setCurrentPage(segments[0] as Page);
         setOpenNewsId(null);
