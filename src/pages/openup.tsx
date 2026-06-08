@@ -6,25 +6,27 @@ const HEADER_BG = "https://images.pexels.com/photos/1809644/pexels-photo-1809644
 
 interface DocItem {
   title: string;
+  title_de?: string;
   url?: string;
   file?: string;
-  children?: { title: string; url: string }[];
+  children?: { title: string; title_de?: string; url: string }[];
 }
 
 interface TransparencyData {
-  dsd_document: { title: string; url: string };
+  dsd_document: { title: string; title_de?: string; url: string };
   documents: DocItem[];
 }
 
 const FALLBACK_DSD = {
   title: 'Угода про DSD школи',
+  title_de: 'DSD Schulvertrag',
   url:
     'https://docs.google.com/document/d/e/2PACX-1vRVbg5IEpGHXPmoFkDDjEcIY9sJ5YTs8JZr4BCIG8TSZ70R4DoYBiOZ9w7vc3_8MxmVeW14R8-EynkN/pub',
 };
 
 export default function Openup() {
-  const { t } = useLang();
-  const [dsd, setDsd] = useState(FALLBACK_DSD);
+  const { t, loc } = useLang();
+  const [dsd, setDsd] = useState(FALLBACK_DSD as DocItem);
   const [docs, setDocs] = useState<DocItem[]>([]);
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
@@ -92,7 +94,7 @@ export default function Openup() {
               </div>
               <div className="flex flex-col">
                 <span className="text-white text-xl font-extrabold tracking-wide">
-                  {dsd.title}
+                  {loc(dsd, 'title')}
                 </span>
                 <span className="text-red-100 text-sm font-medium">
                   {t('openup.open_document')}
@@ -112,7 +114,7 @@ export default function Openup() {
                     className="group w-full flex items-center justify-between text-left px-6 py-4 rounded-xl border border-gray-200 hover:bg-gray-50 hover:border-red-200 hover:shadow-sm transition-all duration-200"
                   >
                     <span className="text-gray-900 font-medium">
-                      {item.title}
+                      {loc(item, 'title')}
                     </span>
                     <ChevronRight
                       className={`w-5 h-5 transition ${openIndex === i
@@ -121,8 +123,12 @@ export default function Openup() {
                         }`}
                     />
                   </button>
-                  {hasChildren && openIndex === i && (
-                    <div className="bg-gray-50 px-6 py-4 flex flex-col gap-0 rounded-b-xl border border-t-0 border-gray-200">
+                  <div
+                    className="grid transition-all duration-300"
+                    style={{ gridTemplateRows: hasChildren && openIndex === i ? '1fr' : '0fr' }}
+                  >
+                    <div className="overflow-hidden">
+                      <div className="bg-gray-50 px-6 py-4 flex flex-col gap-0 rounded-b-xl border border-t-0 border-gray-200">
                       {item.children!.map((child, ci) => (
                         <a
                           key={ci}
@@ -131,12 +137,13 @@ export default function Openup() {
                           rel="noopener noreferrer"
                           className="flex justify-between items-center text-sm py-2 hover:text-red-600 border-b border-gray-100 last:border-0"
                         >
-                          {child.title}
+                          {loc(child, 'title')}
                           <ChevronRight className="w-4 h-4 shrink-0" />
                         </a>
                       ))}
                     </div>
-                  )}
+                    </div>
+                  </div>
                 </div>
               );
             })}

@@ -54,7 +54,6 @@ export default function Home({ navigate }: HomeProps) {
         <div className="absolute inset-0">
           <img
             src={
-              home.hero_image ||
               'https://images.pexels.com/photos/8471831/pexels-photo-8471831.jpeg?auto=compress&cs=tinysrgb&w=1600'
             }
             alt="School"

@@ -1,62 +1,6 @@
 import { Star, Quote } from 'lucide-react';
 import { useLang } from '../i18n/LanguageContext';
-
-const reviews = [
-  {
-    name: 'Tanya Prokopenko',
-    role: 'Мама учня 5 класу',
-    rating: 5,
-    text: 'Син навчався тут з 5 класу. Цього року тільки закінчив школу. Хочу сказати спасибі за гарне ставлення до дітей, за відмінну організацію позашкільної діяльності.',
-    date: '30 липня 2022',
-    avatar: 'T',
-    color: 'bg-red-100 text-red-700',
-  },
-  {
-    name: 'Максим Дяченко',
-    role: 'Випускник 2023 року',
-    rating: 5,
-    text: 'Закінчив ліцей рік тому. Завдяки підготовці до Goethe C1 вступив до університету в Берліні. Неймовірна підготовка та підтримка від вчителів. Ліцей відкрив мені двері в Європу!',
-    date: 'лютий 2024',
-    avatar: 'МД',
-    color: 'bg-blue-100 text-blue-700',
-  },
-  {
-    name: 'Ємшанова Марія',
-    role: 'Випускниця',
-    rating: 5,
-    text: 'Закінчила гімназію нещодавно, але залишила в мене теплі спогади. Мені дуже пощастило з класом, класним керівником і звичайно педагогами. Окрема подяка директору Олені Володимирівні. Моментами було важко, але ми проходимо шлях у якому змушені долати перешкоди)',
-    date: 'квітень 2024',
-    avatar: 'ТК',
-    color: 'bg-amber-100 text-amber-700',
-  },
-  {
-    name: 'Ірина Мороз',
-    role: 'Мама двох учнів ліцею',
-    rating: 5,
-    text: 'Обидві дитини навчаються тут. Атмосфера відмінна, педагоги — справжні профі. Школа живе цікавим життям: поїздки, конкурси, обміни. Ми задоволені на всі 100%.',
-    date: 'березень 2024',
-    avatar: 'ІМ',
-    color: 'bg-green-100 text-green-700',
-  },
-  {
-    name: 'Павел Мельник',
-    role: 'Тато учениці 11 класу',
-    rating: 5,
-    text: 'Відмінний навчальний заклад, особливо для тих, хто хоче, щоб їхні діти були різнобічними людьми в плані спілкування іноземними мовами, особливо німецькою. Є програма ДСД, яка дозволить вашій дитині отримати підтверджений рівень німецького С1 за шкалою європейської оцінювання.',
-    date: 'квітень 2024',
-    avatar: 'ОТ',
-    color: 'bg-teal-100 text-teal-700',
-  },
-  {
-    name: 'Наталя Бондаренко',
-    role: 'Мама учня 4 класу',
-    rating: 4,
-    text: 'Молодший клас — і вже знає 300 слів по-німецьки! Вчителька дуже творча, діти залучені. Подобається, що мова подається через гру та пісні. Чекаємо ще більшого прогресу!',
-    date: 'лютий 2024',
-    avatar: 'НБ',
-    color: 'bg-pink-100 text-pink-700',
-  },
-];
+import reviewsData from '../../content/pages/reviews.json';
 
 function StarRating({ count }: { count: number }) {
   return (
@@ -72,7 +16,8 @@ function StarRating({ count }: { count: number }) {
 }
 
 export default function Reviews() {
-  const { t } = useLang();
+  const { t, loc } = useLang();
+  const reviews = reviewsData;
   const avgRating = 4.86;
   const totalReviews = 134;
 
@@ -177,30 +122,30 @@ export default function Reviews() {
           </div>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {reviews.map(({ name, role, rating, text, date, avatar, color }) => (
+            {reviews.map((item: any) => (
               <div
-                key={name}
+                key={item.name}
                 className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col"
               >
                 <div className="flex items-start justify-between mb-4">
                   <div className="flex items-center gap-3">
-                    <div className={`w-10 h-10 rounded-full ${color} font-bold text-sm flex items-center justify-center`}>
-                      {avatar}
+                    <div className={`w-10 h-10 rounded-full ${item.color} font-bold text-sm flex items-center justify-center`}>
+                      {item.avatar}
                     </div>
                     <div>
-                      <p className="font-bold text-gray-900 text-sm">{name}</p>
-                      <p className="text-xs text-gray-500">{role}</p>
+                      <p className="font-bold text-gray-900 text-sm">{item.name}</p>
+                      <p className="text-xs text-gray-500">{loc(item, 'role')}</p>
                     </div>
                   </div>
                   <Quote className="w-5 h-5 text-amber-400 shrink-0" />
                 </div>
 
-                <StarRating count={rating} />
+                <StarRating count={item.rating} />
 
-                <p className="text-gray-600 text-sm leading-relaxed mt-3 flex-1">"{text}"</p>
+                <p className="text-gray-600 text-sm leading-relaxed mt-3 flex-1">"{loc(item, 'text')}"</p>
 
                 <div className="mt-4 pt-4 border-t border-gray-50 flex items-center justify-between">
-                  <span className="text-xs text-gray-400">{date}</span>
+                  <span className="text-xs text-gray-400">{item.date}</span>
                   <div className="flex items-center gap-1">
                     <div className="w-3 h-3 rounded-full bg-blue-500" />
                     <div className="w-3 h-3 rounded-full bg-red-500" />

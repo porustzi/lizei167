@@ -1,6 +1,7 @@
 export type Language = 'uk' | 'de';
 
 export type TranslationKey =
+  | 'site.title' | 'site.description'
   | 'nav.home' | 'nav.about' | 'nav.education' | 'nav.family' | 'nav.news'
   | 'nav.reviews' | 'nav.openup' | 'nav.contacts' | 'nav.call'
   | 'header.school_type' | 'header.school_name'
@@ -31,6 +32,8 @@ export type TranslationKey =
 
 const translations: Record<Language, Record<TranslationKey, string>> = {
   uk: {
+    'site.title': 'Ліцей №167 — Київ',
+    'site.description': 'Ліцей №167 з поглибленим вивченням німецької мови у Києві.',
     'nav.home': 'Головна',
     'nav.about': 'Про нас',
     'nav.education': 'Навчання',
@@ -113,6 +116,8 @@ const translations: Record<Language, Record<TranslationKey, string>> = {
     'lang.label': 'УКР',
   },
   de: {
+    'site.title': 'Lyzeum Nr. 167 — Kiew',
+    'site.description': 'Lyzeum Nr. 167 mit vertieftem Deutschunterricht in Kiew.',
     'nav.home': 'Startseite',
     'nav.about': 'Über uns',
     'nav.education': 'Bildung',

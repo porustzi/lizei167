@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 import {
   CheckCircle,
   Target,
@@ -9,89 +8,6 @@ import {
 } from 'lucide-react';
 import { useLang } from '../i18n/LanguageContext';
 import about from '../../content/pages/about.json';
-
-interface AboutData {
-  hero: {
-    badge: string;
-    title: string;
-    highlight: string;
-    description: string;
-    background_image: string;
-    dsd_button_text: string;
-    dsd_button_url: string;
-  };
-
-  mission: {
-    badge: string;
-    title: string;
-    description: string;
-    bullets: string[];
-    images: string[];
-  };
-
-  timeline: {
-    badge: string;
-    title: string;
-    items: {
-      year: string;
-      event: string;
-    }[];
-  };
-
-  values: {
-    badge: string;
-    title: string;
-    items: {
-      title: string;
-      description: string;
-    }[];
-  };
-}
-
-const FALLBACK: AboutData = {
-  hero: {
-    badge: 'Про нас',
-    title: 'Наша історія',
-    highlight: 'історія',
-    description: 'Понад 55 років ми формуємо майбутнє через освіту, мову та культуру.',
-    background_image:
-      'https://images.pexels.com/photos/256490/pexels-photo-256490.jpeg?auto=compress&cs=tinysrgb&w=1600',
-    dsd_button_text: 'Інформація про програму ДСД',
-    dsd_button_url:
-      'https://docs.google.com/document/d/e/2PACX-1vR-h9TzRhZWrWu2OkcpD11KRckb8at1GKm3sgzMkvpjcXE2DiihNQuaWdTcx3sX21l_-mrBzpM_cwmN/pub',
-  },
-
-  mission: {
-    badge: 'Наша місія',
-    title: 'Виховуємо особистостей, відкритих до Європи',
-    description:
-      'Місія Ліцею №167 — забезпечити якісну загальну середню освіту з поглибленим вивченням німецької мови та культури.',
-    bullets: [
-      'Академічна досконалість у всіх предметах',
-      'Вільне володіння німецькою мовою',
-      'Громадянська відповідальність та патріотизм',
-      'Готовність до міжкультурного діалогу',
-    ],
-    images: [
-      'https://images.pexels.com/photos/5212695/pexels-photo-5212695.jpeg?auto=compress&cs=tinysrgb&w=600',
-      'https://images.pexels.com/photos/3184398/pexels-photo-3184398.jpeg?auto=compress&cs=tinysrgb&w=600',
-      'https://images.pexels.com/photos/4145197/pexels-photo-4145197.jpeg?auto=compress&cs=tinysrgb&w=600',
-      'https://images.pexels.com/photos/4260323/pexels-photo-4260323.jpeg?auto=compress&cs=tinysrgb&w=600',
-    ],
-  },
-
-  timeline: {
-    badge: 'Хронологія',
-    title: 'Ключові моменти нашої історії',
-    items: [],
-  },
-
-  values: {
-    badge: 'Цінності',
-    title: 'Що нами керує',
-    items: [],
-  },
-};
 
 export default function About() {
   const { loc, lang, t } = useLang();

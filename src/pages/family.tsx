@@ -45,8 +45,8 @@ const colorMap: any = {
 };
 
 export default function Family() {
-  const { loc, t } = useLang();
-  const [open, setOpen] = useState<number | null>(0);
+  const { loc } = useLang();
+  const [open, setOpen] = useState<number | null>(null);
 
   const sections = familyData.sections;
 
