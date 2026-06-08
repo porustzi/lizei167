@@ -33,14 +33,25 @@
           if (type !== 'busy') setTimeout(function(){ el.classList.remove('show'); }, 5000);
         }
 
-        async function tryFetch(url, jwt, accept404) {
-          var res = await fetch(url, { headers: { Authorization: 'Bearer ' + jwt } });
-          if (res.status === 404 && accept404) return null;
-          var ct = (res.headers.get('Content-Type') || '');
-          if (ct.includes('json')) return res.json();
-          var text = await res.text();
-          if (res.ok && text) return text;
-          throw new Error(url + ' → ' + res.status + ': ' + text.slice(0,120));
+        function allProps(obj) {
+          if (!obj) return '(null)';
+          var out = {};
+          try {
+            // own enumerable
+            Object.keys(obj).forEach(function(k){ out[k] = typeof obj[k]; });
+            // all own props including non-enumerable
+            Object.getOwnPropertyNames(obj).forEach(function(k) {
+              if (!(k in out)) out[k] = typeof obj[k];
+            });
+            // prototype
+            var proto = Object.getPrototypeOf(obj);
+            if (proto && proto.constructor) {
+              Object.getOwnPropertyNames(proto).forEach(function(k) {
+                if (k !== 'constructor' && !(k in out)) out[k] = typeof obj[k];
+              });
+            }
+          } catch(e) {}
+          return Object.keys(out).sort().join(', ');
         }
 
         async function doPublish() {
@@ -49,6 +60,13 @@
             btn.disabled = true;
             btn.innerHTML = '<span class="pp-spin"></span> Публікація...';
             toast('busy', '🔄 Публікую всі чернетки...', '');
+
+            // diagnostic: explore window.CMS
+            var cmsKeys = allProps(window.CMS);
+            var hasRedux = typeof window.__REDUX_DEVTOOLS_EXTENSION__ !== 'undefined';
+            var niKeys = allProps(window.netlifyIdentity);
+
+            toast('busy', '🔄 Діагностика: ' + cmsKeys.slice(0, 80) + '...', '');
 
             // get JWT
             var user = await new Promise(function(res, rej) {
@@ -64,26 +82,30 @@
 
             // try gateway URLs in order
             var GITS = [
-              '/.netlify/git/gateway',   // default
-              '/.netlify/git',            // custom gateway_url
-              '/.netlify/git/github',     // github proxy
+              '/.netlify/git/gateway',
+              '/.netlify/git',
+              '/.netlify/git/github',
             ];
             var branches = null;
             var baseURL = '';
+            var errors = [];
             for (var i = 0; i < GITS.length; i++) {
               var url = GITS[i] + '/' + encoded + '/branches';
               try {
-                var result = await tryFetch(url, jwt, true);
-                if (result !== null && Array.isArray(result)) {
-                  branches = result;
-                  baseURL = GITS[i];
-                  break;
+                var res = await fetch(url, { headers: { Authorization: 'Bearer ' + jwt } });
+                var ct = (res.headers.get('Content-Type') || '').slice(0,40);
+                var text = await res.text();
+                if (res.ok && text) {
+                  try { var j = JSON.parse(text); if (Array.isArray(j)) { branches = j; baseURL = GITS[i]; break; } } catch(e) {}
                 }
-              } catch(e) {}
+                errors.push(GITS[i] + ' → ' + res.status + ' [' + ct + '] ' + text.slice(0,50).replace(/\n/g,' '));
+              } catch(e) {
+                errors.push(GITS[i] + ' ERR: ' + e.message);
+              }
             }
 
             if (!branches) {
-              throw new Error('Жоден Git Gateway URL не відповів. Перевірте Network tab для /.netlify/git/*');
+              throw new Error('Git Gateway недоступний.\n' + errors.join('\n') + '\n\nCMS keys: ' + cmsKeys.slice(0,200));
             }
 
             var cms = branches.filter(function(b){ return b.name && b.name.indexOf('cms/') === 0; });
@@ -100,14 +122,15 @@
               btn.innerHTML = '⏳ ' + branch.name + '...';
               toast('busy', '🔄 Мержу ' + branch.name + '...', '');
               try {
-                await tryFetch(baseURL + '/' + encoded + '/merges', jwt, false);
-                merged++;
+                var mr = await fetch(baseURL + '/' + encoded + '/merges', {
+                  method: 'POST',
+                  headers: { Authorization: 'Bearer ' + jwt, 'Content-Type': 'application/json' },
+                  body: JSON.stringify({ base: 'main', head: branch.name, commit_message: 'Publish from Decap CMS' })
+                });
+                if (mr.ok) { merged++; }
+                else { console.warn('Merge fail', branch.name, mr.status, await mr.text()); }
               } catch(e) {
-                if (e.message && e.message.indexOf('already exists') !== -1) {
-                  merged++;
-                } else {
-                  console.warn('Skip', branch.name, e.message);
-                }
+                console.warn('Skip', branch.name, e.message);
               }
             }
 
@@ -124,7 +147,7 @@
             console.error(e);
             btn.disabled = false;
             btn.innerHTML = '🚀 Опублікувати все';
-            toast('err', '❌ Помилка', e.message);
+            toast('err', '❌ Помилка', e.message + '\n\n' + (e.stack || '').split('\n').slice(0,2).join(' | ').slice(0,200));
           }
         }
 
