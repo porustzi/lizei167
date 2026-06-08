@@ -49,7 +49,7 @@ function App() {
         setOpenNewsId(null);
       } else if (segments[0] === 'news') {
         setCurrentPage('news');
-        setOpenNewsId(segments[1] || null);
+        setOpenNewsId(segments[1] ? decodeURIComponent(segments[1]) : null);
       } else if (['about', 'education', 'family', 'reviews', 'contacts', 'openup'].includes(segments[0])) {
         setCurrentPage(segments[0] as Page);
         setOpenNewsId(null);
