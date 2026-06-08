@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Публікація</title>
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #0f172a;
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+    .card {
+      background: #1e293b;
+      border-radius: 2rem;
+      padding: 3rem;
+      max-width: 600px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
+    }
+    h1 {
+      font-size: 1.5rem;
+      color: #94a3b8;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 0.5rem;
+    }
+    h2 {
+      font-size: 2rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+    }
+    p {
+      color: #94a3b8;
+      line-height: 1.6;
+      margin-bottom: 2rem;
+    }
+    .btn-publish {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      background: linear-gradient(135deg, #dc2626, #b91c1c);
+      color: white;
+      border: none;
+      border-radius: 999px;
+      padding: 1.5rem 4rem;
+      font-size: 1.5rem;
+      font-weight: 800;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s;
+      box-shadow: 0 10px 20px -5px rgba(220,38,38,0.4);
+      width: 100%;
+    }
+    .btn-publish:hover {
+      transform: scale(1.05);
+      box-shadow: 0 20px 30px -5px rgba(220,38,38,0.6);
+    }
+    .btn-publish:active {
+      transform: scale(0.98);
+    }
+    .btn-publish svg {
+      width: 2rem;
+      height: 2rem;
+    }
+    .info {
+      margin-top: 2rem;
+      padding: 1.5rem;
+      background: #0f172a;
+      border-radius: 1rem;
+      font-size: 0.875rem;
+      color: #64748b;
+    }
+    .info span { color: #fbbf24; font-weight: 600; }
+    .status {
+      margin-top: 1.5rem;
+      padding: 1rem;
+      border-radius: 1rem;
+      font-size: 0.9rem;
+    }
+    .status.pending {
+      background: #1e293b;
+      color: #fbbf24;
+      border: 1px solid #fbbf24/20;
+    }
+    .status.ok {
+      background: #052e16;
+      color: #4ade80;
+      border: 1px solid #4ade80/20;
+    }
+    .hidden { display: none; }
+    footer {
+      margin-top: 2rem;
+      color: #475569;
+      font-size: 0.75rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Ліцей №167</h1>
+    <h2>🚀 Публікація змін</h2>
+    <p>Всі неопубліковані зміни будуть задеплоєні на сайт.</p>
+
+    <div id="status" class="status pending">
+      ⏳ Перевіряю наявність чернеток...
+    </div>
+
+    <a id="publishBtn" href="https://github.com/platstarinum-prog/lizei167/actions/workflows/publish-all.yml" target="_blank" class="btn-publish">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+      ОПУБЛІКУВАТИ ВСЕ
+    </a>
+
+    <div class="info">
+      <strong>Як це працює:</strong><br>
+      1️⃣ Редагуєш сайт у <a href="/admin/" style="color:#60a5fa">Decap CMS</a><br>
+      2️⃣ Зміни зберігаються як чернетки (без деплою)<br>
+      3️⃣ Натискаєш кнопку вище → GitHub → <span>Run workflow</span><br>
+      4️⃣ Все публікується одним деплоєм
+    </div>
+  </div>
+
+  <footer>Ліцей №167 м. Києва</footer>
+
+  <script>
+    (async () => {
+      try {
+        const res = await fetch('https://api.github.com/repos/platstarinum-prog/lizei167/branches');
+        const branches = await res.json();
+        if (!Array.isArray(branches)) throw new Error('no branches');
+
+        const cms = branches.filter(b => b.name.startsWith('cms/'));
+        const el = document.getElementById('status');
+
+        if (cms.length > 0) {
+          el.className = 'status pending';
+          el.innerHTML = `📝 <strong>${cms.length}</strong> чернеток очікують публікації`;
+        } else {
+          el.className = 'status ok';
+          el.innerHTML = '✅ Немає чернеток. Сайт актуальний.';
+        }
+      } catch (e) {
+        document.getElementById('status').className = 'status pending';
+        document.getElementById('status').textContent = '🔗 Натисни кнопку, щоб опублікувати';
+      }
+    })();
+  </script>
+</body>
+</html>
