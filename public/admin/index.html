@@ -36,7 +36,16 @@
         async function tryCmsBackend() {
           var cms = window.CMS;
           var bk = cms && typeof cms.getBackend === 'function' && cms.getBackend();
-          if (!bk) return null;
+          if (!bk) {
+            console.log('getBackend() returned', bk);
+            return null;
+          }
+          // diagnostic
+          var info = 'type=' + typeof bk + ' keys=' + Object.getOwnPropertyNames(bk).join(',');
+          if (typeof bk === 'object' && bk !== null) {
+            info += ' proto=' + Object.getOwnPropertyNames(Object.getPrototypeOf(bk)).join(',');
+          }
+          console.log('Backend info:', info);
           // check various API locations
           var api = bk.api || (bk.implementation && bk.implementation.api) || bk;
           if (api && typeof api.request === 'function' && api.repo) return api;
@@ -44,7 +53,9 @@
           if (typeof bk.getApi === 'function') {
             try { return await bk.getApi(); } catch(e) {}
           }
-          return null;
+          var msg = 'No api found. ' + info;
+          if (api) msg += ' api has keys=' + Object.getOwnPropertyNames(api).join(',') + ' hasRequest=' + (typeof api.request === 'function');
+          throw new Error(msg);
         }
 
         async function doPublish() {
@@ -57,13 +68,16 @@
             // poll for backend + api
             var api = await new Promise(function(resolve, reject) {
               var start = Date.now();
+              var lastErr = '';
               var check = setInterval(function() {
                 tryCmsBackend().then(function(a) {
                   if (a) { clearInterval(check); resolve(a); }
+                }).catch(function(e) {
+                  lastErr = e.message;
                 });
                 if (Date.now() - start > 20000) {
                   clearInterval(check);
-                  reject(new Error('API не знайдено через getBackend(). Properties: ' + Object.getOwnPropertyNames(window.CMS || {}).sort().join(', ')));
+                  reject(new Error('API не знайдено. ' + (lastErr || 'getBackend() повернув null / без api')));
                 }
               }, 500);
             });
