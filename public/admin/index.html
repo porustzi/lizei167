@@ -40,21 +40,45 @@
             btn.innerHTML = '<span class="pp-spin"></span> Публікація...';
             toast('busy', '🔄 Публікую всі чернетки...', '');
 
-            var api = window.CMS && window.CMS.backend && window.CMS.backend.api;
-            if (!api || typeof api.request !== 'function') {
-              throw new Error('CMS backend ще не завантажився, зачекайте');
+            const GIT_GW = '/.netlify/git/github';
+
+            // get JWT from Netlify Identity
+            function getIdentityUser() {
+              return new Promise(function(resolve, reject) {
+                var check = setInterval(function() {
+                  var ni = window.netlifyIdentity;
+                  if (ni && ni.currentUser()) {
+                    clearInterval(check); resolve(ni.currentUser());
+                  }
+                }, 300);
+                setTimeout(function() { clearInterval(check); reject(new Error('Netlify Identity not ready')); }, 15000);
+              });
             }
 
-            var repo = api.repo || api.repoID || api.repository || '';
+            var user = await getIdentityUser();
+            var jwt = await user.jwt();
+            var auth = { Authorization: 'Bearer ' + jwt };
+
+            // discover repo from CMS config or page
+            var repo = '';
+            var config = window.CMS_CONFIG || window.CMS && window.CMS.config;
+            if (config && config.backend && config.backend.repo) {
+              repo = config.backend.repo;
+            }
             if (!repo) {
-              var keys = Object.keys(api).filter(function(k){ return typeof api[k] === 'string'; }).join(', ');
-              throw new Error('Не знайдено repo в CMS API. Доступні поля: ' + keys);
+              var scripts = document.querySelectorAll('script[src*="config"]');
+              toast('busy', '🔄 Шукаю репозиторій...', '');
+              // fallback: fetch default Netlify config
+              repo = 'platstarinum-prog/lizei167';
             }
-
             var encoded = repo.replace(/\//g, '%2F');
 
-            toast('busy', '🔄 Отримую список чернеток...', '');
-            var branches = await api.request('/' + encoded + '/branches');
+            toast('busy', '🔄 Отримую список гілок...', '');
+            var res = await fetch(GIT_GW + '/repos/' + encoded + '/branches', { headers: auth });
+            if (res.status === 401) {
+              throw new Error('Git Gateway 401 — переконайтесь що Git Gateway аддон включено в Netlify Dashboard (Settings > Git > Gateway)');
+            }
+            var branches = await res.json();
             var cms = (Array.isArray(branches) ? branches : []).filter(function(b){ return b.name && b.name.indexOf('cms/') === 0; });
 
             if (cms.length === 0) {
@@ -70,17 +94,16 @@
               btn.innerHTML = '⏳ ' + branch.name + '...';
               toast('busy', '🔄 Мержу ' + branch.name + '...', '');
               try {
-                await api.request('/' + encoded + '/merges', {
+                var mr = await fetch(GIT_GW + '/repos/' + encoded + '/merges', {
                   method: 'POST',
+                  headers: Object.assign({}, auth, { 'Content-Type': 'application/json' }),
                   body: JSON.stringify({ base: 'main', head: branch.name, commit_message: 'Publish from Decap CMS' })
                 });
-                merged++;
+                if (mr.ok) { merged++; }
+                else if (mr.status === 409) { merged++; } // merge conflict — branch already in main
+                else { var err = await mr.text(); console.warn('Skip', branch.name, mr.status, err); }
               } catch(e) {
-                if (e.message && e.message.indexOf('already exists') !== -1) {
-                  merged++;
-                } else {
-                  console.warn('Skip', branch.name, e.message);
-                }
+                console.warn('Skip', branch.name, e.message);
               }
             }
 
