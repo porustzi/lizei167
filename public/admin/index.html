@@ -9,193 +9,99 @@
   <body>
     <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
     <script>
-      const style = document.createElement('style');
-      style.textContent = `
-        @keyframes pulse-glow {
-          0%, 100% { box-shadow: 0 0 20px rgba(220,38,38,0.4); }
-          50% { box-shadow: 0 0 40px rgba(220,38,38,0.7); }
-        }
-        .btn-publish-all {
-          position: fixed;
-          bottom: 28px;
-          right: 28px;
-          z-index: 999999;
-          background: linear-gradient(135deg, #dc2626, #b91c1c);
-          color: #fff;
-          border: none;
-          border-radius: 999px;
-          padding: 18px 36px;
-          font-size: 20px;
-          font-weight: 800;
-          cursor: pointer;
-          text-decoration: none;
-          box-shadow: 0 10px 30px -5px rgba(220,38,38,0.5);
-          transition: transform 0.15s, box-shadow 0.15s;
-          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-          letter-spacing: 0.02em;
-          display: flex;
-          align-items: center;
-          gap: 12px;
-          animation: pulse-glow 2s infinite;
-        }
-        .btn-publish-all:hover { transform: scale(1.08); }
-        .btn-publish-all:active { transform: scale(0.96); }
-        .btn-publish-all:disabled { opacity: 0.6; cursor: wait; animation: none; }
-        .btn-publish-all .badge {
-          background: rgba(255,255,255,0.2);
-          border-radius: 999px;
-          padding: 2px 10px;
-          font-size: 14px;
-          font-weight: 700;
-        }
-        .publish-toast {
-          position: fixed;
-          bottom: 100px;
-          right: 28px;
-          z-index: 999999;
-          background: #1e293b;
-          color: #fff;
-          border-radius: 16px;
-          padding: 16px 24px;
-          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-          font-size: 14px;
-          max-width: 360px;
-          box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-          display: none;
-        }
-        .publish-toast.show { display: block; }
-        .publish-toast.success { border-left: 4px solid #4ade80; }
-        .publish-toast.error { border-left: 4px solid #dc2626; }
-        .publish-toast.loading { border-left: 4px solid #fbbf24; }
-        .publish-toast .title { font-weight: 700; margin-bottom: 4px; }
-        .publish-toast .desc { color: #94a3b8; font-size: 13px; }
-        .spinner {
-          display: inline-block;
-          width: 16px;
-          height: 16px;
-          border: 2px solid rgba(255,255,255,0.3);
-          border-top-color: #fff;
-          border-radius: 50%;
-          animation: spin 0.6s linear infinite;
-          margin-right: 8px;
-          vertical-align: middle;
-        }
-        @keyframes spin { to { transform: rotate(360deg); } }
-      `;
-      document.head.appendChild(style);
+      (function() {
+        var s = document.createElement('style');
+        s.textContent = [
+          '.pp-btn{position:fixed;bottom:28px;right:28px;z-index:999999;background:linear-gradient(135deg,#dc2626,#b91c1c);color:#fff;border:none;border-radius:999px;padding:16px 32px;font-size:18px;font-weight:800;cursor:pointer;box-shadow:0 10px 30px -5px rgba(220,38,38,0.5);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;display:flex;align-items:center;gap:10px;transition:transform .15s;animation:pp-pulse 2s infinite}',
+          '.pp-btn:hover{transform:scale(1.08)}',
+          '.pp-btn:disabled{opacity:.6;cursor:wait;animation:none}',
+          '@keyframes pp-pulse{0%,100%{box-shadow:0 0 20px rgba(220,38,38,0.4)}50%{box-shadow:0 0 40px rgba(220,38,38,0.7)}}',
+          '.pp-toast{position:fixed;bottom:100px;right:28px;z-index:999999;background:#1e293b;color:#fff;border-radius:16px;padding:14px 20px;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;font-size:13px;max-width:340px;box-shadow:0 10px 30px rgba(0,0,0,.3);display:none;line-height:1.4}',
+          '.pp-toast.show{display:block}',
+          '.pp-toast.ok{border-left:4px solid #4ade80}',
+          '.pp-toast.err{border-left:4px solid #dc2626}',
+          '.pp-toast.busy{border-left:4px solid #fbbf24}',
+          '.pp-spin{display:inline-block;width:14px;height:14px;border:2px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:pp-spin .6s linear infinite;vertical-align:middle;margin-right:6px}',
+          '@keyframes pp-spin{to{transform:rotate(360deg)}}'
+        ].join('');
+        document.head.appendChild(s);
 
-      function toast(type, title, desc) {
-        const el = document.getElementById('publishToast');
-        el.className = 'publish-toast show ' + type;
-        el.innerHTML = `<div class="title">${title}</div><div class="desc">${desc}</div>`;
-        if (type !== 'loading') {
-          setTimeout(() => el.classList.remove('show'), 5000);
-        }
-      }
-
-      async function publishAll() {
-        const btn = document.getElementById('publishBtn');
-        const user = window.netlifyIdentity && window.netlifyIdentity.currentUser && window.netlifyIdentity.currentUser();
-        if (!user) {
-          toast('error', '❌ Не авторизовано', 'Увійдіть через Netlify Identity');
-          return;
+        function toast(type, title, desc) {
+          var el = document.getElementById('ppToast');
+          el.className = 'pp-toast show ' + type;
+          el.innerHTML = '<div style="font-weight:700;margin-bottom:2px">' + title + '</div><div style="color:#94a3b8;font-size:12px">' + desc + '</div>';
+          if (type !== 'busy') setTimeout(function(){ el.classList.remove('show'); }, 5000);
         }
 
-        btn.disabled = true;
-        btn.innerHTML = '⏳ Публікація...';
-        toast('loading', '🔄 Публікую всі чернетки...', 'Мержу зміни в main');
+        async function doPublish() {
+          var btn = document.getElementById('ppBtn');
+          try {
+            var user = window.netlifyIdentity && typeof window.netlifyIdentity.currentUser === 'function' && window.netlifyIdentity.currentUser();
+            if (!user) { toast('err', '❌ Не авторизовано', 'Увійдіть через Netlify Identity'); return; }
+            btn.disabled = true;
+            btn.innerHTML = '<span class="pp-spin"></span> Публікація...';
+            toast('busy', '🔄 Публікую...', 'Мержу чернетки в main');
 
-        try {
-          const token = await user.jwt();
-          const repoId = 'platstarinum-prog%2Flizei167';
-          const gateway = `/.netlify/git/gateway/repos/${repoId}`;
-          const headers = {
-            Authorization: `Bearer ${token}`,
-            'Content-Type': 'application/json',
-          };
+            var token = await user.jwt();
+            var gateway = '/.netlify/git/gateway/repos/platstarinum-prog%2Flizei167';
+            var headers = { Authorization: 'Bearer ' + token, 'Content-Type': 'application/json' };
 
-          const branchesRes = await fetch(`${gateway}/branches`, { headers });
-          if (!branchesRes.ok) throw new Error('Git Gateway недоступний');
-          const branches = await branchesRes.json();
-          const cmsBranches = (Array.isArray(branches) ? branches : []).filter(b =>
-            b.name && b.name.startsWith('cms/')
-          );
+            var brRes = await fetch(gateway + '/branches', { headers: headers });
+            if (!brRes.ok) throw new Error('Git Gateway: ' + brRes.status);
+            var branches = await brRes.json();
+            var cms = (Array.isArray(branches) ? branches : []).filter(function(b){ return b.name && b.name.indexOf('cms/') === 0; });
 
-          if (cmsBranches.length === 0) {
-            toast('success', '✅ Немає чернеток', 'Сайт актуальний');
-            btn.disabled = false;
-            btn.innerHTML = '🚀 Опублікувати все';
-            return;
+            if (cms.length === 0) {
+              toast('ok', '✅ Немає чернеток', 'Сайт актуальний');
+              btn.disabled = false; btn.innerHTML = '🚀 Опублікувати все'; return;
+            }
+
+            var merged = 0;
+            for (var i = 0; i < cms.length; i++) {
+              var branch = cms[i];
+              btn.innerHTML = '⏳ ' + branch.name + '...';
+              var mRes = await fetch(gateway + '/merges', {
+                method: 'POST',
+                headers: headers,
+                body: JSON.stringify({ base: 'main', head: branch.name, commit_message: 'Publish from Decap CMS' })
+              });
+              if (mRes.ok || mRes.status === 204) merged++;
+            }
+
+            btn.disabled = false; btn.innerHTML = '🚀 Опублікувати все';
+            if (merged > 0) toast('ok', '✅ Опубліковано ' + merged, 'Зміни скоро з\'являться на сайті');
+            else toast('err', '❌ Нічого не опубліковано', 'Можливо, все вже актуально');
+          } catch(e) {
+            console.error(e);
+            btn.disabled = false; btn.innerHTML = '🚀 Опублікувати все';
+            toast('err', '❌ Помилка', e.message);
           }
+        }
 
-          let merged = 0;
-          for (const branch of cmsBranches) {
-            btn.innerHTML = `⏳ Мержу ${branch.name}...`;
-            const mergeRes = await fetch(`${gateway}/merges`, {
-              method: 'POST',
-              headers,
-              body: JSON.stringify({
-                base: 'main',
-                head: branch.name,
-                commit_message: 'Publish from Decap CMS',
-              }),
-            });
-            if (mergeRes.ok || mergeRes.status === 204) merged++;
-            else console.warn('Skip merge for', branch.name, mergeRes.status);
-          }
+        function addButton() {
+          if (document.getElementById('ppBtn')) return;
+          var b = document.createElement('button');
+          b.id = 'ppBtn'; b.className = 'pp-btn';
+          b.innerHTML = '🚀 Опублікувати все';
+          b.onclick = doPublish;
+          document.body.appendChild(b);
+          var t = document.createElement('div');
+          t.id = 'ppToast'; t.className = 'pp-toast';
+          document.body.appendChild(t);
+        }
 
-          btn.disabled = false;
-          btn.innerHTML = '🚀 Опублікувати все';
-
-          if (merged > 0) {
-            toast('success', `✅ Опубліковано ${merged} чернеток`, 'Зміни незабаром з'являться на сайті');
+        function tryAdd() {
+          if (document.querySelector('#app, [class*="App"], [class*="Sidebar"], [class*="Collection"], header, nav, main')) {
+            addButton();
           } else {
-            toast('error', '❌ Нічого не опубліковано', 'Можливо, все вже актуально');
+            setTimeout(tryAdd, 500);
           }
-        } catch (e) {
-          console.error(e);
-          btn.disabled = false;
-          btn.innerHTML = '🚀 Опублікувати все';
-          toast('error', '❌ Помилка', e.message);
         }
-      }
 
-      function addButton() {
-        if (document.querySelector('.btn-publish-all')) return;
-
-        const btn = document.createElement('button');
-        btn.id = 'publishBtn';
-        btn.className = 'btn-publish-all';
-
-        const icon = document.createElement('span');
-        icon.textContent = '🚀';
-        icon.style.fontSize = '24px';
-        const text = document.createElement('span');
-        text.textContent = 'Опублікувати все';
-
-        btn.append(icon, text);
-        btn.addEventListener('click', publishAll);
-        document.body.appendChild(btn);
-
-        const t = document.createElement('div');
-        t.id = 'publishToast';
-        t.className = 'publish-toast';
-        document.body.appendChild(t);
-      }
-
-      function waitForCMS() {
-        const check = () => {
-          if (document.querySelector('[class*="App"]') || document.querySelector('[class*="Sidebar"]') || document.querySelector('[data-testid]')) {
-            setTimeout(addButton, 500);
-          } else {
-            setTimeout(check, 300);
-          }
-        };
-        check();
-      }
-
-      document.addEventListener('DOMContentLoaded', waitForCMS);
-      if (document.readyState !== 'loading') waitForCMS();
+        if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', tryAdd);
+        else tryAdd();
+        setTimeout(addButton, 4000);
+      })();
     </script>
   </body>
 </html>
