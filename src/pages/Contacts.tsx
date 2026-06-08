@@ -128,7 +128,7 @@ export default function Contacts() {
                     <input name="phone" placeholder={t('contacts.form_phone')} value={form.phone} onChange={e => setForm({...form, phone: e.target.value})} className="w-full border px-4 py-2 rounded" />
                     <input name="email" type="email" required placeholder="Email" value={form.email} onChange={e => setForm({...form, email: e.target.value})} className="w-full border px-4 py-2 rounded" />
                     <textarea name="message" required placeholder={t('contacts.form_message')} value={form.message} onChange={e => setForm({...form, message: e.target.value})} className="w-full border px-4 py-2 rounded" />
-                    <button type="submit" disabled={loading} className="w-full flex justify-center gap-2 bg-red-600 text-white py-3 rounded">
+                    <button type="submit" disabled={loading} className="w-full flex justify-center gap-2 bg-red-600 text-white py-3 rounded hover:bg-red-700 hover:scale-[1.01] active:scale-[0.99] transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed">
                       <Send className="w-4 h-4" />
                       {loading ? t('contacts.form_sending') : t('contacts.form_send')}
                     </button>
@@ -137,11 +137,11 @@ export default function Contacts() {
               </div>
 
               <div className="mt-8 flex gap-6">
-                <a href={data.instagram} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 px-6 py-3 rounded-2xl bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 text-white text-base font-semibold shadow-md hover:shadow-lg hover:scale-105 transition-all duration-200">
+                <a href={data.instagram} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 px-6 py-3 rounded-2xl bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 text-white text-base font-semibold shadow-md hover:shadow-xl hover:scale-105 active:scale-95 transition-all duration-200">
                   <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5H7zm5 5.8A4.2 4.2 0 1 1 7.8 12 4.2 4.2 0 0 1 12 7.8zm0 6.9A2.7 2.7 0 1 0 9.3 12 2.7 2.7 0 0 0 12 14.7zm4.5-7.6a1 1 0 1 1-1-1 1 1 0 0 1 1 1z"/></svg>
                   Instagram
                 </a>
-                <a href={data.facebook} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 px-6 py-3 rounded-2xl bg-blue-600 text-white text-base font-semibold shadow-md hover:bg-blue-700 hover:shadow-lg hover:scale-105 transition-all duration-200">
+                <a href={data.facebook} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 px-6 py-3 rounded-2xl bg-blue-600 text-white text-base font-semibold shadow-md hover:bg-blue-700 hover:shadow-xl hover:scale-105 active:scale-95 transition-all duration-200">
                   <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M22 12a10 10 0 1 0-11.5 9.9v-7h-2.4v-2.9h2.4V9.4c0-2.4 1.4-3.7 3.6-3.7 1 0 2 .2 2 .2v2.3h-1.1c-1.1 0-1.4.7-1.4 1.4v1.7h2.5l-.4 2.9h-2.1v7A10 10 0 0 0 22 12z"/></svg>
                   Facebook
                 </a>
@@ -152,7 +152,7 @@ export default function Contacts() {
       </section>
 
       <section className="py-10 text-center">
-        <a href={data.maps_url} target="_blank" rel="noopener noreferrer" className="text-red-600 font-semibold">
+        <a href={data.maps_url} target="_blank" rel="noopener noreferrer" className="inline-block text-red-600 font-semibold hover:text-red-700 hover:scale-105 active:scale-95 transition-all duration-200">
           {t('contacts.google_maps')}
         </a>
       </section>

@@ -132,18 +132,23 @@ export default function Education() {
                   />
                 </button>
 
-                {openProgram === i && (
-                  <div className="px-6 pb-6 border-t border-gray-100 pt-5">
-                    <ul className="grid sm:grid-cols-2 gap-3">
-                      {program.items.map((item: any) => (
-                        <li key={item.text} className="flex items-start gap-2.5">
-                          <CheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
-                          <span className="text-sm text-gray-700">{loc(item, 'text')}</span>
-                        </li>
-                      ))}
-                    </ul>
+                <div
+                  className="grid transition-all duration-300"
+                  style={{ gridTemplateRows: openProgram === i ? '1fr' : '0fr' }}
+                >
+                  <div className="overflow-hidden">
+                    <div className="px-6 pb-6 border-t border-gray-100 pt-5">
+                      <ul className="grid sm:grid-cols-2 gap-3">
+                        {program.items.map((item: any) => (
+                          <li key={item.text} className="flex items-start gap-2.5">
+                            <CheckCircle className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+                            <span className="text-sm text-gray-700">{loc(item, 'text')}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
                   </div>
-                )}
+                </div>
               </div>
             ))}
           </div>

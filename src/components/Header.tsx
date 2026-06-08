@@ -82,13 +82,13 @@ export default function Header({ currentPage, navigate, isScrolled }: HeaderProp
           <div className="flex items-center gap-3">
             <LangSwitch />
             
-            <button
-              onClick={() => handleNav('contacts')}
-              className="hidden sm:flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white text-sm font-medium px-4 py-2 rounded-lg transition-colors shadow-sm"
-            >
-              <Phone className="w-4 h-4" />
-              <span>{t('nav.call')}</span>
-            </button>
+              <button
+                onClick={() => handleNav('contacts')}
+                className="hidden sm:flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white text-sm font-medium px-4 py-2 rounded-lg hover:shadow-md hover:scale-105 active:scale-95 transition-all duration-200 shadow-sm"
+              >
+                <Phone className="w-4 h-4" />
+                <span>{t('nav.call')}</span>
+              </button>
 
             {/* БУРГЕР */}
             <button

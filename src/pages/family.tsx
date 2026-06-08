@@ -122,43 +122,48 @@ export default function Family() {
                   />
                 </button>
 
-                {open === i && (
-                  <div
-                    className={`border-t ${styles.border} grid md:grid-cols-2`}
-                  >
-                    {s.semesters?.map((sem: any) => (
-                      <div key={sem.label} className="p-6">
-                        <p
-                          className={`text-sm font-bold mb-3 ${styles.color}`}
-                        >
-                          {loc(sem, 'label')}
-                        </p>
+                <div
+                  className="grid transition-all duration-300"
+                  style={{ gridTemplateRows: open === i ? '1fr' : '0fr' }}
+                >
+                  <div className="overflow-hidden">
+                    <div
+                      className={`border-t ${styles.border} grid md:grid-cols-2`}
+                    >
+                      {s.semesters?.map((sem: any) => (
+                        <div key={sem.label} className="p-6">
+                          <p
+                            className={`text-sm font-bold mb-3 ${styles.color}`}
+                          >
+                            {loc(sem, 'label')}
+                          </p>
 
-                        <div className="space-y-2">
-                          {sem.classes?.map((c: any) => (
-                            <a
-                              key={c.name}
-                              href={c.url}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="flex items-center gap-3 p-2 rounded-lg hover:bg-gray-50"
-                            >
-                              <CheckCircle
-                                className={`w-4 h-4 ${styles.color}`}
-                              />
+                          <div className="space-y-2">
+                            {sem.classes?.map((c: any) => (
+                              <a
+                                key={c.name}
+                                href={c.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="flex items-center gap-3 p-2 rounded-lg hover:bg-gray-50 transition-colors"
+                              >
+                                <CheckCircle
+                                  className={`w-4 h-4 ${styles.color}`}
+                                />
 
-                              <span className="text-sm">
-                                {loc(c, 'name')}
-                              </span>
+                                <span className="text-sm">
+                                  {loc(c, 'name')}
+                                </span>
 
-                              <BookOpen className="w-4 h-4 text-gray-300 ml-auto" />
-                            </a>
-                          ))}
+                                <BookOpen className="w-4 h-4 text-gray-300 ml-auto" />
+                              </a>
+                            ))}
+                          </div>
                         </div>
-                      </div>
-                    ))}
+                      ))}
+                    </div>
                   </div>
-                )}
+                </div>
               </div>
             );
           })}

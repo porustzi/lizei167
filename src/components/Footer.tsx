@@ -74,15 +74,15 @@ export default function Footer({ navigate }: FooterProps) {
               </li>
               <li className="flex items-center gap-3">
                 <Phone className="w-4 h-4 text-amber-400 shrink-0" />
-                <a href="tel:+063 319 77 90" className="text-sm text-gray-400 hover:text-amber-400 transition-colors">
-                  +063 319 77 90
-                </a>
+              <a href="tel:+063 319 77 90" className="text-sm text-gray-400 hover:text-amber-400 hover:translate-x-0.5 transition-all duration-200">
+                +063 319 77 90
+              </a>
               </li>
               <li className="flex items-center gap-3">
                 <Mail className="w-4 h-4 text-amber-400 shrink-0" />
-                <a href="mailto:lyzeum167@ukr.net" className="text-sm text-gray-400 hover:text-amber-400 transition-colors">
-                  lyzeum167@ukr.net
-                </a>
+              <a href="mailto:lyzeum167@ukr.net" className="text-sm text-gray-400 hover:text-amber-400 hover:translate-x-0.5 transition-all duration-200">
+                lyzeum167@ukr.net
+              </a>
               </li>
               <li className="flex items-center gap-3">
                 <Clock className="w-4 h-4 text-amber-400 shrink-0" />
@@ -100,12 +100,12 @@ export default function Footer({ navigate }: FooterProps) {
               <div className="absolute -bottom-4 -left-3 w-12 h-12 bg-rose-400/40 rounded-full blur-lg" />
               <div className="absolute top-1/4 left-1/3 w-8 h-8 bg-rose-200/30 rounded-full blur-md" />
             </div>
-            <a
-              href="https://krvtsv.netlify.app"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="relative block text-center text-rose-600 font-bold text-[11px] md:text-[10px] uppercase tracking-widest whitespace-nowrap hover:text-rose-500 transition-colors"
-            >
+              <a
+                href="https://krvtsv.netlify.app"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="relative block text-center text-rose-600 font-bold text-[11px] md:text-[10px] uppercase tracking-widest whitespace-nowrap hover:text-rose-500 hover:scale-105 transition-all duration-200"
+              >
               {t('footer.credits')}
             </a>
           </div>

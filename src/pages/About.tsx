@@ -161,7 +161,7 @@ export default function About() {
               href={data.hero.dsd_button_url}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-3 bg-red-600 hover:bg-red-700 text-white font-semibold px-6 py-3 rounded-2xl shadow-lg"
+              className="inline-flex items-center gap-3 bg-red-600 hover:bg-red-700 text-white font-semibold px-6 py-3 rounded-2xl shadow-lg hover:shadow-xl hover:scale-[1.02] active:scale-[0.98] transition-all duration-200"
             >
               <FileText className="w-5 h-5" />
               {loc(data.hero, 'dsd_button_text')}

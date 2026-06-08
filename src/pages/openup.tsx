@@ -85,7 +85,7 @@ export default function Openup() {
               href={dsd.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="group relative flex items-center gap-4 rounded-2xl bg-gradient-to-r from-red-600 to-red-500 px-8 py-5 shadow-xl transition-all duration-300 hover:scale-[1.02] hover:shadow-xl"
+              className="group relative flex items-center gap-4 rounded-2xl bg-gradient-to-r from-red-600 to-red-500 px-8 py-5 shadow-xl hover:shadow-2xl hover:scale-[1.03] active:scale-[0.98] transition-all duration-200"
             >
               <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-white/20 backdrop-blur-sm">
                 <FileText className="w-6 h-6 text-white" />
@@ -109,7 +109,7 @@ export default function Openup() {
                 <div key={i}>
                   <button
                     onClick={() => handleClick(item, i)}
-                    className="group w-full flex items-center justify-between text-left px-6 py-4 rounded-xl border border-gray-200 hover:bg-gray-50 transition"
+                    className="group w-full flex items-center justify-between text-left px-6 py-4 rounded-xl border border-gray-200 hover:bg-gray-50 hover:border-red-200 hover:shadow-sm transition-all duration-200"
                   >
                     <span className="text-gray-900 font-medium">
                       {item.title}
