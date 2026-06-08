@@ -33,30 +33,14 @@
           if (type !== 'busy') setTimeout(function(){ el.classList.remove('show'); }, 5000);
         }
 
-        function waitForApi(maxMs) {
-          return new Promise(function(resolve, reject) {
-            var started = Date.now();
-            var check = setInterval(function() {
-              var cms = window.CMS;
-              if (!cms) return;
-              // try common API paths
-              var api = (cms.backend && cms.backend.implementation && cms.backend.implementation.api)
-                      || (cms.backend && cms.backend.api)
-                      || (cms.backend && cms.backend.implementation);
-              if (api && typeof api.request === 'function') {
-                clearInterval(check); resolve(api);
-              }
-              if (Date.now() - started > maxMs) {
-                clearInterval(check);
-                var diag = 'CMS=' + (cms ? 'Y' : 'N');
-                if (cms) {
-                  diag += ', keys=' + Object.keys(cms).join(',');
-                  if (cms.backend) diag += ', bk=' + Object.keys(cms.backend).join(',');
-                }
-                reject(new Error('API не знайдено. ' + diag));
-              }
-            }, 500);
-          });
+        async function tryFetch(url, jwt, accept404) {
+          var res = await fetch(url, { headers: { Authorization: 'Bearer ' + jwt } });
+          if (res.status === 404 && accept404) return null;
+          var ct = (res.headers.get('Content-Type') || '');
+          if (ct.includes('json')) return res.json();
+          var text = await res.text();
+          if (res.ok && text) return text;
+          throw new Error(url + ' → ' + res.status + ': ' + text.slice(0,120));
         }
 
         async function doPublish() {
@@ -66,14 +50,43 @@
             btn.innerHTML = '<span class="pp-spin"></span> Публікація...';
             toast('busy', '🔄 Публікую всі чернетки...', '');
 
-            var api = await waitForApi(20000);
-            var repo = api.repo || '';
-            if (!repo) throw new Error('repo not found on api: ' + Object.keys(api).join(','));
+            // get JWT
+            var user = await new Promise(function(res, rej) {
+              var check = setInterval(function() {
+                var u = window.netlifyIdentity && window.netlifyIdentity.currentUser();
+                if (u) { clearInterval(check); res(u); }
+              }, 300);
+              setTimeout(function() { clearInterval(check); rej(new Error('Netlify Identity not ready')); }, 15000);
+            });
+            var jwt = await user.jwt();
 
-            toast('busy', '🔄 Отримую список чернеток...', '');
-            var branches = await api.request('/' + repo.replace(/\//g, '%2F') + '/branches');
-            var cms = (Array.isArray(branches) ? branches : []).filter(function(b){ return b.name && b.name.indexOf('cms/') === 0; });
+            var encoded = 'platstarinum-prog%2Flizei167';
 
+            // try gateway URLs in order
+            var GITS = [
+              '/.netlify/git/gateway',   // default
+              '/.netlify/git',            // custom gateway_url
+              '/.netlify/git/github',     // github proxy
+            ];
+            var branches = null;
+            var baseURL = '';
+            for (var i = 0; i < GITS.length; i++) {
+              var url = GITS[i] + '/' + encoded + '/branches';
+              try {
+                var result = await tryFetch(url, jwt, true);
+                if (result !== null && Array.isArray(result)) {
+                  branches = result;
+                  baseURL = GITS[i];
+                  break;
+                }
+              } catch(e) {}
+            }
+
+            if (!branches) {
+              throw new Error('Жоден Git Gateway URL не відповів. Перевірте Network tab для /.netlify/git/*');
+            }
+
+            var cms = branches.filter(function(b){ return b.name && b.name.indexOf('cms/') === 0; });
             if (cms.length === 0) {
               toast('ok', '✅ Немає чернеток', 'Сайт актуальний');
               btn.disabled = false;
@@ -87,10 +100,7 @@
               btn.innerHTML = '⏳ ' + branch.name + '...';
               toast('busy', '🔄 Мержу ' + branch.name + '...', '');
               try {
-                await api.request('/' + repo.replace(/\//g, '%2F') + '/merges', {
-                  method: 'POST',
-                  body: JSON.stringify({ base: 'main', head: branch.name, commit_message: 'Publish from Decap CMS' })
-                });
+                await tryFetch(baseURL + '/' + encoded + '/merges', jwt, false);
                 merged++;
               } catch(e) {
                 if (e.message && e.message.indexOf('already exists') !== -1) {
