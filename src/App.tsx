@@ -38,7 +38,7 @@ function App() {
     const parseHash = () => {
       const hash = window.location.hash.slice(1); // Remove leading '#'
       if (hash.includes('invite_token') || hash.includes('recovery_token')) {
-        window.location.href = '/admin/#' + hash.split('#')[1];
+        window.location.href = '/admin/' + window.location.hash;
         return;
       }
 
