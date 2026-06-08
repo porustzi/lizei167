@@ -1,11 +1,11 @@
 {
+  "color": "bg-blue-100 text-blue-700",
+  "role_de": "Absolvent 2022",
   "name": "Максим Дяченко",
-  "role": "Випускник 2023 року",
-  "role_de": "Absolvent 2023",
-  "rating": 5,
   "text": "Закінчив ліцей рік тому. Завдяки підготовці до Goethe C1 вступив до університету в Берліні. Неймовірна підготовка та підтримка від вчителів. Ліцей відкрив мені двері в Європу!",
-  "text_de": "Habe das Lyzeum vor einem Jahr abgeschlossen. Dank der Vorbereitung auf Goethe C1 habe ich ein Studium in Berlin aufgenommen. Unglaubliche Vorbereitung und Unterstützung durch die Lehrer. Das Lyzeum hat mir die Türen nach Europa geöffnet!",
   "date": "лютий 2024",
+  "text_de": "Habe das Lyzeum vor einem Jahr abgeschlossen. Dank der Vorbereitung auf Goethe C1 habe ich ein Studium in Berlin aufgenommen. Unglaubliche Vorbereitung und Unterstützung durch die Lehrer. Das Lyzeum hat mir die Türen nach Europa geöffnet!",
+  "role": "Випускник 2022 року",
   "avatar": "МД",
-  "color": "bg-blue-100 text-blue-700"
+  "rating": 5
 }
