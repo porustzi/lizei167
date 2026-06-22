@@ -15,30 +15,30 @@
       align-items: center;
       justify-content: center;
     }
-    #login {
-      width: 100%;
-      max-width: 400px;
-      padding: 2rem;
+    .logo {
+      width: 64px; height: 64px;
+      background: #dc2626;
+      border-radius: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.5rem;
+      font-size: 1.5rem;
+      color: #fff;
+      font-weight: 800;
     }
     .card {
       background: #fff;
       border-radius: 1.5rem;
       padding: 2.5rem;
+      max-width: 400px;
+      width: 100%;
       box-shadow: 0 20px 40px -12px rgba(0,0,0,0.15);
       text-align: center;
     }
-    .card h1 {
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: #1e293b;
-      margin-bottom: .25rem;
-    }
-    .card p {
-      color: #64748b;
-      font-size: .9rem;
-      margin-bottom: 2rem;
-    }
-    .card input[type="password"] {
+    .card h1 { font-size: 1.5rem; font-weight: 700; color: #1e293b; margin-bottom: .25rem; }
+    .card p { color: #64748b; font-size: .9rem; margin-bottom: 1.5rem; }
+    .card input {
       width: 100%;
       padding: .85rem 1.2rem;
       border: 2px solid #e2e8f0;
@@ -46,11 +46,9 @@
       font-size: 1rem;
       outline: none;
       transition: border-color .2s;
-      margin-bottom: 1rem;
+      margin-bottom: .75rem;
     }
-    .card input[type="password"]:focus {
-      border-color: #dc2626;
-    }
+    .card input:focus { border-color: #dc2626; }
     .card button {
       width: 100%;
       padding: .85rem;
@@ -66,126 +64,239 @@
     .card button:hover { background: #b91c1c; transform: scale(1.02); }
     .card button:active { transform: scale(.98); }
     .card button:disabled { opacity: .6; cursor: wait; transform: none; }
-    .error {
-      color: #dc2626;
-      font-size: .875rem;
-      margin-top: .75rem;
-      display: none;
+    .card button.sec {
+      background: #fff;
+      color: #1e293b;
+      border: 2px solid #e2e8f0;
     }
+    .card button.sec:hover { background: #f8fafc; border-color: #dc2626; color: #dc2626; }
+    .error { color: #dc2626; font-size: .875rem; margin-top: .5rem; display: none; }
     .error.show { display: block; }
-    .logo {
-      width: 64px;
-      height: 64px;
-      background: #dc2626;
+    .success { color: #16a34a; font-size: .875rem; margin-top: .5rem; display: none; }
+    .success.show { display: block; }
+
+    #login, #dashboard, #cms { display: none; }
+    #login.active, #dashboard.active { display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; max-width: 400px; padding: 2rem; }
+    #cms.active { display: block; width: 100%; }
+
+    .dash-card {
+      background: #fff;
+      border-radius: 1.5rem;
+      padding: 2rem;
+      width: 100%;
+      box-shadow: 0 20px 40px -12px rgba(0,0,0,0.15);
+    }
+    .dash-card h2 { font-size: 1.25rem; font-weight: 700; color: #1e293b; margin-bottom: 1.5rem; }
+    .dash-btn {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      width: 100%;
+      padding: 1rem 1.25rem;
+      background: #fff;
+      border: 2px solid #e2e8f0;
       border-radius: 1rem;
-      display: flex;
+      font-size: 1rem;
+      font-weight: 600;
+      color: #1e293b;
+      cursor: pointer;
+      transition: all .2s;
+      text-align: left;
+      margin-bottom: .75rem;
+    }
+    .dash-btn:last-child { margin-bottom: 0; }
+    .dash-btn:hover { border-color: #dc2626; color: #dc2626; transform: scale(1.01); }
+    .dash-btn .icon { font-size: 1.5rem; }
+
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
       align-items: center;
       justify-content: center;
-      margin: 0 auto 1.5rem;
-      font-size: 1.5rem;
-      color: #fff;
-      font-weight: 800;
+      z-index: 1000;
+      padding: 2rem;
     }
-    #cms { display: none; width: 100%; }
-    #cms.active { display: block; }
-    .loader {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 4rem 2rem;
-      color: #64748b;
-    }
+    .modal-overlay.active { display: flex; }
+    .modal { background: #fff; border-radius: 1.5rem; padding: 2rem; max-width: 400px; width: 100%; }
+    .modal h3 { font-size: 1.2rem; font-weight: 700; margin-bottom: 1rem; }
+    .loading { text-align: center; padding: 2rem; color: #64748b; }
     .spinner {
-      width: 40px;
-      height: 40px;
+      width: 40px; height: 40px;
       border: 4px solid #e2e8f0;
       border-top-color: #dc2626;
       border-radius: 50%;
       animation: spin .6s linear infinite;
-      margin-bottom: 1rem;
+      margin: 0 auto 1rem;
     }
     @keyframes spin { to { transform: rotate(360deg); } }
   </style>
 </head>
 <body>
-  <div id="login">
+  <div id="login" class="active">
     <div class="card">
       <div class="logo">167</div>
       <h1>Адмінка Ліцею №167</h1>
-      <p>Введіть пароль для доступу</p>
+      <p>Увійдіть для керування сайтом</p>
       <form id="loginForm">
+        <input type="text" id="username" placeholder="Логін" autocomplete="username" required />
         <input type="password" id="password" placeholder="Пароль" autocomplete="current-password" required />
         <button type="submit" id="loginBtn">Увійти</button>
-        <div class="error" id="errorMsg"></div>
+        <div class="error" id="loginError"></div>
       </form>
     </div>
   </div>
 
+  <div id="dashboard">
+    <div class="dash-card">
+      <h2>🥷 Вітаю, admin</h2>
+      <button class="dash-btn" onclick="loadCMS()">
+        <span class="icon">✏️</span> Редагувати сайт
+      </button>
+      <button class="dash-btn" onclick="openChangePassword()">
+        <span class="icon">🔑</span> Змінити пароль
+      </button>
+      <button class="dash-btn" onclick="logout()">
+        <span class="icon">🚪</span> Вийти
+      </button>
+    </div>
+  </div>
+
   <div id="cms">
-    <div class="loader" id="cmsLoader">
+    <div class="loading" id="cmsLoader">
       <div class="spinner"></div>
       <p>Завантаження адмінки...</p>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="changePasswordModal">
+    <div class="modal">
+      <h3>🔑 Зміна пароля</h3>
+      <form id="changePasswordForm">
+        <input type="password" id="oldPassword" placeholder="Старий пароль" required />
+        <input type="password" id="newPassword" placeholder="Новий пароль" required />
+        <input type="password" id="confirmPassword" placeholder="Підтвердити новий пароль" required />
+        <button type="submit" id="changeBtn">Зберегти</button>
+        <div class="error" id="changeError"></div>
+        <div class="success" id="changeSuccess"></div>
+      </form>
+      <button class="dash-btn sec" style="margin-top:.75rem" onclick="closeChangePassword()">Скасувати</button>
     </div>
   </div>
 
   <script>
     const TOKEN_KEY = 'github-backend:t';
 
-    async function login(password) {
-      const res = await fetch('/api/auth', {
-        method: 'POST',
-        body: JSON.stringify({ password }),
-      });
-      if (!res.ok) {
-        const data = await res.json();
-        throw new Error(data.error || 'Невірний пароль');
-      }
-      return res.json();
-    }
-
     document.getElementById('loginForm').addEventListener('submit', async (e) => {
       e.preventDefault();
       const btn = document.getElementById('loginBtn');
-      const err = document.getElementById('errorMsg');
-      const password = document.getElementById('password').value;
-
+      const err = document.getElementById('loginError');
       btn.disabled = true;
       btn.textContent = 'Вхід...';
       err.classList.remove('show');
 
       try {
-        const data = await login(password);
+        const res = await fetch('/api/auth', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            username: document.getElementById('username').value,
+            password: document.getElementById('password').value,
+          }),
+        });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error || 'Помилка входу');
         window.sessionStorage.setItem('cms_session', data.token);
         localStorage.setItem(TOKEN_KEY, data.token);
-        showCMS();
-      } catch (errMsg) {
-        err.textContent = errMsg.message || 'Помилка входу';
+        showDashboard();
+      } catch (e) {
+        err.textContent = e.message;
         err.classList.add('show');
         btn.disabled = false;
         btn.textContent = 'Увійти';
       }
     });
 
-    function showCMS() {
-      document.getElementById('login').style.display = 'none';
-      document.getElementById('cms').classList.add('active');
-      loadDecapCMS();
+    function showDashboard() {
+      document.getElementById('login').classList.remove('active');
+      document.getElementById('dashboard').classList.add('active');
     }
 
-    function loadDecapCMS() {
+    function loadCMS() {
+      document.getElementById('dashboard').classList.remove('active');
+      document.getElementById('cms').classList.add('active');
       const script = document.createElement('script');
       script.src = 'https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js';
-      script.onload = function () {
+      script.onload = () => {
         document.getElementById('cmsLoader').style.display = 'none';
       };
       document.body.appendChild(script);
     }
 
+    function openChangePassword() {
+      document.getElementById('changePasswordModal').classList.add('active');
+      document.getElementById('oldPassword').value = '';
+      document.getElementById('newPassword').value = '';
+      document.getElementById('confirmPassword').value = '';
+      document.getElementById('changeError').classList.remove('show');
+      document.getElementById('changeSuccess').classList.remove('show');
+    }
+
+    function closeChangePassword() {
+      document.getElementById('changePasswordModal').classList.remove('active');
+    }
+
+    document.getElementById('changePasswordForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn = document.getElementById('changeBtn');
+      const err = document.getElementById('changeError');
+      const suc = document.getElementById('changeSuccess');
+      err.classList.remove('show');
+      suc.classList.remove('show');
+
+      const oldP = document.getElementById('oldPassword').value;
+      const newP = document.getElementById('newPassword').value;
+      const confirmP = document.getElementById('confirmPassword').value;
+
+      if (newP !== confirmP) {
+        err.textContent = 'Нові паролі не співпадають';
+        err.classList.add('show');
+        return;
+      }
+
+      btn.disabled = true;
+      btn.textContent = 'Збереження...';
+
+      try {
+        const res = await fetch('/api/change-password', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ username: 'admin', oldPassword: oldP, newPassword: newP }),
+        });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error || 'Помилка');
+        suc.textContent = '✅ Пароль змінено';
+        suc.classList.add('show');
+        btn.textContent = 'Збережено';
+        setTimeout(() => { btn.disabled = false; btn.textContent = 'Зберегти'; }, 2000);
+      } catch (e) {
+        err.textContent = e.message;
+        err.classList.add('show');
+        btn.disabled = false;
+        btn.textContent = 'Зберегти';
+      }
+    });
+
+    function logout() {
+      window.sessionStorage.removeItem('cms_session');
+      window.location.href = '/admin/';
+    }
+
     const session = window.sessionStorage.getItem('cms_session');
     if (session) {
       localStorage.setItem(TOKEN_KEY, session);
-      showCMS();
+      showDashboard();
     }
   </script>
 </body>

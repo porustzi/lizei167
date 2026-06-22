@@ -9,15 +9,32 @@ export async function onRequest(context) {
   }
 
   try {
-    const { password } = await request.json();
+    const { username, password } = await request.json();
 
-    if (password === env.ADMIN_PASSWORD) {
+    if (username !== env.ADMIN_USERNAME) {
+      return new Response(JSON.stringify({ error: 'Невірний логін або пароль' }), {
+        status: 401,
+        headers: { 'Content-Type': 'application/json' },
+      });
+    }
+
+    let expected = env.ADMIN_PASSWORD;
+
+    if (env.SETTINGS_KV?.get) {
+      const stored = await env.SETTINGS_KV.get('admin_password');
+      if (stored) expected = stored;
+    }
+
+    if (password === expected) {
+      if (env.SETTINGS_KV?.put && !expected) {
+        await env.SETTINGS_KV.put('admin_password', env.ADMIN_PASSWORD);
+      }
       return new Response(JSON.stringify({ token: env.GITHUB_PAT }), {
         headers: { 'Content-Type': 'application/json' },
       });
     }
 
-    return new Response(JSON.stringify({ error: 'Невірний пароль' }), {
+    return new Response(JSON.stringify({ error: 'Невірний логін або пароль' }), {
       status: 401,
       headers: { 'Content-Type': 'application/json' },
     });
