@@ -9,7 +9,7 @@ export async function onRequest(context) {
   const authz = request.headers.get('Authorization');
   if (!authz) return json({ error: 'Unauthorized' }, 401);
 
-  if (path === 'user' || path.endsWith('/user')) {
+  if (path === 'user') {
     return handleUser(env);
   }
 
