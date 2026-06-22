@@ -9,24 +9,10 @@
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       background: #f1f5f9;
+      color: #1e293b;
       min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
     }
-    .logo {
-      width: 64px; height: 64px;
-      background: #dc2626;
-      border-radius: 1rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 1.5rem;
-      font-size: 1.5rem;
-      color: #fff;
-      font-weight: 800;
-    }
+
     .card {
       background: #fff;
       border-radius: 1.5rem;
@@ -36,124 +22,405 @@
       box-shadow: 0 20px 40px -12px rgba(0,0,0,0.15);
       text-align: center;
     }
-    .card h1 { font-size: 1.5rem; font-weight: 700; color: #1e293b; margin-bottom: .25rem; }
+    .card h1 { font-size: 1.5rem; font-weight: 700; margin-bottom: .25rem; }
     .card p { color: #64748b; font-size: .9rem; margin-bottom: 1.5rem; }
     .card input {
-      width: 100%;
-      padding: .85rem 1.2rem;
-      border: 2px solid #e2e8f0;
-      border-radius: 1rem;
-      font-size: 1rem;
-      outline: none;
-      transition: border-color .2s;
-      margin-bottom: .75rem;
+      width: 100%; padding: .85rem 1.2rem;
+      border: 2px solid #e2e8f0; border-radius: 1rem;
+      font-size: 1rem; outline: none; margin-bottom: .75rem;
     }
     .card input:focus { border-color: #dc2626; }
-    .card button {
-      width: 100%;
-      padding: .85rem;
-      background: #dc2626;
-      color: #fff;
-      border: none;
-      border-radius: 1rem;
-      font-size: 1rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: background .2s, transform .15s;
+    .card button, .btn {
+      padding: .85rem 1.5rem;
+      background: #dc2626; color: #fff; border: none;
+      border-radius: 1rem; font-size: 1rem; font-weight: 600;
+      cursor: pointer; transition: all .2s;
     }
-    .card button:hover { background: #b91c1c; transform: scale(1.02); }
-    .card button:active { transform: scale(.98); }
-    .card button:disabled { opacity: .6; cursor: wait; transform: none; }
+    .card button:hover, .btn:hover { background: #b91c1c; }
+    .card button:disabled { opacity: .6; cursor: wait; }
+    .btn-sm { padding: .5rem 1rem; font-size: .875rem; }
+    .btn-ghost { background: transparent; color: #64748b; }
+    .btn-ghost:hover { background: #f1f5f9; color: #dc2626; }
+    .btn-outline { background: #fff; color: #1e293b; border: 2px solid #e2e8f0; }
+    .btn-outline:hover { border-color: #dc2626; color: #dc2626; }
+    .logo {
+      width: 64px; height: 64px; background: #dc2626;
+      border-radius: 1rem; display: flex; align-items: center;
+      justify-content: center; margin: 0 auto 1.5rem;
+      font-size: 1.5rem; color: #fff; font-weight: 800;
+    }
     .error { color: #dc2626; font-size: .875rem; margin-top: .5rem; display: none; }
     .error.show { display: block; }
-    #login { display: flex; flex-direction: column; align-items: center; width: 100%; max-width: 400px; padding: 2rem; }
-    #cms { display: none; width: 100%; }
-    #cms.active { display: block; }
-    .loading { text-align: center; padding: 3rem 2rem; color: #64748b; }
-    .spinner {
-      width: 40px; height: 40px;
-      border: 4px solid #e2e8f0;
-      border-top-color: #dc2626;
-      border-radius: 50%;
-      animation: spin .6s linear infinite;
-      margin: 0 auto 1rem;
+
+    .page { max-width: 1000px; margin: 0 auto; padding: 2rem; }
+    .header {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 2rem; padding-bottom: 1rem;
+      border-bottom: 2px solid #e2e8f0;
     }
-    @keyframes spin { to { transform: rotate(360deg); } }
+    .header h2 { font-size: 1.5rem; font-weight: 700; }
+    .header-actions { display: flex; gap: .5rem; }
+
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1rem; }
+    .dash-card {
+      background: #fff; border-radius: 1rem; padding: 1.5rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      cursor: pointer; transition: all .2s;
+    }
+    .dash-card:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.12); }
+    .dash-card .icon { font-size: 2rem; margin-bottom: .5rem; }
+    .dash-card h3 { font-size: 1.1rem; font-weight: 600; }
+    .dash-card p { font-size: .875rem; color: #64748b; margin-top: .25rem; }
+
+    .item-list { background: #fff; border-radius: 1rem; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+    .item-row {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 1.5rem; border-bottom: 1px solid #f1f5f9;
+    }
+    .item-row:last-child { border-bottom: none; }
+    .item-row:hover { background: #f8fafc; }
+    .item-title { font-weight: 600; }
+    .item-meta { font-size: .8rem; color: #94a3b8; }
+
+    .form-group { margin-bottom: 1rem; }
+    .form-group label { display: block; font-weight: 600; margin-bottom: .25rem; font-size: .9rem; }
+    .form-group input, .form-group textarea, .form-group select {
+      width: 100%; padding: .7rem 1rem;
+      border: 2px solid #e2e8f0; border-radius: .75rem;
+      font-size: .95rem; outline: none; font-family: inherit;
+    }
+    .form-group input:focus, .form-group textarea:focus { border-color: #dc2626; }
+    .form-group textarea { min-height: 120px; resize: vertical; }
+    .form-group textarea.markdown { min-height: 300px; font-family: monospace; }
+
+    .preview { padding: 1rem; background: #f8fafc; border-radius: .75rem; margin-top: .5rem; }
+    .preview h1, .preview h2, .preview h3 { margin: .5rem 0; }
+    .preview p { margin: .25rem 0; line-height: 1.6; }
+    .preview ul, .preview ol { padding-left: 1.5rem; }
+
+    .label { display: inline-block; padding: .15rem .5rem; border-radius: .5rem; font-size: .75rem; font-weight: 600; }
+    .label-green { background: #dcfce7; color: #16a34a; }
+    .label-gray { background: #f1f5f9; color: #64748b; }
+
+    .empty { text-align: center; padding: 3rem; color: #94a3b8; }
+    #login, #dashboard, #list, #editor { display: none; }
+    #login.active, #dashboard.active, #list.active, #editor.active { display: block; }
+    #login.active { display: flex; align-items: center; justify-content: center; min-height: 100vh; padding: 2rem; }
+
+    .tabs { display: flex; gap: .5rem; margin-bottom: 1rem; }
+    .tab {
+      padding: .5rem 1rem; border-radius: .75rem;
+      background: #fff; border: 2px solid #e2e8f0;
+      font-weight: 600; font-size: .9rem; cursor: pointer;
+    }
+    .tab.active { border-color: #dc2626; color: #dc2626; }
+
+    .toast {
+      position: fixed; top: 1rem; right: 1rem;
+      background: #16a34a; color: #fff; padding: .75rem 1.5rem;
+      border-radius: 1rem; font-weight: 600; font-size: .9rem;
+      transform: translateY(-100px); transition: transform .3s;
+      z-index: 1000;
+    }
+    .toast.show { transform: translateY(0); }
+    .toast.err { background: #dc2626; }
   </style>
 </head>
 <body>
-  <div id="login">
+
+  <div id="login" class="active">
     <div class="card">
       <div class="logo">167</div>
       <h1>Адмінка Ліцею №167</h1>
       <p>Увійдіть для керування сайтом</p>
       <form id="loginForm">
-        <input type="text" id="username" placeholder="Логін" autocomplete="username" required />
-        <input type="password" id="password" placeholder="Пароль" autocomplete="current-password" required />
+        <input type="text" id="username" placeholder="Логін" required />
+        <input type="password" id="password" placeholder="Пароль" required />
         <button type="submit" id="loginBtn">Увійти</button>
         <div class="error" id="loginError"></div>
       </form>
     </div>
   </div>
 
-  <div id="cms">
-    <div class="loading" id="cmsLoader">
-      <div class="spinner"></div>
-      <p>Завантаження адмінки...</p>
+  <div id="dashboard">
+    <div class="page">
+      <div class="header">
+        <h2>🥷 Панель керування</h2>
+        <button class="btn btn-sm btn-ghost" onclick="logout()">🚪 Вийти</button>
+      </div>
+      <div class="grid">
+        <div class="dash-card" onclick="openList('news')">
+          <div class="icon">📰</div>
+          <h3>Новини</h3>
+          <p>Додавати та редагувати новини школи</p>
+        </div>
+        <div class="dash-card" onclick="openList('pages')">
+          <div class="icon">📄</div>
+          <h3>Сторінки</h3>
+          <p>Головна, Про нас, Навчання, Контакти</p>
+        </div>
+        <div class="dash-card" onclick="openList('reviews')">
+          <div class="icon">⭐</div>
+          <h3>Відгуки</h3>
+          <p>Відгуки батьків та учнів</p>
+        </div>
+        <div class="dash-card" onclick="openList('settings')">
+          <div class="icon">⚙️</div>
+          <h3>Налаштування</h3>
+          <p>Загальні налаштування сайту</p>
+        </div>
+      </div>
     </div>
   </div>
 
+  <div id="list">
+    <div class="page">
+      <div class="header">
+        <h2 id="listTitle"></h2>
+        <div class="header-actions">
+          <button class="btn btn-sm" id="addBtn" onclick="addItem()">➕ Додати</button>
+          <button class="btn btn-sm btn-ghost" onclick="backToDashboard()">← Назад</button>
+        </div>
+      </div>
+      <div id="listContent"></div>
+    </div>
+  </div>
+
+  <div id="editor">
+    <div class="page">
+      <div class="header">
+        <h2 id="editorTitle"></h2>
+        <div class="header-actions">
+          <button class="btn btn-sm" onclick="saveItem()">💾 Зберегти</button>
+          <button class="btn btn-sm btn-outline" onclick="backToList()">← Скасувати</button>
+        </div>
+      </div>
+      <div id="editorContent"></div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
   <script>
-    document.getElementById('loginForm').addEventListener('submit', async (e) => {
+    const API = '/api/github';
+    const PASS = getPass();
+
+    function getPass() { return sessionStorage.getItem('admin_pass') || ''; }
+    function setPass(p) { sessionStorage.setItem('admin_pass', p); }
+
+    async function api(body) {
+      const res = await fetch(API, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${PASS}` },
+        body: JSON.stringify(body),
+      });
+      if (!res.ok) {
+        if (res.status === 401) { sessionStorage.removeItem('admin_pass'); showLogin(); }
+        const err = await res.json().catch(() => ({ error: 'Request failed' }));
+        throw new Error(err.error || err.detail || 'Error');
+      }
+      return res.json();
+    }
+
+    function toast(msg, isErr) {
+      const t = document.getElementById('toast');
+      t.textContent = msg; t.className = 'toast' + (isErr ? ' err' : '');
+      setTimeout(() => t.classList.add('show'), 10);
+      setTimeout(() => t.classList.remove('show'), 3000);
+    }
+
+    function show(v) { ['login','dashboard','list','editor'].forEach(id => document.getElementById(id).classList.toggle('active', id === v)); }
+
+    // LOGIN
+    document.getElementById('loginForm').onsubmit = async (e) => {
       e.preventDefault();
       const btn = document.getElementById('loginBtn');
       const err = document.getElementById('loginError');
-      const password = document.getElementById('password').value;
       const username = document.getElementById('username').value;
-
-      if (username !== 'admin') {
-        err.textContent = 'Невірний логін або пароль';
-        err.classList.add('show');
-        return;
-      }
-
-      btn.disabled = true;
-      btn.textContent = 'Вхід...';
-      err.classList.remove('show');
-
+      const password = document.getElementById('password').value;
+      if (username !== 'admin') { err.textContent = 'Невірний логін або пароль'; err.classList.add('show'); return; }
+      btn.disabled = true; btn.textContent = 'Вхід...'; err.classList.remove('show');
       try {
-        const res = await fetch('/.netlify/identity/token', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email: 'admin', password }),
-        });
-        const data = await res.json();
-        if (!res.ok) throw new Error(data.error || 'Невірний пароль');
+        setPass(password);
+        await api({ action: 'login' });
+        show('dashboard');
+      } catch (e) { err.textContent = e.message; err.classList.add('show'); sessionStorage.removeItem('admin_pass'); }
+      btn.disabled = false; btn.textContent = 'Увійти';
+    };
 
-        localStorage.setItem('git-gateway:t', data.access_token);
-        sessionStorage.setItem('cms_session', '1');
-        loadCMS();
-      } catch (e) {
-        err.textContent = e.message;
-        err.classList.add('show');
-        btn.disabled = false;
-        btn.textContent = 'Увійти';
-      }
-    });
+    function showLogin() { show('login'); }
 
-    function loadCMS() {
-      document.getElementById('login').style.display = 'none';
-      document.getElementById('cms').classList.add('active');
-      const script = document.createElement('script');
-      script.src = 'https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js';
-      script.onload = () => {
-        document.getElementById('cmsLoader').style.display = 'none';
-      };
-      document.body.appendChild(script);
+    function logout() { sessionStorage.removeItem('admin_pass'); window.location.reload(); }
+
+    function backToDashboard() { show('dashboard'); }
+    function backToList() { show('list'); }
+
+    // ROUTING
+    const COLLECTIONS = {
+      news: { label: '📰 Новини', folder: 'content/news', fields: [
+        { name: 'title', label: 'Заголовок', type: 'text' },
+        { name: 'date', label: 'Дата', type: 'datetime' },
+        { name: 'image', label: 'Фото (URL)', type: 'text', optional: true },
+        { name: 'excerpt', label: 'Короткий опис', type: 'text', optional: true },
+        { name: 'body', label: 'Текст', type: 'markdown' },
+      ], parse(d) { const m = {}; d.replace(/^---\n([\s\S]*?)\n---\n?/, (_, fm) => { fm.split('\n').forEach(l => { const [k,...v] = l.split(': '); if (k) m[k.trim()] = v.join(': ').trim(); }); return ''; }); const body = d.replace(/^---\n[\s\S]*?\n---\n?/, ''); return { ...m, body }; },
+        stringify(d) { let fm = `---\ntitle: ${d.title}\ndate: ${d.date}`; if (d.image) fm += `\nimage: ${d.image}`; if (d.excerpt) fm += `\nexcerpt: ${d.excerpt}`; return fm + `\n---\n\n${d.body}`; },
+        itemName(d) { return d.title; },
+      },
+      pages: { label: '📄 Сторінки', folder: 'content/pages', fieldsFn, parse: j => JSON.parse(j), stringify: d => JSON.stringify(d, null, 2), itemName: d => d.name || '', isJson: true, files: [
+        'home.json', 'about.json', 'education.json', 'family.json', 'contacts.json', 'transparency.json', 'general.json'
+      ]},
+      reviews: { label: '⭐ Відгуки', folder: 'content/reviews', fields: [
+        { name: 'name', label: "Ім'я", type: 'text' },
+        { name: 'role', label: 'Роль (uk)', type: 'text' },
+        { name: 'role_de', label: 'Роль (de)', type: 'text' },
+        { name: 'rating', label: 'Рейтинг (1-5)', type: 'number' },
+        { name: 'text', label: 'Текст (uk)', type: 'textarea' },
+        { name: 'text_de', label: 'Текст (de)', type: 'textarea' },
+        { name: 'date', label: 'Дата', type: 'text' },
+        { name: 'avatar', label: 'Аватар (URL)', type: 'text' },
+        { name: 'color', label: 'Колір', type: 'text' },
+      ], parse: j => JSON.parse(j), stringify: d => JSON.stringify(d, null, 2), itemName: d => d.name },
+      settings: { label: '⚙️ Налаштування', folder: 'content/pages', fields: [
+        { name: 'school_name', label: 'Назва школи (uk)', type: 'text' },
+        { name: 'school_name_de', label: 'Назва школи (de)', type: 'text' },
+        { name: 'footer_description', label: 'Опис у футері (uk)', type: 'text' },
+        { name: 'footer_description_de', label: 'Опис у футері (de)', type: 'text' },
+        { name: 'call_button_phone', label: 'Телефон кнопки дзвінка', type: 'text' },
+      ], parse: j => JSON.parse(j), stringify: d => JSON.stringify(d, null, 2), itemName: d => 'Загальні', isJson: true, files: ['general.json'] },
+    };
+
+    let currentColl, currentItem;
+
+    function fieldsFn(coll) {
+      if (!coll) return [];
+      const f = [];
+      const add = (key, label, type, optional) => f.push({ name: key, label, type: type || 'text', optional });
+      add('name', 'Назва сторінки', 'text');
+      return f;
     }
 
-    if (sessionStorage.getItem('cms_session')) {
-      loadCMS();
+    async function openList(name) {
+      currentColl = name;
+      const coll = COLLECTIONS[name];
+      document.getElementById('listTitle').textContent = coll.label;
+      document.getElementById('addBtn').style.display = coll.files ? 'none' : 'inline-block';
+
+      let items = [];
+      if (coll.files) {
+        items = coll.files.map(f => ({ name: f, path: coll.folder + '/' + f, type: 'file' }));
+      } else {
+        const data = await api({ action: 'list', folder: coll.folder });
+        items = data || [];
+      }
+
+      const el = document.getElementById('listContent');
+      if (!items.length) { el.innerHTML = '<div class="empty">Немає записів</div>'; show('list'); return; }
+
+      el.innerHTML = '<div class="item-list">' + items.map(f => {
+        const displayName = f.name.replace(/\.(md|json)$/, '');
+        return '<div class="item-row" onclick="editItem(\'' + f.path + '\')"><div><div class="item-title">' + displayName + '</div><div class="item-meta">' + f.path + '</div></div><span class="label label-gray">✏️</span></div>';
+      }).join('') + '</div>';
+      show('list');
+    }
+
+    function addItem() {
+      document.getElementById('editorTitle').textContent = '✏️ Новий запис';
+      const coll = COLLECTIONS[currentColl];
+      renderEditor(coll, {});
+      show('editor');
+    }
+
+    async function editItem(path) {
+      const coll = COLLECTIONS[currentColl];
+      const data = await api({ action: 'read', path });
+      if (!data) { toast('Файл не знайдено', true); return; }
+      currentItem = { path: data.path, sha: data.sha };
+      let parsed;
+      try { parsed = coll.parse(data.content || '{}'); } catch { parsed = {}; }
+      document.getElementById('editorTitle').textContent = '✏️ ' + (coll.itemName(parsed) || data.name);
+      renderEditor(coll, parsed);
+      show('editor');
+    }
+
+    function renderEditor(coll, data) {
+      const fields = getFields(coll);
+      const el = document.getElementById('editorContent');
+      el.innerHTML = fields.map(f => {
+        const val = data[f.name] || '';
+        if (f.type === 'markdown') {
+          return '<div class="form-group"><label>' + f.label + '</label><textarea class="markdown" id="f-' + f.name + '" oninput="previewMarkdown()">' + esc(val) + '</textarea><div class="preview" id="preview"></div></div>';
+        }
+        if (f.type === 'textarea') {
+          return '<div class="form-group"><label>' + f.label + '</label><textarea id="f-' + f.name + '">' + esc(val) + '</textarea></div>';
+        }
+        if (f.type === 'datetime') {
+          return '<div class="form-group"><label>' + f.label + '</label><input type="datetime-local" id="f-' + f.name + '" value="' + val.replace('Z','').slice(0,16) + '" /></div>';
+        }
+        return '<div class="form-group"><label>' + f.label + '</label><input type="' + (f.type === 'number' ? 'number' : 'text') + '" id="f-' + f.name + '" value="' + esc(val) + '" ' + (f.type === 'number' ? 'min="1" max="5"' : '') + ' /></div>';
+      }).join('');
+      if (coll.isJson) {
+        el.innerHTML += '<div class="form-group"><label>JSON редактор (розширений)</label><textarea class="markdown" id="jsonEditor" style="min-height:200px">' + esc(JSON.stringify(data, null, 2)) + '</textarea></div>';
+      }
+    }
+
+    function getFields(coll) {
+      if (coll.fieldsFn) return coll.fieldsFn(coll);
+      return coll.fields || [];
+    }
+
+    function esc(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
+    function previewMarkdown() {
+      const text = document.getElementById('f-body')?.value || '';
+      const el = document.getElementById('preview');
+      if (!el) return;
+      let html = text.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+      html = html.replace(/^### (.+)/gm, '<h3>$1</h3>').replace(/^## (.+)/gm, '<h2>$1</h2>').replace(/^# (.+)/gm, '<h1>$1</h1>');
+      html = html.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>').replace(/\*(.+?)\*/g, '<em>$1</em>');
+      html = html.replace(/^- (.+)/gm, '<li>$1</li>').replace(/(<li>.*<\/li>\n?)+/g, '<ul>$&</ul>');
+      html = html.replace(/\n\n/g, '</p><p>').replace(/\n/g, '<br>');
+      el.innerHTML = '<p>' + html + '</p>';
+    }
+
+    async function saveItem() {
+      const coll = COLLECTIONS[currentColl];
+      const fields = getFields(coll);
+      const form = {};
+      fields.forEach(f => {
+        const el = document.getElementById('f-' + f.name);
+        if (el) form[f.name] = el.value;
+      });
+
+      if (coll.isJson) {
+        const jsonEditor = document.getElementById('jsonEditor');
+        if (jsonEditor) {
+          try {
+            const jsonData = JSON.parse(jsonEditor.value);
+            Object.assign(form, jsonData);
+          } catch (e) { toast('Помилка в JSON: ' + e.message, true); return; }
+        }
+      }
+
+      let content;
+      if (coll.stringify) {
+        content = coll.stringify(form);
+      } else {
+        content = form.body || '';
+      }
+
+      const path = currentItem?.path || (coll.folder + '/' + (form.title || 'new') + (coll.isJson ? '.json' : '.md'));
+
+      try {
+        await api({ action: 'write', path, content, message: 'Update ' + path });
+        toast('✅ Збережено!');
+        currentItem = null;
+        openList(currentColl);
+      } catch (e) { toast('❌ ' + e.message, true); }
+    }
+
+    if (sessionStorage.getItem('admin_pass')) {
+      api({ action: 'login' }).then(() => show('dashboard')).catch(() => show('login'));
     }
   </script>
 </body>
