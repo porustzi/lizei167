@@ -432,7 +432,8 @@ function renderPageEditor(schema,data){
     html+=`<div class="page-tab" data-idx="${i}"${i===0?'':' style="display:none"'}>`;
     html+=`<div class="form-section"><div class="form-section-title">${sec.title}</div>`;
     if(sec.array){
-      html+=renderArr(sec,data,sec.array);
+      const arrData = getNested(data, sec.array);
+      html+=renderArr(sec, Array.isArray(arrData) ? arrData : [], sec.array);
     }else{
       sec.fields.forEach(f=>{
         const val=getNested(data,f.name);
@@ -473,7 +474,7 @@ function renderField(f,val,path){
   const id='f-'+encPath(path);
   const label=f.label||path;
   if(f.type==='array'){
-    return renderArr(f,val||[],path);
+    return renderArr(f,Array.isArray(val)?val:[],path);
   }
   if(f.type==='markdown'){
     return `<div class="form-group"><label>${label}</label>
@@ -523,8 +524,9 @@ function renderField(f,val,path){
 }
 
 function renderArr(field,data,path){
-  const arr=data||[];
+  const arr=Array.isArray(data)?data:[];
   const arrId='arr-'+encPath(path);
+  field._path=path;
   arrSchemas.set(arrId,field);
   const isSimple=!field.fields;
   let html=`<div class="array-items" id="${arrId}">`;
@@ -556,31 +558,10 @@ function addArrItem(arrId){
   if(!field)return;
   const container=document.getElementById(arrId);
   if(!container)return;
-  // derive the path from the last item or the arrId
-  // Reconstruct path from existing items
-  const items=container.querySelectorAll('.array-item');
-  const idx=items.length;
-  // figure out the base path by looking at first item's inputs
-  let basePath='';
-  if(items.length>0){
-    const firstInput=items[0].querySelector('[id^="f-"]');
-    if(firstInput){
-      // remove the last [N] segment
-      const fullId=firstInput.id.slice(2); // remove 'f-'
-      // find the last '_[0-9]_' or just the base
-      const m=fullId.match(/^(.+)_\d+_/);
-      if(m)basePath=m[1];
-      else basePath=fullId.replace(/_\d+$/,'');
-    }
-  }
-  if(!basePath){
-    // try to extract from arrId
-    basePath=arrId.replace('arr-','');
-  }
-  
-  const isSimple=!field.fields;
+  const idx=container.querySelectorAll('.array-item').length;
+  const basePath=field._path||arrId.replace('arr-','');
   const itemPath=basePath+'['+idx+']';
-  
+  const isSimple=!field.fields;
   const div=document.createElement('div');
   div.className='array-item';div.dataset.idx=idx;
   let inner=`<div class="array-item-header"><span class="item-label">${field.labelSingle||'#'+(idx+1)}</span><button class="remove-btn" onclick="rmArrItem('${arrId}',${idx})">✕</button></div><div class="array-item-fields">`;
