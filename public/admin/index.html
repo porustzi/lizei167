@@ -73,6 +73,15 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 .json-editor{width:100%;min-height:300px;padding:.75rem;border:2px solid #e2e8f0;border-radius:.6rem;font-family:monospace;font-size:.85rem;outline:0;resize:vertical}
 .json-editor:focus{border-color:#dc2626}
 .json-error{color:#dc2626;font-size:.8rem;margin-top:.3rem}
+.item-list{background:#fff;border-radius:1rem;overflow:hidden;box-shadow:0 4px 12px rgba(0,0,0,.08)}
+.item-row{display:flex;align-items:center;justify-content:space-between;padding:1rem 1.5rem;border-bottom:1px solid #f1f5f9;cursor:pointer}
+.item-row:last-child{border-bottom:none}
+.item-row:hover{background:#f8fafc}
+.item-title{font-weight:600;font-size:.95rem}
+.item-meta{font-size:.8rem;color:#94a3b8}
+.label{padding:.15rem .5rem;border-radius:.5rem;font-size:.75rem;font-weight:600}
+.label-gray{background:#f1f5f9;color:#64748b}
+.empty{padding:3rem;text-align:center;color:#94a3b8}
 .toast{position:fixed;top:1rem;right:1rem;background:#16a34a;color:#fff;padding:.75rem 1.5rem;border-radius:1rem;font-weight:600;font-size:.9rem;z-index:9999;transform:translateY(-100px);transition:transform .3s}
 .toast.show{transform:translateY(0)}
 .toast.err{background:#dc2626}
