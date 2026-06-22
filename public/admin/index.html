@@ -486,7 +486,7 @@ function renderField(f,val,path){
         <button onclick="mdeWrap('${id}','## ','')">H2</button>
         <button onclick="mdeWrap('${id}','# ','')">H1</button>
         <span class=sep></span>
-        <button onclick="mdeWrap('${id}','[](',' "><i>🔗</i></button>
+        <button onclick="mdeLink('${id}')"><i>🔗</i></button>
         <button onclick="mdeLine('${id}','- ')">• list</button>
         <span class=sep></span>
         <button onclick="mdeImage('${id}')">🖼️</button>
@@ -860,12 +860,24 @@ function mdeLine(id,prefix){
   el.selectionStart=el.selectionEnd=start+prefix.length;
   el.focus();previewMarkdown();
 }
+function mdeLink(id){
+  const el=document.getElementById(id);
+  if(!el)return;
+  const start=el.selectionStart,end=el.selectionEnd;
+  const text=el.value.substring(start,end)||'текст';
+  const url=prompt('URL:','https://');
+  if(url===null)return;
+  el.value=el.value.substring(0,start)+`[${text}](${url})`+el.value.substring(end);
+  el.focus();previewMarkdown();
+}
 function mdeImage(id){
   const el=document.getElementById(id);
   if(!el)return;
   const start=el.selectionStart,end=el.selectionEnd;
   const alt=el.value.substring(start,end)||'image';
-  el.value=el.value.substring(0,start)+`![${alt}](url)`+el.value.substring(end);
+  const url=prompt('URL зображення:','https://');
+  if(url===null)return;
+  el.value=el.value.substring(0,start)+`![${alt}](${url})`+el.value.substring(end);
   el.focus();previewMarkdown();
 }
 function previewMarkdown(){
