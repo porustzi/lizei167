@@ -203,15 +203,15 @@
 
   <script>
     const API = '/api/github';
-    const PASS = getPass();
 
     function getPass() { return sessionStorage.getItem('admin_pass') || ''; }
     function setPass(p) { sessionStorage.setItem('admin_pass', p); }
 
     async function api(body) {
+      const pass = getPass();
       const res = await fetch(API, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${PASS}` },
+        headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${pass}` },
         body: JSON.stringify(body),
       });
       if (!res.ok) {
