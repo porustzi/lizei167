@@ -3,7 +3,7 @@ export async function onRequest(context) {
   const path = params.all || '';
   const url = new URL(request.url);
 
-  if (path.endsWith('/token')) {
+  if (path === 'token') {
     if (request.method !== 'POST') {
       return json({ error: 'Method not allowed' }, 405);
     }
@@ -32,15 +32,16 @@ export async function onRequest(context) {
     }
   }
 
-  if (path.endsWith('/user') && request.method === 'GET') {
-    return json({
-      email: 'admin@lizei167',
-      user_metadata: { full_name: 'Admin', avatar_url: '' },
-    });
-  }
-
-  if (path.endsWith('/user') && request.method === 'PUT') {
-    return json({ email: 'admin@lizei167' });
+  if (path === 'user') {
+    if (request.method === 'GET') {
+      return json({
+        email: 'admin@lizei167',
+        user_metadata: { full_name: 'Admin', avatar_url: '' },
+      });
+    }
+    if (request.method === 'PUT') {
+      return json({ email: 'admin@lizei167' });
+    }
   }
 
   return json({ error: 'Not found' }, 404);
