@@ -1,8 +1,9 @@
 backend:
-  name: git-gateway
+  name: github
+  repo: porustzi/lizei167
   branch: main
 
-site_url: https://lyzeum-167.netlify.app
+site_url: https://lizei167.pages.dev
 locale: uk
 
 i18n:

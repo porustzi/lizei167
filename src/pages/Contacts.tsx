@@ -40,14 +40,17 @@ export default function Contacts() {
       .catch(() => {});
   }, []);
 
+  const FORMSPREE = import.meta.env.VITE_FORMSPREE || 'https://formspree.io/f/YOUR_FORM_ID';
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    const fd = new URLSearchParams();
-    fd.append('form-name', 'contact');
-    Object.entries(form).forEach(([k, v]) => fd.append(k, v));
     try {
-      await fetch('/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: fd.toString() });
+      await fetch(FORMSPREE, {
+        method: 'POST',
+        body: JSON.stringify(form),
+        headers: { 'Content-Type': 'application/json' },
+      });
       setSubmitted(true);
     } catch { alert(t('contacts.form_error')); }
     finally { setLoading(false); }
@@ -122,8 +125,7 @@ export default function Contacts() {
                     <p>{t('contacts.form_success')}</p>
                   </div>
                 ) : (
-                  <form onSubmit={handleSubmit} name="contact" method="POST" data-netlify="true" className="space-y-4">
-                    <input type="hidden" name="form-name" value="contact" />
+                  <form onSubmit={handleSubmit} className="space-y-4">
                     <input name="name" required placeholder={t('contacts.form_name')} value={form.name} onChange={e => setForm({...form, name: e.target.value})} className="w-full border px-4 py-2 rounded" />
                     <input name="phone" placeholder={t('contacts.form_phone')} value={form.phone} onChange={e => setForm({...form, phone: e.target.value})} className="w-full border px-4 py-2 rounded" />
                     <input name="email" type="email" required placeholder="Email" value={form.email} onChange={e => setForm({...form, email: e.target.value})} className="w-full border px-4 py-2 rounded" />

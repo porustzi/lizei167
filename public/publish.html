@@ -3,8 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Публікація</title>
-  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <title>Публікація — Ліцей №167</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
@@ -55,67 +54,23 @@
   <div class="card">
     <h1>Ліцей №167</h1>
     <h2>🚀 Публікація змін</h2>
-    <p>Всі чернетки будуть змержені в main та задеплоєні.</p>
+    <p>Редагуйте сайт через адмінку. Зміни публікуються автоматично.</p>
 
     <div id="status" class="status"></div>
 
-    <button id="publishBtn" class="btn-publish">
+    <a href="/admin/" class="btn-publish" style="text-decoration:none">
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-      ОПУБЛІКУВАТИ ВСЕ
-    </button>
+      ВІДКРИТИ АДМІНКУ
+    </a>
 
     <div class="info">
       <strong>Як це працює:</strong><br>
-      1️⃣ Редагуєш сайт у <a href="/admin/">Decap CMS</a><br>
-      2️⃣ Зміни зберігаються як чернетки (без деплою)<br>
-      3️⃣ Натискаєш кнопку → усі чернетки мержаться в main<br>
-      4️⃣ Netlify автоматично деплоїть оновлений сайт
+      1️⃣ Відкриваєш <a href="/admin/">адмінку</a><br>
+      2️⃣ Додаєш/редагуєш новини, сторінки, відгуки<br>
+      3️⃣ Зберігаєш — сайт оновлюється автоматично
     </div>
   </div>
 
   <footer>Ліцей №167 м. Києва</footer>
-
-  <script>
-    var btn = document.getElementById('publishBtn');
-    var st = document.getElementById('status');
-
-    function show(type, msg) { st.className = 'status show ' + type; st.innerHTML = msg; }
-
-    btn.onclick = async function() {
-      try {
-        btn.disabled = true;
-        btn.innerHTML = '<span class="spinner"></span> Публікація...';
-        show('busy', '🔄 Публікую всі чернетки...');
-
-        var res = await fetch('/.netlify/functions/publish');
-        var data = await res.json();
-
-        if (data.merged > 0) {
-          show('ok', '✅ ' + data.merged + '/' + data.total + ' чернеток опубліковано! Сайт оновлюється...');
-        } else if (data.total === 0) {
-          show('ok', '✅ Немає чернеток. Сайт актуальний.');
-        } else {
-          show('err', '❌ Помилка: ' + (data.results?.filter(function(r){ return r.status !== 'merged'; }).map(function(r){ return r.error || r.status; }).join('; ') || data.error));
-        }
-
-        btn.disabled = false;
-        btn.innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg> ОПУБЛІКУВАТИ ВСЕ';
-      } catch(e) {
-        console.error(e);
-        btn.disabled = false;
-        btn.innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg> ОПУБЛІКУВАТИ ВСЕ';
-        show('err', '❌ Помилка: ' + e.message);
-      }
-    };
-
-    (async function() {
-      try {
-        var r = await fetch('/.netlify/functions/publish');
-        var data = await r.json();
-        if (data.total > 0) show('busy', '📝 ' + data.total + ' чернеток очікують публікації');
-        else show('ok', '✅ Немає чернеток. Сайт актуальний.');
-      } catch(e) {}
-    })();
-  </script>
 </body>
 </html>
