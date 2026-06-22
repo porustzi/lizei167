@@ -29,53 +29,50 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 .header{display:flex;align-items:center;justify-content:space-between;margin-bottom:2rem;padding-bottom:1rem;border-bottom:2px solid #e2e8f0}
 .header h2{font-size:1.3rem;font-weight:700;display:flex;align-items:center;gap:.5rem}
 .header-actions{display:flex;gap:.5rem;flex-wrap:wrap}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:1rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1rem}
 .dash-card{background:#fff;border-radius:1rem;padding:1.5rem;box-shadow:0 4px 12px rgba(0,0,0,.08);cursor:pointer;transition:all .2s}
 .dash-card:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.12)}
 .dash-card .icon{font-size:2rem;margin-bottom:.5rem}
-.dash-card h3{font-size:1.1rem;font-weight:600}
-.dash-card p{font-size:.85rem;color:#64748b;margin-top:.25rem}
-.item-list{background:#fff;border-radius:1rem;overflow:hidden;box-shadow:0 4px 12px rgba(0,0,0,.08)}
-.item-row{display:flex;align-items:center;justify-content:space-between;padding:1rem 1.5rem;border-bottom:1px solid #f1f5f9;cursor:pointer;transition:background .15s}
-.item-row:last-child{border-bottom:none}
-.item-row:hover{background:#f8fafc}
-.item-title{font-weight:600;font-size:.95rem}
-.item-meta{font-size:.8rem;color:#94a3b8}
-.label{padding:.15rem .5rem;border-radius:.5rem;font-size:.75rem;font-weight:600}
-.label-gray{background:#f1f5f9;color:#64748b}
-.label-green{background:#dcfce7;color:#16a34a}
-.empty{padding:3rem;text-align:center;color:#94a3b8}
+.dash-card h3{font-size:1rem;font-weight:600}
+.dash-card p{font-size:.8rem;color:#64748b;margin-top:.25rem}
+.breadcrumb{font-size:.85rem;color:#64748b;margin-bottom:1rem;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap}
+.breadcrumb a{color:#dc2626;cursor:pointer;text-decoration:none}
+.breadcrumb a:hover{text-decoration:underline}
 .editor-wrap{background:#fff;border-radius:1rem;padding:1.5rem;box-shadow:0 4px 12px rgba(0,0,0,.08)}
+.editor-tabs{display:flex;gap:.25rem;margin-bottom:1rem;flex-wrap:wrap}
+.editor-tab{padding:.5rem 1rem;border-radius:.5rem .5rem 0 0;background:#e2e8f0;font-weight:600;font-size:.85rem;cursor:pointer;transition:all .15s;border:none}
+.editor-tab.active{background:#dc2626;color:#fff}
+.editor-tab:hover:not(.active){background:#cbd5e1}
 .form-section{margin-bottom:1.5rem}
-.form-section-title{font-weight:700;font-size:.95rem;color:#64748b;text-transform:uppercase;letter-spacing:.05em;margin-bottom:.75rem;padding-bottom:.5rem;border-bottom:1px solid #e2e8f0}
-.form-group{margin-bottom:1rem}
-.form-group label{display:block;font-weight:600;margin-bottom:.3rem;font-size:.875rem}
-.form-group input,.form-group textarea,.form-group select{width:100%;padding:.65rem .9rem;border:2px solid #e2e8f0;border-radius:.6rem;font-size:.9rem;outline:0;font-family:inherit;background:#fff}
+.form-section-title{font-weight:700;font-size:.9rem;color:#64748b;text-transform:uppercase;letter-spacing:.05em;margin-bottom:.75rem;padding-bottom:.5rem;border-bottom:1px solid #e2e8f0}
+.form-group{margin-bottom:.75rem}
+.form-group label{display:block;font-weight:600;margin-bottom:.25rem;font-size:.85rem}
+.form-group input,.form-group textarea,.form-group select{width:100%;padding:.6rem .85rem;border:2px solid #e2e8f0;border-radius:.6rem;font-size:.88rem;outline:0;font-family:inherit;background:#fff}
 .form-group input:focus,.form-group textarea:focus{border-color:#dc2626}
-.form-group textarea{min-height:80px;resize:vertical}
-.form-group .img-preview{max-width:200px;max-height:120px;border-radius:.5rem;margin-top:.4rem;display:block;border:1px solid #e2e8f0}
-.form-group .img-upload-btn{cursor:pointer;display:inline-flex;align-items:center;gap:.3rem;padding:.4rem .8rem;background:#f1f5f9;border-radius:.5rem;font-size:.8rem;font-weight:500;border:1px solid #e2e8f0;transition:all .15s}
-.form-group .img-upload-btn:hover{background:#e2e8f0}
-.form-group .img-upload-btn input{display:none}
-.array-items{margin-top:.5rem}
-.array-item{background:#f8fafc;border-radius:.6rem;padding:.75rem;margin-bottom:.5rem;border:1px solid #e2e8f0}
-.array-item-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:.5rem}
+.form-group textarea{min-height:70px;resize:vertical}
+.form-group .img-preview{max-width:180px;max-height:100px;border-radius:.4rem;margin-top:.4rem;display:block;border:1px solid #e2e8f0;cursor:pointer}
+.form-group .img-row{display:flex;gap:.5rem;align-items:center}
+.form-group .img-row input{flex:1}
+.img-upload-btn{cursor:pointer;display:inline-flex;align-items:center;gap:.3rem;padding:.35rem .7rem;background:#f1f5f9;border-radius:.5rem;font-size:.8rem;font-weight:500;border:1px solid #e2e8f0;transition:all .15s}
+.img-upload-btn:hover{background:#e2e8f0}
+.img-upload-btn input{display:none}
+.img-browse-link{font-size:.8rem;color:#dc2626;cursor:pointer;display:inline-block;margin-top:.25rem}
+.img-browse-link:hover{text-decoration:underline}
+.array-items{margin-top:.4rem}
+.array-item{background:#f8fafc;border-radius:.6rem;padding:.7rem;margin-bottom:.5rem;border:1px solid #e2e8f0}
+.array-item-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:.4rem}
 .array-item-header .item-label{font-weight:600;font-size:.85rem}
-.array-item-header .btn-sm{padding:.3rem .6rem;font-size:.7rem}
-.array-item-fields .form-group{margin-bottom:.5rem}
-.array-item-fields .form-group label{font-size:.8rem}
-.array-item-fields .form-group input,.array-item-fields .form-group textarea{padding:.5rem .7rem;font-size:.85rem}
-.add-btn{cursor:pointer;display:inline-flex;align-items:center;gap:.3rem;padding:.4rem .8rem;background:#dc2626;color:#fff;border:none;border-radius:.5rem;font-size:.8rem;font-weight:500;margin-top:.25rem}
+.array-item-header .btn-sm{padding:.25rem .5rem;font-size:.7rem}
+.array-item-fields .form-group{margin-bottom:.4rem}
+.array-item-fields .form-group label{font-size:.78rem}
+.array-item-fields .form-group input,.array-item-fields .form-group textarea{padding:.4rem .65rem;font-size:.82rem}
+.add-btn{cursor:pointer;display:inline-flex;align-items:center;gap:.3rem;padding:.35rem .7rem;background:#dc2626;color:#fff;border:none;border-radius:.5rem;font-size:.8rem;font-weight:500;margin-top:.2rem}
 .add-btn:hover{background:#b91c1c}
 .remove-btn{background:#fee2e2;color:#dc2626;border:none;border-radius:.4rem;padding:.25rem .5rem;cursor:pointer;font-size:.75rem;font-weight:600}
 .remove-btn:hover{background:#fecaca}
-.json-editor{width:100%;min-height:400px;padding:.75rem;border:2px solid #e2e8f0;border-radius:.6rem;font-family:monospace;font-size:.85rem;outline:0;resize:vertical}
+.json-editor{width:100%;min-height:300px;padding:.75rem;border:2px solid #e2e8f0;border-radius:.6rem;font-family:monospace;font-size:.85rem;outline:0;resize:vertical}
 .json-editor:focus{border-color:#dc2626}
 .json-error{color:#dc2626;font-size:.8rem;margin-top:.3rem}
-.editor-tabs{display:flex;gap:.25rem;margin-bottom:1rem;flex-wrap:wrap}
-.editor-tab{padding:.5rem 1rem;border-radius:.5rem .5rem 0 0;background:#e2e8f0;font-weight:600;font-size:.85rem;cursor:pointer;transition:all .15s;border:none}
-.editor-tab.active{background:#fff;color:#dc2626}
-.editor-tab:hover{background:#cbd5e1}
 .toast{position:fixed;top:1rem;right:1rem;background:#16a34a;color:#fff;padding:.75rem 1.5rem;border-radius:1rem;font-weight:600;font-size:.9rem;z-index:9999;transform:translateY(-100px);transition:transform .3s}
 .toast.show{transform:translateY(0)}
 .toast.err{background:#dc2626}
@@ -99,15 +96,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 .mde-toolbar button:hover{background:#e2e8f0;border-color:#94a3b8}
 .mde-toolbar .sep{width:1px;background:#e2e8f0;margin:.2rem .2rem}
 .mde-textarea{border-radius:0 0 .6rem .6rem!important}
-.dual-pane{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
-@media(max-width:800px){.dual-pane{grid-template-columns:1fr}}
-.breadcrumb{font-size:.85rem;color:#64748b;margin-bottom:1rem;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap}
-.breadcrumb a{color:#dc2626;cursor:pointer;text-decoration:none}
-.breadcrumb a:hover{text-decoration:underline}
 </style>
 </head>
 <body>
 
+<!-- LOGIN -->
 <div id="login" class="active">
 <div class="card">
 <div class="logo">167</div>
@@ -122,6 +115,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 </div>
 </div>
 
+<!-- DASHBOARD -->
 <div id="dashboard">
 <div class="page">
 <div class="header">
@@ -129,35 +123,21 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 <button class="btn btn-sm btn-ghost" onclick="logout()">🚪 Вийти</button>
 </div>
 <div class="grid">
-<div class="dash-card" onclick="openNews()">
-<div class="icon">📰</div>
-<h3>Новини</h3>
-<p>Додавати та редагувати новини школи</p>
-</div>
-<div class="dash-card" onclick="openPages()">
-<div class="icon">📄</div>
-<h3>Сторінки</h3>
-<p>Головна, Про нас, Навчання, Контакти та інші</p>
-</div>
-<div class="dash-card" onclick="openReviews()">
-<div class="icon">⭐</div>
-<h3>Відгуки</h3>
-<p>Відгуки батьків та учнів</p>
-</div>
-<div class="dash-card" onclick="openSettings()">
-<div class="icon">⚙️</div>
-<h3>Налаштування</h3>
-<p>Загальні налаштування сайту</p>
-</div>
-<div class="dash-card" onclick="openImages()">
-<div class="icon">🖼️</div>
-<h3>Зображення</h3>
-<p>Завантажити та переглянути файли</p>
-</div>
+<div class="dash-card" onclick="openNews()"><div class="icon">📰</div><h3>Новини</h3><p>Додавати та редагувати новини</p></div>
+<div class="dash-card" onclick="openPage('home.json')"><div class="icon">🏠</div><h3>Головна</h3><p>Hero, переваги, статистика</p></div>
+<div class="dash-card" onclick="openPage('about.json')"><div class="icon">📖</div><h3>Про нас</h3><p>Історія, місія, цінності</p></div>
+<div class="dash-card" onclick="openPage('education.json')"><div class="icon">📚</div><h3>Навчання</h3><p>Програми, рівні, предмети</p></div>
+<div class="dash-card" onclick="openPage('contacts.json')"><div class="icon">📞</div><h3>Контакти</h3><p>Адреса, телефони, соцмережі</p></div>
+<div class="dash-card" onclick="openPage('family.json')"><div class="icon">👨‍👩‍👧‍👦</div><h3>Сімейне навчання</h3><p>Розділи, семестри, класи, URL</p></div>
+<div class="dash-card" onclick="openPage('transparency.json')"><div class="icon">🔍</div><h3>Прозорість</h3><p>Документи, піддокументи, URL</p></div>
+<div class="dash-card" onclick="openPage('general.json')"><div class="icon">⚙️</div><h3>Налаштування</h3><p>Назва школи, футер, телефон</p></div>
+<div class="dash-card" onclick="openReviews()"><div class="icon">⭐</div><h3>Відгуки</h3><p>Відгуки батьків та учнів</p></div>
+<div class="dash-card" onclick="openImages()"><div class="icon">🖼️</div><h3>Зображення</h3><p>Завантажити та переглянути</p></div>
 </div>
 </div>
 </div>
 
+<!-- PAGER (editor container) -->
 <div id="pager">
 <div class="page">
 <div class="header">
@@ -180,11 +160,14 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 </div>
 
 <script>
-// ─── HELPERS ────────────────────────────────────
-const API = '/api/github';
+// ═══════════════════════════════════════════════
+// HELPERS
+// ═══════════════════════════════════════════════
+const API='/api/github';
 function getPass(){return sessionStorage.getItem('admin_pass')||''}
 function setPass(p){sessionStorage.setItem('admin_pass',p)}
 function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
+function encPath(p){return p.replace(/\./g,'_').replace(/\[/g,'_').replace(/\]/g,'')}
 
 async function api(body){
   const pass=getPass();
@@ -211,18 +194,22 @@ function toast(msg,err){
 function showLogin(){show('login')}
 function logout(){sessionStorage.removeItem('admin_pass');location.reload()}
 
-// ─── NAV ────────────────────────────────────────
+// ═══════════════════════════════════════════════
+// NAVIGATION
+// ═══════════════════════════════════════════════
 function show(id){
   ['login','dashboard','pager'].forEach(x=>document.getElementById(x).classList.toggle('active',x===id))
 }
 
-function bc(label){
-  return `<a onclick="show('dashboard')">🏠 Панель</a><span>›</span><span>${label}</span>`
-}
-
 function backToDashboard(){show('dashboard')}
 
-// ─── LOGIN ──────────────────────────────────────
+function bcSegs(...segs){
+  return '<a onclick="backToDashboard()">🏠 Панель</a>'+segs.map(s=>'<span>›</span><span>'+s+'</span>').join('')
+}
+
+// ═══════════════════════════════════════════════
+// LOGIN
+// ═══════════════════════════════════════════════
 document.getElementById('loginForm').onsubmit=async e=>{
   e.preventDefault();
   const btn=document.getElementById('loginBtn');
@@ -246,9 +233,16 @@ if(getPass()){
   api({action:'login'}).then(()=>show('dashboard')).catch(()=>showLogin())
 }
 
-// ─── SCHEMAS ────────────────────────────────────
-// Each schema defines how to edit a page's data.
-// type: 'object','array','text','textarea','number','datetime','image','markdown','select','json'
+// ═══════════════════════════════════════════════
+// SCHEMAS — define ALL editable fields per page
+// ═══════════════════════════════════════════════
+// sections: groups of fields or arrays
+//   title    — section header
+//   fields   — direct fields on the object
+//   array    — path to an array field on the object
+//   labelSingle — label for each array item
+// Nested arrays: a field with type:'array' and its own fields[]
+// Simple arrays: a field with type:'array', no fields[], itemType:'text'|'image'
 
 const PAGE_SCHEMAS={
   'home.json':{
@@ -261,20 +255,17 @@ const PAGE_SCHEMAS={
         {name:'hero_title_1_de',label:'Заголовок рядок 1 (de)'},
         {name:'hero_title_2_de',label:'Заголовок рядок 2 (de)'},
         {name:'hero_title_3_de',label:'Заголовок рядок 3 (de)'},
-        {name:'hero_subtitle',label:'Підзаголовок (uk)',type:'text'},
-        {name:'hero_subtitle_de',label:'Підзаголовок (de)',type:'text'},
+        {name:'hero_subtitle',label:'Підзаголовок (uk)'},
+        {name:'hero_subtitle_de',label:'Підзаголовок (de)'},
       ]},
-      {title:'Переваги (features)',array:'features',fields:[
-        {name:'icon',label:'Іконка'},
-        {name:'title',label:'Назва (uk)'},
-        {name:'title_de',label:'Назва (de)'},
-        {name:'text',label:'Опис (uk)',type:'textarea'},
-        {name:'text_de',label:'Опис (de)',type:'textarea'},
+      {title:'Переваги',array:'features',labelSingle:'Перевага',fields:[
+        {name:'icon',label:'Іконка (BookOpen, Award, Users, Globe)'},
+        {name:'title',label:'Назва (uk)'},{name:'title_de',label:'Назва (de)'},
+        {name:'text',label:'Опис (uk)',type:'textarea'},{name:'text_de',label:'Опис (de)',type:'textarea'},
       ]},
-      {title:'Статистика (stats)',array:'stats',fields:[
-        {name:'value',label:'Значення'},
-        {name:'label',label:'Підпис (uk)'},
-        {name:'label_de',label:'Підпис (de)'},
+      {title:'Статистика',array:'stats',labelSingle:'Показник',fields:[
+        {name:'value',label:'Значення (65+, 700+, 4.86)'},
+        {name:'label',label:'Підпис (uk)'},{name:'label_de',label:'Підпис (de)'},
       ]},
     ]
   },
@@ -290,18 +281,26 @@ const PAGE_SCHEMAS={
         {name:'hero.dsd_button_text',label:'Текст кнопки DSD (uk)'},{name:'hero.dsd_button_text_de',label:'Текст кнопки DSD (de)'},
         {name:'hero.dsd_button_url',label:'URL кнопки DSD'},
       ]},
-      {title:'Місія (mission)',fields:[
+      {title:'Місія',fields:[
         {name:'mission.badge',label:'Бейдж (uk)'},{name:'mission.badge_de',label:'Бейдж (de)'},
         {name:'mission.title',label:'Заголовок (uk)'},{name:'mission.title_de',label:'Заголовок (de)'},
         {name:'mission.description',label:'Опис (uk)',type:'textarea'},{name:'mission.description_de',label:'Опис (de)',type:'textarea'},
       ]},
-      {title:'Місія — Булліти (bullets)',array:'mission.bullets',of:'text',labelSingle:'Буліт (uk)'},
-      {title:'Місія — Булліти (de)',array:'mission.bullets_de',of:'text',labelSingle:'Буліт (de)'},
-      {title:'Місія — Зображення',array:'mission.images',of:'image',labelSingle:'URL зображення'},
-      {title:'Хронологія (timeline)',array:'timeline.items',fields:[
+      {title:'Булліти місії',array:'mission.bullets',labelSingle:'Буліт (uk)',itemType:'text'},
+      {title:'Булліти місії (de)',array:'mission.bullets_de',labelSingle:'Буліт (de)',itemType:'text'},
+      {title:'Зображення місії',array:'mission.images',labelSingle:'URL',itemType:'image'},
+      {title:'Хронологія',fields:[
+        {name:'timeline.badge',label:'Бейдж (uk)'},{name:'timeline.badge_de',label:'Бейдж (de)'},
+        {name:'timeline.title',label:'Заголовок (uk)'},{name:'timeline.title_de',label:'Заголовок (de)'},
+      ]},
+      {title:'Події хронології',array:'timeline.items',labelSingle:'Подія',fields:[
         {name:'year',label:'Рік'},{name:'event',label:'Подія (uk)'},{name:'event_de',label:'Подія (de)'},
       ]},
-      {title:'Цінності (values)',array:'values.items',fields:[
+      {title:'Цінності',fields:[
+        {name:'values.badge',label:'Бейдж (uk)'},{name:'values.badge_de',label:'Бейдж (de)'},
+        {name:'values.title',label:'Заголовок (uk)'},{name:'values.title_de',label:'Заголовок (de)'},
+      ]},
+      {title:'Пункти цінностей',array:'values.items',labelSingle:'Цінність',fields:[
         {name:'title',label:'Назва (uk)'},{name:'title_de',label:'Назва (de)'},
         {name:'description',label:'Опис (uk)',type:'textarea'},{name:'description_de',label:'Опис (de)',type:'textarea'},
       ]},
@@ -314,19 +313,19 @@ const PAGE_SCHEMAS={
         {name:'title',label:'Заголовок (uk)'},{name:'title_de',label:'Заголовок (de)'},
         {name:'subtitle',label:'Підзаголовок (uk)'},{name:'subtitle_de',label:'Підзаголовок (de)'},
       ]},
-      {title:'Програми (programs)',array:'programs',fields:[
+      {title:'Програми',array:'programs',labelSingle:'Програма',fields:[
         {name:'title',label:'Назва (uk)'},{name:'title_de',label:'Назва (de)'},
         {name:'badge',label:'Бейдж (uk)'},{name:'badge_de',label:'Бейдж (de)'},
         {name:'description',label:'Опис (uk)',type:'textarea'},{name:'description_de',label:'Опис (de)',type:'textarea'},
-        {name:'items',label:'Пункти',arrayInline:'items',of:'object',fields:[
+        {name:'items',label:'Пункти програми',type:'array',labelSingle:'Пункт',fields:[
           {name:'text',label:'Текст (uk)'},{name:'text_de',label:'Текст (de)'},
         ]},
       ]},
-      {title:'Рівні (levels)',array:'levels',fields:[
+      {title:'Рівні',array:'levels',labelSingle:'Рівень',fields:[
         {name:'title',label:'Назва (uk)'},{name:'title_de',label:'Назва (de)'},
         {name:'description',label:'Опис (uk)',type:'textarea'},{name:'description_de',label:'Опис (de)',type:'textarea'},
       ]},
-      {title:'Предмети (subjects)',array:'subjects',fields:[
+      {title:'Предмети',array:'subjects',labelSingle:'Предмет',fields:[
         {name:'icon',label:'Іконка'},{name:'title',label:'Назва (uk)'},{name:'title_de',label:'Назва (de)'},
       ]},
     ]
@@ -334,40 +333,58 @@ const PAGE_SCHEMAS={
   'contacts.json':{
     label:'📞 Контакти',file:'content/pages/contacts.json',
     sections:[
-      {title:'Контактна інформація',fields:[
+      {title:'Інформація',fields:[
         {name:'address',label:'Адреса (uk)'},{name:'address_de',label:'Адреса (de)'},
         {name:'email',label:'Email'},{name:'working_hours',label:'Години роботи (uk)'},
         {name:'working_hours_de',label:'Години роботи (de)'},
         {name:'instagram',label:'Instagram URL'},{name:'facebook',label:'Facebook URL'},
         {name:'maps_url',label:'Google Maps URL'},
       ]},
-      {title:'Телефони',array:'phones',fields:[
-        {name:'number',label:'Номер телефону'},{name:'label',label:'Підпис (uk)'},{name:'label_de',label:'Підпис (de)'},
+      {title:'Телефони',array:'phones',labelSingle:'Телефон',fields:[
+        {name:'number',label:'Номер'},{name:'label',label:'Підпис (uk)'},{name:'label_de',label:'Підпис (de)'},
       ]},
     ]
   },
   'family.json':{
     label:'👨‍👩‍👧‍👦 Сімейне навчання',file:'content/pages/family.json',
-    isComplex:true,
     sections:[
       {title:'Заголовки',fields:[
         {name:'title',label:'Заголовок (uk)'},{name:'title_de',label:'Заголовок (de)'},
         {name:'subtitle',label:'Підзаголовок (uk)'},{name:'subtitle_de',label:'Підзаголовок (de)'},
       ]},
+      {title:'Розділи (sections)',array:'sections',labelSingle:'Розділ',fields:[
+        {name:'title',label:'Назва (uk)'},{name:'title_de',label:'Назва (de)'},
+        {name:'description',label:'Опис (uk)',type:'textarea'},{name:'description_de',label:'Опис (de)',type:'textarea'},
+        {name:'badge',label:'Бейдж (uk)'},{name:'badge_de',label:'Бейдж (de)'},
+        {name:'semesters',label:'Семестри',type:'array',labelSingle:'Семестр',fields:[
+          {name:'label',label:'Назва (uk)'},{name:'label_de',label:'Назва (de)'},
+          {name:'classes',label:'Класи',type:'array',labelSingle:'Клас',fields:[
+            {name:'name',label:'Клас (uk)'},{name:'name_de',label:'Клас (de)'},
+            {name:'url',label:'URL документа'},
+          ]},
+        ]},
+      ]},
     ]
   },
   'transparency.json':{
     label:'🔍 Прозорість',file:'content/pages/transparency.json',
-    isComplex:true,
     sections:[
       {title:'DSD документ',fields:[
         {name:'dsd_document.title',label:'Назва (uk)'},{name:'dsd_document.title_de',label:'Назва (de)'},
         {name:'dsd_document.url',label:'URL'},
       ]},
+      {title:'Документи',array:'documents',labelSingle:'Документ',fields:[
+        {name:'title',label:'Назва (uk)'},{name:'title_de',label:'Назва (de)'},
+        {name:'url',label:'URL'},
+        {name:'children',label:'Піддокументи',type:'array',labelSingle:'Піддокумент',fields:[
+          {name:'title',label:'Назва (uk)'},{name:'title_de',label:'Назва (de)'},
+          {name:'url',label:'URL'},
+        ]},
+      ]},
     ]
   },
   'general.json':{
-    label:'⚙️ Налаштування',file:'content/pages/general.json',
+    label:'⚙️ Налаштування (футер)',file:'content/pages/general.json',
     sections:[
       {title:'Загальні',fields:[
         {name:'school_name',label:'Назва школи (uk)'},{name:'school_name_de',label:'Назва школи (de)'},
@@ -379,114 +396,56 @@ const PAGE_SCHEMAS={
   },
 };
 
-const COLLECTIONS={
-  news:{label:'📰 Новини',folder:'content/news',fields:[
-    {name:'title',label:'Заголовок',type:'text'},
-    {name:'date',label:'Дата',type:'datetime'},
-    {name:'image',label:'Головне фото (URL)',type:'image'},
-    {name:'excerpt',label:'Короткий опис',type:'textarea'},
-    {name:'body',label:'Текст новини',type:'markdown'},
-  ],parse(d){const m={};d.replace(/^---\n([\s\S]*?)\n---\n?/,(_,fm)=>{fm.split('\n').forEach(l=>{const[k,...v]=l.split(': ');if(k)m[k.trim()]=v.join(': ').trim()})});return{...m,body:d.replace(/^---\n[\s\S]*?\n---\n?/,'')}},
-    stringify(d){let fm=`---\ntitle: ${d.title}\ndate: ${d.date}`;if(d.image)fm+=`\nimage: ${d.image}`;if(d.excerpt)fm+=`\nexcerpt: ${d.excerpt}`;return fm+`\n---\n\n${d.body}`},
-    itemName(d){return d.title}},
-  reviews:{label:'⭐ Відгуки',folder:'content/reviews',fields:[
-    {name:'name',label:"Ім'я",type:'text'},
-    {name:'role',label:'Роль (uk)',type:'text'},{name:'role_de',label:'Роль (de)',type:'text'},
-    {name:'rating',label:'Рейтинг (1-5)',type:'number'},
-    {name:'text',label:'Текст (uk)',type:'textarea'},{name:'text_de',label:'Текст (de)',type:'textarea'},
-    {name:'date',label:'Дата',type:'text'},{name:'avatar',label:'Аватар (URL)',type:'image'},
-    {name:'color',label:'Колір',type:'text'},
-  ],parse:j=>JSON.parse(j),stringify:d=>JSON.stringify(d,null,2),itemName:d=>d.name},
-  settings:{label:'⚙️ Налаштування',folder:'content/pages',fields:[
-    {name:'school_name',label:'Назва школи (uk)',type:'text'},
-    {name:'school_name_de',label:'Назва школи (de)',type:'text'},
-    {name:'footer_description',label:'Опис у футері (uk)',type:'text'},
-    {name:'footer_description_de',label:'Опис у футері (de)',type:'text'},
-    {name:'call_button_phone',label:'Телефон кнопки дзвінка',type:'text'},
-  ],parse:j=>JSON.parse(j),stringify:d=>JSON.stringify(d,null,2),itemName:()=>'Загальні',files:['general.json']},
-};
-
-let currentView=null; // {type, data, file, schema, ...}
-
-// ─── PAGES ──────────────────────────────────────
-async function openPages(){
-  show('pager');
-  document.getElementById('pageTitle').innerHTML='📄 Сторінки';
-  document.getElementById('breadcrumb').innerHTML=bc('Сторінки');
-  document.getElementById('pageActions').innerHTML='<button class="btn btn-sm btn-ghost" onclick="backToDashboard()">← Назад</button>';
-  const pages=Object.entries(PAGE_SCHEMAS);
-  const el=document.getElementById('pageContent');
-  el.innerHTML='<div class="item-list">'+pages.map(([file,s])=>
-    `<div class="item-row" onclick="openPage('${file}')">
-      <div><div class="item-title">${s.label}</div><div class="item-meta">${s.file}</div></div>
-      <span class="label label-gray">✏️</span>
-    </div>`
-  ).join('')+'</div>';
-}
+// ═══════════════════════════════════════════════
+// PAGE ROUTING & EDITOR
+// ═══════════════════════════════════════════════
+let currentView=null;
 
 async function openPage(file){
   const schema=PAGE_SCHEMAS[file];
   show('pager');
   document.getElementById('pageTitle').innerHTML=schema.label;
-  document.getElementById('breadcrumb').innerHTML=bc(`Сторінки`) + ` <span>›</span><span>${schema.label}</span>`;
+  document.getElementById('breadcrumb').innerHTML=bcSegs(schema.label);
   document.getElementById('pageActions').innerHTML=`
     <button class="btn btn-sm btn-green" onclick="savePage()">💾 Зберегти</button>
-    <button class="btn btn-sm btn-ghost" onclick="openPages()">← Назад</button>`;
+    <button class="btn btn-sm btn-ghost" onclick="backToDashboard()">← Назад</button>`;
   try{
     const data=await api({action:'read',path:schema.file});
     let parsed={};
     if(data&&data.content)try{parsed=JSON.parse(data.content)}catch(e){}
     currentView={type:'page',schema,data:parsed,file:schema.file,sha:data?.sha};
     renderPageEditor(schema,parsed);
-  }catch(e){toast('Помилка: '+e.message,true)}
+  }catch(e){toast('❌ '+e.message,true)}
 }
 
 function renderPageEditor(schema,data){
   const el=document.getElementById('pageContent');
   let html='<div class="editor-wrap">';
-  html+=`<div class="editor-tabs">`;
-  schema.sections.forEach((sec,i)=>{
-    html+=`<button class="editor-tab${i===0?' active':''}" onclick="switchPageTab(this,${i})">${sec.title}</button>`
-  });
-  html+= schema.isComplex ? `<button class="editor-tab" onclick="switchPageTab(this,'json')">📝 JSON</button>` : '';
-  html+=`</div>`;
-  schema.sections.forEach((sec,i)=>{
-    html+=`<div class="page-tab" data-idx="${i}"${i===0?'':' style="display:none"'}>`;
-    html+=renderSection(sec,data);
-    html+=`</div>`
-  });
-  if(schema.isComplex){
-    html+=`<div class="page-tab" data-idx="json" style="display:none">`;
-    html+=`<p style="font-size:.85rem;color:#64748b;margin-bottom:.5rem">Редагуйте JSON безпосередньо. Будьте обережні!</p>`;
-    html+=`<textarea class="json-editor" id="jsonEditor">${esc(JSON.stringify(data,null,2))}</textarea>`;
-    html+=`<div class="json-error" id="jsonError"></div>`;
-    html+=`</div>`
-  }
-  html+='</div>';
-  el.innerHTML=html;
-}
-
-function switchPageTab(btn,idx){
-  btn.closest('.editor-tabs').querySelectorAll('.editor-tab').forEach(t=>t.classList.remove('active'));
-  btn.classList.add('active');
-  document.querySelectorAll('.page-tab').forEach(t=>t.style.display=t.dataset.idx==String(idx)?'':'none');
-}
-
-function renderSection(sec,data){
-  let html='';
-  if(sec.array){
-    html+=`<div class="form-section"><div class="form-section-title">${sec.title}</div>`;
-    html+=renderArrayField(sec,data,sec.array);
-    html+=`</div>`;
-  }else{
-    html+=`<div class="form-section"><div class="form-section-title">${sec.title}</div>`;
-    sec.fields.forEach(f=>{
-      const val=getNested(data,f.name);
-      html+=renderField(f,val,f.name);
+  if(schema.sections.length>1){
+    html+=`<div class="editor-tabs">`;
+    schema.sections.forEach((sec,i)=>{
+      html+=`<button class="editor-tab${i===0?' active':''}" onclick="switchTab(this,${i})">${sec.title}</button>`
     });
     html+=`</div>`;
   }
-  return html;
+  schema.sections.forEach((sec,i)=>{
+    html+=`<div class="page-tab" data-idx="${i}"${i===0?'':' style="display:none"'}>`;
+    html+=`<div class="form-section"><div class="form-section-title">${sec.title}</div>`;
+    if(sec.array){
+      html+=renderArr(sec,data,sec.array);
+    }else{
+      sec.fields.forEach(f=>{
+        const val=getNested(data,f.name);
+        html+=renderField(f,val,f.name);
+      });
+    }
+    html+=`</div></div>`
+  });
+  html+='</div>';
+  el.innerHTML=html;
+  // preview markdown
+  const md=el.querySelector('textarea.markdown');
+  if(md)setTimeout(previewMarkdown,50);
 }
 
 function getNested(obj,path){
@@ -499,147 +458,173 @@ function setNested(obj,path,val){
   o[last]=val;
 }
 
+function switchTab(btn,idx){
+  btn.closest('.editor-tabs').querySelectorAll('.editor-tab').forEach(t=>t.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.page-tab').forEach(t=>t.style.display=t.dataset.idx==String(idx)?'':'none');
+}
+
+// ═══════════════════════════════════════════════
+// FORM RENDERERS (recursive)
+// ═══════════════════════════════════════════════
+const arrSchemas=new Map();
+
 function renderField(f,val,path){
-  const id='f-'+path.replace(/\./g,'_');
-  const v=val!==undefined&&val!==null?val:'';
+  const id='f-'+encPath(path);
   const label=f.label||path;
+  if(f.type==='array'){
+    return renderArr(f,val||[],path);
+  }
   if(f.type==='markdown'){
     return `<div class="form-group"><label>${label}</label>
       <div class="mde-toolbar">
         <button onclick="mdeWrap('${id}','**','**')"><b>B</b></button>
         <button onclick="mdeWrap('${id}','*','*')"><i>I</i></button>
-        <span class="sep"></span>
+        <span class=sep></span>
         <button onclick="mdeWrap('${id}','### ','')">H3</button>
         <button onclick="mdeWrap('${id}','## ','')">H2</button>
         <button onclick="mdeWrap('${id}','# ','')">H1</button>
-        <span class="sep"></span>
+        <span class=sep></span>
         <button onclick="mdeWrap('${id}','[](',' "><i>🔗</i></button>
         <button onclick="mdeLine('${id}','- ')">• list</button>
-        <span class="sep"></span>
-        <button onclick="mdeImage('${id}')">🖼️ img</button>
+        <span class=sep></span>
+        <button onclick="mdeImage('${id}')">🖼️</button>
       </div>
-      <textarea class="markdown mde-textarea" id="${id}" oninput="previewMarkdown()">${esc(v)}</textarea>
+      <textarea class="markdown mde-textarea" id="${id}" oninput="previewMarkdown()">${esc(val||'')}</textarea>
       <div class="preview-wrap" id="preview-${id}"></div></div>`
   }
   if(f.type==='textarea'){
-    return `<div class="form-group"><label>${label}</label><textarea id="${id}">${esc(v)}</textarea></div>`
+    return `<div class="form-group"><label>${label}</label><textarea id="${id}">${esc(val||'')}</textarea></div>`
   }
   if(f.type==='datetime'){
-    const dt=v?String(v).replace('Z','').slice(0,16):'';
+    const dt=val?String(val).replace('Z','').slice(0,16):'';
     return `<div class="form-group"><label>${label}</label><input type="datetime-local" id="${id}" value="${dt}"></div>`
   }
   if(f.type==='number'){
-    return `<div class="form-group"><label>${label}</label><input type="number" id="${id}" value="${esc(v)}" ${f.min!==undefined?'min="'+f.min+'"':''} ${f.max!==undefined?'max="'+f.max+'"':''}></div>`
+    return `<div class="form-group"><label>${label}</label><input type="number" id="${id}" value="${esc(val||'')}"${f.min!==undefined?' min="'+f.min+'"':''}${f.max!==undefined?' max="'+f.max+'"':''}></div>`
   }
   if(f.type==='image'){
-    const preview=v?`<img class="img-preview" src="${esc(v)}" onclick="window.open('${esc(v)}')">`:'';
+    const preview=val?`<img class="img-preview" src="${esc(val)}" onclick="window.open('${esc(val)}')">`:'';
     return `<div class="form-group"><label>${label}</label>
-      <div style="display:flex;gap:.5rem;align-items:center">
-        <input type="text" id="${id}" value="${esc(v)}" placeholder="URL або виберіть файл" style="flex:1">
-        <label class="img-upload-btn">📁 Файл<input type="file" accept="image/*" onchange="uploadImage(this,event,'${id}')"></label>
+      <div class="img-row">
+        <input type="text" id="${id}" value="${esc(val||'')}" placeholder="URL або файл">
+        <label class="img-upload-btn">📁<input type="file" accept="image/*" onchange="upImg(this,event,'${id}')"></label>
       </div>
       <div id="preview-${id}">${preview}</div>
-      <a style="font-size:.8rem;color:#dc2626;cursor:pointer" onclick="openImageBrowser('${id}')">📂 Обрати з завантажених</a>
+      <a class="img-browse-link" onclick="openImgBrowser('${id}')">📂 Обрати з завантажених</a>
       </div>`
   }
-  return `<div class="form-group"><label>${label}</label><input type="text" id="${id}" value="${esc(v)}"></div>`
+  if(f.type==='select'){
+    const opts=(f.options||[]).map(o=>`<option${val===o?' selected':''}>${esc(o)}</option>`).join('');
+    return `<div class="form-group"><label>${label}</label><select id="${id}">${opts}</select></div>`
+  }
+  // default: text
+  return `<div class="form-group"><label>${label}</label><input type="text" id="${id}" value="${esc(val||'')}"></div>`
 }
 
-function renderArrayField(sec,data,path){
-  const arr=getNested(data,path)||[];
-  const id='arr-'+path.replace(/\./g,'_');
-  const ofType=sec.of||'object';
-  let html=`<div class="array-items" id="${id}">`;
+function renderArr(field,data,path){
+  const arr=data||[];
+  const arrId='arr-'+encPath(path);
+  arrSchemas.set(arrId,field);
+  const isSimple=!field.fields;
+  let html=`<div class="array-items" id="${arrId}">`;
   arr.forEach((item,i)=>{
     const itemPath=path+'['+i+']';
     html+=`<div class="array-item" data-idx="${i}">
       <div class="array-item-header">
-        <span class="item-label">${sec.labelSingle||'#'+(i+1)}</span>
-        <button class="remove-btn" onclick="removeArrayItem('${id}',${i})">✕</button>
+        <span class="item-label">${field.labelSingle||'#'+(i+1)}</span>
+        <button class="remove-btn" onclick="rmArrItem('${arrId}',${i})">✕</button>
       </div>
       <div class="array-item-fields">`;
-    if(ofType==='object'){
-      (sec.fields||[]).forEach(f=>{
-        const val=getNested(item,f.name);
-        html+=renderField(f,val,itemPath+'.'+f.name);
+    if(isSimple){
+      html+=renderField({type:field.itemType||'text',label:field.labelSingle||''},item||'',itemPath);
+    }else{
+      field.fields.forEach(f=>{
+        const itemVal=item?item[f.name]:'';
+        html+=renderField(f,itemVal,itemPath+'.'+f.name);
       });
-    }else if(ofType==='text'){
-      html+=renderField({type:'text',label:sec.labelSingle||'Текст'},item||'',itemPath);
-    }else if(ofType==='image'){
-      html+=renderField({type:'image',label:sec.labelSingle||'URL'},item||'',itemPath);
     }
     html+=`</div></div>`
   });
   html+=`</div>`;
-  html+=`<button class="add-btn" onclick="addArrayItem('${id}','${path}','${ofType}')">➕ Додати</button>`;
+  html+=`<button class="add-btn" onclick="addArrItem('${arrId}')">➕ Додати</button>`;
   return html;
 }
 
-function addArrayItem(listId,path,ofType){
-  const container=document.getElementById(listId);
+function addArrItem(arrId){
+  const field=arrSchemas.get(arrId);
+  if(!field)return;
+  const container=document.getElementById(arrId);
   if(!container)return;
-  const idx=container.children.length;
+  // derive the path from the last item or the arrId
+  // Reconstruct path from existing items
+  const items=container.querySelectorAll('.array-item');
+  const idx=items.length;
+  // figure out the base path by looking at first item's inputs
+  let basePath='';
+  if(items.length>0){
+    const firstInput=items[0].querySelector('[id^="f-"]');
+    if(firstInput){
+      // remove the last [N] segment
+      const fullId=firstInput.id.slice(2); // remove 'f-'
+      // find the last '_[0-9]_' or just the base
+      const m=fullId.match(/^(.+)_\d+_/);
+      if(m)basePath=m[1];
+      else basePath=fullId.replace(/_\d+$/,'');
+    }
+  }
+  if(!basePath){
+    // try to extract from arrId
+    basePath=arrId.replace('arr-','');
+  }
+  
+  const isSimple=!field.fields;
+  const itemPath=basePath+'['+idx+']';
+  
   const div=document.createElement('div');
   div.className='array-item';div.dataset.idx=idx;
-  const itemPath=path+'['+idx+']';
-  let fieldsHtml='';
-  if(ofType==='object'){
-    const sec=currentView.schema.sections.find(s=>s.array===path);
-    if(sec&&sec.fields){
-      sec.fields.forEach(f=>{fieldsHtml+=renderField(f,'',itemPath+'.'+f.name)})
-    }
+  let inner=`<div class="array-item-header"><span class="item-label">${field.labelSingle||'#'+(idx+1)}</span><button class="remove-btn" onclick="rmArrItem('${arrId}',${idx})">✕</button></div><div class="array-item-fields">`;
+  if(isSimple){
+    inner+=renderField({type:field.itemType||'text',label:field.labelSingle||''},'',itemPath);
   }else{
-    fieldsHtml+=renderField({type:ofType==='image'?'image':'text',label:''},'',itemPath);
+    field.fields.forEach(f=>{
+      inner+=renderField(f,'',itemPath+'.'+f.name);
+    });
   }
-  div.innerHTML=`<div class="array-item-header"><span class="item-label">#${idx+1}</span><button class="remove-btn" onclick="removeArrayItem('${listId}',${idx})">✕</button></div><div class="array-item-fields">${fieldsHtml}</div>`;
+  inner+=`</div>`;
+  div.innerHTML=inner;
   container.appendChild(div);
 }
 
-function removeArrayItem(listId,idx){
-  const container=document.getElementById(listId);
+function rmArrItem(arrId,idx){
+  const container=document.getElementById(arrId);
   const item=container.querySelector(`[data-idx="${idx}"]`);
   if(item)item.remove();
-  // re-index
   container.querySelectorAll('.array-item').forEach((el,i)=>{
     el.dataset.idx=i;
-    el.querySelector('.item-label').textContent='#'+(i+1);
+    el.querySelector('.item-label').textContent=el.querySelector('.item-label').textContent.replace(/#\d+/,'#'+(i+1));
   });
 }
 
-// ─── COLLECT DATA ────────────────────────────────
-function collectFormData(schema,existing){
+// ═══════════════════════════════════════════════
+// COLLECT DATA (recursive)
+// ═══════════════════════════════════════════════
+function collectPageData(schema,existing){
   const data=JSON.parse(JSON.stringify(existing||{}));
   schema.sections.forEach(sec=>{
     if(sec.array){
-      const path=sec.array;
-      const arr=collectArrayField(path,sec);
-      setNested(data,path,arr);
+      setNested(data,sec.array,collectArr(sec,sec.array));
     }else{
       sec.fields.forEach(f=>{
-        const id='f-'+f.name.replace(/\./g,'_');
-        const el=document.getElementById(id);
-        if(el){
-          let val=el.value;
-          if(f.type==='number')val=Number(val);
-          setNested(data,f.name,val);
-        }
-      })
-    }
-  });
-  // Handle array items that contain sub-objects (like programs[].items)
-  schema.sections.forEach(sec=>{
-    if(sec.array){
-      const path=sec.array;
-      const arr=getNested(data,path)||[];
-      arr.forEach((item,i)=>{
-        if(sec.fields){
-          sec.fields.forEach(f=>{
-            if(f.arrayInline){
-              const subPath=path+'['+i+'].'+f.name;
-              const subArr=collectArrayField(subPath,f);
-              setNested(data,path+'['+i+'].'+f.name,subArr);
-            }
-          })
+        if(f.type==='array'){
+          setNested(data,f.name,collectArr(f,f.name));
+        }else{
+          const el=document.getElementById('f-'+encPath(f.name));
+          if(el){
+            let val=el.value;
+            if(f.type==='number')val=Number(val);
+            setNested(data,f.name,val);
+          }
         }
       })
     }
@@ -647,30 +632,35 @@ function collectFormData(schema,existing){
   return data;
 }
 
-function collectArrayField(path,sec){
-  const id='arr-'+path.replace(/\./g,'_');
-  const container=document.getElementById(id);
+function collectArr(field,path){
+  const arrId='arr-'+encPath(path);
+  const container=document.getElementById(arrId);
   if(!container)return[];
   const items=[];
   container.querySelectorAll('.array-item').forEach(el=>{
     const idx=parseInt(el.dataset.idx);
-    const ofType=sec.of||'object';
-    if(ofType==='object'){
+    const itemPath=path+'['+idx+']';
+    const isSimple=!field.fields;
+    if(isSimple){
+      const subId='f-'+encPath(itemPath);
+      const subEl=document.getElementById(subId);
+      items.push(subEl?subEl.value:'');
+    }else{
       const obj={};
-      (sec.fields||[]).forEach(f=>{
-        const subId='f-'+(path+'['+idx+'].'+f.name).replace(/\./g,'_');
-        const subEl=document.getElementById(subId);
-        if(subEl){
-          let val=subEl.value;
-          if(f.type==='number')val=Number(val);
-          obj[f.name]=val;
+      field.fields.forEach(f=>{
+        if(f.type==='array'){
+          obj[f.name]=collectArr(f,itemPath+'.'+f.name);
+        }else{
+          const subId='f-'+encPath(itemPath+'.'+f.name);
+          const subEl=document.getElementById(subId);
+          if(subEl){
+            let val=subEl.value;
+            if(f.type==='number')val=Number(val);
+            obj[f.name]=val;
+          }
         }
       });
       items.push(obj);
-    }else{
-      const subId='f-'+(path+'['+idx+']').replace(/\./g,'_');
-      const subEl=document.getElementById(subId);
-      items.push(subEl?subEl.value:'');
     }
   });
   return items;
@@ -679,24 +669,7 @@ function collectArrayField(path,sec){
 async function savePage(){
   if(!currentView||currentView.type!=='page')return;
   const schema=currentView.schema;
-  const el=document.getElementById('pageContent');
-  
-  // Check if using JSON tab
-  const jsonTab=el.querySelector('.page-tab[data-idx="json"]');
-  let data;
-  if(jsonTab&&jsonTab.style.display!=='none'){
-    try{
-      data=JSON.parse(document.getElementById('jsonEditor').value);
-    }catch(e){
-      document.getElementById('jsonError').textContent='❌ Помилка JSON: '+e.message;
-      toast('❌ '+e.message,true);
-      return;
-    }
-    document.getElementById('jsonError').textContent='';
-  }else{
-    data=collectFormData(schema,currentView.data);
-  }
-  
+  const data=collectPageData(schema,currentView.data);
   try{
     await api({
       action:'write',
@@ -709,14 +682,189 @@ async function savePage(){
   }catch(e){toast('❌ '+e.message,true)}
 }
 
-// ─── MARKDOWN TOOLBAR ───────────────────────────
+// ═══════════════════════════════════════════════
+// NEWS (markdown files)
+// ═══════════════════════════════════════════════
+const NEWS_FIELDS=[
+  {name:'title',label:'Заголовок'},
+  {name:'date',label:'Дата',type:'datetime'},
+  {name:'image',label:'Головне фото (URL)',type:'image'},
+  {name:'excerpt',label:'Короткий опис',type:'textarea'},
+  {name:'body',label:'Текст новини',type:'markdown'},
+];
+
+function newsParse(d){
+  const m={};
+  d.replace(/^---\n([\s\S]*?)\n---\n?/,(_,fm)=>{
+    fm.split('\n').forEach(l=>{const[k,...v]=l.split(': ');if(k)m[k.trim()]=v.join(': ').trim()})
+  });
+  return{...m,body:d.replace(/^---\n[\s\S]*?\n---\n?/,'')};
+}
+
+function newsStr(d){
+  let fm=`---\ntitle: ${d.title}\ndate: ${d.date}`;
+  if(d.image)fm+=`\nimage: ${d.image}`;
+  if(d.excerpt)fm+=`\nexcerpt: ${d.excerpt}`;
+  return fm+`\n---\n\n${d.body}`;
+}
+
+async function openNews(){
+  currentView={type:'news-list'};
+  show('pager');
+  document.getElementById('pageTitle').innerHTML='📰 Новини';
+  document.getElementById('breadcrumb').innerHTML=bcSegs('Новини');
+  document.getElementById('pageActions').innerHTML=`
+    <button class="btn btn-sm" onclick="addNews()">➕ Додати</button>
+    <button class="btn btn-sm btn-ghost" onclick="backToDashboard()">← Назад</button>`;
+  try{
+    const items=await api({action:'list',folder:'content/news'});
+    const el=document.getElementById('pageContent');
+    if(!items||!items.length){el.innerHTML='<div class="empty" style="padding:3rem;text-align:center;color:#94a3b8">Немає новин. Натисніть "Додати".</div>';return}
+    el.innerHTML='<div class="item-list">'+items.map(f=>{
+      const name=f.name.replace(/\.md$/,'');
+      return `<div class="item-row" onclick="editNews('${f.path}')">
+        <div><div class="item-title">${esc(name)}</div><div class="item-meta">${f.path}</div></div>
+        <span class="label label-gray">✏️</span>
+      </div>`
+    }).join('')+'</div>'
+  }catch(e){toast('❌ '+e.message,true)}
+}
+
+async function addNews(){
+  currentView={type:'news-editor',data:{},file:null};
+  show('pager');
+  document.getElementById('breadcrumb').innerHTML=bcSegs('Новини','Нова');
+  document.getElementById('pageTitle').innerHTML='✏️ Нова новина';
+  document.getElementById('pageActions').innerHTML=`
+    <button class="btn btn-sm btn-green" onclick="saveNews()">💾 Зберегти</button>
+    <button class="btn btn-sm btn-ghost" onclick="openNews()">← Скасувати</button>`;
+  const el=document.getElementById('pageContent');
+  el.innerHTML='<div class="editor-wrap">'+NEWS_FIELDS.map(f=>renderField(f,'',f.name)).join('')+'</div>';
+  setTimeout(previewMarkdown,50);
+}
+
+async function editNews(path){
+  try{
+    const data=await api({action:'read',path});
+    if(!data){toast('Файл не знайдено',true);return}
+    let parsed;
+    try{parsed=newsParse(data.content||'')}catch{parsed={}}
+    currentView={type:'news-editor',data:parsed,file:path,sha:data.sha};
+    show('pager');
+    document.getElementById('breadcrumb').innerHTML=bcSegs('Новини',parsed.title||'...');
+    document.getElementById('pageTitle').innerHTML='✏️ '+(parsed.title||'Редагувати');
+    document.getElementById('pageActions').innerHTML=`
+      <button class="btn btn-sm btn-green" onclick="saveNews()">💾 Зберегти</button>
+      <button class="btn btn-sm btn-ghost" onclick="openNews()">← Скасувати</button>`;
+    const el=document.getElementById('pageContent');
+    el.innerHTML='<div class="editor-wrap">'+NEWS_FIELDS.map(f=>renderField(f,parsed[f.name]||'',f.name)).join('')+'</div>';
+    setTimeout(previewMarkdown,50);
+  }catch(e){toast('❌ '+e.message,true)}
+}
+
+async function saveNews(){
+  const form={};
+  NEWS_FIELDS.forEach(f=>{
+    const el=document.getElementById('f-'+f.name);
+    if(el)form[f.name]=el.value;
+  });
+  const content=newsStr(form);
+  const path=currentView.file||('content/news/'+(form.title||'new')+'.md');
+  try{
+    await api({action:'write',path,content,message:'Update '+path});
+    toast('✅ Збережено!');
+    openNews();
+  }catch(e){toast('❌ '+e.message,true)}
+}
+
+// ═══════════════════════════════════════════════
+// REVIEWS
+// ═══════════════════════════════════════════════
+const REVIEW_FIELDS=[
+  {name:'name',label:"Ім'я"},{name:'role',label:'Роль (uk)'},{name:'role_de',label:'Роль (de)'},
+  {name:'rating',label:'Рейтинг (1-5)',type:'number',min:1,max:5},
+  {name:'text',label:'Текст (uk)',type:'textarea'},{name:'text_de',label:'Текст (de)',type:'textarea'},
+  {name:'date',label:'Дата'},{name:'avatar',label:'Аватар (URL)',type:'image'},{name:'color',label:'Колір'},
+];
+
+async function openReviews(){
+  currentView={type:'review-list'};
+  show('pager');
+  document.getElementById('pageTitle').innerHTML='⭐ Відгуки';
+  document.getElementById('breadcrumb').innerHTML=bcSegs('Відгуки');
+  document.getElementById('pageActions').innerHTML=`
+    <button class="btn btn-sm" onclick="addReview()">➕ Додати</button>
+    <button class="btn btn-sm btn-ghost" onclick="backToDashboard()">← Назад</button>`;
+  try{
+    const items=await api({action:'list',folder:'content/reviews'});
+    const el=document.getElementById('pageContent');
+    if(!items||!items.length){el.innerHTML='<div class="empty" style="padding:3rem;text-align:center;color:#94a3b8">Немає відгуків.</div>';return}
+    el.innerHTML='<div class="item-list">'+items.map(f=>{
+      const name=f.name.replace(/\.json$/,'');
+      return `<div class="item-row" onclick="editReview('${f.path}')">
+        <div><div class="item-title">${esc(name)}</div><div class="item-meta">${f.path}</div></div>
+        <span class="label label-gray">✏️</span>
+      </div>`
+    }).join('')+'</div>'
+  }catch(e){toast('❌ '+e.message,true)}
+}
+
+async function addReview(){
+  currentView={type:'review-editor',data:{},file:null};
+  show('pager');
+  document.getElementById('breadcrumb').innerHTML=bcSegs('Відгуки','Новий');
+  document.getElementById('pageTitle').innerHTML='✏️ Новий відгук';
+  document.getElementById('pageActions').innerHTML=`
+    <button class="btn btn-sm btn-green" onclick="saveReview()">💾 Зберегти</button>
+    <button class="btn btn-sm btn-ghost" onclick="openReviews()">← Скасувати</button>`;
+  const el=document.getElementById('pageContent');
+  el.innerHTML='<div class="editor-wrap">'+REVIEW_FIELDS.map(f=>renderField(f,'',f.name)).join('')+'</div>';
+}
+
+async function editReview(path){
+  try{
+    const data=await api({action:'read',path});
+    if(!data){toast('Файл не знайдено',true);return}
+    let parsed;
+    try{parsed=JSON.parse(data.content||'{}')}catch{parsed={}}
+    currentView={type:'review-editor',data:parsed,file:path,sha:data.sha};
+    show('pager');
+    document.getElementById('breadcrumb').innerHTML=bcSegs('Відгуки',parsed.name||'...');
+    document.getElementById('pageTitle').innerHTML='✏️ '+(parsed.name||'Редагувати');
+    document.getElementById('pageActions').innerHTML=`
+      <button class="btn btn-sm btn-green" onclick="saveReview()">💾 Зберегти</button>
+      <button class="btn btn-sm btn-ghost" onclick="openReviews()">← Скасувати</button>`;
+    const el=document.getElementById('pageContent');
+    el.innerHTML='<div class="editor-wrap">'+REVIEW_FIELDS.map(f=>renderField(f,parsed[f.name]||'',f.name)).join('')+'</div>';
+  }catch(e){toast('❌ '+e.message,true)}
+}
+
+async function saveReview(){
+  const form={};
+  REVIEW_FIELDS.forEach(f=>{
+    const el=document.getElementById('f-'+f.name);
+    if(el)form[f.name]=el.value;
+  });
+  const content=JSON.stringify(form,null,2);
+  const name=form.name||'review';
+  const slug=name.toLowerCase().replace(/[^a-zа-яёіїєґ]+/g,'-').replace(/^-|-$/g,'')||'review';
+  const path=currentView.file||('content/reviews/'+slug+'.json');
+  try{
+    await api({action:'write',path,content,message:'Update '+path});
+    toast('✅ Збережено!');
+    openReviews();
+  }catch(e){toast('❌ '+e.message,true)}
+}
+
+// ═══════════════════════════════════════════════
+// MARKDOWN TOOLBAR
+// ═══════════════════════════════════════════════
 function mdeWrap(id,before,after){
   const el=document.getElementById(id);
   if(!el)return;
   const start=el.selectionStart,end=el.selectionEnd;
-  const val=el.value;
-  const selected=val.substring(start,end);
-  el.value=val.substring(0,start)+before+selected+after+val.substring(end);
+  const selected=el.value.substring(start,end);
+  el.value=el.value.substring(0,start)+before+selected+after+el.value.substring(end);
   const pos=start+before.length+selected.length+after.length;
   el.selectionStart=el.selectionEnd=pos;
   el.focus();previewMarkdown();
@@ -739,7 +887,6 @@ function mdeImage(id){
   el.value=el.value.substring(0,start)+`![${alt}](url)`+el.value.substring(end);
   el.focus();previewMarkdown();
 }
-
 function previewMarkdown(){
   const el=document.querySelector('textarea.markdown');
   if(!el)return;
@@ -757,208 +904,45 @@ function previewMarkdown(){
   preview.innerHTML='<p>'+html+'</p>';
 }
 
-// ─── NEWS (collection-style) ─────────────────────
-async function openNews(){
-  currentView={type:'collection',coll:'news'};
-  show('pager');
-  document.getElementById('pageTitle').innerHTML='📰 Новини';
-  document.getElementById('breadcrumb').innerHTML=bc('Новини');
-  document.getElementById('pageActions').innerHTML=`
-    <button class="btn btn-sm" onclick="addNews()">➕ Додати</button>
-    <button class="btn btn-sm btn-ghost" onclick="backToDashboard()">← Назад</button>`;
-  try{
-    const items=await api({action:'list',folder:'content/news'});
-    const el=document.getElementById('pageContent');
-    if(!items||!items.length){el.innerHTML='<div class="empty">Немає новин. Натисніть "Додати".</div>';return}
-    el.innerHTML='<div class="item-list">'+items.map(f=>{
-      const name=f.name.replace(/\.md$/,'');
-      return `<div class="item-row" onclick="editNews('${f.path}')">
-        <div><div class="item-title">${esc(name)}</div><div class="item-meta">${f.path}</div></div>
-        <span class="label label-gray">✏️</span>
-      </div>`
-    }).join('')+'</div>'
-  }catch(e){toast('❌ '+e.message,true)}
-}
-
-async function addNews(){
-  const coll=COLLECTIONS.news;
-  currentView={type:'news-editor',coll,data:{},file:null};
-  show('pager');
-  document.getElementById('breadcrumb').innerHTML=bc('Новини')+' <span>›</span><span>Нова новина</span>';
-  document.getElementById('pageTitle').innerHTML='✏️ Нова новина';
-  document.getElementById('pageActions').innerHTML=`
-    <button class="btn btn-sm btn-green" onclick="saveNews()">💾 Зберегти</button>
-    <button class="btn btn-sm btn-ghost" onclick="openNews()">← Скасувати</button>`;
-  renderNewsEditor(coll,{});
-}
-
-async function editNews(path){
-  const coll=COLLECTIONS.news;
-  try{
-    const data=await api({action:'read',path});
-    if(!data){toast('Файл не знайдено',true);return}
-    let parsed;
-    try{parsed=coll.parse(data.content||'{}')}catch{parsed={}}
-    currentView={type:'news-editor',coll,data:parsed,file:path,sha:data.sha};
-    show('pager');
-    document.getElementById('breadcrumb').innerHTML=bc('Новини')+' <span>›</span><span>'+(coll.itemName(parsed)||'...')+'</span>';
-    document.getElementById('pageTitle').innerHTML='✏️ '+(coll.itemName(parsed)||'Редагувати');
-    document.getElementById('pageActions').innerHTML=`
-      <button class="btn btn-sm btn-green" onclick="saveNews()">💾 Зберегти</button>
-      <button class="btn btn-sm btn-ghost" onclick="openNews()">← Скасувати</button>`;
-    renderNewsEditor(coll,parsed);
-  }catch(e){toast('❌ '+e.message,true)}
-}
-
-function renderNewsEditor(coll,data){
-  const el=document.getElementById('pageContent');
-  let html='<div class="editor-wrap">';
-  coll.fields.forEach(f=>{
-    const val=data[f.name]||'';
-    html+=renderField(f,val,f.name);
-  });
-  html+='</div>';
-  el.innerHTML=html;
-  setTimeout(previewMarkdown,50);
-}
-
-async function saveNews(){
-  const coll=COLLECTIONS.news;
-  const form={};
-  coll.fields.forEach(f=>{
-    const el=document.getElementById('f-'+f.name);
-    if(el)form[f.name]=el.value;
-  });
-  const content=coll.stringify(form);
-  const path=currentView.file||('content/news/'+(form.title||'new')+'.md');
-  try{
-    await api({action:'write',path,content,message:'Update '+path});
-    toast('✅ Збережено!');
-    openNews();
-  }catch(e){toast('❌ '+e.message,true)}
-}
-
-// ─── REVIEWS ─────────────────────────────────────
-async function openReviews(){
-  currentView={type:'collection',coll:'reviews'};
-  show('pager');
-  document.getElementById('pageTitle').innerHTML='⭐ Відгуки';
-  document.getElementById('breadcrumb').innerHTML=bc('Відгуки');
-  document.getElementById('pageActions').innerHTML=`
-    <button class="btn btn-sm" onclick="addReview()">➕ Додати</button>
-    <button class="btn btn-sm btn-ghost" onclick="backToDashboard()">← Назад</button>`;
-  try{
-    const items=await api({action:'list',folder:'content/reviews'});
-    const el=document.getElementById('pageContent');
-    if(!items||!items.length){el.innerHTML='<div class="empty">Немає відгуків.</div>';return}
-    el.innerHTML='<div class="item-list">'+items.map(f=>{
-      const name=f.name.replace(/\.json$/,'');
-      return `<div class="item-row" onclick="editReview('${f.path}')">
-        <div><div class="item-title">${esc(name)}</div><div class="item-meta">${f.path}</div></div>
-        <span class="label label-gray">✏️</span>
-      </div>`
-    }).join('')+'</div>'
-  }catch(e){toast('❌ '+e.message,true)}
-}
-
-async function addReview(){
-  const coll=COLLECTIONS.reviews;
-  currentView={type:'review-editor',coll,data:{},file:null};
-  show('pager');
-  document.getElementById('breadcrumb').innerHTML=bc('Відгуки')+' <span>›</span><span>Новий відгук</span>';
-  document.getElementById('pageTitle').innerHTML='✏️ Новий відгук';
-  document.getElementById('pageActions').innerHTML=`
-    <button class="btn btn-sm btn-green" onclick="saveReview()">💾 Зберегти</button>
-    <button class="btn btn-sm btn-ghost" onclick="openReviews()">← Скасувати</button>`;
-  const el=document.getElementById('pageContent');
-  let html='<div class="editor-wrap">';
-  coll.fields.forEach(f=>html+=renderField(f,'',f.name));
-  html+='</div>';
-  el.innerHTML=html;
-}
-
-async function editReview(path){
-  const coll=COLLECTIONS.reviews;
-  try{
-    const data=await api({action:'read',path});
-    if(!data){toast('Файл не знайдено',true);return}
-    let parsed;
-    try{parsed=coll.parse(data.content||'{}')}catch{parsed={}}
-    currentView={type:'review-editor',coll,data:parsed,file:path,sha:data.sha};
-    show('pager');
-    document.getElementById('breadcrumb').innerHTML=bc('Відгуки')+' <span>›</span><span>'+(coll.itemName(parsed)||'...')+'</span>';
-    document.getElementById('pageTitle').innerHTML='✏️ '+(coll.itemName(parsed)||'Редагувати');
-    document.getElementById('pageActions').innerHTML=`
-      <button class="btn btn-sm btn-green" onclick="saveReview()">💾 Зберегти</button>
-      <button class="btn btn-sm btn-ghost" onclick="openReviews()">← Скасувати</button>`;
-    const el=document.getElementById('pageContent');
-    let html='<div class="editor-wrap">';
-    coll.fields.forEach(f=>html+=renderField(f,parsed[f.name]||'',f.name));
-    html+='</div>';
-    el.innerHTML=html;
-  }catch(e){toast('❌ '+e.message,true)}
-}
-
-async function saveReview(){
-  const coll=COLLECTIONS.reviews;
-  const form={};
-  coll.fields.forEach(f=>{
-    const el=document.getElementById('f-'+f.name);
-    if(el)form[f.name]=el.value;
-  });
-  const content=coll.stringify(form);
-  const name=form.name||'review';
-  const slug=name.toLowerCase().replace(/[^a-zа-яёіїєґ]+/g,'-').replace(/^-|-$/g,'');
-  const path=currentView.file||('content/reviews/'+slug+'.json');
-  try{
-    await api({action:'write',path,content,message:'Update '+path});
-    toast('✅ Збережено!');
-    openReviews();
-  }catch(e){toast('❌ '+e.message,true)}
-}
-
-// ─── SETTINGS ────────────────────────────────────
-async function openSettings(){
-  await openPage('general.json');
-}
-
-// ─── IMAGE UPLOAD ────────────────────────────────
-async function uploadImage(input,ev,fieldId){
+// ═══════════════════════════════════════════════
+// IMAGE UPLOAD
+// ═══════════════════════════════════════════════
+async function upImg(input,ev,fieldId){
   const file=ev.target.files[0];
   if(!file)return;
   const reader=new FileReader();
   reader.onload=async function(e){
-    const dataUrl=e.target.result;
-    const base64=dataUrl.split(',')[1];
+    const base64=e.target.result.split(',')[1];
     try{
       const res=await api({action:'upload',name:file.name,content:base64});
       const field=document.getElementById(fieldId);
       if(field){
         field.value=res.url;
-        // trigger preview update
         const preview=document.getElementById('preview-'+fieldId);
         if(preview)preview.innerHTML=`<img class="img-preview" src="${esc(res.url)}">`;
       }
-      toast('✅ Зображення завантажено!');
+      toast('✅ Завантажено!');
     }catch(e){toast('❌ '+e.message,true)}
     input.value='';
   };
   reader.readAsDataURL(file);
 }
 
-// ─── IMAGE BROWSER ────────────────────────────────
+// ═══════════════════════════════════════════════
+// IMAGE BROWSER
+// ═══════════════════════════════════════════════
 async function openImages(){
   currentView={type:'images'};
   show('pager');
   document.getElementById('pageTitle').innerHTML='🖼️ Зображення';
-  document.getElementById('breadcrumb').innerHTML=bc('Зображення');
+  document.getElementById('breadcrumb').innerHTML=bcSegs('Зображення');
   document.getElementById('pageActions').innerHTML=`
-    <label class="btn btn-sm" style="cursor:pointer">📁 Завантажити<input type="file" accept="image/*" onchange="uploadImageFromBrowser(this)" style="display:none"></label>
+    <label class="btn btn-sm" style="cursor:pointer">📁 Завантажити<input type="file" accept="image/*" onchange="upImgDir(this)" style="display:none"></label>
     <button class="btn btn-sm btn-ghost" onclick="backToDashboard()">← Назад</button>`;
-  await renderImageGrid();
+  await renderImgGrid();
 }
 
-async function uploadImageFromBrowser(input){
+async function upImgDir(input){
   const file=input.files[0];
   if(!file)return;
   const reader=new FileReader();
@@ -967,56 +951,53 @@ async function uploadImageFromBrowser(input){
     try{
       await api({action:'upload',name:file.name,content:base64});
       toast('✅ Завантажено!');
-      await renderImageGrid();
+      await renderImgGrid();
     }catch(e){toast('❌ '+e.message,true)}
     input.value='';
   };
   reader.readAsDataURL(file);
 }
 
-async function renderImageGrid(){
+async function renderImgGrid(){
   const el=document.getElementById('pageContent');
   try{
     const items=await api({action:'list',folder:'content/images'});
-    if(!items||!items.length){
-      el.innerHTML='<div class="empty">Немає завантажених зображень.</div>';return
-    }
+    if(!items||!items.length){el.innerHTML='<div class="empty" style="padding:3rem;text-align:center;color:#94a3b8">Немає зображень. Завантажте.</div>';return}
     let html='<div class="img-grid">';
     items.forEach(f=>{
       const url=`https://raw.githubusercontent.com/porustzi/lizei167/main/${f.path}`;
-      html+=`<img src="${url}" onclick="copyUrl('${url}')" title="Натисніть щоб скопіювати URL">`
+      html+=`<img src="${url}" onclick="copyUrl('${url}')" title="Копіювати URL">`
     });
-    html+='</div><p style="font-size:.85rem;color:#64748b">Натисніть на зображення щоб скопіювати URL</p>';
+    html+=`</div><p style="font-size:.85rem;color:#64748b">Натисніть на зображення щоб скопіювати URL</p>`;
     el.innerHTML=html;
-  }catch(e){el.innerHTML='<div class="empty">Помилка завантаження: '+e.message+'</div>'}
+  }catch(e){el.innerHTML='<div class="empty">Помилка: '+e.message+'</div>'}
 }
 
 function copyUrl(url){
-  navigator.clipboard.writeText(url).then(()=>toast('URL скопійовано: '+url)).catch(()=>{
-    // fallback
+  navigator.clipboard.writeText(url).then(()=>toast('URL скопійовано')).catch(()=>{
     const ta=document.createElement('textarea');
-    ta.value=url;document.body.appendChild(ta);ta.select();document.execCommand('copy');
-    ta.remove();toast('URL скопійовано')
+    ta.value=url;document.body.appendChild(ta);ta.select();document.execCommand('copy');ta.remove();
+    toast('URL скопійовано')
   })
 }
 
-function openImageBrowser(targetFieldId){
+function openImgBrowser(targetFieldId){
   const modal=document.getElementById('imgModal');
   const body=document.getElementById('imgModalBody');
   modal.classList.add('show');
   api({action:'list',folder:'content/images'}).then(items=>{
-    if(!items||!items.length){body.innerHTML='<div class="empty">Немає зображень. <a onclick="closeImgModal();openImages()" style="color:#dc2626;cursor:pointer">Завантажте</a></div>';return}
+    if(!items||!items.length){body.innerHTML='<div class="empty">Немає зображень.</div><button class="btn btn-sm" onclick="closeImgModal()">Закрити</button>';return}
     let html='<div class="img-grid">';
     items.forEach(f=>{
       const url=`https://raw.githubusercontent.com/porustzi/lizei167/main/${f.path}`;
-      html+=`<img src="${url}" onclick="selectImgFromBrowser('${url}','${targetFieldId}')">`
+      html+=`<img src="${url}" onclick="selImgBrowser('${url}','${targetFieldId}')">`
     });
-    html+='</div></div>';
+    html+='</div>';
     body.innerHTML=html+'<button class="btn btn-sm" onclick="closeImgModal()">Закрити</button>';
-  }).catch(e=>{body.innerHTML='<div class="empty">'+e.message+'</div>'});
+  }).catch(e=>{body.innerHTML='<div class="empty">'+e.message+'</div><button class="btn btn-sm" onclick="closeImgModal()">Закрити</button>'});
 }
 
-function selectImgFromBrowser(url,fieldId){
+function selImgBrowser(url,fieldId){
   const field=document.getElementById(fieldId);
   if(field){
     field.value=url;
@@ -1030,7 +1011,6 @@ function closeImgModal(){
   document.getElementById('imgModal').classList.remove('show');
 }
 
-// Close modal on backdrop click
 document.getElementById('imgModal').onclick=function(e){
   if(e.target===this)closeImgModal()
 };
