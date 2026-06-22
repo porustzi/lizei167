@@ -101,6 +101,34 @@ export async function onRequest(context) {
         return json({ ok: true });
       }
 
+      case 'upload': {
+        const { name, content } = body;
+        if (!name || !content) return json({ error: 'name and content required' }, 400);
+        const ext = name.split('.').pop();
+        const base = name.slice(0, -(ext.length + 1)).replace(/[^a-zA-Z0-9_\-]/g, '_');
+        const ts = Date.now();
+        const path = `content/images/${base}_${ts}.${ext}`;
+        const check = await fetch(
+          `https://api.github.com/repos/${REPO}/contents/${encodeURIComponent(path)}`,
+          { headers: ghHeaders(env) }
+        );
+        const payload = {
+          message: `Upload ${name}`,
+          content,
+          branch: BRANCH,
+        };
+        if (check.ok) {
+          const c = await check.json();
+          payload.sha = c.sha;
+        }
+        const res = await fetch(
+          `https://api.github.com/repos/${REPO}/contents/${encodeURIComponent(path)}`,
+          { method: 'PUT', headers: ghHeaders(env), body: JSON.stringify(payload) }
+        );
+        if (!res.ok) return proxyError(res);
+        return json({ url: `https://raw.githubusercontent.com/${REPO}/${BRANCH}/${path}` });
+      }
+
       default:
         return json({ error: 'Unknown action' }, 400);
     }
