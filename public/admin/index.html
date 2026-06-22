@@ -1,11 +1,192 @@
 <!doctype html>
 <html lang="uk">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Admin</title>
-  </head>
-  <body>
-    <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
-  </body>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Адмінка — Ліцей №167</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #f1f5f9;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    #login {
+      width: 100%;
+      max-width: 400px;
+      padding: 2rem;
+    }
+    .card {
+      background: #fff;
+      border-radius: 1.5rem;
+      padding: 2.5rem;
+      box-shadow: 0 20px 40px -12px rgba(0,0,0,0.15);
+      text-align: center;
+    }
+    .card h1 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #1e293b;
+      margin-bottom: .25rem;
+    }
+    .card p {
+      color: #64748b;
+      font-size: .9rem;
+      margin-bottom: 2rem;
+    }
+    .card input[type="password"] {
+      width: 100%;
+      padding: .85rem 1.2rem;
+      border: 2px solid #e2e8f0;
+      border-radius: 1rem;
+      font-size: 1rem;
+      outline: none;
+      transition: border-color .2s;
+      margin-bottom: 1rem;
+    }
+    .card input[type="password"]:focus {
+      border-color: #dc2626;
+    }
+    .card button {
+      width: 100%;
+      padding: .85rem;
+      background: #dc2626;
+      color: #fff;
+      border: none;
+      border-radius: 1rem;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background .2s, transform .15s;
+    }
+    .card button:hover { background: #b91c1c; transform: scale(1.02); }
+    .card button:active { transform: scale(.98); }
+    .card button:disabled { opacity: .6; cursor: wait; transform: none; }
+    .error {
+      color: #dc2626;
+      font-size: .875rem;
+      margin-top: .75rem;
+      display: none;
+    }
+    .error.show { display: block; }
+    .logo {
+      width: 64px;
+      height: 64px;
+      background: #dc2626;
+      border-radius: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.5rem;
+      font-size: 1.5rem;
+      color: #fff;
+      font-weight: 800;
+    }
+    #cms { display: none; width: 100%; }
+    #cms.active { display: block; }
+    .loader {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 4rem 2rem;
+      color: #64748b;
+    }
+    .spinner {
+      width: 40px;
+      height: 40px;
+      border: 4px solid #e2e8f0;
+      border-top-color: #dc2626;
+      border-radius: 50%;
+      animation: spin .6s linear infinite;
+      margin-bottom: 1rem;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+  </style>
+</head>
+<body>
+  <div id="login">
+    <div class="card">
+      <div class="logo">167</div>
+      <h1>Адмінка Ліцею №167</h1>
+      <p>Введіть пароль для доступу</p>
+      <form id="loginForm">
+        <input type="password" id="password" placeholder="Пароль" autocomplete="current-password" required />
+        <button type="submit" id="loginBtn">Увійти</button>
+        <div class="error" id="errorMsg"></div>
+      </form>
+    </div>
+  </div>
+
+  <div id="cms">
+    <div class="loader" id="cmsLoader">
+      <div class="spinner"></div>
+      <p>Завантаження адмінки...</p>
+    </div>
+  </div>
+
+  <script>
+    const TOKEN_KEY = 'github-backend:t';
+
+    async function login(password) {
+      const res = await fetch('/api/auth', {
+        method: 'POST',
+        body: JSON.stringify({ password }),
+      });
+      if (!res.ok) {
+        const data = await res.json();
+        throw new Error(data.error || 'Невірний пароль');
+      }
+      return res.json();
+    }
+
+    document.getElementById('loginForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn = document.getElementById('loginBtn');
+      const err = document.getElementById('errorMsg');
+      const password = document.getElementById('password').value;
+
+      btn.disabled = true;
+      btn.textContent = 'Вхід...';
+      err.classList.remove('show');
+
+      try {
+        const data = await login(password);
+        window.sessionStorage.setItem('cms_session', data.token);
+        localStorage.setItem(TOKEN_KEY, data.token);
+        showCMS();
+      } catch (errMsg) {
+        err.textContent = errMsg.message || 'Помилка входу';
+        err.classList.add('show');
+        btn.disabled = false;
+        btn.textContent = 'Увійти';
+      }
+    });
+
+    function showCMS() {
+      document.getElementById('login').style.display = 'none';
+      document.getElementById('cms').classList.add('active');
+      loadDecapCMS();
+    }
+
+    function loadDecapCMS() {
+      const script = document.createElement('script');
+      script.src = 'https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js';
+      script.onload = function () {
+        document.getElementById('cmsLoader').style.display = 'none';
+      };
+      document.body.appendChild(script);
+    }
+
+    const session = window.sessionStorage.getItem('cms_session');
+    if (session) {
+      localStorage.setItem(TOKEN_KEY, session);
+      showCMS();
+    }
+  </script>
+</body>
 </html>
