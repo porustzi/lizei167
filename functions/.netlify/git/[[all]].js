@@ -3,33 +3,21 @@ const BRANCH = 'main';
 
 export async function onRequest(context) {
   const { request, env, params } = context;
-  const path = params.all || '';
   const url = new URL(request.url);
-
-  const authz = request.headers.get('Authorization');
-  if (!authz) return json({ error: 'Unauthorized' }, 401);
+  const path = params.all || '';
 
   if (path === 'user') {
     return handleUser(env);
   }
 
-  const segments = path.split('/').filter(Boolean);
-  if (segments.length < 2) return json({ error: 'Not found' }, 404);
+  const m = path.match(/^([^/]+)\/(entry|entries|media)(?:\/(.*))?$/);
+  if (!m) return json({ error: 'Not found' }, 404);
 
-  const siteId = segments[0];
-  const resource = segments[1];
+  const resource = m[2];
 
-  if (resource === 'entry') {
-    return handleEntry(request, env);
-  }
-
-  if (resource === 'entries') {
-    return handleEntries(request, env);
-  }
-
-  if (resource === 'media' || resource === 'media/upload') {
-    return json([]);
-  }
+  if (resource === 'entry') return handleEntry(request, env, url);
+  if (resource === 'entries') return handleEntries(request, env, url);
+  if (resource === 'media') return json([]);
 
   return json({ error: 'Not found' }, 404);
 }
@@ -48,19 +36,16 @@ async function handleUser(env) {
   });
 }
 
-async function handleEntry(request, env) {
-  const path = new URL(request.url).searchParams.get('path');
-  const method = request.method;
+async function handleEntry(request, env, url) {
+  const path = url.searchParams.get('path');
 
-  if (method === 'GET') {
-    if (!path) return json({ error: 'path required' }, 400);
+  if (request.method === 'GET') {
+    if (!path) return json({ content: '', sha: '' });
     const res = await fetch(
       `https://api.github.com/repos/${REPO}/contents/${encodeURIComponent(path)}?ref=${BRANCH}`,
       { headers: ghHeaders(env) }
     );
-    if (!res.ok && res.status === 404) {
-      return json({ content: '', sha: '' });
-    }
+    if (res.status === 404) return json({ content: '', sha: '' });
     if (!res.ok) return proxyError(res);
     const data = await res.json();
     const content = data.content
@@ -69,7 +54,7 @@ async function handleEntry(request, env) {
     return json({ content, sha: data.sha, path: data.path });
   }
 
-  if (method === 'PUT') {
+  if (request.method === 'PUT') {
     const body = await request.json();
     const filePath = path || body.path;
     if (!filePath) return json({ error: 'path required' }, 400);
@@ -103,7 +88,7 @@ async function handleEntry(request, env) {
     return json({ sha: data.content?.sha || '', path: filePath });
   }
 
-  if (method === 'DELETE') {
+  if (request.method === 'DELETE') {
     const body = await request.json();
     const filePath = body.path;
     if (!filePath) return json({ error: 'path required' }, 400);
@@ -135,8 +120,8 @@ async function handleEntry(request, env) {
   return json({ error: 'Method not allowed' }, 405);
 }
 
-async function handleEntries(request, env) {
-  const folder = new URL(request.url).searchParams.get('path');
+async function handleEntries(request, env, url) {
+  const folder = url.searchParams.get('path');
   if (!folder) return json([]);
 
   const res = await fetch(
