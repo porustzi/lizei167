@@ -1,7 +1,9 @@
 backend:
-  name: github
-  repo: porustzi/lizei167
+  name: git-gateway
+  url: /api/gateway
+  gateway_url: /api/auth
   branch: main
+  site_id: school
 
 site_url: https://lizei167.pages.dev
 locale: uk
