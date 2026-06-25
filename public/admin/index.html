@@ -143,6 +143,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 <div class="dash-card" onclick="openPage('transparency.json')"><div class="icon">🔍</div><h3>Прозорість</h3><p>Документи, піддокументи, URL</p></div>
 <div class="dash-card" onclick="openPage('general.json')"><div class="icon">⚙️</div><h3>Налаштування</h3><p>Назва школи, футер, телефон</p></div>
 <div class="dash-card" onclick="openReviews()"><div class="icon">⭐</div><h3>Відгуки</h3><p>Відгуки батьків та учнів</p></div>
+<div class="dash-card" onclick="openForms()"><div class="icon">📩</div><h3>Заявки</h3><p>Заявки з форми зворотного зв'язку</p></div>
 </div>
 </div>
 </div>
@@ -220,6 +221,7 @@ async function deleteItem(path, callback){
     toast('✅ Видалено');
     if(callback==='openNews')openNews();
     else if(callback==='openReviews')openReviews();
+    else if(callback==='openForms')openForms();
     else if(callback==='backToDashboard')backToDashboard();
     else show('dashboard');
   }catch(e){toast('❌ '+e.message,true)}
@@ -863,6 +865,40 @@ async function saveReview(){
     await api({action:'write',path,content,message:'Update '+path,sha:currentView.sha});
     toast('✅ Збережено!');
     openReviews();
+  }catch(e){toast('❌ '+e.message,true)}
+}
+
+// ═══════════════════════════════════════════════
+// FORMS (contact submissions)
+// ═══════════════════════════════════════════════
+async function openForms(){
+  currentView={type:'forms'};
+  show('pager');
+  document.getElementById('pageTitle').innerHTML='📩 Заявки з форми';
+  document.getElementById('breadcrumb').innerHTML=bcSegs('Заявки');
+  document.getElementById('pageActions').innerHTML=`
+    <button class="btn btn-sm btn-ghost" onclick="backToDashboard()">← Назад</button>`;
+  try{
+    const items=await api({action:'list',folder:'content/forms'});
+    const el=document.getElementById('pageContent');
+    if(!items||!items.length){el.innerHTML='<div class="empty">Немає заявок</div>';return}
+    let html='<div class="item-list">';
+    for(const f of items){
+      const data=await api({action:'read',path:f.path});
+      if(!data||!data.content)continue;
+      let form; try{form=JSON.parse(data.content)}catch{continue}
+      html+=`<div class="item-row" style="flex-direction:column;align-items:flex-start;gap:8px">
+        <div style="display:flex;justify-content:space-between;width:100%">
+          <div class="item-title">${esc(form.subject||'Без теми')}</div>
+          <button class="btn btn-sm btn-red" onclick="deleteItem('${f.path}','openForms')" style="padding:.3rem .6rem;font-size:.75rem">✕</button>
+        </div>
+        <div class="item-meta">${esc(form.name)} · ${esc(form.email)} · ${esc(form.phone||'')}</div>
+        <div style="font-size:.85rem;color:#475569;white-space:pre-wrap;margin-top:4px">${esc(form.message||'')}</div>
+        <div class="item-meta">${esc(form.date||'')}</div>
+      </div>`;
+    }
+    html+='</div>';
+    el.innerHTML=html;
   }catch(e){toast('❌ '+e.message,true)}
 }
 
