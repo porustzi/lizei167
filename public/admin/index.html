@@ -515,13 +515,15 @@ function renderField(f,val,path){
   }
   if(f.type==='image'){
     const preview=val?`<img class="img-preview" src="${esc(val)}" onclick="window.open('${esc(val)}')">`:'';
+    const folder=f.folder||'content/images';
+    const browseFolder=encodeURIComponent(folder);
     return `<div class="form-group"><label>${label}</label>
       <div class="img-row">
-        <input type="text" id="${id}" value="${esc(val||'')}" placeholder="URL або файл">
-        <label class="img-upload-btn">📁<input type="file" accept="image/*" onchange="upImg(this,event,'${id}')"></label>
+        <input type="text" id="${id}" value="${esc(val||'')}" placeholder="URL або завантаж">
+        <label class="img-upload-btn">📁 Завантажити<input type="file" accept="image/*" data-folder="${folder}" onchange="upImg(this,event,'${id}')"></label>
       </div>
       <div id="preview-${id}">${preview}</div>
-      <a class="img-browse-link" onclick="openImgBrowser('${id}')">📂 Обрати з завантажених</a>
+      <a class="img-browse-link" onclick="openImgBrowser('${id}','${browseFolder}')">📂 Галерея</a>
       </div>`
   }
   if(f.type==='select'){
@@ -678,7 +680,7 @@ async function savePage(){
 const NEWS_FIELDS=[
   {name:'title',label:'Заголовок'},
   {name:'date',label:'Дата',type:'datetime'},
-  {name:'image',label:'Головне фото (URL)',type:'image'},
+  {name:'image',label:'Головне фото (URL)',type:'image',folder:'content/news-images'},
   {name:'excerpt',label:'Короткий опис',type:'textarea'},
   {name:'body',label:'Текст новини',type:'markdown'},
 ];
@@ -910,13 +912,14 @@ function previewMarkdown(){
 // IMAGE UPLOAD
 // ═══════════════════════════════════════════════
 async function upImg(input,ev,fieldId){
-  const file=ev.target.files[0];
+      const file=ev.target.files[0];
   if(!file)return;
   const reader=new FileReader();
   reader.onload=async function(e){
     const base64=e.target.result.split(',')[1];
     try{
-      const res=await api({action:'upload',name:file.name,content:base64});
+      const folder = ev.target.getAttribute('data-folder') || 'content/images';
+      const res=await api({action:'upload',name:file.name,content:base64,folder});
       const field=document.getElementById(fieldId);
       if(field){
         field.value=res.url;
@@ -925,7 +928,7 @@ async function upImg(input,ev,fieldId){
       }
       toast('✅ Завантажено!');
     }catch(e){toast('❌ '+e.message,true)}
-    input.value='';
+    ev.target.value='';
   };
   reader.readAsDataURL(file);
 }
@@ -933,16 +936,25 @@ async function upImg(input,ev,fieldId){
 // ═══════════════════════════════════════════════
 // IMAGE BROWSER
 // ═══════════════════════════════════════════════
-async function openImages(){
+let currentImgFolder='content/images';
+
+async function openImages(folder){
+  currentImgFolder=folder||'content/images';
   currentView={type:'images'};
   show('pager');
-  document.getElementById('pageTitle').innerHTML='🖼️ Зображення';
+  document.getElementById('pageTitle').innerHTML='🖼️ Зображення — '+currentImgFolder;
   document.getElementById('breadcrumb').innerHTML=bcSegs('Зображення');
   document.getElementById('pageActions').innerHTML=`
+    <select id="imgFolderSelect" onchange="switchImgFolder(this.value)" style="padding:.35rem .6rem;border:1px solid #e2e8f0;border-radius:.5rem;font-size:.8rem">
+      <option value="content/images"${currentImgFolder==='content/images'?' selected':''}>📁 Загальні</option>
+      <option value="content/news-images"${currentImgFolder==='content/news-images'?' selected':''}>📰 Новини</option>
+    </select>
     <label class="btn btn-sm" style="cursor:pointer">📁 Завантажити<input type="file" accept="image/*" onchange="upImgDir(this)" style="display:none"></label>
     <button class="btn btn-sm btn-ghost" onclick="backToDashboard()">← Назад</button>`;
-  await renderImgGrid();
+  await renderImgGrid(currentImgFolder);
 }
+
+function switchImgFolder(v){openImages(v)}
 
 async function upImgDir(input){
   const file=input.files[0];
@@ -951,19 +963,20 @@ async function upImgDir(input){
   reader.onload=async function(e){
     const base64=e.target.result.split(',')[1];
     try{
-      await api({action:'upload',name:file.name,content:base64});
+      await api({action:'upload',name:file.name,content:base64,folder:currentImgFolder});
       toast('✅ Завантажено!');
-      await renderImgGrid();
+      await renderImgGrid(currentImgFolder);
     }catch(e){toast('❌ '+e.message,true)}
     input.value='';
   };
   reader.readAsDataURL(file);
 }
 
-async function renderImgGrid(){
+async function renderImgGrid(folder){
+  const dir=folder||'content/images';
   const el=document.getElementById('pageContent');
   try{
-    const items=await api({action:'list',folder:'content/images'});
+    const items=await api({action:'list',folder:dir});
     if(!items||!items.length){el.innerHTML='<div class="empty" style="padding:3rem;text-align:center;color:#94a3b8">Немає зображень. Завантажте.</div>';return}
     let html='<div class="img-grid">';
     items.forEach(f=>{
@@ -983,11 +996,12 @@ function copyUrl(url){
   })
 }
 
-function openImgBrowser(targetFieldId){
+function openImgBrowser(targetFieldId, folder){
   const modal=document.getElementById('imgModal');
   const body=document.getElementById('imgModalBody');
+  const dir = decodeURIComponent(folder || 'content/images');
   modal.classList.add('show');
-  api({action:'list',folder:'content/images'}).then(items=>{
+  api({action:'list',folder:dir}).then(items=>{
     if(!items||!items.length){body.innerHTML='<div class="empty">Немає зображень.</div><button class="btn btn-sm" onclick="closeImgModal()">Закрити</button>';return}
     let html='<div class="img-grid">';
     items.forEach(f=>{

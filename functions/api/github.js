@@ -102,12 +102,13 @@ export async function onRequest(context) {
       }
 
       case 'upload': {
-        const { name, content } = body;
+        const { name, content, folder } = body;
         if (!name || !content) return json({ error: 'name and content required' }, 400);
         const ext = name.split('.').pop();
         const base = name.slice(0, -(ext.length + 1)).replace(/[^a-zA-Z0-9_\-]/g, '_');
         const ts = Date.now();
-        const path = `content/images/${base}_${ts}.${ext}`;
+        const dir = folder || 'content/images';
+        const path = `${dir}/${base}_${ts}.${ext}`;
         const check = await fetch(
           `https://api.github.com/repos/${REPO}/contents/${encodeURIComponent(path)}`,
           { headers: ghHeaders(env) }
