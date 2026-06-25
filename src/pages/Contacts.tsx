@@ -40,11 +40,10 @@ export default function Contacts() {
       .catch(() => {});
   }, []);
 
-  const FORMSPREE = import.meta.env.VITE_FORMSPREE || '';
+  const FORMSPREE = import.meta.env.VITE_FORMSPREE || 'https://formspree.io/f/mojoeybk';
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!FORMSPREE) { alert('Форма тимчасово недоступна'); return; }
     setLoading(true);
     try {
       await fetch(FORMSPREE, {
