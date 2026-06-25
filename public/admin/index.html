@@ -141,7 +141,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 <div class="dash-card" onclick="openPage('transparency.json')"><div class="icon">🔍</div><h3>Прозорість</h3><p>Документи, піддокументи, URL</p></div>
 <div class="dash-card" onclick="openPage('general.json')"><div class="icon">⚙️</div><h3>Налаштування</h3><p>Назва школи, футер, телефон</p></div>
 <div class="dash-card" onclick="openReviews()"><div class="icon">⭐</div><h3>Відгуки</h3><p>Відгуки батьків та учнів</p></div>
-<div class="dash-card" onclick="openImages()"><div class="icon">🖼️</div><h3>Зображення</h3><p>Завантажити та переглянути</p></div>
 </div>
 </div>
 </div>
@@ -934,67 +933,8 @@ async function upImg(input,ev,fieldId){
 }
 
 // ═══════════════════════════════════════════════
-// IMAGE BROWSER
+// IMAGE MODAL BROWSER
 // ═══════════════════════════════════════════════
-let currentImgFolder='content/images';
-
-async function openImages(folder){
-  currentImgFolder=folder||'content/images';
-  currentView={type:'images'};
-  show('pager');
-  document.getElementById('pageTitle').innerHTML='🖼️ Зображення — '+currentImgFolder;
-  document.getElementById('breadcrumb').innerHTML=bcSegs('Зображення');
-  document.getElementById('pageActions').innerHTML=`
-    <select id="imgFolderSelect" onchange="switchImgFolder(this.value)" style="padding:.35rem .6rem;border:1px solid #e2e8f0;border-radius:.5rem;font-size:.8rem">
-      <option value="content/images"${currentImgFolder==='content/images'?' selected':''}>📁 Загальні</option>
-      <option value="content/news-images"${currentImgFolder==='content/news-images'?' selected':''}>📰 Новини</option>
-    </select>
-    <label class="btn btn-sm" style="cursor:pointer">📁 Завантажити<input type="file" accept="image/*" onchange="upImgDir(this)" style="display:none"></label>
-    <button class="btn btn-sm btn-ghost" onclick="backToDashboard()">← Назад</button>`;
-  await renderImgGrid(currentImgFolder);
-}
-
-function switchImgFolder(v){openImages(v)}
-
-async function upImgDir(input){
-  const file=input.files[0];
-  if(!file)return;
-  const reader=new FileReader();
-  reader.onload=async function(e){
-    const base64=e.target.result.split(',')[1];
-    try{
-      await api({action:'upload',name:file.name,content:base64,folder:currentImgFolder});
-      toast('✅ Завантажено!');
-      await renderImgGrid(currentImgFolder);
-    }catch(e){toast('❌ '+e.message,true)}
-    input.value='';
-  };
-  reader.readAsDataURL(file);
-}
-
-async function renderImgGrid(folder){
-  const dir=folder||'content/images';
-  const el=document.getElementById('pageContent');
-  try{
-    const items=await api({action:'list',folder:dir});
-    if(!items||!items.length){el.innerHTML='<div class="empty" style="padding:3rem;text-align:center;color:#94a3b8">Немає зображень. Завантажте.</div>';return}
-    let html='<div class="img-grid">';
-    items.forEach(f=>{
-      const url=`https://raw.githubusercontent.com/porustzi/lizei167/main/${f.path}`;
-      html+=`<img src="${url}" onclick="copyUrl('${url}')" title="Копіювати URL">`
-    });
-    html+=`</div><p style="font-size:.85rem;color:#64748b">Натисніть на зображення щоб скопіювати URL</p>`;
-    el.innerHTML=html;
-  }catch(e){el.innerHTML='<div class="empty">Помилка: '+e.message+'</div>'}
-}
-
-function copyUrl(url){
-  navigator.clipboard.writeText(url).then(()=>toast('URL скопійовано')).catch(()=>{
-    const ta=document.createElement('textarea');
-    ta.value=url;document.body.appendChild(ta);ta.select();document.execCommand('copy');ta.remove();
-    toast('URL скопійовано')
-  })
-}
 
 function openImgBrowser(targetFieldId, folder){
   const modal=document.getElementById('imgModal');
