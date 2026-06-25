@@ -1,9 +1,8 @@
 {
   "title": "Сімейне навчання",
-  "title_de": "Familienunterricht",
+  "title_de": "Familieunterricht",
   "subtitle": "Документи та матеріали для навчання",
   "subtitle_de": "Dokumente und Lernmaterialien",
-
   "sections": [
     {
       "title": "Положення про сімейну форму навчання Ліцею № 167 м. Києва",
@@ -12,48 +11,1289 @@
       "description_de": "Dokument, das die Organisation des Familienunterrichts und die Rechte und Pflichten von Schülern, Eltern und Lyzeum festlegt.",
       "badge": "Плани",
       "badge_de": "Pläne",
-
       "semesters": [
         {
           "label": "1 Семестр",
           "label_de": "1. Semester",
-
           "classes": [
-            { "name": "1 клас", "name_de": "Klasse 1", "url": "" },
-            { "name": "2 клас", "name_de": "Klasse 2", "url": "" },
-            { "name": "3 клас", "name_de": "Klasse 3", "url": "" },
-            { "name": "4 клас", "name_de": "Klasse 4", "url": "" },
-            { "name": "5 клас", "name_de": "Klasse 5", "url": "" },
-            { "name": "6 клас", "name_de": "Klasse 6", "url": "" },
-            { "name": "7 клас", "name_de": "Klasse 7", "url": "" },
-            { "name": "8 клас", "name_de": "Klasse 8", "url": "" },
-            { "name": "9 клас", "name_de": "Klasse 9", "url": "" },
-            { "name": "10 клас", "name_de": "Klasse 10", "url": "" },
-            { "name": "11 клас", "name_de": "Klasse 11", "url": "" }
+            {
+              "name": "1 клас",
+              "name_de": "Klasse 1",
+              "url": ""
+            },
+            {
+              "name": "2 клас",
+              "name_de": "Klasse 2",
+              "url": ""
+            },
+            {
+              "name": "3 клас",
+              "name_de": "Klasse 3",
+              "url": ""
+            },
+            {
+              "name": "4 клас",
+              "name_de": "Klasse 4",
+              "url": ""
+            },
+            {
+              "name": "5 клас",
+              "name_de": "Klasse 5",
+              "url": ""
+            },
+            {
+              "name": "6 клас",
+              "name_de": "Klasse 6",
+              "url": ""
+            },
+            {
+              "name": "7 клас",
+              "name_de": "Klasse 7",
+              "url": ""
+            },
+            {
+              "name": "8 клас",
+              "name_de": "Klasse 8",
+              "url": ""
+            },
+            {
+              "name": "9 клас",
+              "name_de": "Klasse 9",
+              "url": ""
+            },
+            {
+              "name": "10 клас",
+              "name_de": "Klasse 10",
+              "url": ""
+            },
+            {
+              "name": "11 клас",
+              "name_de": "Klasse 11",
+              "url": ""
+            }
           ]
         },
-
+        {
+          "label": "1 Семестр",
+          "label_de": "1. Semester",
+          "classes": [
+            {
+              "name": "1 клас",
+              "name_de": "Klasse 1",
+              "url": ""
+            },
+            {
+              "name": "2 клас",
+              "name_de": "Klasse 2",
+              "url": ""
+            },
+            {
+              "name": "3 клас",
+              "name_de": "Klasse 3",
+              "url": ""
+            },
+            {
+              "name": "4 клас",
+              "name_de": "Klasse 4",
+              "url": ""
+            },
+            {
+              "name": "5 клас",
+              "name_de": "Klasse 5",
+              "url": ""
+            },
+            {
+              "name": "6 клас",
+              "name_de": "Klasse 6",
+              "url": ""
+            },
+            {
+              "name": "7 клас",
+              "name_de": "Klasse 7",
+              "url": ""
+            },
+            {
+              "name": "8 клас",
+              "name_de": "Klasse 8",
+              "url": ""
+            },
+            {
+              "name": "9 клас",
+              "name_de": "Klasse 9",
+              "url": ""
+            },
+            {
+              "name": "10 клас",
+              "name_de": "Klasse 10",
+              "url": ""
+            },
+            {
+              "name": "11 клас",
+              "name_de": "Klasse 11",
+              "url": ""
+            }
+          ]
+        },
         {
           "label": "2 Семестр",
           "label_de": "2. Semester",
-
           "classes": [
-            { "name": "1 клас", "name_de": "Klasse 1", "url": "" },
-            { "name": "2 клас", "name_de": "Klasse 2", "url": "" },
-            { "name": "3 клас", "name_de": "Klasse 3", "url": "" },
-            { "name": "4 клас", "name_de": "Klasse 4", "url": "" },
-            { "name": "5 клас", "name_de": "Klasse 5", "url": "" },
-            { "name": "6 клас", "name_de": "Klasse 6", "url": "" },
-            { "name": "7 клас", "name_de": "Klasse 7", "url": "" },
-            { "name": "8 клас", "name_de": "Klasse 8", "url": "" },
-            { "name": "9 клас", "name_de": "Klasse 9", "url": "" },
-            { "name": "10 клас", "name_de": "Klasse 10", "url": "" },
-            { "name": "11 клас", "name_de": "Klasse 11", "url": "" }
+            {
+              "name": "1 клас",
+              "name_de": "Klasse 1",
+              "url": ""
+            },
+            {
+              "name": "2 клас",
+              "name_de": "Klasse 2",
+              "url": ""
+            },
+            {
+              "name": "3 клас",
+              "name_de": "Klasse 3",
+              "url": ""
+            },
+            {
+              "name": "4 клас",
+              "name_de": "Klasse 4",
+              "url": ""
+            },
+            {
+              "name": "5 клас",
+              "name_de": "Klasse 5",
+              "url": ""
+            },
+            {
+              "name": "6 клас",
+              "name_de": "Klasse 6",
+              "url": ""
+            },
+            {
+              "name": "7 клас",
+              "name_de": "Klasse 7",
+              "url": ""
+            },
+            {
+              "name": "8 клас",
+              "name_de": "Klasse 8",
+              "url": ""
+            },
+            {
+              "name": "9 клас",
+              "name_de": "Klasse 9",
+              "url": ""
+            },
+            {
+              "name": "10 клас",
+              "name_de": "Klasse 10",
+              "url": ""
+            },
+            {
+              "name": "11 клас",
+              "name_de": "Klasse 11",
+              "url": ""
+            }
           ]
+        },
+        {
+          "classes": []
+        },
+        {
+          "classes": []
+        },
+        {
+          "classes": []
+        },
+        {
+          "classes": []
+        },
+        {
+          "classes": []
+        },
+        {
+          "classes": []
+        },
+        {
+          "classes": []
+        },
+        {
+          "classes": []
+        },
+        {
+          "classes": []
+        },
+        {
+          "label": "2 Семестр",
+          "label_de": "2. Semester",
+          "classes": [
+            {
+              "name": "1 клас",
+              "name_de": "Klasse 1",
+              "url": ""
+            },
+            {
+              "name": "2 клас",
+              "name_de": "Klasse 2",
+              "url": ""
+            },
+            {
+              "name": "3 клас",
+              "name_de": "Klasse 3",
+              "url": ""
+            },
+            {
+              "name": "4 клас",
+              "name_de": "Klasse 4",
+              "url": ""
+            },
+            {
+              "name": "5 клас",
+              "name_de": "Klasse 5",
+              "url": ""
+            },
+            {
+              "name": "6 клас",
+              "name_de": "Klasse 6",
+              "url": ""
+            },
+            {
+              "name": "7 клас",
+              "name_de": "Klasse 7",
+              "url": ""
+            },
+            {
+              "name": "8 клас",
+              "name_de": "Klasse 8",
+              "url": ""
+            },
+            {
+              "name": "9 клас",
+              "name_de": "Klasse 9",
+              "url": ""
+            },
+            {
+              "name": "10 клас",
+              "name_de": "Klasse 10",
+              "url": ""
+            },
+            {
+              "name": "11 клас",
+              "name_de": "Klasse 11",
+              "url": ""
+            }
+          ]
+        },
+        {
+          "label": "1 Семестр",
+          "label_de": "1. Semester",
+          "classes": [
+            {
+              "name": "1 клас",
+              "name_de": "Klasse 1",
+              "url": ""
+            },
+            {
+              "name": "2 клас",
+              "name_de": "Klasse 2",
+              "url": ""
+            },
+            {
+              "name": "3 клас",
+              "name_de": "Klasse 3",
+              "url": ""
+            },
+            {
+              "name": "4 клас",
+              "name_de": "Klasse 4",
+              "url": ""
+            },
+            {
+              "name": "5 клас",
+              "name_de": "Klasse 5",
+              "url": ""
+            },
+            {
+              "name": "6 клас",
+              "name_de": "Klasse 6",
+              "url": ""
+            },
+            {
+              "name": "7 клас",
+              "name_de": "Klasse 7",
+              "url": ""
+            },
+            {
+              "name": "8 клас",
+              "name_de": "Klasse 8",
+              "url": ""
+            },
+            {
+              "name": "9 клас",
+              "name_de": "Klasse 9",
+              "url": ""
+            },
+            {
+              "name": "10 клас",
+              "name_de": "Klasse 10",
+              "url": ""
+            },
+            {
+              "name": "11 клас",
+              "name_de": "Klasse 11",
+              "url": ""
+            }
+          ]
+        },
+        {
+          "label": "2 Семестр",
+          "label_de": "2. Semester",
+          "classes": [
+            {
+              "name": "1 клас",
+              "name_de": "Klasse 1",
+              "url": ""
+            },
+            {
+              "name": "2 клас",
+              "name_de": "Klasse 2",
+              "url": ""
+            },
+            {
+              "name": "3 клас",
+              "name_de": "Klasse 3",
+              "url": ""
+            },
+            {
+              "name": "4 клас",
+              "name_de": "Klasse 4",
+              "url": ""
+            },
+            {
+              "name": "5 клас",
+              "name_de": "Klasse 5",
+              "url": ""
+            },
+            {
+              "name": "6 клас",
+              "name_de": "Klasse 6",
+              "url": ""
+            },
+            {
+              "name": "7 клас",
+              "name_de": "Klasse 7",
+              "url": ""
+            },
+            {
+              "name": "8 клас",
+              "name_de": "Klasse 8",
+              "url": ""
+            },
+            {
+              "name": "9 клас",
+              "name_de": "Klasse 9",
+              "url": ""
+            },
+            {
+              "name": "10 клас",
+              "name_de": "Klasse 10",
+              "url": ""
+            },
+            {
+              "name": "11 клас",
+              "name_de": "Klasse 11",
+              "url": ""
+            }
+          ]
+        },
+        {
+          "classes": []
+        },
+        {
+          "classes": []
+        },
+        {
+          "classes": []
+        },
+        {
+          "classes": []
+        },
+        {
+          "classes": []
+        },
+        {
+          "classes": []
+        },
+        {
+          "classes": []
+        },
+        {
+          "classes": []
+        },
+        {
+          "classes": []
         }
       ]
     },
-
+    {
+      "title": "Положення про сімейну форму навчання Ліцею № 167 м. Києва",
+      "title_de": "Vorschriften zum Familienunterricht des Lyzeums Nr. 167 der Stadt Kiew",
+      "description": "Документ, що визначає організацію сімейного навчання, права й обов'язки учнів, батьків та ліцею.",
+      "description_de": "Dokument, das die Organisation des Familienunterrichts und die Rechte und Pflichten von Schülern, Eltern und Lyzeum festlegt.",
+      "badge": "Плани",
+      "badge_de": "Pläne",
+      "semesters": [
+        {
+          "label": "1 Семестр",
+          "label_de": "1. Semester",
+          "classes": [
+            {
+              "name": "1 клас",
+              "name_de": "Klasse 1",
+              "url": ""
+            },
+            {
+              "name": "2 клас",
+              "name_de": "Klasse 2",
+              "url": ""
+            },
+            {
+              "name": "3 клас",
+              "name_de": "Klasse 3",
+              "url": ""
+            },
+            {
+              "name": "4 клас",
+              "name_de": "Klasse 4",
+              "url": ""
+            },
+            {
+              "name": "5 клас",
+              "name_de": "Klasse 5",
+              "url": ""
+            },
+            {
+              "name": "6 клас",
+              "name_de": "Klasse 6",
+              "url": ""
+            },
+            {
+              "name": "7 клас",
+              "name_de": "Klasse 7",
+              "url": ""
+            },
+            {
+              "name": "8 клас",
+              "name_de": "Klasse 8",
+              "url": ""
+            },
+            {
+              "name": "9 клас",
+              "name_de": "Klasse 9",
+              "url": ""
+            },
+            {
+              "name": "10 клас",
+              "name_de": "Klasse 10",
+              "url": ""
+            },
+            {
+              "name": "11 клас",
+              "name_de": "Klasse 11",
+              "url": ""
+            }
+          ]
+        },
+        {
+          "label": "1 Семестр",
+          "label_de": "1. Semester",
+          "classes": [
+            {
+              "name": "1 клас",
+              "name_de": "Klasse 1",
+              "url": ""
+            },
+            {
+              "name": "2 клас",
+              "name_de": "Klasse 2",
+              "url": ""
+            },
+            {
+              "name": "3 клас",
+              "name_de": "Klasse 3",
+              "url": ""
+            },
+            {
+              "name": "4 клас",
+              "name_de": "Klasse 4",
+              "url": ""
+            },
+            {
+              "name": "5 клас",
+              "name_de": "Klasse 5",
+              "url": ""
+            },
+            {
+              "name": "6 клас",
+              "name_de": "Klasse 6",
+              "url": ""
+            },
+            {
+              "name": "7 клас",
+              "name_de": "Klasse 7",
+              "url": ""
+            },
+            {
+              "name": "8 клас",
+              "name_de": "Klasse 8",
+              "url": ""
+            },
+            {
+              "name": "9 клас",
+              "name_de": "Klasse 9",
+              "url": ""
+            },
+            {
+              "name": "10 клас",
+              "name_de": "Klasse 10",
+              "url": ""
+            },
+            {
+              "name": "11 клас",
+              "name_de": "Klasse 11",
+              "url": ""
+            }
+          ]
+        },
+        {
+          "label": "2 Семестр",
+          "label_de": "2. Semester",
+          "classes": [
+            {
+              "name": "1 клас",
+              "name_de": "Klasse 1",
+              "url": ""
+            },
+            {
+              "name": "2 клас",
+              "name_de": "Klasse 2",
+              "url": ""
+            },
+            {
+              "name": "3 клас",
+              "name_de": "Klasse 3",
+              "url": ""
+            },
+            {
+              "name": "4 клас",
+              "name_de": "Klasse 4",
+              "url": ""
+            },
+            {
+              "name": "5 клас",
+              "name_de": "Klasse 5",
+              "url": ""
+            },
+            {
+              "name": "6 клас",
+              "name_de": "Klasse 6",
+              "url": ""
+            },
+            {
+              "name": "7 клас",
+              "name_de": "Klasse 7",
+              "url": ""
+            },
+            {
+              "name": "8 клас",
+              "name_de": "Klasse 8",
+              "url": ""
+            },
+            {
+              "name": "9 клас",
+              "name_de": "Klasse 9",
+              "url": ""
+            },
+            {
+              "name": "10 клас",
+              "name_de": "Klasse 10",
+              "url": ""
+            },
+            {
+              "name": "11 клас",
+              "name_de": "Klasse 11",
+              "url": ""
+            }
+          ]
+        },
+        {
+          "classes": []
+        },
+        {
+          "classes": []
+        },
+        {
+          "classes": []
+        },
+        {
+          "classes": []
+        },
+        {
+          "classes": []
+        },
+        {
+          "classes": []
+        },
+        {
+          "classes": []
+        },
+        {
+          "classes": []
+        },
+        {
+          "classes": []
+        },
+        {
+          "label": "2 Семестр",
+          "label_de": "2. Semester",
+          "classes": [
+            {
+              "name": "1 клас",
+              "name_de": "Klasse 1",
+              "url": ""
+            },
+            {
+              "name": "2 клас",
+              "name_de": "Klasse 2",
+              "url": ""
+            },
+            {
+              "name": "3 клас",
+              "name_de": "Klasse 3",
+              "url": ""
+            },
+            {
+              "name": "4 клас",
+              "name_de": "Klasse 4",
+              "url": ""
+            },
+            {
+              "name": "5 клас",
+              "name_de": "Klasse 5",
+              "url": ""
+            },
+            {
+              "name": "6 клас",
+              "name_de": "Klasse 6",
+              "url": ""
+            },
+            {
+              "name": "7 клас",
+              "name_de": "Klasse 7",
+              "url": ""
+            },
+            {
+              "name": "8 клас",
+              "name_de": "Klasse 8",
+              "url": ""
+            },
+            {
+              "name": "9 клас",
+              "name_de": "Klasse 9",
+              "url": ""
+            },
+            {
+              "name": "10 клас",
+              "name_de": "Klasse 10",
+              "url": ""
+            },
+            {
+              "name": "11 клас",
+              "name_de": "Klasse 11",
+              "url": ""
+            }
+          ]
+        },
+        {
+          "label": "1 Семестр",
+          "label_de": "1. Semester",
+          "classes": [
+            {
+              "name": "1 клас",
+              "name_de": "Klasse 1",
+              "url": ""
+            },
+            {
+              "name": "2 клас",
+              "name_de": "Klasse 2",
+              "url": ""
+            },
+            {
+              "name": "3 клас",
+              "name_de": "Klasse 3",
+              "url": ""
+            },
+            {
+              "name": "4 клас",
+              "name_de": "Klasse 4",
+              "url": ""
+            },
+            {
+              "name": "5 клас",
+              "name_de": "Klasse 5",
+              "url": ""
+            },
+            {
+              "name": "6 клас",
+              "name_de": "Klasse 6",
+              "url": ""
+            },
+            {
+              "name": "7 клас",
+              "name_de": "Klasse 7",
+              "url": ""
+            },
+            {
+              "name": "8 клас",
+              "name_de": "Klasse 8",
+              "url": ""
+            },
+            {
+              "name": "9 клас",
+              "name_de": "Klasse 9",
+              "url": ""
+            },
+            {
+              "name": "10 клас",
+              "name_de": "Klasse 10",
+              "url": ""
+            },
+            {
+              "name": "11 клас",
+              "name_de": "Klasse 11",
+              "url": ""
+            }
+          ]
+        },
+        {
+          "label": "2 Семестр",
+          "label_de": "2. Semester",
+          "classes": [
+            {
+              "name": "1 клас",
+              "name_de": "Klasse 1",
+              "url": ""
+            },
+            {
+              "name": "2 клас",
+              "name_de": "Klasse 2",
+              "url": ""
+            },
+            {
+              "name": "3 клас",
+              "name_de": "Klasse 3",
+              "url": ""
+            },
+            {
+              "name": "4 клас",
+              "name_de": "Klasse 4",
+              "url": ""
+            },
+            {
+              "name": "5 клас",
+              "name_de": "Klasse 5",
+              "url": ""
+            },
+            {
+              "name": "6 клас",
+              "name_de": "Klasse 6",
+              "url": ""
+            },
+            {
+              "name": "7 клас",
+              "name_de": "Klasse 7",
+              "url": ""
+            },
+            {
+              "name": "8 клас",
+              "name_de": "Klasse 8",
+              "url": ""
+            },
+            {
+              "name": "9 клас",
+              "name_de": "Klasse 9",
+              "url": ""
+            },
+            {
+              "name": "10 клас",
+              "name_de": "Klasse 10",
+              "url": ""
+            },
+            {
+              "name": "11 клас",
+              "name_de": "Klasse 11",
+              "url": ""
+            }
+          ]
+        },
+        {
+          "classes": []
+        },
+        {
+          "classes": []
+        },
+        {
+          "classes": []
+        },
+        {
+          "classes": []
+        },
+        {
+          "classes": []
+        },
+        {
+          "classes": []
+        },
+        {
+          "classes": []
+        },
+        {
+          "classes": []
+        },
+        {
+          "classes": []
+        }
+      ]
+    },
+    {
+      "title": "Положення про сімейну форму навчання Ліцею № 167 м. Києва",
+      "title_de": "Vorschriften zum Familienunterricht des Lyzeums Nr. 167 der Stadt Kiew",
+      "description": "Документ, що визначає організацію сімейного навчання, права й обов'язки учнів, батьків та ліцею.",
+      "description_de": "Dokument, das die Organisation des Familienunterrichts und die Rechte und Pflichten von Schülern, Eltern und Lyzeum festlegt.",
+      "badge": "Плани",
+      "badge_de": "Pläne",
+      "semesters": [
+        {
+          "label": "1 Семестр",
+          "label_de": "1. Semester",
+          "classes": [
+            {
+              "name": "1 клас",
+              "name_de": "Klasse 1",
+              "url": ""
+            },
+            {
+              "name": "2 клас",
+              "name_de": "Klasse 2",
+              "url": ""
+            },
+            {
+              "name": "3 клас",
+              "name_de": "Klasse 3",
+              "url": ""
+            },
+            {
+              "name": "4 клас",
+              "name_de": "Klasse 4",
+              "url": ""
+            },
+            {
+              "name": "5 клас",
+              "name_de": "Klasse 5",
+              "url": ""
+            },
+            {
+              "name": "6 клас",
+              "name_de": "Klasse 6",
+              "url": ""
+            },
+            {
+              "name": "7 клас",
+              "name_de": "Klasse 7",
+              "url": ""
+            },
+            {
+              "name": "8 клас",
+              "name_de": "Klasse 8",
+              "url": ""
+            },
+            {
+              "name": "9 клас",
+              "name_de": "Klasse 9",
+              "url": ""
+            },
+            {
+              "name": "10 клас",
+              "name_de": "Klasse 10",
+              "url": ""
+            },
+            {
+              "name": "11 клас",
+              "name_de": "Klasse 11",
+              "url": ""
+            }
+          ]
+        },
+        {
+          "label": "1 Семестр",
+          "label_de": "1. Semester",
+          "classes": [
+            {
+              "name": "1 клас",
+              "name_de": "Klasse 1",
+              "url": ""
+            },
+            {
+              "name": "2 клас",
+              "name_de": "Klasse 2",
+              "url": ""
+            },
+            {
+              "name": "3 клас",
+              "name_de": "Klasse 3",
+              "url": ""
+            },
+            {
+              "name": "4 клас",
+              "name_de": "Klasse 4",
+              "url": ""
+            },
+            {
+              "name": "5 клас",
+              "name_de": "Klasse 5",
+              "url": ""
+            },
+            {
+              "name": "6 клас",
+              "name_de": "Klasse 6",
+              "url": ""
+            },
+            {
+              "name": "7 клас",
+              "name_de": "Klasse 7",
+              "url": ""
+            },
+            {
+              "name": "8 клас",
+              "name_de": "Klasse 8",
+              "url": ""
+            },
+            {
+              "name": "9 клас",
+              "name_de": "Klasse 9",
+              "url": ""
+            },
+            {
+              "name": "10 клас",
+              "name_de": "Klasse 10",
+              "url": ""
+            },
+            {
+              "name": "11 клас",
+              "name_de": "Klasse 11",
+              "url": ""
+            }
+          ]
+        },
+        {
+          "label": "2 Семестр",
+          "label_de": "2. Semester",
+          "classes": [
+            {
+              "name": "1 клас",
+              "name_de": "Klasse 1",
+              "url": ""
+            },
+            {
+              "name": "2 клас",
+              "name_de": "Klasse 2",
+              "url": ""
+            },
+            {
+              "name": "3 клас",
+              "name_de": "Klasse 3",
+              "url": ""
+            },
+            {
+              "name": "4 клас",
+              "name_de": "Klasse 4",
+              "url": ""
+            },
+            {
+              "name": "5 клас",
+              "name_de": "Klasse 5",
+              "url": ""
+            },
+            {
+              "name": "6 клас",
+              "name_de": "Klasse 6",
+              "url": ""
+            },
+            {
+              "name": "7 клас",
+              "name_de": "Klasse 7",
+              "url": ""
+            },
+            {
+              "name": "8 клас",
+              "name_de": "Klasse 8",
+              "url": ""
+            },
+            {
+              "name": "9 клас",
+              "name_de": "Klasse 9",
+              "url": ""
+            },
+            {
+              "name": "10 клас",
+              "name_de": "Klasse 10",
+              "url": ""
+            },
+            {
+              "name": "11 клас",
+              "name_de": "Klasse 11",
+              "url": ""
+            }
+          ]
+        },
+        {
+          "classes": []
+        },
+        {
+          "classes": []
+        },
+        {
+          "classes": []
+        },
+        {
+          "classes": []
+        },
+        {
+          "classes": []
+        },
+        {
+          "classes": []
+        },
+        {
+          "classes": []
+        },
+        {
+          "classes": []
+        },
+        {
+          "classes": []
+        },
+        {
+          "label": "2 Семестр",
+          "label_de": "2. Semester",
+          "classes": [
+            {
+              "name": "1 клас",
+              "name_de": "Klasse 1",
+              "url": ""
+            },
+            {
+              "name": "2 клас",
+              "name_de": "Klasse 2",
+              "url": ""
+            },
+            {
+              "name": "3 клас",
+              "name_de": "Klasse 3",
+              "url": ""
+            },
+            {
+              "name": "4 клас",
+              "name_de": "Klasse 4",
+              "url": ""
+            },
+            {
+              "name": "5 клас",
+              "name_de": "Klasse 5",
+              "url": ""
+            },
+            {
+              "name": "6 клас",
+              "name_de": "Klasse 6",
+              "url": ""
+            },
+            {
+              "name": "7 клас",
+              "name_de": "Klasse 7",
+              "url": ""
+            },
+            {
+              "name": "8 клас",
+              "name_de": "Klasse 8",
+              "url": ""
+            },
+            {
+              "name": "9 клас",
+              "name_de": "Klasse 9",
+              "url": ""
+            },
+            {
+              "name": "10 клас",
+              "name_de": "Klasse 10",
+              "url": ""
+            },
+            {
+              "name": "11 клас",
+              "name_de": "Klasse 11",
+              "url": ""
+            }
+          ]
+        },
+        {
+          "label": "1 Семестр",
+          "label_de": "1. Semester",
+          "classes": [
+            {
+              "name": "1 клас",
+              "name_de": "Klasse 1",
+              "url": ""
+            },
+            {
+              "name": "2 клас",
+              "name_de": "Klasse 2",
+              "url": ""
+            },
+            {
+              "name": "3 клас",
+              "name_de": "Klasse 3",
+              "url": ""
+            },
+            {
+              "name": "4 клас",
+              "name_de": "Klasse 4",
+              "url": ""
+            },
+            {
+              "name": "5 клас",
+              "name_de": "Klasse 5",
+              "url": ""
+            },
+            {
+              "name": "6 клас",
+              "name_de": "Klasse 6",
+              "url": ""
+            },
+            {
+              "name": "7 клас",
+              "name_de": "Klasse 7",
+              "url": ""
+            },
+            {
+              "name": "8 клас",
+              "name_de": "Klasse 8",
+              "url": ""
+            },
+            {
+              "name": "9 клас",
+              "name_de": "Klasse 9",
+              "url": ""
+            },
+            {
+              "name": "10 клас",
+              "name_de": "Klasse 10",
+              "url": ""
+            },
+            {
+              "name": "11 клас",
+              "name_de": "Klasse 11",
+              "url": ""
+            }
+          ]
+        },
+        {
+          "label": "2 Семестр",
+          "label_de": "2. Semester",
+          "classes": [
+            {
+              "name": "1 клас",
+              "name_de": "Klasse 1",
+              "url": ""
+            },
+            {
+              "name": "2 клас",
+              "name_de": "Klasse 2",
+              "url": ""
+            },
+            {
+              "name": "3 клас",
+              "name_de": "Klasse 3",
+              "url": ""
+            },
+            {
+              "name": "4 клас",
+              "name_de": "Klasse 4",
+              "url": ""
+            },
+            {
+              "name": "5 клас",
+              "name_de": "Klasse 5",
+              "url": ""
+            },
+            {
+              "name": "6 клас",
+              "name_de": "Klasse 6",
+              "url": ""
+            },
+            {
+              "name": "7 клас",
+              "name_de": "Klasse 7",
+              "url": ""
+            },
+            {
+              "name": "8 клас",
+              "name_de": "Klasse 8",
+              "url": ""
+            },
+            {
+              "name": "9 клас",
+              "name_de": "Klasse 9",
+              "url": ""
+            },
+            {
+              "name": "10 клас",
+              "name_de": "Klasse 10",
+              "url": ""
+            },
+            {
+              "name": "11 клас",
+              "name_de": "Klasse 11",
+              "url": ""
+            }
+          ]
+        },
+        {
+          "classes": []
+        },
+        {
+          "classes": []
+        },
+        {
+          "classes": []
+        },
+        {
+          "classes": []
+        },
+        {
+          "classes": []
+        },
+        {
+          "classes": []
+        },
+        {
+          "classes": []
+        },
+        {
+          "classes": []
+        },
+        {
+          "classes": []
+        }
+      ]
+    },
     {
       "title": "Навчальні плани",
       "title_de": "Lernpläne",
@@ -61,14 +1301,12 @@
       "description_de": "Dokumente, die den Inhalt, Umfang und die Reihenfolge des Unterrichts bestimmen.",
       "badge": "Контроль",
       "badge_de": "Kontrolle",
-
       "semesters": [
         {
           "label": "1 Семестр",
           "label_de": "1. Semester",
           "classes": []
         },
-
         {
           "label": "2 Семестр",
           "label_de": "2. Semester",
@@ -76,7 +1314,6 @@
         }
       ]
     },
-
     {
       "title": "Графік консультацій",
       "title_de": "Beratungsplan",
@@ -84,14 +1321,12 @@
       "description_de": "Zeitplan für Besprechungen.",
       "badge": "Графік",
       "badge_de": "Zeitplan",
-
       "semesters": [
         {
           "label": "1 Семестр",
           "label_de": "1. Semester",
           "classes": []
         },
-
         {
           "label": "2 Семестр",
           "label_de": "2. Semester",
@@ -99,7 +1334,6 @@
         }
       ]
     },
-
     {
       "title": "Графік контрольних робіт",
       "title_de": "Zeitplan für Kontrolltests",
@@ -107,14 +1341,1974 @@
       "description_de": "Zeitplan für Überprüfungstests.",
       "badge": "Extra",
       "badge_de": "Extra",
-
       "semesters": [
         {
           "label": "1 Семестр",
           "label_de": "1. Semester",
           "classes": []
         },
-
+        {
+          "label": "2 Семестр",
+          "label_de": "2. Semester",
+          "classes": []
+        }
+      ]
+    },
+    {
+      "semesters": []
+    },
+    {
+      "semesters": []
+    },
+    {
+      "semesters": []
+    },
+    {
+      "semesters": []
+    },
+    {
+      "semesters": []
+    },
+    {
+      "semesters": []
+    },
+    {
+      "semesters": []
+    },
+    {
+      "title": "Навчальні плани",
+      "title_de": "Lernpläne",
+      "description": "Документи, що визначають зміст, обсяг і послідовність навчання.",
+      "description_de": "Dokumente, die den Inhalt, Umfang und die Reihenfolge des Unterrichts bestimmen.",
+      "badge": "Контроль",
+      "badge_de": "Kontrolle",
+      "semesters": [
+        {
+          "label": "1 Семестр",
+          "label_de": "1. Semester",
+          "classes": []
+        },
+        {
+          "label": "2 Семестр",
+          "label_de": "2. Semester",
+          "classes": []
+        }
+      ]
+    },
+    {
+      "title": "Положення про сімейну форму навчання Ліцею № 167 м. Києва",
+      "title_de": "Vorschriften zum Familienunterricht des Lyzeums Nr. 167 der Stadt Kiew",
+      "description": "Документ, що визначає організацію сімейного навчання, права й обов'язки учнів, батьків та ліцею.",
+      "description_de": "Dokument, das die Organisation des Familienunterrichts und die Rechte und Pflichten von Schülern, Eltern und Lyzeum festlegt.",
+      "badge": "Плани",
+      "badge_de": "Pläne",
+      "semesters": [
+        {
+          "label": "1 Семестр",
+          "label_de": "1. Semester",
+          "classes": [
+            {
+              "name": "1 клас",
+              "name_de": "Klasse 1",
+              "url": ""
+            },
+            {
+              "name": "2 клас",
+              "name_de": "Klasse 2",
+              "url": ""
+            },
+            {
+              "name": "3 клас",
+              "name_de": "Klasse 3",
+              "url": ""
+            },
+            {
+              "name": "4 клас",
+              "name_de": "Klasse 4",
+              "url": ""
+            },
+            {
+              "name": "5 клас",
+              "name_de": "Klasse 5",
+              "url": ""
+            },
+            {
+              "name": "6 клас",
+              "name_de": "Klasse 6",
+              "url": ""
+            },
+            {
+              "name": "7 клас",
+              "name_de": "Klasse 7",
+              "url": ""
+            },
+            {
+              "name": "8 клас",
+              "name_de": "Klasse 8",
+              "url": ""
+            },
+            {
+              "name": "9 клас",
+              "name_de": "Klasse 9",
+              "url": ""
+            },
+            {
+              "name": "10 клас",
+              "name_de": "Klasse 10",
+              "url": ""
+            },
+            {
+              "name": "11 клас",
+              "name_de": "Klasse 11",
+              "url": ""
+            }
+          ]
+        },
+        {
+          "label": "1 Семестр",
+          "label_de": "1. Semester",
+          "classes": [
+            {
+              "name": "1 клас",
+              "name_de": "Klasse 1",
+              "url": ""
+            },
+            {
+              "name": "2 клас",
+              "name_de": "Klasse 2",
+              "url": ""
+            },
+            {
+              "name": "3 клас",
+              "name_de": "Klasse 3",
+              "url": ""
+            },
+            {
+              "name": "4 клас",
+              "name_de": "Klasse 4",
+              "url": ""
+            },
+            {
+              "name": "5 клас",
+              "name_de": "Klasse 5",
+              "url": ""
+            },
+            {
+              "name": "6 клас",
+              "name_de": "Klasse 6",
+              "url": ""
+            },
+            {
+              "name": "7 клас",
+              "name_de": "Klasse 7",
+              "url": ""
+            },
+            {
+              "name": "8 клас",
+              "name_de": "Klasse 8",
+              "url": ""
+            },
+            {
+              "name": "9 клас",
+              "name_de": "Klasse 9",
+              "url": ""
+            },
+            {
+              "name": "10 клас",
+              "name_de": "Klasse 10",
+              "url": ""
+            },
+            {
+              "name": "11 клас",
+              "name_de": "Klasse 11",
+              "url": ""
+            }
+          ]
+        },
+        {
+          "label": "2 Семестр",
+          "label_de": "2. Semester",
+          "classes": [
+            {
+              "name": "1 клас",
+              "name_de": "Klasse 1",
+              "url": ""
+            },
+            {
+              "name": "2 клас",
+              "name_de": "Klasse 2",
+              "url": ""
+            },
+            {
+              "name": "3 клас",
+              "name_de": "Klasse 3",
+              "url": ""
+            },
+            {
+              "name": "4 клас",
+              "name_de": "Klasse 4",
+              "url": ""
+            },
+            {
+              "name": "5 клас",
+              "name_de": "Klasse 5",
+              "url": ""
+            },
+            {
+              "name": "6 клас",
+              "name_de": "Klasse 6",
+              "url": ""
+            },
+            {
+              "name": "7 клас",
+              "name_de": "Klasse 7",
+              "url": ""
+            },
+            {
+              "name": "8 клас",
+              "name_de": "Klasse 8",
+              "url": ""
+            },
+            {
+              "name": "9 клас",
+              "name_de": "Klasse 9",
+              "url": ""
+            },
+            {
+              "name": "10 клас",
+              "name_de": "Klasse 10",
+              "url": ""
+            },
+            {
+              "name": "11 клас",
+              "name_de": "Klasse 11",
+              "url": ""
+            }
+          ]
+        },
+        {
+          "classes": []
+        },
+        {
+          "classes": []
+        },
+        {
+          "classes": []
+        },
+        {
+          "classes": []
+        },
+        {
+          "classes": []
+        },
+        {
+          "classes": []
+        },
+        {
+          "classes": []
+        },
+        {
+          "classes": []
+        },
+        {
+          "classes": []
+        },
+        {
+          "label": "2 Семестр",
+          "label_de": "2. Semester",
+          "classes": [
+            {
+              "name": "1 клас",
+              "name_de": "Klasse 1",
+              "url": ""
+            },
+            {
+              "name": "2 клас",
+              "name_de": "Klasse 2",
+              "url": ""
+            },
+            {
+              "name": "3 клас",
+              "name_de": "Klasse 3",
+              "url": ""
+            },
+            {
+              "name": "4 клас",
+              "name_de": "Klasse 4",
+              "url": ""
+            },
+            {
+              "name": "5 клас",
+              "name_de": "Klasse 5",
+              "url": ""
+            },
+            {
+              "name": "6 клас",
+              "name_de": "Klasse 6",
+              "url": ""
+            },
+            {
+              "name": "7 клас",
+              "name_de": "Klasse 7",
+              "url": ""
+            },
+            {
+              "name": "8 клас",
+              "name_de": "Klasse 8",
+              "url": ""
+            },
+            {
+              "name": "9 клас",
+              "name_de": "Klasse 9",
+              "url": ""
+            },
+            {
+              "name": "10 клас",
+              "name_de": "Klasse 10",
+              "url": ""
+            },
+            {
+              "name": "11 клас",
+              "name_de": "Klasse 11",
+              "url": ""
+            }
+          ]
+        },
+        {
+          "label": "1 Семестр",
+          "label_de": "1. Semester",
+          "classes": [
+            {
+              "name": "1 клас",
+              "name_de": "Klasse 1",
+              "url": ""
+            },
+            {
+              "name": "2 клас",
+              "name_de": "Klasse 2",
+              "url": ""
+            },
+            {
+              "name": "3 клас",
+              "name_de": "Klasse 3",
+              "url": ""
+            },
+            {
+              "name": "4 клас",
+              "name_de": "Klasse 4",
+              "url": ""
+            },
+            {
+              "name": "5 клас",
+              "name_de": "Klasse 5",
+              "url": ""
+            },
+            {
+              "name": "6 клас",
+              "name_de": "Klasse 6",
+              "url": ""
+            },
+            {
+              "name": "7 клас",
+              "name_de": "Klasse 7",
+              "url": ""
+            },
+            {
+              "name": "8 клас",
+              "name_de": "Klasse 8",
+              "url": ""
+            },
+            {
+              "name": "9 клас",
+              "name_de": "Klasse 9",
+              "url": ""
+            },
+            {
+              "name": "10 клас",
+              "name_de": "Klasse 10",
+              "url": ""
+            },
+            {
+              "name": "11 клас",
+              "name_de": "Klasse 11",
+              "url": ""
+            }
+          ]
+        },
+        {
+          "label": "2 Семестр",
+          "label_de": "2. Semester",
+          "classes": [
+            {
+              "name": "1 клас",
+              "name_de": "Klasse 1",
+              "url": ""
+            },
+            {
+              "name": "2 клас",
+              "name_de": "Klasse 2",
+              "url": ""
+            },
+            {
+              "name": "3 клас",
+              "name_de": "Klasse 3",
+              "url": ""
+            },
+            {
+              "name": "4 клас",
+              "name_de": "Klasse 4",
+              "url": ""
+            },
+            {
+              "name": "5 клас",
+              "name_de": "Klasse 5",
+              "url": ""
+            },
+            {
+              "name": "6 клас",
+              "name_de": "Klasse 6",
+              "url": ""
+            },
+            {
+              "name": "7 клас",
+              "name_de": "Klasse 7",
+              "url": ""
+            },
+            {
+              "name": "8 клас",
+              "name_de": "Klasse 8",
+              "url": ""
+            },
+            {
+              "name": "9 клас",
+              "name_de": "Klasse 9",
+              "url": ""
+            },
+            {
+              "name": "10 клас",
+              "name_de": "Klasse 10",
+              "url": ""
+            },
+            {
+              "name": "11 клас",
+              "name_de": "Klasse 11",
+              "url": ""
+            }
+          ]
+        },
+        {
+          "classes": []
+        },
+        {
+          "classes": []
+        },
+        {
+          "classes": []
+        },
+        {
+          "classes": []
+        },
+        {
+          "classes": []
+        },
+        {
+          "classes": []
+        },
+        {
+          "classes": []
+        },
+        {
+          "classes": []
+        },
+        {
+          "classes": []
+        }
+      ]
+    },
+    {
+      "title": "Навчальні плани",
+      "title_de": "Lernpläne",
+      "description": "Документи, що визначають зміст, обсяг і послідовність навчання.",
+      "description_de": "Dokumente, die den Inhalt, Umfang und die Reihenfolge des Unterrichts bestimmen.",
+      "badge": "Контроль",
+      "badge_de": "Kontrolle",
+      "semesters": [
+        {
+          "label": "1 Семестр",
+          "label_de": "1. Semester",
+          "classes": []
+        },
+        {
+          "label": "2 Семестр",
+          "label_de": "2. Semester",
+          "classes": []
+        }
+      ]
+    },
+    {
+      "title": "Графік консультацій",
+      "title_de": "Beratungsplan",
+      "description": "Розклад зустрічей.",
+      "description_de": "Zeitplan für Besprechungen.",
+      "badge": "Графік",
+      "badge_de": "Zeitplan",
+      "semesters": [
+        {
+          "label": "1 Семестр",
+          "label_de": "1. Semester",
+          "classes": []
+        },
+        {
+          "label": "2 Семестр",
+          "label_de": "2. Semester",
+          "classes": []
+        }
+      ]
+    },
+    {
+      "title": "Графік контрольних робіт",
+      "title_de": "Zeitplan für Kontrolltests",
+      "description": "Розклад перевірочних робіт.",
+      "description_de": "Zeitplan für Überprüfungstests.",
+      "badge": "Extra",
+      "badge_de": "Extra",
+      "semesters": [
+        {
+          "label": "1 Семестр",
+          "label_de": "1. Semester",
+          "classes": []
+        },
+        {
+          "label": "2 Семестр",
+          "label_de": "2. Semester",
+          "classes": []
+        }
+      ]
+    },
+    {
+      "semesters": []
+    },
+    {
+      "semesters": []
+    },
+    {
+      "semesters": []
+    },
+    {
+      "semesters": []
+    },
+    {
+      "semesters": []
+    },
+    {
+      "semesters": []
+    },
+    {
+      "semesters": []
+    },
+    {
+      "title": "Навчальні плани",
+      "title_de": "Lernpläne",
+      "description": "Документи, що визначають зміст, обсяг і послідовність навчання.",
+      "description_de": "Dokumente, die den Inhalt, Umfang und die Reihenfolge des Unterrichts bestimmen.",
+      "badge": "Контроль",
+      "badge_de": "Kontrolle",
+      "semesters": [
+        {
+          "label": "1 Семестр",
+          "label_de": "1. Semester",
+          "classes": []
+        },
+        {
+          "label": "2 Семестр",
+          "label_de": "2. Semester",
+          "classes": []
+        }
+      ]
+    },
+    {
+      "title": "Положення про сімейну форму навчання Ліцею № 167 м. Києва",
+      "title_de": "Vorschriften zum Familienunterricht des Lyzeums Nr. 167 der Stadt Kiew",
+      "description": "Документ, що визначає організацію сімейного навчання, права й обов'язки учнів, батьків та ліцею.",
+      "description_de": "Dokument, das die Organisation des Familienunterrichts und die Rechte und Pflichten von Schülern, Eltern und Lyzeum festlegt.",
+      "badge": "Плани",
+      "badge_de": "Pläne",
+      "semesters": [
+        {
+          "label": "1 Семестр",
+          "label_de": "1. Semester",
+          "classes": [
+            {
+              "name": "1 клас",
+              "name_de": "Klasse 1",
+              "url": ""
+            },
+            {
+              "name": "2 клас",
+              "name_de": "Klasse 2",
+              "url": ""
+            },
+            {
+              "name": "3 клас",
+              "name_de": "Klasse 3",
+              "url": ""
+            },
+            {
+              "name": "4 клас",
+              "name_de": "Klasse 4",
+              "url": ""
+            },
+            {
+              "name": "5 клас",
+              "name_de": "Klasse 5",
+              "url": ""
+            },
+            {
+              "name": "6 клас",
+              "name_de": "Klasse 6",
+              "url": ""
+            },
+            {
+              "name": "7 клас",
+              "name_de": "Klasse 7",
+              "url": ""
+            },
+            {
+              "name": "8 клас",
+              "name_de": "Klasse 8",
+              "url": ""
+            },
+            {
+              "name": "9 клас",
+              "name_de": "Klasse 9",
+              "url": ""
+            },
+            {
+              "name": "10 клас",
+              "name_de": "Klasse 10",
+              "url": ""
+            },
+            {
+              "name": "11 клас",
+              "name_de": "Klasse 11",
+              "url": ""
+            }
+          ]
+        },
+        {
+          "label": "1 Семестр",
+          "label_de": "1. Semester",
+          "classes": [
+            {
+              "name": "1 клас",
+              "name_de": "Klasse 1",
+              "url": ""
+            },
+            {
+              "name": "2 клас",
+              "name_de": "Klasse 2",
+              "url": ""
+            },
+            {
+              "name": "3 клас",
+              "name_de": "Klasse 3",
+              "url": ""
+            },
+            {
+              "name": "4 клас",
+              "name_de": "Klasse 4",
+              "url": ""
+            },
+            {
+              "name": "5 клас",
+              "name_de": "Klasse 5",
+              "url": ""
+            },
+            {
+              "name": "6 клас",
+              "name_de": "Klasse 6",
+              "url": ""
+            },
+            {
+              "name": "7 клас",
+              "name_de": "Klasse 7",
+              "url": ""
+            },
+            {
+              "name": "8 клас",
+              "name_de": "Klasse 8",
+              "url": ""
+            },
+            {
+              "name": "9 клас",
+              "name_de": "Klasse 9",
+              "url": ""
+            },
+            {
+              "name": "10 клас",
+              "name_de": "Klasse 10",
+              "url": ""
+            },
+            {
+              "name": "11 клас",
+              "name_de": "Klasse 11",
+              "url": ""
+            }
+          ]
+        },
+        {
+          "label": "2 Семестр",
+          "label_de": "2. Semester",
+          "classes": [
+            {
+              "name": "1 клас",
+              "name_de": "Klasse 1",
+              "url": ""
+            },
+            {
+              "name": "2 клас",
+              "name_de": "Klasse 2",
+              "url": ""
+            },
+            {
+              "name": "3 клас",
+              "name_de": "Klasse 3",
+              "url": ""
+            },
+            {
+              "name": "4 клас",
+              "name_de": "Klasse 4",
+              "url": ""
+            },
+            {
+              "name": "5 клас",
+              "name_de": "Klasse 5",
+              "url": ""
+            },
+            {
+              "name": "6 клас",
+              "name_de": "Klasse 6",
+              "url": ""
+            },
+            {
+              "name": "7 клас",
+              "name_de": "Klasse 7",
+              "url": ""
+            },
+            {
+              "name": "8 клас",
+              "name_de": "Klasse 8",
+              "url": ""
+            },
+            {
+              "name": "9 клас",
+              "name_de": "Klasse 9",
+              "url": ""
+            },
+            {
+              "name": "10 клас",
+              "name_de": "Klasse 10",
+              "url": ""
+            },
+            {
+              "name": "11 клас",
+              "name_de": "Klasse 11",
+              "url": ""
+            }
+          ]
+        },
+        {
+          "classes": []
+        },
+        {
+          "classes": []
+        },
+        {
+          "classes": []
+        },
+        {
+          "classes": []
+        },
+        {
+          "classes": []
+        },
+        {
+          "classes": []
+        },
+        {
+          "classes": []
+        },
+        {
+          "classes": []
+        },
+        {
+          "classes": []
+        },
+        {
+          "label": "2 Семестр",
+          "label_de": "2. Semester",
+          "classes": [
+            {
+              "name": "1 клас",
+              "name_de": "Klasse 1",
+              "url": ""
+            },
+            {
+              "name": "2 клас",
+              "name_de": "Klasse 2",
+              "url": ""
+            },
+            {
+              "name": "3 клас",
+              "name_de": "Klasse 3",
+              "url": ""
+            },
+            {
+              "name": "4 клас",
+              "name_de": "Klasse 4",
+              "url": ""
+            },
+            {
+              "name": "5 клас",
+              "name_de": "Klasse 5",
+              "url": ""
+            },
+            {
+              "name": "6 клас",
+              "name_de": "Klasse 6",
+              "url": ""
+            },
+            {
+              "name": "7 клас",
+              "name_de": "Klasse 7",
+              "url": ""
+            },
+            {
+              "name": "8 клас",
+              "name_de": "Klasse 8",
+              "url": ""
+            },
+            {
+              "name": "9 клас",
+              "name_de": "Klasse 9",
+              "url": ""
+            },
+            {
+              "name": "10 клас",
+              "name_de": "Klasse 10",
+              "url": ""
+            },
+            {
+              "name": "11 клас",
+              "name_de": "Klasse 11",
+              "url": ""
+            }
+          ]
+        },
+        {
+          "label": "1 Семестр",
+          "label_de": "1. Semester",
+          "classes": [
+            {
+              "name": "1 клас",
+              "name_de": "Klasse 1",
+              "url": ""
+            },
+            {
+              "name": "2 клас",
+              "name_de": "Klasse 2",
+              "url": ""
+            },
+            {
+              "name": "3 клас",
+              "name_de": "Klasse 3",
+              "url": ""
+            },
+            {
+              "name": "4 клас",
+              "name_de": "Klasse 4",
+              "url": ""
+            },
+            {
+              "name": "5 клас",
+              "name_de": "Klasse 5",
+              "url": ""
+            },
+            {
+              "name": "6 клас",
+              "name_de": "Klasse 6",
+              "url": ""
+            },
+            {
+              "name": "7 клас",
+              "name_de": "Klasse 7",
+              "url": ""
+            },
+            {
+              "name": "8 клас",
+              "name_de": "Klasse 8",
+              "url": ""
+            },
+            {
+              "name": "9 клас",
+              "name_de": "Klasse 9",
+              "url": ""
+            },
+            {
+              "name": "10 клас",
+              "name_de": "Klasse 10",
+              "url": ""
+            },
+            {
+              "name": "11 клас",
+              "name_de": "Klasse 11",
+              "url": ""
+            }
+          ]
+        },
+        {
+          "label": "2 Семестр",
+          "label_de": "2. Semester",
+          "classes": [
+            {
+              "name": "1 клас",
+              "name_de": "Klasse 1",
+              "url": ""
+            },
+            {
+              "name": "2 клас",
+              "name_de": "Klasse 2",
+              "url": ""
+            },
+            {
+              "name": "3 клас",
+              "name_de": "Klasse 3",
+              "url": ""
+            },
+            {
+              "name": "4 клас",
+              "name_de": "Klasse 4",
+              "url": ""
+            },
+            {
+              "name": "5 клас",
+              "name_de": "Klasse 5",
+              "url": ""
+            },
+            {
+              "name": "6 клас",
+              "name_de": "Klasse 6",
+              "url": ""
+            },
+            {
+              "name": "7 клас",
+              "name_de": "Klasse 7",
+              "url": ""
+            },
+            {
+              "name": "8 клас",
+              "name_de": "Klasse 8",
+              "url": ""
+            },
+            {
+              "name": "9 клас",
+              "name_de": "Klasse 9",
+              "url": ""
+            },
+            {
+              "name": "10 клас",
+              "name_de": "Klasse 10",
+              "url": ""
+            },
+            {
+              "name": "11 клас",
+              "name_de": "Klasse 11",
+              "url": ""
+            }
+          ]
+        },
+        {
+          "classes": []
+        },
+        {
+          "classes": []
+        },
+        {
+          "classes": []
+        },
+        {
+          "classes": []
+        },
+        {
+          "classes": []
+        },
+        {
+          "classes": []
+        },
+        {
+          "classes": []
+        },
+        {
+          "classes": []
+        },
+        {
+          "classes": []
+        }
+      ]
+    },
+    {
+      "title": "Навчальні плани",
+      "title_de": "Lernpläne",
+      "description": "Документи, що визначають зміст, обсяг і послідовність навчання.",
+      "description_de": "Dokumente, die den Inhalt, Umfang und die Reihenfolge des Unterrichts bestimmen.",
+      "badge": "Контроль",
+      "badge_de": "Kontrolle",
+      "semesters": [
+        {
+          "label": "1 Семестр",
+          "label_de": "1. Semester",
+          "classes": []
+        },
+        {
+          "label": "2 Семестр",
+          "label_de": "2. Semester",
+          "classes": []
+        }
+      ]
+    },
+    {
+      "title": "Графік консультацій",
+      "title_de": "Beratungsplan",
+      "description": "Розклад зустрічей.",
+      "description_de": "Zeitplan für Besprechungen.",
+      "badge": "Графік",
+      "badge_de": "Zeitplan",
+      "semesters": [
+        {
+          "label": "1 Семестр",
+          "label_de": "1. Semester",
+          "classes": []
+        },
+        {
+          "label": "2 Семестр",
+          "label_de": "2. Semester",
+          "classes": []
+        }
+      ]
+    },
+    {
+      "title": "Положення про сімейну форму навчання Ліцею № 167 м. Києва",
+      "title_de": "Vorschriften zum Familienunterricht des Lyzeums Nr. 167 der Stadt Kiew",
+      "description": "Документ, що визначає організацію сімейного навчання, права й обов'язки учнів, батьків та ліцею.",
+      "description_de": "Dokument, das die Organisation des Familienunterrichts und die Rechte und Pflichten von Schülern, Eltern und Lyzeum festlegt.",
+      "badge": "Плани",
+      "badge_de": "Pläne",
+      "semesters": [
+        {
+          "label": "1 Семестр",
+          "label_de": "1. Semester",
+          "classes": [
+            {
+              "name": "1 клас",
+              "name_de": "Klasse 1",
+              "url": ""
+            },
+            {
+              "name": "2 клас",
+              "name_de": "Klasse 2",
+              "url": ""
+            },
+            {
+              "name": "3 клас",
+              "name_de": "Klasse 3",
+              "url": ""
+            },
+            {
+              "name": "4 клас",
+              "name_de": "Klasse 4",
+              "url": ""
+            },
+            {
+              "name": "5 клас",
+              "name_de": "Klasse 5",
+              "url": ""
+            },
+            {
+              "name": "6 клас",
+              "name_de": "Klasse 6",
+              "url": ""
+            },
+            {
+              "name": "7 клас",
+              "name_de": "Klasse 7",
+              "url": ""
+            },
+            {
+              "name": "8 клас",
+              "name_de": "Klasse 8",
+              "url": ""
+            },
+            {
+              "name": "9 клас",
+              "name_de": "Klasse 9",
+              "url": ""
+            },
+            {
+              "name": "10 клас",
+              "name_de": "Klasse 10",
+              "url": ""
+            },
+            {
+              "name": "11 клас",
+              "name_de": "Klasse 11",
+              "url": ""
+            }
+          ]
+        },
+        {
+          "label": "1 Семестр",
+          "label_de": "1. Semester",
+          "classes": [
+            {
+              "name": "1 клас",
+              "name_de": "Klasse 1",
+              "url": ""
+            },
+            {
+              "name": "2 клас",
+              "name_de": "Klasse 2",
+              "url": ""
+            },
+            {
+              "name": "3 клас",
+              "name_de": "Klasse 3",
+              "url": ""
+            },
+            {
+              "name": "4 клас",
+              "name_de": "Klasse 4",
+              "url": ""
+            },
+            {
+              "name": "5 клас",
+              "name_de": "Klasse 5",
+              "url": ""
+            },
+            {
+              "name": "6 клас",
+              "name_de": "Klasse 6",
+              "url": ""
+            },
+            {
+              "name": "7 клас",
+              "name_de": "Klasse 7",
+              "url": ""
+            },
+            {
+              "name": "8 клас",
+              "name_de": "Klasse 8",
+              "url": ""
+            },
+            {
+              "name": "9 клас",
+              "name_de": "Klasse 9",
+              "url": ""
+            },
+            {
+              "name": "10 клас",
+              "name_de": "Klasse 10",
+              "url": ""
+            },
+            {
+              "name": "11 клас",
+              "name_de": "Klasse 11",
+              "url": ""
+            }
+          ]
+        },
+        {
+          "label": "2 Семестр",
+          "label_de": "2. Semester",
+          "classes": [
+            {
+              "name": "1 клас",
+              "name_de": "Klasse 1",
+              "url": ""
+            },
+            {
+              "name": "2 клас",
+              "name_de": "Klasse 2",
+              "url": ""
+            },
+            {
+              "name": "3 клас",
+              "name_de": "Klasse 3",
+              "url": ""
+            },
+            {
+              "name": "4 клас",
+              "name_de": "Klasse 4",
+              "url": ""
+            },
+            {
+              "name": "5 клас",
+              "name_de": "Klasse 5",
+              "url": ""
+            },
+            {
+              "name": "6 клас",
+              "name_de": "Klasse 6",
+              "url": ""
+            },
+            {
+              "name": "7 клас",
+              "name_de": "Klasse 7",
+              "url": ""
+            },
+            {
+              "name": "8 клас",
+              "name_de": "Klasse 8",
+              "url": ""
+            },
+            {
+              "name": "9 клас",
+              "name_de": "Klasse 9",
+              "url": ""
+            },
+            {
+              "name": "10 клас",
+              "name_de": "Klasse 10",
+              "url": ""
+            },
+            {
+              "name": "11 клас",
+              "name_de": "Klasse 11",
+              "url": ""
+            }
+          ]
+        },
+        {
+          "classes": []
+        },
+        {
+          "classes": []
+        },
+        {
+          "classes": []
+        },
+        {
+          "classes": []
+        },
+        {
+          "classes": []
+        },
+        {
+          "classes": []
+        },
+        {
+          "classes": []
+        },
+        {
+          "classes": []
+        },
+        {
+          "classes": []
+        },
+        {
+          "label": "2 Семестр",
+          "label_de": "2. Semester",
+          "classes": [
+            {
+              "name": "1 клас",
+              "name_de": "Klasse 1",
+              "url": ""
+            },
+            {
+              "name": "2 клас",
+              "name_de": "Klasse 2",
+              "url": ""
+            },
+            {
+              "name": "3 клас",
+              "name_de": "Klasse 3",
+              "url": ""
+            },
+            {
+              "name": "4 клас",
+              "name_de": "Klasse 4",
+              "url": ""
+            },
+            {
+              "name": "5 клас",
+              "name_de": "Klasse 5",
+              "url": ""
+            },
+            {
+              "name": "6 клас",
+              "name_de": "Klasse 6",
+              "url": ""
+            },
+            {
+              "name": "7 клас",
+              "name_de": "Klasse 7",
+              "url": ""
+            },
+            {
+              "name": "8 клас",
+              "name_de": "Klasse 8",
+              "url": ""
+            },
+            {
+              "name": "9 клас",
+              "name_de": "Klasse 9",
+              "url": ""
+            },
+            {
+              "name": "10 клас",
+              "name_de": "Klasse 10",
+              "url": ""
+            },
+            {
+              "name": "11 клас",
+              "name_de": "Klasse 11",
+              "url": ""
+            }
+          ]
+        },
+        {
+          "label": "1 Семестр",
+          "label_de": "1. Semester",
+          "classes": [
+            {
+              "name": "1 клас",
+              "name_de": "Klasse 1",
+              "url": ""
+            },
+            {
+              "name": "2 клас",
+              "name_de": "Klasse 2",
+              "url": ""
+            },
+            {
+              "name": "3 клас",
+              "name_de": "Klasse 3",
+              "url": ""
+            },
+            {
+              "name": "4 клас",
+              "name_de": "Klasse 4",
+              "url": ""
+            },
+            {
+              "name": "5 клас",
+              "name_de": "Klasse 5",
+              "url": ""
+            },
+            {
+              "name": "6 клас",
+              "name_de": "Klasse 6",
+              "url": ""
+            },
+            {
+              "name": "7 клас",
+              "name_de": "Klasse 7",
+              "url": ""
+            },
+            {
+              "name": "8 клас",
+              "name_de": "Klasse 8",
+              "url": ""
+            },
+            {
+              "name": "9 клас",
+              "name_de": "Klasse 9",
+              "url": ""
+            },
+            {
+              "name": "10 клас",
+              "name_de": "Klasse 10",
+              "url": ""
+            },
+            {
+              "name": "11 клас",
+              "name_de": "Klasse 11",
+              "url": ""
+            }
+          ]
+        },
+        {
+          "label": "2 Семестр",
+          "label_de": "2. Semester",
+          "classes": [
+            {
+              "name": "1 клас",
+              "name_de": "Klasse 1",
+              "url": ""
+            },
+            {
+              "name": "2 клас",
+              "name_de": "Klasse 2",
+              "url": ""
+            },
+            {
+              "name": "3 клас",
+              "name_de": "Klasse 3",
+              "url": ""
+            },
+            {
+              "name": "4 клас",
+              "name_de": "Klasse 4",
+              "url": ""
+            },
+            {
+              "name": "5 клас",
+              "name_de": "Klasse 5",
+              "url": ""
+            },
+            {
+              "name": "6 клас",
+              "name_de": "Klasse 6",
+              "url": ""
+            },
+            {
+              "name": "7 клас",
+              "name_de": "Klasse 7",
+              "url": ""
+            },
+            {
+              "name": "8 клас",
+              "name_de": "Klasse 8",
+              "url": ""
+            },
+            {
+              "name": "9 клас",
+              "name_de": "Klasse 9",
+              "url": ""
+            },
+            {
+              "name": "10 клас",
+              "name_de": "Klasse 10",
+              "url": ""
+            },
+            {
+              "name": "11 клас",
+              "name_de": "Klasse 11",
+              "url": ""
+            }
+          ]
+        },
+        {
+          "classes": []
+        },
+        {
+          "classes": []
+        },
+        {
+          "classes": []
+        },
+        {
+          "classes": []
+        },
+        {
+          "classes": []
+        },
+        {
+          "classes": []
+        },
+        {
+          "classes": []
+        },
+        {
+          "classes": []
+        },
+        {
+          "classes": []
+        }
+      ]
+    },
+    {
+      "title": "Навчальні плани",
+      "title_de": "Lernpläne",
+      "description": "Документи, що визначають зміст, обсяг і послідовність навчання.",
+      "description_de": "Dokumente, die den Inhalt, Umfang und die Reihenfolge des Unterrichts bestimmen.",
+      "badge": "Контроль",
+      "badge_de": "Kontrolle",
+      "semesters": [
+        {
+          "label": "1 Семестр",
+          "label_de": "1. Semester",
+          "classes": []
+        },
+        {
+          "label": "2 Семестр",
+          "label_de": "2. Semester",
+          "classes": []
+        }
+      ]
+    },
+    {
+      "title": "Графік контрольних робіт",
+      "title_de": "Zeitplan für Kontrolltests",
+      "description": "Розклад перевірочних робіт.",
+      "description_de": "Zeitplan für Überprüfungstests.",
+      "badge": "Extra",
+      "badge_de": "Extra",
+      "semesters": [
+        {
+          "label": "1 Семестр",
+          "label_de": "1. Semester",
+          "classes": []
+        },
+        {
+          "label": "2 Семестр",
+          "label_de": "2. Semester",
+          "classes": []
+        }
+      ]
+    },
+    {
+      "title": "Положення про сімейну форму навчання Ліцею № 167 м. Києва",
+      "title_de": "Vorschriften zum Familienunterricht des Lyzeums Nr. 167 der Stadt Kiew",
+      "description": "Документ, що визначає організацію сімейного навчання, права й обов'язки учнів, батьків та ліцею.",
+      "description_de": "Dokument, das die Organisation des Familienunterrichts und die Rechte und Pflichten von Schülern, Eltern und Lyzeum festlegt.",
+      "badge": "Плани",
+      "badge_de": "Pläne",
+      "semesters": [
+        {
+          "label": "1 Семестр",
+          "label_de": "1. Semester",
+          "classes": [
+            {
+              "name": "1 клас",
+              "name_de": "Klasse 1",
+              "url": ""
+            },
+            {
+              "name": "2 клас",
+              "name_de": "Klasse 2",
+              "url": ""
+            },
+            {
+              "name": "3 клас",
+              "name_de": "Klasse 3",
+              "url": ""
+            },
+            {
+              "name": "4 клас",
+              "name_de": "Klasse 4",
+              "url": ""
+            },
+            {
+              "name": "5 клас",
+              "name_de": "Klasse 5",
+              "url": ""
+            },
+            {
+              "name": "6 клас",
+              "name_de": "Klasse 6",
+              "url": ""
+            },
+            {
+              "name": "7 клас",
+              "name_de": "Klasse 7",
+              "url": ""
+            },
+            {
+              "name": "8 клас",
+              "name_de": "Klasse 8",
+              "url": ""
+            },
+            {
+              "name": "9 клас",
+              "name_de": "Klasse 9",
+              "url": ""
+            },
+            {
+              "name": "10 клас",
+              "name_de": "Klasse 10",
+              "url": ""
+            },
+            {
+              "name": "11 клас",
+              "name_de": "Klasse 11",
+              "url": ""
+            }
+          ]
+        },
+        {
+          "label": "1 Семестр",
+          "label_de": "1. Semester",
+          "classes": [
+            {
+              "name": "1 клас",
+              "name_de": "Klasse 1",
+              "url": ""
+            },
+            {
+              "name": "2 клас",
+              "name_de": "Klasse 2",
+              "url": ""
+            },
+            {
+              "name": "3 клас",
+              "name_de": "Klasse 3",
+              "url": ""
+            },
+            {
+              "name": "4 клас",
+              "name_de": "Klasse 4",
+              "url": ""
+            },
+            {
+              "name": "5 клас",
+              "name_de": "Klasse 5",
+              "url": ""
+            },
+            {
+              "name": "6 клас",
+              "name_de": "Klasse 6",
+              "url": ""
+            },
+            {
+              "name": "7 клас",
+              "name_de": "Klasse 7",
+              "url": ""
+            },
+            {
+              "name": "8 клас",
+              "name_de": "Klasse 8",
+              "url": ""
+            },
+            {
+              "name": "9 клас",
+              "name_de": "Klasse 9",
+              "url": ""
+            },
+            {
+              "name": "10 клас",
+              "name_de": "Klasse 10",
+              "url": ""
+            },
+            {
+              "name": "11 клас",
+              "name_de": "Klasse 11",
+              "url": ""
+            }
+          ]
+        },
+        {
+          "label": "2 Семестр",
+          "label_de": "2. Semester",
+          "classes": [
+            {
+              "name": "1 клас",
+              "name_de": "Klasse 1",
+              "url": ""
+            },
+            {
+              "name": "2 клас",
+              "name_de": "Klasse 2",
+              "url": ""
+            },
+            {
+              "name": "3 клас",
+              "name_de": "Klasse 3",
+              "url": ""
+            },
+            {
+              "name": "4 клас",
+              "name_de": "Klasse 4",
+              "url": ""
+            },
+            {
+              "name": "5 клас",
+              "name_de": "Klasse 5",
+              "url": ""
+            },
+            {
+              "name": "6 клас",
+              "name_de": "Klasse 6",
+              "url": ""
+            },
+            {
+              "name": "7 клас",
+              "name_de": "Klasse 7",
+              "url": ""
+            },
+            {
+              "name": "8 клас",
+              "name_de": "Klasse 8",
+              "url": ""
+            },
+            {
+              "name": "9 клас",
+              "name_de": "Klasse 9",
+              "url": ""
+            },
+            {
+              "name": "10 клас",
+              "name_de": "Klasse 10",
+              "url": ""
+            },
+            {
+              "name": "11 клас",
+              "name_de": "Klasse 11",
+              "url": ""
+            }
+          ]
+        },
+        {
+          "classes": []
+        },
+        {
+          "classes": []
+        },
+        {
+          "classes": []
+        },
+        {
+          "classes": []
+        },
+        {
+          "classes": []
+        },
+        {
+          "classes": []
+        },
+        {
+          "classes": []
+        },
+        {
+          "classes": []
+        },
+        {
+          "classes": []
+        },
+        {
+          "label": "2 Семестр",
+          "label_de": "2. Semester",
+          "classes": [
+            {
+              "name": "1 клас",
+              "name_de": "Klasse 1",
+              "url": ""
+            },
+            {
+              "name": "2 клас",
+              "name_de": "Klasse 2",
+              "url": ""
+            },
+            {
+              "name": "3 клас",
+              "name_de": "Klasse 3",
+              "url": ""
+            },
+            {
+              "name": "4 клас",
+              "name_de": "Klasse 4",
+              "url": ""
+            },
+            {
+              "name": "5 клас",
+              "name_de": "Klasse 5",
+              "url": ""
+            },
+            {
+              "name": "6 клас",
+              "name_de": "Klasse 6",
+              "url": ""
+            },
+            {
+              "name": "7 клас",
+              "name_de": "Klasse 7",
+              "url": ""
+            },
+            {
+              "name": "8 клас",
+              "name_de": "Klasse 8",
+              "url": ""
+            },
+            {
+              "name": "9 клас",
+              "name_de": "Klasse 9",
+              "url": ""
+            },
+            {
+              "name": "10 клас",
+              "name_de": "Klasse 10",
+              "url": ""
+            },
+            {
+              "name": "11 клас",
+              "name_de": "Klasse 11",
+              "url": ""
+            }
+          ]
+        },
+        {
+          "label": "1 Семестр",
+          "label_de": "1. Semester",
+          "classes": [
+            {
+              "name": "1 клас",
+              "name_de": "Klasse 1",
+              "url": ""
+            },
+            {
+              "name": "2 клас",
+              "name_de": "Klasse 2",
+              "url": ""
+            },
+            {
+              "name": "3 клас",
+              "name_de": "Klasse 3",
+              "url": ""
+            },
+            {
+              "name": "4 клас",
+              "name_de": "Klasse 4",
+              "url": ""
+            },
+            {
+              "name": "5 клас",
+              "name_de": "Klasse 5",
+              "url": ""
+            },
+            {
+              "name": "6 клас",
+              "name_de": "Klasse 6",
+              "url": ""
+            },
+            {
+              "name": "7 клас",
+              "name_de": "Klasse 7",
+              "url": ""
+            },
+            {
+              "name": "8 клас",
+              "name_de": "Klasse 8",
+              "url": ""
+            },
+            {
+              "name": "9 клас",
+              "name_de": "Klasse 9",
+              "url": ""
+            },
+            {
+              "name": "10 клас",
+              "name_de": "Klasse 10",
+              "url": ""
+            },
+            {
+              "name": "11 клас",
+              "name_de": "Klasse 11",
+              "url": ""
+            }
+          ]
+        },
+        {
+          "label": "2 Семестр",
+          "label_de": "2. Semester",
+          "classes": [
+            {
+              "name": "1 клас",
+              "name_de": "Klasse 1",
+              "url": ""
+            },
+            {
+              "name": "2 клас",
+              "name_de": "Klasse 2",
+              "url": ""
+            },
+            {
+              "name": "3 клас",
+              "name_de": "Klasse 3",
+              "url": ""
+            },
+            {
+              "name": "4 клас",
+              "name_de": "Klasse 4",
+              "url": ""
+            },
+            {
+              "name": "5 клас",
+              "name_de": "Klasse 5",
+              "url": ""
+            },
+            {
+              "name": "6 клас",
+              "name_de": "Klasse 6",
+              "url": ""
+            },
+            {
+              "name": "7 клас",
+              "name_de": "Klasse 7",
+              "url": ""
+            },
+            {
+              "name": "8 клас",
+              "name_de": "Klasse 8",
+              "url": ""
+            },
+            {
+              "name": "9 клас",
+              "name_de": "Klasse 9",
+              "url": ""
+            },
+            {
+              "name": "10 клас",
+              "name_de": "Klasse 10",
+              "url": ""
+            },
+            {
+              "name": "11 клас",
+              "name_de": "Klasse 11",
+              "url": ""
+            }
+          ]
+        },
+        {
+          "classes": []
+        },
+        {
+          "classes": []
+        },
+        {
+          "classes": []
+        },
+        {
+          "classes": []
+        },
+        {
+          "classes": []
+        },
+        {
+          "classes": []
+        },
+        {
+          "classes": []
+        },
+        {
+          "classes": []
+        },
+        {
+          "classes": []
+        }
+      ]
+    },
+    {
+      "title": "Навчальні плани",
+      "title_de": "Lernpläne",
+      "description": "Документи, що визначають зміст, обсяг і послідовність навчання.",
+      "description_de": "Dokumente, die den Inhalt, Umfang und die Reihenfolge des Unterrichts bestimmen.",
+      "badge": "Контроль",
+      "badge_de": "Kontrolle",
+      "semesters": [
+        {
+          "label": "1 Семестр",
+          "label_de": "1. Semester",
+          "classes": []
+        },
         {
           "label": "2 Семестр",
           "label_de": "2. Semester",
