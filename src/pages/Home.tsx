@@ -18,7 +18,7 @@ interface HomeProps {
 }
 
 const iconMap: any = {
-  book: BookOpen,
+  bookopen: BookOpen,
   award: Award,
   users: Users,
   globe: Globe,

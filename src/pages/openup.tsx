@@ -32,7 +32,7 @@ export default function Openup() {
 
   useEffect(() => {
     fetch(
-      'https://raw.githubusercontent.com/platstarinum-prog/lizei167/main/content/pages/transparency.json'
+      'https://raw.githubusercontent.com/porustzi/lizei167/main/content/pages/transparency.json'
     )
       .then((r) => r.json())
       .then((data: TransparencyData) => {

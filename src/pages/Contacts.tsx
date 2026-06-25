@@ -34,16 +34,17 @@ export default function Contacts() {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    fetch('https://raw.githubusercontent.com/platstarinum-prog/lizei167/main/content/pages/contacts.json')
+    fetch('https://raw.githubusercontent.com/porustzi/lizei167/main/content/pages/contacts.json')
       .then(r => r.json())
       .then(setData)
       .catch(() => {});
   }, []);
 
-  const FORMSPREE = import.meta.env.VITE_FORMSPREE || 'https://formspree.io/f/YOUR_FORM_ID';
+  const FORMSPREE = import.meta.env.VITE_FORMSPREE || '';
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!FORMSPREE) { alert('Форма тимчасово недоступна'); return; }
     setLoading(true);
     try {
       await fetch(FORMSPREE, {
