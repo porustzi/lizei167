@@ -22,6 +22,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 .btn-outline:hover{border-color:#dc2626;color:#dc2626}
 .btn-green{background:#16a34a}
 .btn-green:hover{background:#15803d}
+.btn-red{background:#dc2626}
+.btn-red:hover{background:#b91c1c}
 .logo{width:64px;height:64px;background:#dc2626;border-radius:1rem;display:flex;align-items:center;justify-content:center;margin:0 auto 1.5rem;font-size:1.5rem;color:#fff;font-weight:800}
 .error{color:#dc2626;font-size:.875rem;margin-top:.5rem;display:none}
 .error.show{display:block}
@@ -185,7 +187,7 @@ async function api(body){
     body:JSON.stringify(body)
   });
   if(!res.ok){
-    if(res.status===401){sessionStorage.removeItem('admin_pass');showLogin()}
+    if(res.status===401){sessionStorage.removeItem('admin_pass');showLogin();return}
     const err=await res.json().catch(()=>({error:'Request failed'}));
     throw new Error(err.error||err.detail||'Error');
   }
@@ -210,6 +212,18 @@ function show(id){
 }
 
 function backToDashboard(){show('dashboard')}
+
+async function deleteItem(path, callback){
+  if(!confirm('Видалити '+path+'?'))return;
+  try{
+    await api({action:'delete',path});
+    toast('✅ Видалено');
+    if(callback==='openNews')openNews();
+    else if(callback==='openReviews')openReviews();
+    else if(callback==='backToDashboard')backToDashboard();
+    else show('dashboard');
+  }catch(e){toast('❌ '+e.message,true)}
+}
 
 function bcSegs(...segs){
   return '<a onclick="backToDashboard()">🏠 Панель</a>'+segs.map(s=>'<span>›</span><span>'+s+'</span>').join('')
@@ -416,6 +430,7 @@ async function openPage(file){
   document.getElementById('breadcrumb').innerHTML=bcSegs(schema.label);
   document.getElementById('pageActions').innerHTML=`
     <button class="btn btn-sm btn-green" onclick="savePage()">💾 Зберегти</button>
+    ${schema.file!=='general.json'&&schema.file!=='home.json'?`<button class="btn btn-sm btn-red" onclick="deleteItem('${schema.file}','backToDashboard')">🗑 Видалити</button>`:''}
     <button class="btn btn-sm btn-ghost" onclick="backToDashboard()">← Назад</button>`;
   try{
     const data=await api({action:'read',path:schema.file});
@@ -499,11 +514,11 @@ function renderField(f,val,path){
         <span class=sep></span>
         <button onclick="mdeImage('${id}')">🖼️</button>
       </div>
-      <textarea class="markdown mde-textarea" id="${id}" oninput="previewMarkdown()">${esc(val||'')}</textarea>
+      <textarea class="markdown mde-textarea" id="${id}" oninput="previewMarkdown()">${val||''}</textarea>
       <div class="preview-wrap" id="preview-${id}"></div></div>`
   }
   if(f.type==='textarea'){
-    return `<div class="form-group"><label>${label}</label><textarea id="${id}">${esc(val||'')}</textarea></div>`
+    return `<div class="form-group"><label>${label}</label><textarea id="${id}">${val||''}</textarea></div>`
   }
   if(f.type==='datetime'){
     const dt=val?String(val).replace('Z','').slice(0,16):'';
@@ -666,7 +681,8 @@ async function savePage(){
       action:'write',
       path:schema.file,
       content:JSON.stringify(data,null,2),
-      message:'Update '+schema.file
+      message:'Update '+schema.file,
+      sha:currentView.sha
     });
     toast('✅ Збережено!');
     currentView.data=data;
@@ -713,9 +729,9 @@ async function openNews(){
     if(!items||!items.length){el.innerHTML='<div class="empty" style="padding:3rem;text-align:center;color:#94a3b8">Немає новин. Натисніть "Додати".</div>';return}
     el.innerHTML='<div class="item-list">'+items.map(f=>{
       const name=f.name.replace(/\.md$/,'');
-      return `<div class="item-row" onclick="editNews('${f.path}')">
-        <div><div class="item-title">${esc(name)}</div><div class="item-meta">${f.path}</div></div>
-        <span class="label label-gray">✏️</span>
+      return `<div class="item-row"><div onclick="editNews('${f.path}')" style="flex:1;cursor:pointer">
+        <div class="item-title">${esc(name)}</div><div class="item-meta">${f.path}</div>
+      </div><button class="btn btn-sm btn-red" onclick="event.stopPropagation();deleteItem('${f.path}','openNews')" style="padding:.3rem .6rem;font-size:.75rem">✕</button>
       </div>`
     }).join('')+'</div>'
   }catch(e){toast('❌ '+e.message,true)}
@@ -746,6 +762,7 @@ async function editNews(path){
     document.getElementById('pageTitle').innerHTML='✏️ '+(parsed.title||'Редагувати');
     document.getElementById('pageActions').innerHTML=`
       <button class="btn btn-sm btn-green" onclick="saveNews()">💾 Зберегти</button>
+      <button class="btn btn-sm btn-red" onclick="deleteItem('${path}','openNews')">🗑 Видалити</button>
       <button class="btn btn-sm btn-ghost" onclick="openNews()">← Скасувати</button>`;
     const el=document.getElementById('pageContent');
     el.innerHTML='<div class="editor-wrap">'+NEWS_FIELDS.map(f=>renderField(f,parsed[f.name]||'',f.name)).join('')+'</div>';
@@ -760,9 +777,10 @@ async function saveNews(){
     if(el)form[f.name]=el.value;
   });
   const content=newsStr(form);
-  const path=currentView.file||('content/news/'+(form.title||'new')+'.md');
+  const slug=(form.title||'new').toLowerCase().replace(/[^a-zа-яёіїєґ0-9]+/g,'-').replace(/^-|-$/g,'')||'new';
+  const path=currentView.file||('content/news/'+slug+'.md');
   try{
-    await api({action:'write',path,content,message:'Update '+path});
+    await api({action:'write',path,content,message:'Update '+path,sha:currentView.sha});
     toast('✅ Збережено!');
     openNews();
   }catch(e){toast('❌ '+e.message,true)}
@@ -792,9 +810,9 @@ async function openReviews(){
     if(!items||!items.length){el.innerHTML='<div class="empty" style="padding:3rem;text-align:center;color:#94a3b8">Немає відгуків.</div>';return}
     el.innerHTML='<div class="item-list">'+items.map(f=>{
       const name=f.name.replace(/\.json$/,'');
-      return `<div class="item-row" onclick="editReview('${f.path}')">
-        <div><div class="item-title">${esc(name)}</div><div class="item-meta">${f.path}</div></div>
-        <span class="label label-gray">✏️</span>
+      return `<div class="item-row"><div onclick="editReview('${f.path}')" style="flex:1;cursor:pointer">
+        <div class="item-title">${esc(name)}</div><div class="item-meta">${f.path}</div>
+      </div><button class="btn btn-sm btn-red" onclick="event.stopPropagation();deleteItem('${f.path}','openReviews')" style="padding:.3rem .6rem;font-size:.75rem">✕</button>
       </div>`
     }).join('')+'</div>'
   }catch(e){toast('❌ '+e.message,true)}
@@ -824,6 +842,7 @@ async function editReview(path){
     document.getElementById('pageTitle').innerHTML='✏️ '+(parsed.name||'Редагувати');
     document.getElementById('pageActions').innerHTML=`
       <button class="btn btn-sm btn-green" onclick="saveReview()">💾 Зберегти</button>
+      <button class="btn btn-sm btn-red" onclick="deleteItem('${path}','openReviews')">🗑 Видалити</button>
       <button class="btn btn-sm btn-ghost" onclick="openReviews()">← Скасувати</button>`;
     const el=document.getElementById('pageContent');
     el.innerHTML='<div class="editor-wrap">'+REVIEW_FIELDS.map(f=>renderField(f,parsed[f.name]||'',f.name)).join('')+'</div>';
@@ -834,14 +853,14 @@ async function saveReview(){
   const form={};
   REVIEW_FIELDS.forEach(f=>{
     const el=document.getElementById('f-'+f.name);
-    if(el)form[f.name]=el.value;
+    if(el)form[f.name]=f.type==='number'?Number(el.value):el.value;
   });
   const content=JSON.stringify(form,null,2);
   const name=form.name||'review';
-  const slug=name.toLowerCase().replace(/[^a-zа-яёіїєґ]+/g,'-').replace(/^-|-$/g,'')||'review';
+  const slug=name.toLowerCase().replace(/[^a-zа-яёіїєґ0-9]+/g,'-').replace(/^-|-$/g,'')||'review';
   const path=currentView.file||('content/reviews/'+slug+'.json');
   try{
-    await api({action:'write',path,content,message:'Update '+path});
+    await api({action:'write',path,content,message:'Update '+path,sha:currentView.sha});
     toast('✅ Збережено!');
     openReviews();
   }catch(e){toast('❌ '+e.message,true)}
@@ -902,9 +921,8 @@ function previewMarkdown(){
   html=html.replace(/\[(.+?)\]\((.+?)\)/g,'<a href="$2" target="_blank">$1</a>');
   html=html.replace(/^- (.+)/gm,'<li>$1</li>');
   html=html.replace(/(<li>.*<\/li>\n?)+/g,'<ul>$&</ul>');
-  html=html.replace(/\n\n/g,'</p><p>');
-  html=html.replace(/\n/g,'<br>');
-  preview.innerHTML='<p>'+html+'</p>';
+  html=html.split('\n\n').map(function(p){return '<p>'+p.replace(/\n/g,'<br>')+'</p>'}).join('');
+  preview.innerHTML=html;
 }
 
 // ═══════════════════════════════════════════════
