@@ -40,11 +40,12 @@ export default function Contacts() {
       .catch(() => {});
   }, []);
 
-  const FORMSPREE = import.meta.env.VITE_FORMSPREE || 'https://formspree.io/f/mojoeybk';
+  const FORMSPREE = import.meta.env.VITE_FORMSPREE || '';
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
+    if (FORMSPREE) {
     try {
       await fetch(FORMSPREE, {
         method: 'POST',
@@ -54,6 +55,11 @@ export default function Contacts() {
       setSubmitted(true);
     } catch { alert(t('contacts.form_error')); }
     finally { setLoading(false); }
+    } else {
+      setLoading(false);
+      const body = `Ім'я: ${form.name}%0D%0AТелефон: ${form.phone}%0D%0AEmail: ${form.email}%0D%0A%0D%0A${form.message}`;
+      window.location.href = `mailto:lyzeum167@ukr.net?subject=${encodeURIComponent(form.subject)}&body=${body}`;
+    }
   };
 
   return (
