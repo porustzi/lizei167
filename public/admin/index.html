@@ -188,7 +188,7 @@ async function api(body){
     body:JSON.stringify(body)
   });
   if(!res.ok){
-    if(res.status===401){sessionStorage.removeItem('admin_pass');showLogin();return}
+    if(res.status===401){sessionStorage.removeItem('admin_pass');showLogin();throw new Error('Невірний логін або пароль')}
     const err=await res.json().catch(()=>({error:'Request failed'}));
     throw new Error(err.error||err.detail||'Error');
   }
@@ -254,7 +254,7 @@ document.getElementById('loginForm').onsubmit=async e=>{
 };
 
 if(getPass()){
-  api({action:'login'}).then(()=>show('dashboard')).catch(()=>showLogin())
+  api({action:'login'}).then(()=>show('dashboard')).catch(()=>{sessionStorage.removeItem('admin_pass');showLogin()})
 }
 
 // ═══════════════════════════════════════════════
