@@ -70,7 +70,10 @@ export function getAllNews(): NewsItem[] {
 }
 
 export function getNewsById(id: string): NewsItem | undefined {
-  const entry = Object.entries(modules).find(([path]) => path.endsWith('/' + id));
+  const entry = Object.entries(modules).find(([path]) => {
+    const pathId = (path.split('/').pop() || '').replace(/\.md$/, '');
+    return pathId === id;
+  });
   if (!entry) return undefined;
   return toItem(entry[0], entry[1]);
 }
