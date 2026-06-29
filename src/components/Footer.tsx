@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import { GraduationCap, MapPin, Phone, Clock, Mail } from 'lucide-react';
 import { useLang } from '../i18n/LanguageContext';
 import LangSwitch from './LangSwitch';
@@ -7,8 +8,29 @@ interface FooterProps {
   navigate: (page: Page) => void;
 }
 
+interface ContactsData {
+  address: string;
+  phones: { number: string; label: string }[];
+  email: string;
+  working_hours: string;
+}
+
 export default function Footer({ navigate }: FooterProps) {
   const { t } = useLang();
+  const [phone, setPhone] = useState('+0633197790');
+  const [email, setEmail] = useState('lyzeum167@ukr.net');
+
+  useEffect(() => {
+    fetch('https://raw.githubusercontent.com/porustzi/lizei167/main/content/pages/contacts.json')
+      .then(r => r.json())
+      .then((data: ContactsData) => {
+        if (data.phones?.[0]?.number) {
+          setPhone(data.phones[0].number.replace(/\s/g, ''));
+        }
+        if (data.email) setEmail(data.email);
+      })
+      .catch(() => {});
+  }, []);
 
   const links: { label: string; page: Page }[] = [
     { label: t('nav.home'), page: 'home' },
@@ -74,14 +96,14 @@ export default function Footer({ navigate }: FooterProps) {
               </li>
               <li className="flex items-center gap-3">
                 <Phone className="w-4 h-4 text-amber-400 shrink-0" />
-              <a href="tel:+063 319 77 90" className="text-sm text-gray-400 hover:text-amber-400 hover:translate-x-0.5 transition-all duration-200">
-                +063 319 77 90
+              <a href={`tel:${phone}`} className="text-sm text-gray-400 hover:text-amber-400 hover:translate-x-0.5 transition-all duration-200">
+                {phone.replace(/(\d)(\d{3})(\d{3})(\d{2})(\d{2})/, '+$1 $2 $3 $4 $5')}
               </a>
               </li>
               <li className="flex items-center gap-3">
                 <Mail className="w-4 h-4 text-amber-400 shrink-0" />
-              <a href="mailto:lyzeum167@ukr.net" className="text-sm text-gray-400 hover:text-amber-400 hover:translate-x-0.5 transition-all duration-200">
-                lyzeum167@ukr.net
+              <a href={`mailto:${email}`} className="text-sm text-gray-400 hover:text-amber-400 hover:translate-x-0.5 transition-all duration-200">
+                {email}
               </a>
               </li>
               <li className="flex items-center gap-3">

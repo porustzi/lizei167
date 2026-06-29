@@ -12,8 +12,7 @@ export async function onRequest(context) {
   try { body = await request.json(); } catch { return json({ error: 'invalid json' }, 400); }
 
   const auth = request.headers.get('Authorization');
-  const isContact = body.action === 'contact';
-  if (!isContact && (!auth || auth !== `Bearer ${env.ADMIN_PASSWORD}`)) {
+  if (!auth || auth !== `Bearer ${env.ADMIN_PASSWORD}`) {
     return json({ error: 'Unauthorized' }, 401);
   }
 
@@ -77,7 +76,8 @@ export async function onRequest(context) {
         );
 
         if (!res.ok) return proxyError(res);
-        return json({ ok: true });
+        const writeResult = await res.json();
+        return json({ ok: true, sha: writeResult.content?.sha });
       }
 
       case 'delete': {
@@ -131,20 +131,6 @@ export async function onRequest(context) {
         );
         if (!res.ok) return proxyError(res);
         return json({ url: `https://raw.githubusercontent.com/${REPO}/${BRANCH}/${path}` });
-      }
-
-      case 'contact': {
-        const { name, phone, email, subject, message } = body;
-        if (!name || !email || !message) return json({ error: 'name, email, message required' }, 400);
-        const ts = new Date().toISOString().replace(/[:.]/g, '-');
-        const path = `content/forms/${ts}.json`;
-        const content = JSON.stringify({ name, phone, email, subject, message, date: new Date().toISOString() }, null, 2);
-        const res = await fetch(
-          `https://api.github.com/repos/${REPO}/contents/${encodeURIComponent(path)}`,
-          { method: 'PUT', headers: ghHeaders(env), body: JSON.stringify({ message: `Form: ${subject}`, content: btoa(unescape(encodeURIComponent(content))), branch: BRANCH }) }
-        );
-        if (!res.ok) return proxyError(res);
-        return json({ ok: true });
       }
 
       default:

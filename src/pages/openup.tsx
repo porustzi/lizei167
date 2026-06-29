@@ -110,6 +110,9 @@ export default function Openup() {
               return (
                 <div key={i}>
                   <button
+                    id={`openup-accordion-btn-${i}`}
+                    aria-expanded={!!(hasChildren && openIndex === i)}
+                    aria-controls={hasChildren ? `openup-accordion-panel-${i}` : undefined}
                     onClick={() => handleClick(item, i)}
                     className="group w-full flex items-center justify-between text-left px-6 py-4 rounded-xl border border-gray-200 hover:bg-gray-50 hover:border-red-200 hover:shadow-sm transition-all duration-200"
                   >
@@ -117,6 +120,7 @@ export default function Openup() {
                       {loc(item, 'title')}
                     </span>
                     <ChevronRight
+                      aria-hidden="true"
                       className={`w-5 h-5 transition ${openIndex === i
                         ? 'rotate-90 text-red-600'
                         : 'text-gray-400 group-hover:text-red-600 group-hover:translate-x-1'
@@ -124,12 +128,15 @@ export default function Openup() {
                     />
                   </button>
                   <div
+                    id={`openup-accordion-panel-${i}`}
+                    role="region"
+                    aria-labelledby={`openup-accordion-btn-${i}`}
                     className="grid transition-all duration-300"
                     style={{ gridTemplateRows: hasChildren && openIndex === i ? '1fr' : '0fr' }}
                   >
                     <div className="overflow-hidden">
                       <div className="bg-gray-50 px-6 py-4 flex flex-col gap-0 rounded-b-xl border border-t-0 border-gray-200">
-                      {item.children!.map((child, ci) => (
+                      {(item.children || []).map((child, ci) => (
                         <a
                           key={ci}
                           href={child.url}

@@ -96,6 +96,9 @@ export default function Family() {
                 className={`border ${styles.border} rounded-2xl overflow-hidden hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300`}
               >
                 <button
+                  id={`family-accordion-btn-${i}`}
+                  aria-expanded={open === i}
+                  aria-controls={`family-accordion-panel-${i}`}
                   className="w-full flex justify-between p-6"
                   onClick={() => setOpen(open === i ? null : i)}
                 >
@@ -103,7 +106,7 @@ export default function Family() {
                     <div
                       className={`w-12 h-12 ${styles.bg} ${styles.color} flex items-center justify-center rounded-xl`}
                     >
-                      <Icon className="w-6 h-6" />
+                      <Icon className="w-6 h-6" aria-hidden="true" />
                     </div>
 
                     <div className="text-left">
@@ -116,6 +119,7 @@ export default function Family() {
                   </div>
 
                   <ChevronRight
+                    aria-hidden="true"
                     className={`transition-transform ${
                       open === i ? 'rotate-90' : ''
                     }`}
@@ -123,6 +127,9 @@ export default function Family() {
                 </button>
 
                 <div
+                  id={`family-accordion-panel-${i}`}
+                  role="region"
+                  aria-labelledby={`family-accordion-btn-${i}`}
                   className="grid transition-all duration-300"
                   style={{ gridTemplateRows: open === i ? '1fr' : '0fr' }}
                 >
@@ -139,25 +146,28 @@ export default function Family() {
                           </p>
 
                           <div className="space-y-2">
-                            {sem.classes?.map((c: any) => (
-                              <a
-                                key={c.name}
-                                href={c.url}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="flex items-center gap-3 p-2 rounded-lg hover:bg-gray-50 transition-colors"
-                              >
-                                <CheckCircle
-                                  className={`w-4 h-4 ${styles.color}`}
-                                />
-
-                                <span className="text-sm">
-                                  {loc(c, 'name')}
-                                </span>
-
-                                <BookOpen className="w-4 h-4 text-gray-300 ml-auto" />
-                              </a>
-                            ))}
+                            {sem.classes?.map((c: any) => {
+                              const hasUrl = c.url && c.url.trim();
+                              const Tag = hasUrl ? 'a' : 'span';
+                              const linkProps = hasUrl ? { href: c.url, target: '_blank', rel: 'noopener noreferrer' } : {};
+                              return (
+                                <Tag
+                                  key={c.name}
+                                  {...linkProps}
+                                  className={`flex items-center gap-3 p-2 rounded-lg transition-colors ${
+                                    hasUrl ? 'hover:bg-gray-50 cursor-pointer' : 'cursor-default opacity-60'
+                                  }`}
+                                >
+                                  <CheckCircle
+                                    className={`w-4 h-4 ${hasUrl ? styles.color : 'text-gray-300'}`}
+                                  />
+                                  <span className="text-sm">
+                                    {loc(c, 'name')}
+                                  </span>
+                                  {hasUrl && <BookOpen className="w-4 h-4 text-gray-300 ml-auto" />}
+                                </Tag>
+                              );
+                            })}
                           </div>
                         </div>
                       ))}

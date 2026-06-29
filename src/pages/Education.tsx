@@ -102,10 +102,13 @@ export default function Education() {
                 className="border border-gray-100 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300"
               >
                 <button
+                  id={`edu-accordion-btn-${i}`}
+                  aria-expanded={openProgram === i}
+                  aria-controls={`edu-accordion-panel-${i}`}
                   className="w-full text-left p-6 flex items-start gap-4"
                   onClick={() => setOpenProgram(openProgram === i ? null : i)}
                 >
-                  <div className="w-12 h-12 bg-red-50 text-red-600 rounded-xl flex items-center justify-center shrink-0">
+                  <div className="w-12 h-12 bg-red-50 text-red-600 rounded-xl flex items-center justify-center shrink-0" aria-hidden="true">
                     <BookOpen className="w-6 h-6" />
                   </div>
 
@@ -126,6 +129,7 @@ export default function Education() {
                   </div>
 
                   <ChevronRight
+                    aria-hidden="true"
                     className={`w-5 h-5 text-gray-400 transition-transform duration-200 ${
                       openProgram === i ? 'rotate-90' : ''
                     }`}
@@ -133,6 +137,9 @@ export default function Education() {
                 </button>
 
                 <div
+                  id={`edu-accordion-panel-${i}`}
+                  role="region"
+                  aria-labelledby={`edu-accordion-btn-${i}`}
                   className="grid transition-all duration-300"
                   style={{ gridTemplateRows: openProgram === i ? '1fr' : '0fr' }}
                 >

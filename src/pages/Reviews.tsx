@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import { Star, Quote } from 'lucide-react';
 import { useLang } from '../i18n/LanguageContext';
 
@@ -22,6 +23,18 @@ export default function Reviews() {
   const reviews = reviewsData;
   const avgRating = 4.86;
   const totalReviews = 134;
+  const [ctaPhone, setCtaPhone] = useState('+380442923133');
+
+  useEffect(() => {
+    fetch('https://raw.githubusercontent.com/porustzi/lizei167/main/content/pages/contacts.json')
+      .then(r => r.json())
+      .then((data: any) => {
+        if (data.phones?.[0]?.number) {
+          setCtaPhone(data.phones[0].number.replace(/\s/g, ''));
+        }
+      })
+      .catch(() => {});
+  }, []);
 
   const starLabels = [
     { key: 'reviews.stars_5', pct: 91 },
@@ -170,7 +183,7 @@ export default function Reviews() {
           <p className="text-gray-600 mb-6">{t('reviews.cta_text')}</p>
           <div className="flex flex-wrap justify-center gap-4">
             <a
-              href="tel:+380442923133"
+              href={`tel:${ctaPhone}`}
               className="flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white font-semibold px-7 py-3.5 rounded-xl transition-colors shadow-sm"
             >
               {t('reviews.cta_button')}

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Menu, X, Phone, GraduationCap } from 'lucide-react';
 import { useLang } from '../i18n/LanguageContext';
 import LangSwitch from './LangSwitch';
@@ -13,6 +13,16 @@ interface HeaderProps {
 export default function Header({ currentPage, navigate, isScrolled }: HeaderProps) {
   const { t } = useLang();
   const [menuOpen, setMenuOpen] = useState(false);
+  const [callPhone, setCallPhone] = useState('+380633197790');
+
+  useEffect(() => {
+    fetch('https://raw.githubusercontent.com/porustzi/lizei167/main/content/pages/general.json')
+      .then(r => r.json())
+      .then((data: any) => {
+        if (data.call_button_phone) setCallPhone(data.call_button_phone);
+      })
+      .catch(() => {});
+  }, []);
 
   const navLinks: { label: string; page: Page }[] = [
     { label: t('nav.home'), page: 'home' },
@@ -82,13 +92,13 @@ export default function Header({ currentPage, navigate, isScrolled }: HeaderProp
           <div className="flex items-center gap-3">
             <LangSwitch />
             
-              <button
-                onClick={() => handleNav('contacts')}
+              <a
+                href={`tel:${callPhone}`}
                 className="hidden sm:flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white text-sm font-medium px-4 py-2 rounded-lg hover:shadow-md hover:scale-105 active:scale-95 transition-all duration-200 shadow-sm"
               >
                 <Phone className="w-4 h-4" />
                 <span>{t('nav.call')}</span>
-              </button>
+              </a>
 
             {/* БУРГЕР */}
             <button
@@ -122,13 +132,13 @@ export default function Header({ currentPage, navigate, isScrolled }: HeaderProp
             ))}
 
             {/* МОБИЛЬНАЯ КНОПКА */}
-            <button
-              onClick={() => handleNav('contacts')}
+            <a
+              href={`tel:${callPhone}`}
               className="flex items-center gap-2 w-full text-left px-4 py-3 rounded-lg text-sm font-medium text-white bg-red-600 hover:bg-red-700 transition-colors mt-2"
             >
               <Phone className="w-4 h-4" />
               {t('nav.contacts')}
-            </button>
+            </a>
 
           </div>
         </div>
