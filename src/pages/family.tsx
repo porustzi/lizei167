@@ -147,9 +147,11 @@ export default function Family() {
 
                           <div className="space-y-2">
                             {sem.classes?.map((c: any) => {
-                              const hasUrl = c.url && c.url.trim();
+                              const rawUrl = c.url && c.url.trim();
+                              const hasUrl = !!rawUrl;
+                              const url = hasUrl ? (rawUrl.startsWith('http') ? rawUrl : `https://${rawUrl}`) : '';
                               const Tag = hasUrl ? 'a' : 'span';
-                              const linkProps = hasUrl ? { href: c.url, target: '_blank', rel: 'noopener noreferrer' } : {};
+                              const linkProps = hasUrl ? { href: url, target: '_blank', rel: 'noopener noreferrer' } : {};
                               return (
                                 <Tag
                                   key={c.name}

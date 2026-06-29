@@ -384,7 +384,7 @@ const PAGE_SCHEMAS={
           {name:'label',label:'Назва (uk)'},{name:'label_de',label:'Назва (de)'},
           {name:'classes',label:'Класи',type:'array',labelSingle:'Клас',fields:[
             {name:'name',label:'Клас (uk)'},{name:'name_de',label:'Клас (de)'},
-            {name:'url',label:'URL документа'},
+            {name:'url',label:'URL документа (https://...)',placeholder:'https://drive.google.com/...'},
           ]},
         ]},
       ]},
@@ -547,7 +547,7 @@ function renderField(f,val,path){
     return `<div class="form-group"><label>${label}</label><select id="${id}">${opts}</select></div>`
   }
   // default: text
-  return `<div class="form-group"><label>${label}</label><input type="text" id="${id}" value="${esc(val||'')}"></div>`
+  return `<div class="form-group"><label>${label}</label><input type="text" id="${id}" value="${esc(val||'')}"${f.placeholder?` placeholder="${esc(f.placeholder)}"`:''}></div>`
 }
 
 function renderArr(field,data,path){
