@@ -40,13 +40,21 @@ export default function Contacts() {
       .catch(() => {});
   }, []);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
+    try {
+      const res = await fetch('/api/github', {
+        method: 'POST',
+        body: JSON.stringify({ action: 'contact', ...form }),
+        headers: { 'Content-Type': 'application/json' },
+      });
+      if (res.ok) { setSubmitted(true); setLoading(false); return; }
+    } catch {}
+    setLoading(false);
     const body = `Ім'я: ${form.name}%0D%0AТелефон: ${form.phone}%0D%0AEmail: ${form.email}%0D%0A%0D%0A${form.message}`;
     window.location.href = `mailto:${data.email}?subject=${encodeURIComponent(form.subject)}&body=${body}`;
     setSubmitted(true);
-    setLoading(false);
   };
 
   return (

@@ -881,12 +881,28 @@ async function openForms(){
   document.getElementById('breadcrumb').innerHTML=bcSegs('Заявки');
   document.getElementById('pageActions').innerHTML=`
     <button class="btn btn-sm btn-ghost" onclick="backToDashboard()">← Назад</button>`;
-  document.getElementById('pageContent').innerHTML=`
-    <div class="editor-wrap" style="text-align:center;padding:3rem">
-      <p style="font-size:2rem;margin-bottom:1rem">📩</p>
-      <p style="font-weight:600;font-size:1.1rem">Функцію збереження заявок вимкнено</p>
-      <p style="color:#64748b;margin-top:.5rem">Контактна форма тепер відправляє дані напряму на email школи.<br>Заявки більше не зберігаються у публічному репозиторії (GDPR).</p>
-    </div>`;
+  try{
+    const items=await api({action:'list',folder:'content/forms'});
+    const el=document.getElementById('pageContent');
+    if(!items||!items.length){el.innerHTML='<div class="empty">Немає заявок</div>';return}
+    let html='<div class="item-list">';
+    for(const f of items){
+      const data=await api({action:'read',path:f.path});
+      if(!data||!data.content)continue;
+      let form; try{form=JSON.parse(data.content)}catch{continue}
+      html+=`<div class="item-row" style="flex-direction:column;align-items:flex-start;gap:8px">
+        <div style="display:flex;justify-content:space-between;width:100%">
+          <div class="item-title">${esc(form.subject||'Без теми')}</div>
+          <button class="btn btn-sm btn-red" onclick="deleteItem('${f.path}','openForms')" style="padding:.3rem .6rem;font-size:.75rem">✕</button>
+        </div>
+        <div class="item-meta">${esc(form.name)} · ${esc(form.email)} · ${esc(form.phone||'')}</div>
+        <div style="font-size:.85rem;color:#475569;white-space:pre-wrap;margin-top:4px">${esc(form.message||'')}</div>
+        <div class="item-meta">${esc(form.date||'')}</div>
+      </div>`;
+    }
+    html+='</div>';
+    el.innerHTML=html;
+  }catch(e){toast('❌ '+e.message,true)}
 }
 
 // ═══════════════════════════════════════════════
