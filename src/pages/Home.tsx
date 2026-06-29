@@ -99,7 +99,7 @@ export default function Home({ navigate }: HomeProps) {
             <div className="flex flex-wrap gap-4">
 
               <button
-                onClick={() => navigate('contacts')}
+                onClick={() => navigate('education')}
                 className="flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white font-semibold px-7 py-3.5 rounded-xl hover:scale-105 active:scale-95 transition-all duration-200"
               >
                 {t('hero.cta1')}

@@ -41,9 +41,9 @@ export default function News({ onOpen }: Props) {
 
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {news.length === 0 && (
+          {news.length === 0 ? (
             <p className="text-center text-gray-400">{t('news.empty')}</p>
-          )}
+          ) : (
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {news.map((item) => (
               <div
@@ -64,10 +64,10 @@ export default function News({ onOpen }: Props) {
                     {item.date}
                   </div>
                   <h3 className="font-bold text-gray-900 text-xl mb-3 leading-snug">
-                    {item.title}
+                    {item.title || t('news.untitled')}
                   </h3>
                   <p className="text-gray-500 text-sm leading-relaxed flex-1">
-                    {(item.excerpt || item.body).slice(0, 150)}
+                    {(item.excerpt || item.body.replace(/[#*\[\]!`>]/g,'').replace(/\n+/g,' ')).slice(0, 150)}
                     {(item.excerpt || item.body).length > 150 ? '...' : ''}
                   </p>
                   <button className="flex items-center gap-1.5 text-red-600 font-semibold text-sm mt-5 hover:gap-2.5 transition-all">
@@ -78,6 +78,7 @@ export default function News({ onOpen }: Props) {
               </div>
             ))}
           </div>
+          )}
         </div>
       </section>
     </div>

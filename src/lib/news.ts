@@ -50,7 +50,7 @@ function formatDate(iso: string): string {
 }
 
 function toItem(path: string, raw: string): NewsItem {
-  const id = path.split('/').pop() || '';
+  const id = (path.split('/').pop() || '').replace(/\.md$/, '');
   const { meta, body } = parseFrontmatter(raw);
   return {
     id,

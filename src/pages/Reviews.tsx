@@ -22,7 +22,7 @@ export default function Reviews() {
   const { t, loc } = useLang();
   const reviews = reviewsData;
   const avgRating = 4.86;
-  const totalReviews = 134;
+  const totalReviews = reviews.length || 134;
   const [ctaPhone, setCtaPhone] = useState('+380442923133');
 
   useEffect(() => {
@@ -137,9 +137,9 @@ export default function Reviews() {
           </div>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {reviews.map((item: any) => (
+            {reviews.map((item: any, idx: number) => (
               <div
-                key={item.name}
+                key={`${item.name}-${idx}`}
                 className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col"
               >
                 <div className="flex items-start justify-between mb-4">

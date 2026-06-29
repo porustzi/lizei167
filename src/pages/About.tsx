@@ -210,7 +210,7 @@ export default function About() {
                 <div
                   className={`w-14 h-14 ${colors[i]?.bg} ${colors[i]?.color} rounded-2xl flex items-center justify-center mx-auto mb-4`}
                 >
-                  {icons[i]}
+                  {icons[i % icons.length] || <Target className="w-6 h-6" />}
                 </div>
 
                 <h3 className="font-bold text-gray-900 mb-2">

@@ -177,7 +177,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 const API='/api/github';
 function getPass(){return sessionStorage.getItem('admin_pass')||''}
 function setPass(p){sessionStorage.setItem('admin_pass',p)}
-function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;')}
 function encPath(p){return p.replace(/\./g,'_').replace(/\[/g,'_').replace(/\]/g,'')}
 
 async function api(body){
@@ -257,6 +257,8 @@ if(getPass()){
   api({action:'login'}).then(()=>show('dashboard')).catch(()=>{sessionStorage.removeItem('admin_pass');showLogin()})
 }
 
+const ICON_OPTIONS = ['BookOpen','Award','Users','Globe','Microscope','Music','Calculator','GraduationCap','Calendar','Target','Star','Heart','Shield','Zap','Sun','Moon','Camera','FileText','Link','Mail','Phone','MapPin','Clock','CheckCircle','Send','Quote','Search','Bell','Settings','Home','Info','Flag','Trophy','Pen','Palette','Briefcase'];
+
 // ═══════════════════════════════════════════════
 // SCHEMAS — define ALL editable fields per page
 // ═══════════════════════════════════════════════
@@ -283,7 +285,7 @@ const PAGE_SCHEMAS={
         {name:'hero_subtitle_de',label:'Підзаголовок (de)'},
       ]},
       {title:'Переваги',array:'features',labelSingle:'Перевага',fields:[
-        {name:'icon',label:'Іконка (BookOpen, Award, Users, Globe)'},
+        {name:'icon',label:'Іконка',type:'select',options:ICON_OPTIONS},
         {name:'title',label:'Назва (uk)'},{name:'title_de',label:'Назва (de)'},
         {name:'text',label:'Опис (uk)',type:'textarea'},{name:'text_de',label:'Опис (de)',type:'textarea'},
       ]},
@@ -350,7 +352,7 @@ const PAGE_SCHEMAS={
         {name:'description',label:'Опис (uk)',type:'textarea'},{name:'description_de',label:'Опис (de)',type:'textarea'},
       ]},
       {title:'Предмети',array:'subjects',labelSingle:'Предмет',fields:[
-        {name:'icon',label:'Іконка'},{name:'title',label:'Назва (uk)'},{name:'title_de',label:'Назва (de)'},
+        {name:'icon',label:'Іконка',type:'select',options:ICON_OPTIONS},{name:'title',label:'Назва (uk)'},{name:'title_de',label:'Назва (de)'},
       ]},
     ]
   },
@@ -432,12 +434,12 @@ async function openPage(file){
   document.getElementById('breadcrumb').innerHTML=bcSegs(schema.label);
   document.getElementById('pageActions').innerHTML=`
     <button class="btn btn-sm btn-green" onclick="savePage()">💾 Зберегти</button>
-    ${schema.file!=='general.json'&&schema.file!=='home.json'?`<button class="btn btn-sm btn-red" onclick="deleteItem('${schema.file}','backToDashboard')">🗑 Видалити</button>`:''}
+    ${file!=='general.json'&&file!=='home.json'?`<button class="btn btn-sm btn-red" onclick="deleteItem('${schema.file}','backToDashboard')">🗑 Видалити</button>`:''}
     <button class="btn btn-sm btn-ghost" onclick="backToDashboard()">← Назад</button>`;
   try{
     const data=await api({action:'read',path:schema.file});
     let parsed={};
-    if(data&&data.content)try{parsed=JSON.parse(data.content)}catch(e){}
+    if(data&&data.content)try{parsed=JSON.parse(data.content)}catch(e){toast('⚠️ JSON пошкоджено! Буде перезаписано.',true)}
     currentView={type:'page',schema,data:parsed,file:schema.file,sha:data?.sha};
     renderPageEditor(schema,parsed);
   }catch(e){toast('❌ '+e.message,true)}
@@ -530,7 +532,7 @@ function renderField(f,val,path){
     return `<div class="form-group"><label>${label}</label><input type="number" id="${id}" value="${esc(val||'')}"${f.min!==undefined?' min="'+f.min+'"':''}${f.max!==undefined?' max="'+f.max+'"':''}></div>`
   }
   if(f.type==='image'){
-    const preview=val?`<img class="img-preview" src="${esc(val)}" onclick="window.open('${esc(val)}')">`:'';
+    const preview=val?`<img class="img-preview" src="${esc(val)}" data-url="${esc(val)}" onclick="const u=this.getAttribute('data-url');if(u)window.open(u)">`:'';
     const folder=f.folder||'content/images';
     const browseFolder=encodeURIComponent(folder);
     return `<div class="form-group"><label>${label}</label>
@@ -645,9 +647,9 @@ function collectArr(field,path){
   const container=document.getElementById(arrId);
   if(!container)return[];
   const items=[];
-  container.querySelectorAll(':scope > .array-item').forEach(el=>{
-    const idx=parseInt(el.dataset.idx);
-    const itemPath=path+'['+idx+']';
+  const els = Array.from(container.querySelectorAll(':scope > .array-item'));
+  els.forEach((el,realIdx)=>{
+    const itemPath=path+'['+realIdx+']';
     const isSimple=!field.fields;
     if(isSimple){
       const subId='f-'+encPath(itemPath);
@@ -705,10 +707,11 @@ const NEWS_FIELDS=[
 
 function newsParse(d){
   const m={};
-  d.replace(/^---\n([\s\S]*?)\n---\n?/,(_,fm)=>{
+  const normalized = d.replace(/\r\n/g, '\n');
+  normalized.replace(/^---\n([\s\S]*?)\n---\n?/,(_,fm)=>{
     fm.split('\n').forEach(l=>{const[k,...v]=l.split(': ');if(k)m[k.trim()]=v.join(': ').trim()})
   });
-  return{...m,body:d.replace(/^---\n[\s\S]*?\n---\n?/,'')};
+  return{...m,body:normalized.replace(/^---\n[\s\S]*?\n---\n?/,'')};
 }
 
 function newsStr(d){
@@ -781,7 +784,7 @@ async function saveNews(){
   });
   const content=newsStr(form);
   const slug=(form.title||'new').toLowerCase().replace(/[^a-zа-яёіїєґ0-9]+/g,'-').replace(/^-|-$/g,'')||'new';
-  const path=currentView.file||('content/news/'+slug+'.md');
+  const path=currentView.file||('content/news/'+slug+'-'+Date.now()+'.md');
   try{
     const res = await api({action:'write',path,content,message:'Update '+path,sha:currentView.sha});
     currentView.sha = res.sha || currentView.sha;
@@ -862,7 +865,7 @@ async function saveReview(){
   const content=JSON.stringify(form,null,2);
   const name=form.name||'review';
   const slug=name.toLowerCase().replace(/[^a-zа-яёіїєґ0-9]+/g,'-').replace(/^-|-$/g,'')||'review';
-  const path=currentView.file||('content/reviews/'+slug+'.json');
+  const path=currentView.file||('content/reviews/'+slug+'-'+Date.now()+'.json');
   try{
     const res = await api({action:'write',path,content,message:'Update '+path,sha:currentView.sha});
     currentView.sha = res.sha || currentView.sha;

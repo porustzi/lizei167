@@ -137,7 +137,7 @@ export default function Header({ currentPage, navigate, isScrolled }: HeaderProp
               className="flex items-center gap-2 w-full text-left px-4 py-3 rounded-lg text-sm font-medium text-white bg-red-600 hover:bg-red-700 transition-colors mt-2"
             >
               <Phone className="w-4 h-4" />
-              {t('nav.contacts')}
+              {t('nav.call')}
             </a>
 
           </div>

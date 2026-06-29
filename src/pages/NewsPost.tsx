@@ -24,7 +24,7 @@ export default function NewsPost({ id, onBack }: Props) {
         </button>
 
         {!post && (
-          <p className="text-gray-400">{t('news.loading')}</p>
+          <p className="text-center text-gray-400 py-20">{t('news.empty')}</p>
         )}
 
         {post && (
